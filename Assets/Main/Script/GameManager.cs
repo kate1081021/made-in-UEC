@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private UIManager uiManager;
-    [SerializeField] private float timelimit = 5.0f;
 
     public static GameManager Instance;
 
@@ -55,7 +54,7 @@ public class GameManager : MonoBehaviour
         // ミニゲームがロードされてからtimelimit秒だけ待つ
         float elapsed = 0f;
 
-        while (elapsed < timelimit) { 
+        while (elapsed < MGManager.timelimit) { 
             elapsed += Time.deltaTime;
             yield return null;
         }
