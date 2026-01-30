@@ -41,7 +41,7 @@ namespace catchMochi
             Shouji.position = new Vector2(262,90.15705f);
 
             // 呼び出されたことを確認する
-            MGManager.Loaded();
+            MGManager.Load(7.0f);
 
             yield return null;
         }

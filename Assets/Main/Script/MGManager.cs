@@ -6,9 +6,11 @@ public static class MGManager
     /// ミニゲームのロードを確認する
     /// </summary>
     public static bool isMinigameLoaded { get; private set; } = false;
+    public static float timelimit { get; private set; } = 0.0f;
 
-    public static void Loaded()
+    public static void Load(float t)
     {
+        timelimit = t;
         isMinigameLoaded = true;
         Debug.Log($"<color=green>【System】Loadフラグが立ちました！ </color>");
     }
