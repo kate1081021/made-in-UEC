@@ -1,10 +1,14 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     private UIManager uiManager;
+    [SerializeField] private List<CreateScene> minigames;  // ミニゲーム一覧を持つ
+    private int loaded_minigame = 0;  // ロードされているゲームの番号
+
 
     public static GameManager Instance;
 
@@ -41,7 +45,10 @@ public class GameManager : MonoBehaviour
 
         
         // アニメーション&シーン切り替え
-        uiManager.PlayAnimation("mochiCatch");
+        loaded_minigame = Random.Range(0, minigames.Count - 1);
+        string scene = minigames[loaded_minigame].scene_name;  // ミニゲームの名前
+        string verb = minigames[loaded_minigame].verb;  // ミニゲームの動詞
+        uiManager.PlayAnimation(verb, scene);
         StartCoroutine(MiniGame());
 
         yield return null;
@@ -58,7 +65,7 @@ public class GameManager : MonoBehaviour
 
         // ミニゲームがロードされてからtimelimit秒だけ待つ
         float elapsed = 0f;
-        float timelimit = 7.0f;
+        float timelimit = minigames[loaded_minigame].timelimit;
 
         while (elapsed < timelimit) { 
             elapsed += Time.deltaTime;
