@@ -148,6 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd871e39ac376b43a6976bb4e80038d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minigames:
+  - {fileID: 11400000, guid: 7af98357a4bd56b4c91a454d1456ea94, type: 2}
 --- !u!4 &128823214
 Transform:
   m_ObjectHideFlags: 0

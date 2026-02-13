@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private float first_duration = 1.0f;    // 最初のテキストがフェードインするアニメーションの時間
     [SerializeField] private float second_duration = 1.0f;    // 次に他のオブジェクトが拡大するアニメーションの時間
 
-    public void PlayAnimation(string scene)
+    public void PlayAnimation(string verb, string scene)
     {
         // 初期状態：テキストを消しておく
         targetText = target.GetComponent<TextMeshProUGUI>();
@@ -24,10 +24,10 @@ public class UIManager : MonoBehaviour
         targetText.transform.localScale = Vector3.one * 1.2f; // 最初から1.2倍
 
         // 演出開始
-        StartCoroutine(PlayUIAnimation(scene));
+        StartCoroutine(PlayUIAnimation(verb, scene));
     }
 
-    IEnumerator PlayUIAnimation(string scene)
+    IEnumerator PlayUIAnimation(string verb, string scene)
     {
         float elapsed = 0f;
 
@@ -42,6 +42,9 @@ public class UIManager : MonoBehaviour
 
         // ステージ数をカウント
         counter.text = $"{MGManager.stage}";
+
+        // 動詞を確定させる
+        targetText.text = verb;
 
         // 1. テキストをフェードイン
         while (elapsed < first_duration)
