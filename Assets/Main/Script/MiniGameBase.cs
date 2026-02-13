@@ -1,10 +1,17 @@
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// 【ろっぱち】メイド・イン・UEC ミニゲーム用ベースクラス
 /// 全てのミニゲームはこのクラスを継承して作成してください。
 /// </summary>
-public abstract class MiniGameBase : MonoBehaviour, IMiniGame
+public abstract class BaseScript : MonoBehaviour
+{
+    protected virtual void Start() {}
+}
+public abstract class MiniGameBase : BaseScript, IMiniGame
 {
     [Header("--- 運営設定エリア ---")]
     [Tooltip("このゲームで流したいBGM。未設定ならデフォルトBGMが流れます")]
@@ -14,13 +21,30 @@ public abstract class MiniGameBase : MonoBehaviour, IMiniGame
     /// <summary> 運営がBGMを取得するためのプロパティ </summary>
     public AudioClip GameBGM => gameBGM;
 
+    public MIU_InputSystem InputSystems;
+    private InputAction Move;
+    private InputAction Trigger;
+    private InputAction Action;
+    public Vector2 moveValue;
+    public float triggerValue;
+    public bool actionValue;
+
     // --- Unity標準機能の制限 ---
 
     /// <summary>
     /// Startは使用禁止です！代わりに OnGameStart() を使ってください。
     /// 初期化漏れによるバグを防ぐため、運営側で封印しています。
     /// </summary>
-    // private sealed void Start() { }
+    protected sealed override void Start()
+    {
+        InputSystems = new MIU_InputSystem();
+        InputSystems.Enable();
+        Move = InputSystems.FindAction("Move");
+        Trigger = InputSystems.FindAction("Trigger");
+        Action = InputSystems.FindAction("Action");
+    }
+
+    
     /*
     このStartについては他に上書きすべきメソッドがない場合エラーを履いちゃうからコメントアウトした
     */
