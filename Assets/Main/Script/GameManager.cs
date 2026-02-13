@@ -30,9 +30,14 @@ public class GameManager : MonoBehaviour
     }
 
     IEnumerator MainCoroutine()
-    {
+    {   
+        // タイムスケールを変更
+        MGManager.applyNewTimeScale();
+        Time.timeScale = MGManager.timeScale;
+        Debug.Log(MGManager.timeScale);
+
         // UIManager
-        uiManager = Object.FindFirstObjectByType<UIManager>();
+        uiManager = FindFirstObjectByType<UIManager>();
 
         
         // アニメーション&シーン切り替え
@@ -53,8 +58,9 @@ public class GameManager : MonoBehaviour
 
         // ミニゲームがロードされてからtimelimit秒だけ待つ
         float elapsed = 0f;
+        float timelimit = 7.0f;
 
-        while (elapsed < MGManager.timelimit) { 
+        while (elapsed < timelimit) { 
             elapsed += Time.deltaTime;
             yield return null;
         }
@@ -74,6 +80,9 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("ミニゲーム失敗");
         }
+
+        // ステージ数を一増やす
+        MGManager.nextStage();
 
         // ロード状況とクリア状況をリセット
         MGManager.Finished();

@@ -8,7 +8,8 @@ using Microsoft.Unity.VisualStudio.Editor;
 public class UIManager : MonoBehaviour
 {
     public RectTransform target; // フェード・拡大するテキスト
-    public TextMeshProUGUI targetText;
+    private TextMeshProUGUI targetText;  // 動詞を表示するテキスト
+    public TextMeshProUGUI counter;  // ステージ数をカウントするもの
     public RectTransform zoomGroup;  // それ以外のUIをまとめた親オブジェクト(ヒエラルキーのObjects下に入っているすべてのオブジェクトが対象)
     public List<Image> Lives;
     
@@ -38,6 +39,9 @@ public class UIManager : MonoBehaviour
         // 0. 裏でシーンの読み込みを開始する（まだ切り替えない）
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
         asyncLoad.allowSceneActivation = false; // 読み込み完了しても勝手に切り替わらないようにする
+
+        // ステージ数をカウント
+        counter.text = $"{MGManager.stage}";
 
         // 1. テキストをフェードイン
         while (elapsed < first_duration)
