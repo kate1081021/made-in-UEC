@@ -61,7 +61,7 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     /// ゲーム時間が終了した瞬間に呼ばれます。
     /// 入力を受け付けなくしたり、アニメーションを止めたりする後処理を書いてください。
     /// </summary>
-    public abstract void OnGameEnd();
+    public virtual void OnGameEnd() { }
 
     // 「メモリ解放」を忘れがちなので、ベース側でケアします
     protected virtual void OnDestroy()
@@ -71,6 +71,7 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
             InputSystems.Disable();
             InputSystems.Dispose();
         }
+        OnGameEnd();
     }
     /// <summary>
     /// ゲーム終了時に、このプレハブ内から出ている全ての音を止めます。
