@@ -38,10 +38,11 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     protected sealed override void Start()
     {
         InputSystems = new MIU_InputSystem();
-        InputSystems.Enable();
+        InputSystems.Disable();
         Move = InputSystems.FindAction("Move");
         Trigger = InputSystems.FindAction("Trigger");
         Action = InputSystems.FindAction("Action");
+
     }
 
     

@@ -8,14 +8,15 @@ using Microsoft.Unity.VisualStudio.Editor;
 public class UIManager : MonoBehaviour
 {
     public RectTransform target; // フェード・拡大するテキスト
-    public TextMeshProUGUI targetText;
+    private TextMeshProUGUI targetText;  // 動詞を表示するテキスト
+    public TextMeshProUGUI counter;  // ステージ数をカウントするもの
     public RectTransform zoomGroup;  // それ以外のUIをまとめた親オブジェクト(ヒエラルキーのObjects下に入っているすべてのオブジェクトが対象)
     public List<Image> Lives;
     
     [SerializeField] private float first_duration = 1.0f;    // 最初のテキストがフェードインするアニメーションの時間
     [SerializeField] private float second_duration = 1.0f;    // 次に他のオブジェクトが拡大するアニメーションの時間
 
-    public void PlayAnimation(string scene)
+    public void PlayAnimation(string verb, string scene)
     {
         // 初期状態：テキストを消しておく
         targetText = target.GetComponent<TextMeshProUGUI>();
@@ -23,10 +24,10 @@ public class UIManager : MonoBehaviour
         targetText.transform.localScale = Vector3.one * 1.2f; // 最初から1.2倍
 
         // 演出開始
-        StartCoroutine(PlayUIAnimation(scene));
+        StartCoroutine(PlayUIAnimation(verb, scene));
     }
 
-    IEnumerator PlayUIAnimation(string scene)
+    IEnumerator PlayUIAnimation(string verb, string scene)
     {
         float elapsed = 0f;
 
@@ -38,6 +39,12 @@ public class UIManager : MonoBehaviour
         // 0. 裏でシーンの読み込みを開始する（まだ切り替えない）
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
         asyncLoad.allowSceneActivation = false; // 読み込み完了しても勝手に切り替わらないようにする
+
+        // ステージ数をカウント
+        counter.text = $"{MGManager.stage}";
+
+        // 動詞を確定させる
+        targetText.text = verb;
 
         // 1. テキストをフェードイン
         while (elapsed < first_duration)
