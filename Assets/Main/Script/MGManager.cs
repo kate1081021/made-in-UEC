@@ -82,7 +82,7 @@ public static class MGManager
         }
         else
         {
-            return 1.6f + 0.05f * ((s - 16) / 10);
+            return 1.15f + 0.05f * ((s - 16) / 10);
         }
 
     }

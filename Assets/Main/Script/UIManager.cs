@@ -10,17 +10,37 @@ public class UIManager : MonoBehaviour
     public RectTransform target; // フェード・拡大するテキスト
     private TextMeshProUGUI targetText;  // 動詞を表示するテキスト
     public TextMeshProUGUI counter;  // ステージ数をカウントするもの
+    public TextMeshProUGUI timer;  // ミニゲーム中のタイマー表示
     public RectTransform zoomGroup;  // それ以外のUIをまとめた親オブジェクト(ヒエラルキーのObjects下に入っているすべてのオブジェクトが対象)
     public List<Image> Lives;
     
     [SerializeField] private float first_duration = 1.0f;    // 最初のテキストがフェードインするアニメーションの時間
     [SerializeField] private float second_duration = 1.0f;    // 次に他のオブジェクトが拡大するアニメーションの時間
 
+    public static UIManager Instance;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // 最初の一つだけを保護
+        }
+        else
+        {
+            Destroy(gameObject); // 二つ目以降は即座に消す
+        }
+    }
+    
     public void PlayAnimation(string verb, string scene)
     {
         // 初期状態：テキストを消しておく
+        // 拡大率の初期化
+        target.localScale = Vector3.one;
+        zoomGroup.localScale = Vector3.one;
         targetText = target.GetComponent<TextMeshProUGUI>();
         targetText.alpha = 0;
+        timer.alpha = 0;
         targetText.transform.localScale = Vector3.one * 1.2f; // 最初から1.2倍
 
         // 演出開始
@@ -93,4 +113,11 @@ public class UIManager : MonoBehaviour
         asyncLoad.allowSceneActivation = true;
 
     }
+
+    public void UITimer(int sec)
+    {
+        timer.alpha = 1;
+        timer.text = $"{sec}";
+    }
+
 }
