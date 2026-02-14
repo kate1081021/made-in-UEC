@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private UIManager uiManager;
+    public UIManager uiManager;
     [SerializeField] private List<CreateScene> minigames;  // ミニゲーム一覧を持つ
     private int loaded_minigame = 0;  // ロードされているゲームの番号
 
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         Debug.Log(MGManager.timeScale);
 
         // UIManager
-        uiManager = FindFirstObjectByType<UIManager>();
+        // uiManager = FindFirstObjectByType<UIManager>();
 
         
         // アニメーション&シーン切り替え
@@ -66,8 +66,11 @@ public class GameManager : MonoBehaviour
         // ミニゲームがロードされてからtimelimit秒だけ待つ
         float elapsed = 0f;
         float timelimit = minigames[loaded_minigame].timelimit;
+        int last = (int)timelimit;
 
         while (elapsed < timelimit) { 
+            // カウントダウン
+            if (last > (timelimit - elapsed)) { uiManager.UITimer(last); last--; }
             elapsed += Time.deltaTime;
             yield return null;
         }
