@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace catchMochi
 {
-    public class mochiCatch : MonoBehaviour
+    public class mochiCatch : MiniGameBase
     {
         public bool eating = false;
         public List<float> waitSeconds;
@@ -15,6 +15,14 @@ namespace catchMochi
         public bool isCancel = false;
         public float multiple;
         public Mother mother;
+
+        public override void OnGameStart()
+        {
+            InputSystems.Enable();
+        }
+        
+        public override void OnGameEnd() { }
+
         public void clickMochiAction()
         {
             if (!eating) // 食事を始める
@@ -45,15 +53,10 @@ namespace catchMochi
             }
         }
 
-        private bool KeyInput()
-        {
-            return Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Return);
-        }
-
         private IEnumerator WaitPhase(float seconds)
         {
             float end = Time.time + seconds;
-            while ((KeyInput() || status == "eat") && Time.time <= end)
+            while ((Action.IsPressed() || status == "eat") && Time.time <= end)
             {
                 yield return null;
             }
@@ -65,7 +68,7 @@ namespace catchMochi
         }
 
         IEnumerator startEating() {
-            while (KeyInput()){
+            while (Action.IsPressed()){
                 Debug.Log("eating");
                 int speedUp = Math.Min(ateMochi, maximum);
                 // multipleの標準値:0.1 0.1で大体50で収束
@@ -81,7 +84,7 @@ namespace catchMochi
                         // SePlayer.Instance.Play("食べ物をパクッ");
                     }
                     yield return WaitPhase(waitSeconds[i] * factor);
-                    if (!KeyInput())
+                    if (!Action.IsPressed())
                     {
                         // statusが"eat"である場合、ateMochiを一つ追加
                         if (status == "eat" && !mother.isMotherSeeing) { ateMochi++; }

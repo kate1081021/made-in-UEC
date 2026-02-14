@@ -63,6 +63,9 @@ public class GameManager : MonoBehaviour
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Main");
         asyncLoad.allowSceneActivation = false; // 読み込み完了しても勝手に切り替わらないようにする
 
+        // ミニゲーム用のUIに切り替える
+        uiManager.MinigameUI();
+
         // ミニゲームがロードされてからtimelimit秒だけ待つ
         float elapsed = 0f;
         float timelimit = minigames[loaded_minigame].timelimit;
@@ -72,9 +75,9 @@ public class GameManager : MonoBehaviour
             // カウントダウン
             if (last > (timelimit - elapsed)) { uiManager.UITimer(last); last--; }
             elapsed += Time.deltaTime;
-            Debug.Log(elapsed);
             yield return null;
         }
+        uiManager.UITimer(last);
 
         // 3. アニメーションが終わるまで、かつロードが90%（準備完了）まで待機
         while (asyncLoad.progress < 0.9f)
@@ -100,6 +103,9 @@ public class GameManager : MonoBehaviour
 
         // 4. ついにシーンを切り替える
         asyncLoad.allowSceneActivation = true;
+
+        // UIをもとに戻す
+        uiManager.UIReset();
 
         // 少し待機
         yield return new WaitForSeconds(1.0f);

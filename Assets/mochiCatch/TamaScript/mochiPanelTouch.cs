@@ -4,15 +4,22 @@ using UnityEngine.EventSystems;
 
 namespace catchMochi
 {
-    public class mochiPanelTouch : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+    public class mochiPanelTouch : MiniGameBase
     {
         public mochiCatch mochiCatch;
         public GameManager gameManager;
-        void Start()
+        public override void OnGameStart()
         {
+            InputSystems.Enable();
             mochiCatch = this.gameObject.GetComponentInParent<mochiCatch>();
             gameManager = Object.FindAnyObjectByType<GameManager>();
         }
+
+        public override void OnGameEnd()
+        {
+            
+        }
+        /*
         public void OnPointerDown(PointerEventData eventData)
         {
             Debug.Log("clicked");
@@ -24,16 +31,18 @@ namespace catchMochi
             Debug.Log("finished");
             mochiCatch.endMochiAction();
         }
+        */
 
         void Update()
         {
+            Debug.Log("ok");
             // スペースキーが押された瞬間またはエンターキーが押された
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
+            if (Action.WasPerformedThisFrame())
             {
                 Debug.Log("clicked");
                 mochiCatch.clickMochiAction();
             }
-            else if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Return))
+            else if (Action.WasReleasedThisFrame())
             {
                 Debug.Log("finished");
                 mochiCatch.endMochiAction();

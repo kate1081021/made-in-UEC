@@ -35,9 +35,6 @@ public class UIManager : MonoBehaviour
     public void PlayAnimation(string verb, string scene)
     {
         // 初期状態：テキストを消しておく
-        // 拡大率の初期化
-        target.localScale = Vector3.one;
-        zoomGroup.localScale = Vector3.one;
         targetText = target.GetComponent<TextMeshProUGUI>();
         targetText.alpha = 0;
         timer.alpha = 0;
@@ -45,6 +42,33 @@ public class UIManager : MonoBehaviour
 
         // 演出開始
         StartCoroutine(PlayUIAnimation(verb, scene));
+    }
+
+    // ミニゲーム中のUI
+    public void MinigameUI()
+    {
+        // 拡大率の初期化
+        target.localScale = Vector3.one;
+        
+        // タイマー以外の非表示
+        zoomGroup.localScale = Vector3.zero;
+        targetText.alpha = 0;
+
+        // タイマーの表示
+        timer.alpha = 0;
+
+    }
+    public void UIReset()
+    {
+        // 拡大率の初期化
+        target.localScale = Vector3.one;
+        zoomGroup.localScale = Vector3.one;
+
+        // 文字の非表示
+        targetText.alpha = 0;
+        timer.alpha = 0;
+
+        // オブジェクトの表示
     }
 
     IEnumerator PlayUIAnimation(string verb, string scene)
@@ -117,6 +141,7 @@ public class UIManager : MonoBehaviour
     public void UITimer(int sec)
     {
         timer.alpha = 1;
+        Debug.Log($"{sec}");
         timer.text = $"{sec}";
     }
 

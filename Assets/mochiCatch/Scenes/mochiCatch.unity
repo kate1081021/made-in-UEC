@@ -532,6 +532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8435c1041c519da4585295bd2bc6d1d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameBGM: {fileID: 0}
   score: 0
   time: 0
   mother: {fileID: 1494938485}
@@ -662,6 +663,7 @@ MonoBehaviour:
   isCancel: 0
   multiple: 0.1
   mother: {fileID: 1494938485}
+  manager: {fileID: 226621925}
 --- !u!114 &448014712
 MonoBehaviour:
   m_ObjectHideFlags: 0
