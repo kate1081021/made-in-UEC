@@ -27,7 +27,7 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     protected InputAction Action;
     protected Vector2 moveValue;
     protected float triggerValue;
-    protected bool actionValue;
+    protected float actionValue;
 
     // --- Unity標準機能の制限 ---
 
@@ -38,16 +38,67 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     protected sealed override void Start()
     {
         InputSystems = new MIU_InputSystem();
-        InputSystems.Disable();
+        InputSystems.Enable();
         Move = InputSystems.FindAction("Move");  // WASD
         Trigger = InputSystems.FindAction("Trigger");  // Enter
         Action = InputSystems.FindAction("Action");  // Space
+
+        Move.performed += OnMove;
+        Move.canceled += OnMove;
+        Move.started += OnMove;
+        Trigger.started += OnTrigger;
+        Trigger.performed += OnTrigger;
+        Trigger.canceled += OnTrigger;
+        Action.started += OnAction;
+        Action.performed += OnAction;
+        Action.canceled += OnAction;
+
         OnGameStart();
     }
 
+    public void OnMove(InputAction.CallbackContext ctx)
+    {
+        moveValue = ctx.ReadValue<Vector2>();
+        
+        if (ctx.started)   {OnMoveStarted(moveValue);}
+        if (ctx.performed) {OnMovePerformed(moveValue);}
+        if (ctx.canceled)  {OnMoveCanceled(moveValue);}
+
+    }
+    public void OnTrigger(InputAction.CallbackContext ctx)
+    {
+        triggerValue = ctx.ReadValue<float>();
+        
+        if (ctx.started)   {OnTriggerStarted(triggerValue);}
+        if (ctx.performed) {OnTriggerPerformed(triggerValue);}
+        if (ctx.canceled)  {OnTriggerCanceled(triggerValue);}
+
+    }
+    public void OnAction(InputAction.CallbackContext ctx)
+    {
+        actionValue = ctx.ReadValue<float>();
+        
+        if (ctx.started)   {OnActionStarted(actionValue);}
+        if (ctx.performed) {OnActionPerformed(actionValue);}
+        if (ctx.canceled)  {OnActionCanceled(actionValue);}
+
+    }
     /*
     このStartについては他に上書きすべきメソッドがない場合エラーを履いちゃうからコメントアウトした
     */
+
+    // 便利関数一覧 使いたいときにぜひ使ってね
+
+    protected virtual void OnMoveStarted(Vector2 value) {}
+    protected virtual void OnMovePerformed(Vector2 value) {}
+    protected virtual void OnMoveCanceled(Vector2 value) {}
+    protected virtual void OnTriggerStarted(float value) {}
+    protected virtual void OnTriggerPerformed(float value) {}
+    protected virtual void OnTriggerCanceled(float value) {}
+    protected virtual void OnActionStarted(float value) {}
+    protected virtual void OnActionPerformed(float value) {}
+    protected virtual void OnActionCanceled(float value) {}
+
 
     // --- 部員が必ず実装（オーバーライド）する関数 ---
 
@@ -61,16 +112,35 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     /// ゲーム時間が終了した瞬間に呼ばれます。
     /// 入力を受け付けなくしたり、アニメーションを止めたりする後処理を書いてください。
     /// </summary>
-    public abstract void OnGameEnd();
+    public virtual void OnGameEnd() { }
 
     // 「メモリ解放」を忘れがちなので、ベース側でケアします
     protected virtual void OnDestroy()
     {
+        if (Move != null)
+        {
+            Move.performed -= OnMove;
+            Move.canceled -= OnMove;
+            Move.started -= OnMove;
+        }
+        if (Trigger != null)
+        {
+            Trigger.started -= OnTrigger;
+            Trigger.performed -= OnTrigger;
+            Trigger.canceled -= OnTrigger;
+        }
+        if (Action != null)
+        {
+            Action.started -= OnAction;
+            Action.performed -= OnAction;
+            Action.canceled -= OnAction;
+        }
         if (InputSystems != null)
         {
             InputSystems.Disable();
             InputSystems.Dispose();
         }
+        OnGameEnd();
     }
     /// <summary>
     /// ゲーム終了時に、このプレハブ内から出ている全ての音を止めます。
