@@ -21,13 +21,13 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     /// <summary> 運営がBGMを取得するためのプロパティ </summary>
     public AudioClip GameBGM => gameBGM;
 
-    public MIU_InputSystem InputSystems;
-    private InputAction Move;
-    private InputAction Trigger;
-    private InputAction Action;
-    public Vector2 moveValue;
-    public float triggerValue;
-    public bool actionValue;
+    protected MIU_InputSystem InputSystems;
+    protected InputAction Move;
+    protected InputAction Trigger;
+    protected InputAction Action;
+    protected Vector2 moveValue;
+    protected float triggerValue;
+    protected bool actionValue;
 
     // --- Unity標準機能の制限 ---
 
@@ -39,13 +39,12 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     {
         InputSystems = new MIU_InputSystem();
         InputSystems.Disable();
-        Move = InputSystems.FindAction("Move");
-        Trigger = InputSystems.FindAction("Trigger");
-        Action = InputSystems.FindAction("Action");
-
+        Move = InputSystems.FindAction("Move");  // WASD
+        Trigger = InputSystems.FindAction("Trigger");  // Enter
+        Action = InputSystems.FindAction("Action");  // Space
+        OnGameStart();
     }
 
-    
     /*
     このStartについては他に上書きすべきメソッドがない場合エラーを履いちゃうからコメントアウトした
     */
@@ -64,6 +63,15 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     /// </summary>
     public abstract void OnGameEnd();
 
+    // 「メモリ解放」を忘れがちなので、ベース側でケアします
+    protected virtual void OnDestroy()
+    {
+        if (InputSystems != null)
+        {
+            InputSystems.Disable();
+            InputSystems.Dispose();
+        }
+    }
     /// <summary>
     /// ゲーム終了時に、このプレハブ内から出ている全ての音を止めます。
     /// 運営側で終了時に自動実行することを想定しています。

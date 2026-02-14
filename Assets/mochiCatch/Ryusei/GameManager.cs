@@ -4,10 +4,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 
 namespace catchMochi
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : MiniGameBase
     {
         public int score;  // スコアの管理
         public float time; // ゲーム開始からの経過時間
@@ -23,12 +24,18 @@ namespace catchMochi
         public RectTransform Shouji;
         public Animator Shouji_anim;
         public bool isResult = false;
+
         // Update is called once per frame
-        void Start()
+        public override void OnGameStart()
         {
+            MGManager.Load();
             girl_picture = girl.GetComponent<Image>();
+            InputSystems.Enable();
             StartCoroutine(Title());
         }
+
+        public override void OnGameEnd() { }
+
         private IEnumerator Title()
         {
             // パラメータリセット
@@ -39,10 +46,6 @@ namespace catchMochi
             mother.enabled = true;
             time = 0;
             Shouji.position = new Vector2(262,90.15705f);
-
-            // 呼び出されたことを確認する
-            MGManager.Load();
-
             yield return null;
         }
 
