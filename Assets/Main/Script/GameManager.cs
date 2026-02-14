@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
 
         while (elapsed < timelimit) { 
             elapsed += Time.deltaTime;
+            Debug.Log(elapsed);
             yield return null;
         }
 
