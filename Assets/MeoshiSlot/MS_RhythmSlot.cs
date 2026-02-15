@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.SceneManagement; // ★追加：シーン読み込みに必要
 
 namespace MeoshiSlotGame_IK
 {
@@ -20,8 +21,6 @@ namespace MeoshiSlotGame_IK
         [SerializeField] private int winSpriteIndex = 0;
         [SerializeField] private int symbolsPerBeat = 4;
         
-        // ★制限時間変数は削除しました
-
         [Header("【見た目の調整】")]
         [SerializeField] private float cellHeight = 250f;
         [SerializeField] private float visualOffsetY = 0f;
@@ -41,8 +40,6 @@ namespace MeoshiSlotGame_IK
         [SerializeField] private AudioClip winSE;
         [SerializeField] private AudioClip failSE;
 
-        // ★UI表示用（timerText）は削除しました
-
         [Header("【デバッグ（本番時はOFFにすること）】")]
         [SerializeField] private bool isDebugMode = false;
         [SerializeField] private int debugStageIndex = 1;
@@ -55,7 +52,6 @@ namespace MeoshiSlotGame_IK
         private float[] bounceOffsets = new float[3]; 
 
         private float startTime;
-        // private float remainingTime; // 削除
         private bool isClear = false;
 
         public override void OnGameStart()
@@ -70,7 +66,6 @@ namespace MeoshiSlotGame_IK
             SetupReelImages();
 
             startTime = Time.time;
-            // remainingTime の初期化処理を削除
 
             for(int i=0; i<3; i++) bounceOffsets[i] = 0f;
 
@@ -133,14 +128,22 @@ namespace MeoshiSlotGame_IK
 
             if (!isClear)
             {
-                // ★時間の減算処理・UI更新・タイムアップ判定を全て削除しました
-                
-                // ボタン入力のみ監視
                 if (Action.WasPerformedThisFrame())
                 {
                     OnPressButton();
                 }
             }
+
+            // ▼▼▼ 追加部分：デバッグモードかつクリア時にスペースキーでリスタート ▼▼▼
+            if (isDebugMode && isClear)
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    // 現在のシーンを再読み込みしてリセット
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                }
+            }
+            // ▲▲▲ 追加部分ここまで ▲▲▲
 
             // ▼▼▼ リールの計算 ▼▼▼
             float baseBeatInterval = 60f / baseBpm;
@@ -166,7 +169,6 @@ namespace MeoshiSlotGame_IK
             int count = images.Length;
             float totalHeight = count * cellHeight;
 
-            // 残像（ブラー）は速度によらず固定値
             float currentBlurY = isStopped[reelID] ? 1.0f : movingBlur;
             float baseScale = isStopped[reelID] ? stoppedScale : movingScale;
 
@@ -197,7 +199,7 @@ namespace MeoshiSlotGame_IK
 
         public void OnPressButton()
         {
-            if (currentReelIndex >= 3) return; // 残り時間チェックを削除
+            if (currentReelIndex >= 3) return; 
 
             isStopped[currentReelIndex] = true;
 
@@ -256,7 +258,7 @@ namespace MeoshiSlotGame_IK
 
         void RestartReels()
         {
-            if (isClear) return; // 残り時間チェックを削除
+            if (isClear) return; 
             currentReelIndex = 0;
             for (int i = 0; i < 3; i++)
             {
@@ -265,8 +267,6 @@ namespace MeoshiSlotGame_IK
                 foreach (var rt in reelImages[i]) rt.GetComponent<Image>().color = Color.white;
             }
         }
-
-        // TimeUp() メソッドは削除しました
 
         Image GetCenterImage(int reelID)
         {
