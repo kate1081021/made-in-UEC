@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a64a31a3f28fe574082f849c8579dbdd, type: 3}
-  m_Name: mochiCatch
+  m_Name: LF
   m_EditorClassIdentifier: 
-  scene_name: mochiCatch
-  verb: "\u3082\u3061\u3092\u98DF\u3079\u308D\uFF01"
-  timelimit: 7
+  scene_name: "LF(\u4EEE)"
+  verb: "\u7740\u706B\u3057\u308D\uFF01(\u4EEE)"
+  timelimit: 0
