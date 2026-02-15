@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene_name: MeoshiSlot
   verb: "\u305D\u308D\u3048\u308D"
-  timelimit: 10
+  timelimit: 5

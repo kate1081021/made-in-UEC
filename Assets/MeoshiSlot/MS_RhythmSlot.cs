@@ -1,11 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Collections;
 
-// 名前空間（MeoshiSlotフォルダならMeoshiSlotにするのが無難ですが、ここでは一意な名前空間にします）
 namespace MeoshiSlotGame_IK
 {
-    // MiniGameBaseを継承
     public class RhythmSlot : MiniGameBase
     {
         [Header("【リールの親オブジェクト】")]
@@ -16,15 +15,24 @@ namespace MeoshiSlotGame_IK
         [Header("【絵柄の元データ】")]
         [SerializeField] private Sprite[] sourceSprites;
 
-        [Header("【設定】")]
-        [SerializeField] private float bpm = 120f;
+        [Header("【基本設定】")]
+        [SerializeField] private float baseBpm = 120f;
         [SerializeField] private int winSpriteIndex = 0;
         [SerializeField] private int symbolsPerBeat = 4;
-        [SerializeField] private float timeLimit = 10f;
+        
+        // ★制限時間変数は削除しました
 
         [Header("【見た目の調整】")]
         [SerializeField] private float cellHeight = 250f;
         [SerializeField] private float visualOffsetY = 0f;
+
+        [Header("【サイズ調整】")]
+        [SerializeField, Range(0.1f, 2.0f)] private float stoppedScale = 1.0f;
+        [SerializeField, Range(0.1f, 2.0f)] private float movingScale = 0.7f;
+        [SerializeField, Range(1.0f, 3.0f)] private float movingBlur = 1.5f;
+
+        [Header("【演出用】")]
+        [SerializeField] private ParticleSystem winParticle; 
 
         [Header("【音源設定】")]
         [SerializeField] private AudioSource bgmSource;
@@ -33,41 +41,61 @@ namespace MeoshiSlotGame_IK
         [SerializeField] private AudioClip winSE;
         [SerializeField] private AudioClip failSE;
 
-        [Header("【UI表示用(任意)】")]
-        [SerializeField] private Text timerText;
+        // ★UI表示用（timerText）は削除しました
 
+        [Header("【デバッグ（本番時はOFFにすること）】")]
+        [SerializeField] private bool isDebugMode = false;
+        [SerializeField] private int debugStageIndex = 1;
+
+        // 内部変数
         private RectTransform[][] reelImages;
         private bool[] isStopped = new bool[3];
         private int currentReelIndex = 0;
         private float[] reelPositions = new float[3];
-        private float beatInterval;
+        private float[] bounceOffsets = new float[3]; 
+
         private float startTime;
-        private float remainingTime;
-        private bool isGameOver = false;
+        // private float remainingTime; // 削除
         private bool isClear = false;
 
-        // 仕様書ルール：Start禁止、OnGameStartを使用
         public override void OnGameStart()
         {
-            // 仕様書ルール：ロード処理
-            MGManager.Load();
+            if (isDebugMode)
+            {
+                Debug.Log($"【Debug】ステージ {debugStageIndex} の速度でテストプレイを開始します。");
+                MGManager.TestPlay(debugStageIndex);
+            }
 
+            MGManager.Load();
             SetupReelImages();
-            beatInterval = 60f / bpm;
+
             startTime = Time.time;
-            remainingTime = timeLimit;
+            // remainingTime の初期化処理を削除
+
+            for(int i=0; i<3; i++) bounceOffsets[i] = 0f;
 
             if (bgmSource != null)
             {
                 bgmSource.loop = true;
                 bgmSource.Play();
             }
+
+            // 紙吹雪は速度によらない設定
+            if (winParticle != null)
+            {
+                var main = winParticle.main;
+                main.useUnscaledTime = true; 
+            }
         }
 
-        // 仕様書ルール：終了処理
         public override void OnGameEnd()
         {
-            if (bgmSource != null) bgmSource.Stop();
+            if (bgmSource != null)
+            {
+                bgmSource.Stop();
+                bgmSource.pitch = 1.0f; 
+            }
+            StopAllCoroutines();
         }
 
         void SetupReelImages()
@@ -94,44 +122,53 @@ namespace MeoshiSlotGame_IK
             return list.ToArray();
         }
 
-void Update()
+        void Update()
         {
-            if (isGameOver || isClear) return;
+            float currentScale = Time.timeScale;
 
-            // タイマー管理
-            remainingTime -= Time.deltaTime;
-            if (timerText != null) timerText.text = "TIME: " + Mathf.Max(0, remainingTime).ToString("F1");
-
-            if (remainingTime <= 0)
+            if (bgmSource != null)
             {
-                TimeUp();
-                return;
+                bgmSource.pitch = currentScale;
             }
 
-            // ★ここが修正ポイント！
-            // 「Action（仕様書）」または「Input（いつもの）」のどちらかが反応すればOKにする
-            if (Action.WasPerformedThisFrame() || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+            if (!isClear)
             {
-                OnPressButton();
+                // ★時間の減算処理・UI更新・タイムアップ判定を全て削除しました
+                
+                // ボタン入力のみ監視
+                if (Action.WasPerformedThisFrame())
+                {
+                    OnPressButton();
+                }
             }
 
-            // リールの回転
+            // ▼▼▼ リールの計算 ▼▼▼
+            float baseBeatInterval = 60f / baseBpm;
             float elapsedTime = Time.time - startTime;
+
             for (int i = 0; i < 3; i++)
             {
                 if (!isStopped[i])
                 {
-                    float currentBeatProgress = elapsedTime / beatInterval;
+                    float currentBeatProgress = elapsedTime / baseBeatInterval;
                     reelPositions[i] = (currentBeatProgress * symbolsPerBeat + winSpriteIndex) * cellHeight;
                 }
-                UpdateReelVisuals(i, reelPositions[i]);
+                
+                bounceOffsets[i] = Mathf.Lerp(bounceOffsets[i], 0, Time.deltaTime * 10f);
+
+                UpdateReelVisuals(i, reelPositions[i] + bounceOffsets[i]);
             }
         }
+
         void UpdateReelVisuals(int reelID, float scrollPos)
         {
             RectTransform[] images = reelImages[reelID];
             int count = images.Length;
             float totalHeight = count * cellHeight;
+
+            // 残像（ブラー）は速度によらず固定値
+            float currentBlurY = isStopped[reelID] ? 1.0f : movingBlur;
+            float baseScale = isStopped[reelID] ? stoppedScale : movingScale;
 
             for (int j = 0; j < count; j++)
             {
@@ -145,8 +182,10 @@ void Update()
                 rt.anchoredPosition = new Vector2(0, currentY + visualOffsetY);
 
                 float dist = Mathf.Abs(rt.anchoredPosition.y - visualOffsetY);
-                float scale = Mathf.Lerp(1.0f, 0.6f, dist / cellHeight);
-                rt.localScale = new Vector3(scale, scale, 1f);
+                float perspective = Mathf.Lerp(1.0f, 0.6f, dist / cellHeight);
+                float finalScale = baseScale * perspective;
+
+                rt.localScale = new Vector3(finalScale, finalScale * currentBlurY, 1f);
 
                 float virtualIndex = (scrollPos + currentY) / cellHeight;
                 int spriteId = Mathf.RoundToInt(virtualIndex);
@@ -158,7 +197,7 @@ void Update()
 
         public void OnPressButton()
         {
-            if (currentReelIndex >= 3 || remainingTime <= 0) return;
+            if (currentReelIndex >= 3) return; // 残り時間チェックを削除
 
             isStopped[currentReelIndex] = true;
 
@@ -167,8 +206,9 @@ void Update()
             {
                 float diffY = centerImg.rectTransform.anchoredPosition.y - visualOffsetY;
                 reelPositions[currentReelIndex] += diffY;
-                UpdateReelVisuals(currentReelIndex, reelPositions[currentReelIndex]);
             }
+
+            bounceOffsets[currentReelIndex] = -50f;
 
             if (seSource != null && stopSE != null) seSource.PlayOneShot(stopSE);
 
@@ -191,44 +231,42 @@ void Update()
             {
                 isClear = true;
                 if (seSource != null && winSE != null) seSource.PlayOneShot(winSE);
+                
+                if (winParticle != null) winParticle.Play();
+
                 StartCoroutine(RainbowEffect(centerImages));
                 Debug.Log("CLEAR!");
-
-                // 仕様書ルール：クリア時に呼ぶ
                 MGManager.ClearGame();
             }
             else
             {
                 Debug.Log("MISS! Restarting...");
                 if (seSource != null && failSE != null) seSource.PlayOneShot(failSE);
-                Invoke("RestartReels", 0.5f);
+                
+                // 速度によらず実時間で待機してリスタート
+                StartCoroutine(DelayRestart(0.5f));
             }
+        }
+
+        IEnumerator DelayRestart(float delayTime)
+        {
+            yield return new WaitForSecondsRealtime(delayTime);
+            RestartReels();
         }
 
         void RestartReels()
         {
-            if (remainingTime <= 0 || isClear) return;
-
+            if (isClear) return; // 残り時間チェックを削除
             currentReelIndex = 0;
             for (int i = 0; i < 3; i++)
             {
                 isStopped[i] = false;
+                bounceOffsets[i] = 0f;
                 foreach (var rt in reelImages[i]) rt.GetComponent<Image>().color = Color.white;
             }
         }
 
-        void TimeUp()
-        {
-            isGameOver = true;
-            Debug.Log("TIME UP!");
-            
-            for (int i = 0; i < 3; i++)
-            {
-                Image center = GetCenterImage(i);
-                if (center != null) center.color = new Color(0.3f, 0.3f, 0.3f);
-            }
-            if (seSource != null && failSE != null) seSource.PlayOneShot(failSE);
-        }
+        // TimeUp() メソッドは削除しました
 
         Image GetCenterImage(int reelID)
         {
@@ -246,7 +284,7 @@ void Update()
             return closestImage;
         }
 
-        System.Collections.IEnumerator RainbowEffect(Image[] targets)
+        IEnumerator RainbowEffect(Image[] targets)
         {
             float h = 0;
             while (true)
