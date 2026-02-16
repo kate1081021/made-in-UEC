@@ -78,7 +78,7 @@ namespace SK
 
         void SpawnNote(int index)
         {
-            GameObject prefab = (index == 6) ? noteGrabPrefab : noteRunPrefab;
+            GameObject prefab = (index == 5) ? noteGrabPrefab : noteRunPrefab;
             
             GameObject note = Instantiate(prefab, spawnPoint);
             note.transform.SetParent(spawnPoint.parent, false);
@@ -120,7 +120,7 @@ namespace SK
             float points = accuracy * 20f;
             currentMomentum += points;
 
-            if (currentStep == 6)
+            if (currentStep == 5)
             {
                 if (currentMomentum >= momentumThreshold)
                 {
