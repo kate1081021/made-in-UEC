@@ -1,17 +1,27 @@
 using UnityEngine;
 using TMPro;
 
-public class NT_switch : MonoBehaviour
+namespace NT
+{
+public class NT_switch : MiniGameBase
 {
     public TMP_Text countText;
     private int count = 0;
 
+
+ public override void OnGameStart(){
+    MGManager.Load();
+ }
+
+ public override void OnGameEnd(){}
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Action.IsPressed())
         {
             count++;
             countText.text = "" + count;
         }
     }
+}
 }
