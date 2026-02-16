@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/mochiCatch/Scenes/mochiCatch.unity
     guid: 92b4d2db09636184da0623c9ce0602f9
-  - enabled: 1
+  - enabled: 0
     path: Assets/test/testgame.unity
     guid: c59ec32fc300d2e4aa373b59242285a9
+  - enabled: 1
+    path: Assets/WI/Scenes/WI.unity
+    guid: fd30e81e637c1e248b550f203f809836
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
