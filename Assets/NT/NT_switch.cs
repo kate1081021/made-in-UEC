@@ -1,16 +1,17 @@
 using UnityEngine;
+using TMPro;
 
 public class NT_switch : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public TMP_Text countText;
+    private int count = 0;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            count++;
+            countText.text = "" + count;
+        }
     }
 }
