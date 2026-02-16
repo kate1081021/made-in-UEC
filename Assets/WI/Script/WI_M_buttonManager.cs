@@ -8,7 +8,7 @@ namespace WI
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
         {
-
+            this.gameObject.SetActive(true);
         }
 
         public override void OnGameEnd() { }
@@ -21,7 +21,7 @@ namespace WI
 
         public void setInputClose()
         {
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 }
