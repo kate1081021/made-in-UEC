@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
-using UnityEngine.SceneManagement; // ★追加：シーン読み込みに必要
+using UnityEngine.SceneManagement;
 
 namespace MeoshiSlotGame_IK
 {
@@ -26,8 +26,8 @@ namespace MeoshiSlotGame_IK
         [SerializeField] private float visualOffsetY = 0f;
 
         [Header("【サイズ調整】")]
-        [SerializeField, Range(0.1f, 2.0f)] private float stoppedScale = 1.0f;
-        [SerializeField, Range(0.1f, 2.0f)] private float movingScale = 0.7f;
+        [SerializeField, Range(0.1f, 2.0f)] private float stoppedScale = 1.0f; // 停止時の基本サイズ
+        [SerializeField, Range(0.1f, 2.0f)] private float movingScale = 0.7f;  // 回転中のサイズ
         [SerializeField, Range(1.0f, 3.0f)] private float movingBlur = 1.5f;
 
         [Header("【演出用】")]
@@ -49,7 +49,10 @@ namespace MeoshiSlotGame_IK
         private bool[] isStopped = new bool[3];
         private int currentReelIndex = 0;
         private float[] reelPositions = new float[3];
-        private float[] bounceOffsets = new float[3]; 
+        
+        // 演出用変数
+        private float[] bounceOffsets = new float[3]; // Y座標の揺れ
+        private float[] bounceScales = new float[3];  // ★追加：大きさの揺れ（拡大演出用）
 
         private float startTime;
         private bool isClear = false;
@@ -67,7 +70,11 @@ namespace MeoshiSlotGame_IK
 
             startTime = Time.time;
 
-            for(int i=0; i<3; i++) bounceOffsets[i] = 0f;
+            for(int i=0; i<3; i++) 
+            {
+                bounceOffsets[i] = 0f;
+                bounceScales[i] = 0f; // 初期化
+            }
 
             if (bgmSource != null)
             {
@@ -75,11 +82,10 @@ namespace MeoshiSlotGame_IK
                 bgmSource.Play();
             }
 
-            // 紙吹雪は速度によらない設定
             if (winParticle != null)
             {
                 var main = winParticle.main;
-                main.useUnscaledTime = true; 
+                main.useUnscaledTime = false; 
             }
         }
 
@@ -126,24 +132,23 @@ namespace MeoshiSlotGame_IK
                 bgmSource.pitch = currentScale;
             }
 
+            // ▼▼▼ ゲームプレイ（停止操作） ▼▼▼
             if (!isClear)
             {
-                if (Action.WasPerformedThisFrame())
+                if (Action.WasPerformedThisFrame() || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
                 {
                     OnPressButton();
                 }
             }
 
-            // ▼▼▼ 追加部分：デバッグモードかつクリア時にスペースキーでリスタート ▼▼▼
+            // ▼▼▼ リスタート（Rキーのみ） ▼▼▼
             if (isDebugMode && isClear)
             {
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.R))
                 {
-                    // 現在のシーンを再読み込みしてリセット
                     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 }
             }
-            // ▲▲▲ 追加部分ここまで ▲▲▲
 
             // ▼▼▼ リールの計算 ▼▼▼
             float baseBeatInterval = 60f / baseBpm;
@@ -157,7 +162,11 @@ namespace MeoshiSlotGame_IK
                     reelPositions[i] = (currentBeatProgress * symbolsPerBeat + winSpriteIndex) * cellHeight;
                 }
                 
+                // アニメーション減衰計算
+                // Y座標の戻り（バネのような動き）
                 bounceOffsets[i] = Mathf.Lerp(bounceOffsets[i], 0, Time.deltaTime * 10f);
+                // ★スケールの戻り（拡大から元のサイズへ）
+                bounceScales[i] = Mathf.Lerp(bounceScales[i], 0, Time.deltaTime * 8f);
 
                 UpdateReelVisuals(i, reelPositions[i] + bounceOffsets[i]);
             }
@@ -183,9 +192,12 @@ namespace MeoshiSlotGame_IK
 
                 rt.anchoredPosition = new Vector2(0, currentY + visualOffsetY);
 
+                // 遠近感の計算
                 float dist = Mathf.Abs(rt.anchoredPosition.y - visualOffsetY);
                 float perspective = Mathf.Lerp(1.0f, 0.6f, dist / cellHeight);
-                float finalScale = baseScale * perspective;
+
+                // ★最終サイズ計算：(基本サイズ + バウンス拡大分) × 遠近感
+                float finalScale = (baseScale + bounceScales[reelID]) * perspective;
 
                 rt.localScale = new Vector3(finalScale, finalScale * currentBlurY, 1f);
 
@@ -210,7 +222,12 @@ namespace MeoshiSlotGame_IK
                 reelPositions[currentReelIndex] += diffY;
             }
 
+            // 演出：停止時にY座標を少し沈ませる
             bounceOffsets[currentReelIndex] = -50f;
+            
+            // ★演出：停止時にサイズを「0.3」分大きく跳ねさせる
+            // これにより、止まった瞬間に絵柄がグッと手前に拡大表示されます
+            bounceScales[currentReelIndex] = 0.3f;
 
             if (seSource != null && stopSE != null) seSource.PlayOneShot(stopSE);
 
@@ -245,7 +262,6 @@ namespace MeoshiSlotGame_IK
                 Debug.Log("MISS! Restarting...");
                 if (seSource != null && failSE != null) seSource.PlayOneShot(failSE);
                 
-                // 速度によらず実時間で待機してリスタート
                 StartCoroutine(DelayRestart(0.5f));
             }
         }
@@ -264,6 +280,7 @@ namespace MeoshiSlotGame_IK
             {
                 isStopped[i] = false;
                 bounceOffsets[i] = 0f;
+                bounceScales[i] = 0f; // サイズ戻しもリセット
                 foreach (var rt in reelImages[i]) rt.GetComponent<Image>().color = Color.white;
             }
         }

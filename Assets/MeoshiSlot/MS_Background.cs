@@ -3,8 +3,9 @@ using UnityEngine.UI;
 
 namespace MeoshiSlotGame_IK
 {
+    // MonoBehaviour ではなく MiniGameBase を継承
     [RequireComponent(typeof(RawImage))]
-    public class BackgroundScroller : MonoBehaviour
+    public class BackgroundScroller : MiniGameBase
     {
         [Header("【スクロール設定】")]
         [Tooltip("横方向の速さ")]
@@ -30,14 +31,22 @@ namespace MeoshiSlotGame_IK
         private RawImage rawImage;
         private float currentHue = 0f;
 
-        void Start()
+        // Start() は禁止されているため、OnGameStart() に変更
+        public override void OnGameStart()
         {
             rawImage = GetComponent<RawImage>();
             UpdateTiling();
         }
+        
+        // ゲーム終了時（必要なら実装）
+        public override void OnGameEnd()
+        {
+            // 特になし
+        }
 
         void UpdateTiling()
         {
+            if (rawImage == null) rawImage = GetComponent<RawImage>();
             if (rawImage == null || rawImage.texture == null) return;
 
             float finalTilingY = manualTilingY;
@@ -69,18 +78,22 @@ namespace MeoshiSlotGame_IK
 
         void Update()
         {
-            // 画面サイズが動的に変わる場合（エディタで確認中など）のために毎回チェック
-            // ※負荷が気になる場合はStartのみにしてもOKですが、PC/スマホならこれで問題ありません
+            // rawImageが取得できていない場合の安全策
+            if (rawImage == null) rawImage = GetComponent<RawImage>();
+
+            // 画面サイズが動的に変わる場合のために毎回チェック
             if (fixAspectRatio) UpdateTiling();
 
             // ▼ スクロール処理 ▼
             Rect uv = rawImage.uvRect;
+            
+            // 仕様書対応：Time.deltaTime は Time.timeScale の影響を受けるため、
+            // ゲーム速度が上がればスクロールも速くなります。
             uv.x += scrollSpeedX * Time.deltaTime;
             uv.y += scrollSpeedY * Time.deltaTime;
             
-            // 幅と高さを維持（UpdateTilingで計算した値を守る）
-            // uv.width/heightはUpdateTilingでセットされているので、ここでは書き換えなくてOK
-            
+            // UVのセット
+            // width/heightはUpdateTilingでセットされているので、ここでは維持される
             rawImage.uvRect = uv;
 
             // ▼ 色変化 ▼
@@ -88,11 +101,13 @@ namespace MeoshiSlotGame_IK
             {
                 currentHue += colorChangeSpeed * Time.deltaTime;
                 if (currentHue > 1.0f) currentHue -= 1.0f;
+                // 色変更
                 rawImage.color = Color.HSVToRGB(currentHue, 0.5f, 1.0f);
             }
         }
         
         // インスペクターで値をいじった時に即座に反映させる処理
+        // OnValidate は Editor上でのみ呼ばれるので、Start禁止ルールには抵触しません
         void OnValidate()
         {
             rawImage = GetComponent<RawImage>();

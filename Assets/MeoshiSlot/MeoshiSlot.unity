@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: 0}
+  m_AnchoredPosition: {x: 330, y: 0}
   m_SizeDelta: {x: 300, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &18455152
@@ -933,8 +933,8 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1127899506}
   serializedVersion: 8
-  lengthInSec: 0.2
-  simulationSpeed: 1
+  lengthInSec: 0.3
+  simulationSpeed: 1.2
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -1061,7 +1061,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1155,7 +1155,7 @@ ParticleSystem:
         key4: {r: 0.16242898, g: 1, b: 0, a: 0}
         key5: {r: 1, g: 0.9925816, b: 0, a: 0}
         key6: {r: 1, g: 0.49765027, b: 0, a: 0}
-        key7: {r: 1, g: 1, b: 1, a: 0}
+        key7: {r: 0.5337291, g: 0, b: 1, a: 0}
         ctime0: 7582
         ctime1: 15677
         ctime2: 23259
@@ -1173,7 +1173,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 1
-        m_ColorSpace: -1
+        m_ColorSpace: 0
         m_NumColorKeys: 8
         m_NumAlphaKeys: 2
     startSize:
@@ -1503,7 +1503,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.4
+      scalar: 0.6
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1762,7 +1762,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 300
+      scalar: 200
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -5692,10 +5692,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f949a19c2e3c08e4ca8d5bbae6e0d274, type: 3}
-  m_Resource: {fileID: 8300000, guid: f949a19c2e3c08e4ca8d5bbae6e0d274, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 58dab99d8008c6040bdec563d01d1c7e, type: 3}
+  m_Resource: {fileID: 8300000, guid: 58dab99d8008c6040bdec563d01d1c7e, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5811,25 +5811,25 @@ MonoBehaviour:
   reel2Parent: {fileID: 1088254096}
   reel3Parent: {fileID: 18455151}
   sourceSprites:
-  - {fileID: 7028616704906629411, guid: 80b62149855a39a4eafebde311b27c78, type: 3}
-  - {fileID: -1366655912843611306, guid: 74a8dbb593fb8b243910fe69807ff43d, type: 3}
-  - {fileID: 1098770389547517647, guid: bed09b11d5d00eb4a91941645d86caae, type: 3}
   - {fileID: 5591422608897019170, guid: f1fb58fc6be86cb4b9c171fd10391269, type: 3}
-  baseBpm: 150
+  - {fileID: 7028616704906629411, guid: 80b62149855a39a4eafebde311b27c78, type: 3}
+  - {fileID: 1098770389547517647, guid: bed09b11d5d00eb4a91941645d86caae, type: 3}
+  - {fileID: -1366655912843611306, guid: 74a8dbb593fb8b243910fe69807ff43d, type: 3}
+  baseBpm: 160
   winSpriteIndex: 0
   symbolsPerBeat: 4
-  cellHeight: 350
-  visualOffsetY: 30
+  cellHeight: 330
+  visualOffsetY: 0
   stoppedScale: 0.7
   movingScale: 0.6
   movingBlur: 1.5
   winParticle: {fileID: 1127899508}
-  bgmSource: {fileID: 0}
+  bgmSource: {fileID: 1271377809}
   seSource: {fileID: 1271377812}
-  stopSE: {fileID: 0}
-  winSE: {fileID: 0}
-  failSE: {fileID: 0}
-  isDebugMode: 1
+  stopSE: {fileID: 8300000, guid: 5c31dcd822d436f4fb5a2db86b73723c, type: 3}
+  winSE: {fileID: 8300000, guid: 42b839f1a4dc8de41a54268ee2522d71, type: 3}
+  failSE: {fileID: 8300000, guid: 7e06cd603d929104ea24598133980cdc, type: 3}
+  isDebugMode: 0
   debugStageIndex: 1
 --- !u!82 &1271377812
 AudioSource:
@@ -5843,7 +5843,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -6116,7 +6116,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: 0}
+  m_AnchoredPosition: {x: -330, y: 0}
   m_SizeDelta: {x: 300, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1447017377
@@ -6206,7 +6206,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 3, y: 0}
-  m_SizeDelta: {x: 1400, y: 1000}
+  m_SizeDelta: {x: 1360, y: 1200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1582645393
 MonoBehaviour:
@@ -6228,7 +6228,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5523537762850843372, guid: 48aaa78f5c6d7184183035a9062bc720, type: 3}
+  m_Sprite: {fileID: -2008732745751775725, guid: def5dc73c5adc514395f37436494b5bf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6412,6 +6412,7 @@ GameObject:
   - component: {fileID: 1782069992}
   - component: {fileID: 1782069991}
   - component: {fileID: 1782069990}
+  - component: {fileID: 1782069993}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -6435,8 +6436,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 54150, y: 45500}
+  m_AnchoredPosition: {x: 915, y: 516}
+  m_SizeDelta: {x: 4332, y: 2437}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1782069990
 MonoBehaviour:
@@ -6450,10 +6451,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ed2e662be281b4f979b5fcb71b6faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeedX: 0.05
-  scrollSpeedY: 0.03
-  fixAspectRatio: 0
-  tilingX: 50
+  gameBGM: {fileID: 0}
+  scrollSpeedX: 0.04
+  scrollSpeedY: 0.1
+  fixAspectRatio: 1
+  tilingX: 4
   manualTilingY: 3
   useRainbowEffect: 0
   colorChangeSpeed: 0.5
@@ -6482,8 +6484,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 50
-    height: 50
+    width: 4
+    height: 2.6777472
 --- !u!222 &1782069992
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6492,6 +6494,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1782069988}
   m_CullTransparentMesh: 1
+--- !u!114 &1782069993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782069988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2fb5ba271b2d384496921cb7e8361e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameBGM: {fileID: 0}
+  bpm: 160
+  power: 1.1
+  smoothness: 10
 --- !u!1 &1794694524
 GameObject:
   m_ObjectHideFlags: 0
@@ -6542,7 +6560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
