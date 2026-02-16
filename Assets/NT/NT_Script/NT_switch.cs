@@ -6,7 +6,7 @@ namespace NT
 public class NT_switch : MiniGameBase
 {
     public TMP_Text countText;
-    private int count = 0;
+    public int count = 0;
 
 
  public override void OnGameStart(){
