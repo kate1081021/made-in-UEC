@@ -15,6 +15,15 @@ namespace SK
         public GameObject noteRunPrefab;
         public GameObject noteGrabPrefab;
 
+        [Header("Audio Settings")]
+        public AudioSource bgmSource;
+        public AudioSource audioSource; // InspectorでAudioSourceをアタッチ
+        public AudioClip voiceStart;    // "よーい、どん！"などの掛け声
+        public AudioClip sfxStepPerfect;// カッ！と気持ちいい足音
+        public AudioClip sfxStepGood;   // 少しズレた普通の足音
+        public AudioClip sfxMiss;       // 失敗音
+        public AudioClip sfxJump;       // (任意) 最後のジャンプ成功音
+
         [Header("Game Settings")]
         public float[] spawnTimings = { 1.0f, 2.0f, 2.8f, 3.5f, 4.1f, 4.8f };
         public float perfectDistance = 80f;
@@ -44,6 +53,7 @@ namespace SK
 
             // プレイヤー初期化
             if (player != null) player.Initialize(this);
+            PlaySound(voiceStart);
         }
 
         public override void OnGameEnd()
@@ -109,22 +119,38 @@ namespace SK
             }
             else
             {
+                // ★追加：タイミングが合わずミスした場合の音
+                PlaySound(sfxMiss);
                 Debug.Log("Miss timing");
             }
         }
 
         void OnHitSuccess(float distance, GameObject note)
         {
+            // ズレの割合 (0.0 = ど真ん中, 1.0 = ギリギリ)
+            float ratio = distance / perfectDistance;
+
             float accuracy = 1.0f - (distance / perfectDistance);
             if (accuracy < 0) accuracy = 0;
             float points = accuracy * 20f;
             currentMomentum += points;
+
+            // ★追加：音の出し分け処理
+            if (ratio <= 0.4f) // ズレが40%以内ならパーフェクト
+            {
+                PlaySound(sfxStepPerfect);
+            }
+            else // それ以外はGood（少しズレた音）
+            {
+                PlaySound(sfxStepGood);
+            }
 
             if (currentStep == 5)
             {
                 if (currentMomentum >= momentumThreshold)
                 {
                     player.StepForward(true);
+                    bgmSource.Stop();
                     MGManager.ClearGame();
                     OnGameEnd();
                 }
@@ -147,6 +173,15 @@ namespace SK
         public float GetSpeedMultiplier()
         {
             return Time.timeScale;
+        }
+
+        // 音再生ヘルパー
+        void PlaySound(AudioClip clip)
+        {
+            if (audioSource != null && clip != null)
+            {
+                audioSource.PlayOneShot(clip);
+            }
         }
     }
 }

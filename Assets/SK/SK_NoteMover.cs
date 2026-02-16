@@ -24,7 +24,7 @@ namespace SK
 
             transform.Translate(Vector3.left * currentSpeed * Time.deltaTime);
 
-            if (transform.localPosition.x < -1500)
+            if (transform.localPosition.x < -650)
             {
                 Destroy(gameObject);
             }
