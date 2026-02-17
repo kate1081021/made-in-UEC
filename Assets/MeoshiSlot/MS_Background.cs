@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 namespace MeoshiSlotGame_IK
 {
-    // MonoBehaviour ではなく MiniGameBase を継承
     [RequireComponent(typeof(RawImage))]
     public class BackgroundScroller : MiniGameBase
     {

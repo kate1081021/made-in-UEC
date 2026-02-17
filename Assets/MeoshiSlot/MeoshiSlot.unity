@@ -5695,7 +5695,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 92924f5e01f4cbc41a5d035eb5fe1a9a, type: 3}
   m_Resource: {fileID: 8300000, guid: 92924f5e01f4cbc41a5d035eb5fe1a9a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.6
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -6512,7 +6512,7 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 4
-    height: 1.2047304
+    height: 2.6777472
 --- !u!222 &1782069992
 CanvasRenderer:
   m_ObjectHideFlags: 0
