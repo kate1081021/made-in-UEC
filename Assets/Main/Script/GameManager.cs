@@ -95,6 +95,10 @@ public class GameManager : MonoBehaviour
                 TotalPlayTime += Success.clip.length / PitchScale;
             }
         }
+        else
+        {
+            
+        }
 
         // スピードアップ
         if (speedup)
@@ -104,7 +108,6 @@ public class GameManager : MonoBehaviour
             TotalPlayTime += Speedup.clip.length;
             PitchScale *= 1.059463094f;  // 各音階の比率
             BGM_start_2.pitch = PitchScale;
-            Success.pitch = PitchScale;
         }
         
         // 曲を再生し始める
@@ -138,6 +141,9 @@ public class GameManager : MonoBehaviour
             }
             yield return null;
         }
+
+        // 最後にSuccessとFailureのPitchを変える
+        Success.pitch = PitchScale;
         
         // 5. ミニゲームシーンに移行
         StartCoroutine(MiniGame());
