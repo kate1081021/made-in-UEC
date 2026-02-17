@@ -6,11 +6,15 @@ namespace PTgame
     public class PT_move : MonoBehaviour
     {
         [SerializeField]
-        private float moveSpeed = 5*Time.timeScale;
+        private float moveSpeed = 5f;
 
         // InputAction（Inspectorから設定）
         [SerializeField]
         private InputActionReference Move;
+        private void Awake()
+        {
+            moveSpeed *= Time.timeScale;
+        }
 
         private void OnEnable()
         {
