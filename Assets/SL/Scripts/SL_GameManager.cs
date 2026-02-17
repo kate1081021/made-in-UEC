@@ -4,10 +4,12 @@ namespace SL
 {
     public class SL_GameManager : MiniGameBase
     {
+        [Header("パラメータ")]
         public float balloonDamage = 0f;
         public float balloonDamageMax = 30f;
         public float balloonReducingSpeed = 0.05f;
 
+        [Header("オブジェクト")]
         public SL_BalloonController balloonController;
         public SL_EachHandController rightHandController;
         public SL_EachHandController leftHandController;
@@ -19,7 +21,7 @@ namespace SL
 
         void Update()
         {
-            //手の移動
+            //手の移動(可能なら同時押しに対応)
             float trigger = Trigger.ReadValue<float>();
             if (trigger > 0)
             {
@@ -67,6 +69,8 @@ namespace SL
             balloonController.BreakBaloon();
             rightHandController.HideHand();
             leftHandController.HideHand();
+            //表情変化
+            //背景処理
         }
     }
 }

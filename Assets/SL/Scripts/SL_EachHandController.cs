@@ -4,6 +4,7 @@ namespace SL
 {
     public class SL_EachHandController : MiniGameBase
     {
+        [Header("パラメータ")]
         public float moveDistance = 1f;
         private SpriteRenderer spriteRenderer;
         private Vector3 initialPosition;
