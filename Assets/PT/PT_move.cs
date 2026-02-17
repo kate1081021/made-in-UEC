@@ -26,12 +26,7 @@ namespace PTgame
             Move.action.Disable();
         }
 
-        void Update()
-        {
-            HandleMove();
-        }
-
-        private void HandleMove()
+        public Vector3 HandleMove()
         {
             // Vector2 で入力取得
             Vector2 input = Move.action.ReadValue<Vector2>();
@@ -41,7 +36,7 @@ namespace PTgame
 
             Vector3 movement = new Vector3(moveX * moveSpeed * Time.deltaTime, 0f, 0f);
 
-            transform.Translate(movement);
+            return movement;
         }
     }
 }
