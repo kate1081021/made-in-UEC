@@ -6,7 +6,10 @@ using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
-    public UIManager uiManager;
+    public UIManager uiManager;  // UIManager
+
+    public static AsyncOperation asyncLoad;  // 同期ロード用
+
     public AudioSource BGM_start_1;  // ゲーム開始時のBGM
     public AudioSource BGM_start_2;  // 各ゲームの間の曲(1の短縮ver.)
     public AudioSource Success;  // ミニゲーム成功時のBGM
@@ -58,19 +61,31 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator MainCoroutine()
     {   
+        
         // BGMの総プレイ時間
         double TotalPlayTime = 0.0f;
         double FirstPlayTime = 0.0f;
 
         // タイムスケールを変更
         MGManager.applyNewTimeScale();
-        bool speedup = Time.timeScale != MGManager.timeScale;
         Time.timeScale = MGManager.timeScale;
 
+        // スピードアップ
+        bool speedup = false;
+        int stage = MGManager.stage;
+        if ((5 < stage && stage <= 15 && stage % 5 == 1) || (stage > 15 && (stage - 15) % 10 == 1)) { speedup = true; }
+
         // アニメーション&シーン切り替え
-        loaded_minigame = Random.Range(0, minigames.Count - 1);
+        loaded_minigame = Random.Range(0, minigames.Count);
         string scene = minigames[loaded_minigame].scene_name;  // ミニゲームの名前
         string verb = minigames[loaded_minigame].verb;  // ミニゲームの動詞
+
+        // 裏でシーンの読み込みを開始する（まだ切り替えない）
+        asyncLoad = SceneManager.LoadSceneAsync(scene);
+        asyncLoad.allowSceneActivation = false; // 読み込み完了しても勝手に切り替わらないようにする
+
+        // 最初のステージの時は少し待つ
+        if (MGManager.stage == 1) { yield return new WaitForSeconds(2.0f); }
 
         // BGMがスタートしたタイミングを記録
         double StartTime = AudioSettings.dspTime;
@@ -96,10 +111,9 @@ public class GameManager : MonoBehaviour
                 TotalPlayTime += Success.clip.length / PitchScale;
             }
         }
-        else
-        {
-            
-        }
+
+        // クリア判定をリセット
+        MGManager.Finished();
 
         // スピードアップ
         if (speedup)
@@ -145,8 +159,17 @@ public class GameManager : MonoBehaviour
 
         // 最後にSuccessとFailureのPitchを変える
         Success.pitch = PitchScale;
+
+        // 3. ロードが90%（準備完了）まで待機
+        while (asyncLoad.progress < 0.9f)
+        {
+            yield return null;
+        }
+
+        // ついにシーンを切り替える
+        asyncLoad.allowSceneActivation = true;
         
-        // 5. ミニゲームシーンに移行
+        // ミニゲームシーンに移行
         StartCoroutine(MiniGame());
 
     }
