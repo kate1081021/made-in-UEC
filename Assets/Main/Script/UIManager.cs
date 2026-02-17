@@ -32,7 +32,7 @@ public class UIManager : MonoBehaviour
         }
     }
     
-    public void PlayAnimation(string verb, string scene)
+    public void PlayAnimation(string scene, string verb)
     {
         // 初期状態：テキストを消しておく
         targetText = target.GetComponent<TextMeshProUGUI>();
@@ -41,7 +41,7 @@ public class UIManager : MonoBehaviour
         targetText.transform.localScale = Vector3.one * 1.2f; // 最初から1.2倍
 
         // 演出開始
-        StartCoroutine(PlayUIAnimation(verb, scene));
+        StartCoroutine(PlayUIAnimation(scene, verb));
     }
 
     // ミニゲーム中のUI
@@ -71,7 +71,15 @@ public class UIManager : MonoBehaviour
         // オブジェクトの表示
     }
 
-    IEnumerator PlayUIAnimation(string verb, string scene)
+    // ステージ数を更新
+    public void updateStage()
+    {
+        // ステージ数を更新
+        counter.text = $"{MGManager.stage}";
+    }
+
+    // メインのアニメーションを表示
+    IEnumerator PlayUIAnimation(string scene, string verb)
     {
         float elapsed = 0f;
 
@@ -80,15 +88,12 @@ public class UIManager : MonoBehaviour
         Vector3 groupStartScale = Vector3.one;
         Vector3 groupEndScale = Vector3.one * 3.0f; // UIのズーム倍率（お好みで）
 
+        // 動詞を確定させる
+        targetText.text = verb;
+
         // 0. 裏でシーンの読み込みを開始する（まだ切り替えない）
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
         asyncLoad.allowSceneActivation = false; // 読み込み完了しても勝手に切り替わらないようにする
-
-        // ステージ数をカウント
-        counter.text = $"{MGManager.stage}";
-
-        // 動詞を確定させる
-        targetText.text = verb;
 
         // 1. テキストをフェードイン
         while (elapsed < first_duration)
@@ -104,6 +109,7 @@ public class UIManager : MonoBehaviour
             yield return null;
         }
 
+        Debug.Log($"フェードイン: {elapsed}s");
         elapsed = 0f;
         yield return new WaitForSeconds(0.05f);
 
@@ -123,11 +129,13 @@ public class UIManager : MonoBehaviour
             yield return null;
         }
 
+        Debug.Log($"ズームイン: {elapsed}s");
+
         // 2.5 値を確定させる
         targetText.alpha = 1;
         if (zoomGroup != null) zoomGroup.localScale = groupEndScale;
-
-        // 3. アニメーションが終わるまで、かつロードが90%（準備完了）まで待機
+        
+        // 3. ロードが90%（準備完了）まで待機
         while (asyncLoad.progress < 0.9f)
         {
             yield return null;
@@ -141,7 +149,6 @@ public class UIManager : MonoBehaviour
     public void UITimer(int sec)
     {
         timer.alpha = 1;
-        Debug.Log($"{sec}");
         timer.text = $"{sec}";
     }
 

@@ -35,7 +35,6 @@ namespace catchMochi
 
         void Update()
         {
-            Debug.Log("ok");
             // スペースキーが押された瞬間またはエンターキーが押された
             if (Action.WasPerformedThisFrame())
             {
