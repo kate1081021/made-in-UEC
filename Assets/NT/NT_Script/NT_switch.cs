@@ -9,9 +9,10 @@ public class NT_switch : MiniGameBase
     public int count = 0;
 
 
- public override void OnGameStart(){
+    public override void OnGameStart(){
     MGManager.Load();
- }
+    count = 0;
+    }
 
  public override void OnGameEnd(){}
 
