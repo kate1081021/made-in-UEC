@@ -1,22 +1,30 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class UT_playermove : MonoBehaviour
+namespace UT
 {
-    [SerializeField] private float movespeed;
-    private Rigidbody2D rb;
-    private Vector2 moveInput;
-    private void Start()
+
+    public class UT_playermove : MiniGameBase
     {
-        rb = GetComponent<Rigidbody2D>();
-    }
-    void FixedUpdate()
-    {
-        Vector2 pos = moveInput.normalized * movespeed * Time.fixedDeltaTime;
-        rb.MovePosition(rb.position + pos);
-    }
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        moveInput = context.ReadValue<Vector2>();
+        [SerializeField] private float movespeed;
+        private Rigidbody2D rb;
+        private Vector2 moveInput;
+        public override void OnGameStart()
+        {
+            MGManager.Load();
+            rb = GetComponent<Rigidbody2D>();
+        }
+        void FixedUpdate()
+        {
+            Vector2 pos = Move.ReadValue<Vector2>() * movespeed * Time.timeScale * Time.fixedDeltaTime;
+            rb.MovePosition(rb.position + pos);
+        }
+        private void OnTriggerStay2D(Collider2D collision)
+        {
+            if (collision.CompareTag("bullet"))
+            {
+                Debug.Log("hit");
+            }
+        }
     }
 }
