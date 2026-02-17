@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: undertale
   m_EditorClassIdentifier: 
   scene_name: UT
-  verb: "\u3088\u3051\u308D"
+  verb: "\u3088\u3051\u308D\uFF01"
   timelimit: 7

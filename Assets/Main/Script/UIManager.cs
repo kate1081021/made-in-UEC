@@ -91,10 +91,6 @@ public class UIManager : MonoBehaviour
         // 動詞を確定させる
         targetText.text = verb;
 
-        // 0. 裏でシーンの読み込みを開始する（まだ切り替えない）
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
-        asyncLoad.allowSceneActivation = false; // 読み込み完了しても勝手に切り替わらないようにする
-
         // 1. テキストをフェードイン
         while (elapsed < first_duration)
         {
@@ -134,15 +130,6 @@ public class UIManager : MonoBehaviour
         // 2.5 値を確定させる
         targetText.alpha = 1;
         if (zoomGroup != null) zoomGroup.localScale = groupEndScale;
-        
-        // 3. ロードが90%（準備完了）まで待機
-        while (asyncLoad.progress < 0.9f)
-        {
-            yield return null;
-        }
-
-        // 4. ついにシーンを切り替える
-        asyncLoad.allowSceneActivation = true;
 
     }
 

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a64a31a3f28fe574082f849c8579dbdd, type: 3}
-  m_Name: mochiCatch
+  m_Name: PT
   m_EditorClassIdentifier: 
-  scene_name: mochiCatch
-  verb: "\u305F\u3079\u308D\uFF01"
+  scene_name: PT
+  verb: "\u843D\u3068\u3059\u306A\uFF01"
   timelimit: 7
