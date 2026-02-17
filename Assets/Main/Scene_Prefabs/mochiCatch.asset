@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: mochiCatch
   m_EditorClassIdentifier: 
   scene_name: mochiCatch
-  verb: "\u305F\u3079\u308D"
+  verb: "\u305F\u3079\u308D\uFF01"
   timelimit: 7
