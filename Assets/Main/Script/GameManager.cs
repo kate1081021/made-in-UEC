@@ -84,6 +84,9 @@ public class GameManager : MonoBehaviour
         asyncLoad = SceneManager.LoadSceneAsync(scene);
         asyncLoad.allowSceneActivation = false; // 読み込み完了しても勝手に切り替わらないようにする
 
+        // 最初のステージの時は少し待つ
+        if (MGManager.stage == 1) { yield return new WaitForSeconds(2.0f); }
+
         // BGMがスタートしたタイミングを記録
         double StartTime = AudioSettings.dspTime;
 
@@ -107,10 +110,6 @@ public class GameManager : MonoBehaviour
                 FirstPlayTime += Success.clip.length / PitchScale;
                 TotalPlayTime += Success.clip.length / PitchScale;
             }
-        }
-        else
-        {
-            
         }
 
         // クリア判定をリセット
