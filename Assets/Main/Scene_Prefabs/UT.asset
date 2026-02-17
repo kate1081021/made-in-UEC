@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a64a31a3f28fe574082f849c8579dbdd, type: 3}
-  m_Name: mochiCatch
+  m_Name: UT
   m_EditorClassIdentifier: 
-  scene_name: mochiCatch
-  verb: "\u3082\u3061\u3092\u98DF\u3079\u308D\uFF01"
-  timelimit: 7
+  scene_name: "UT(\u4EEE)"
+  verb: "\u653B\u6483\u3092\u3088\u3051\u308D\uFF01(\u4EEE)"
+  timelimit: 0
