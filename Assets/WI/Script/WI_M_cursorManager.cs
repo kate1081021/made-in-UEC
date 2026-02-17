@@ -7,8 +7,8 @@ namespace WI
     {
         private BoxCollider2D cursorCollider;
 
-        public float cursorSpeed;
-        public Vector2 cursorPosition;
+        [SerializeField] private float cursorSpeed;
+        [SerializeField] private Vector2 cursorPosition;
         
         private Vector2 inputDirection;
         private Vector3 viewPosition;
@@ -24,7 +24,7 @@ namespace WI
         public override void OnGameEnd() { }
 
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
             inputDirection = Move.ReadValue<Vector2>();
             
