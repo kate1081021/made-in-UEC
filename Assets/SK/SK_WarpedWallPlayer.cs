@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace SK
 {
-    // ★ファイル名と一致させる
     public class SK_WarpedWallPlayer : MonoBehaviour
     {
         [Header("Settings")]
@@ -11,17 +10,19 @@ namespace SK
         
         [Header("Components")]
         public Animator animator;
-        public Rigidbody2D rb; // ★追加：Rigidbody2Dへの参照
+        public Rigidbody2D rb; // 物理挙動停止用
 
         private SK_WWG gameManager;
         private int nextWaypointIndex = 0;
         private bool isMoving = false;
-        // ★ここを修正：引数の型も「SK_WWG」に変更
+
         public void Initialize(SK_WWG manager)
         {
             gameManager = manager;
-            // もしInspectorで設定し忘れていても自動で取得
+            
             if (rb == null) rb = GetComponent<Rigidbody2D>();
+
+            // スタート位置へ移動
             if (waypoints.Length > 0)
             {
                 transform.position = waypoints[0].position;
@@ -42,11 +43,13 @@ namespace SK
         {
             Transform target = waypoints[nextWaypointIndex];
 
-            // SK_WWGのメソッドを呼ぶ
+            // 速度 = 初期値 * Time.timeScale
             float speed = baseMoveSpeed * gameManager.GetSpeedMultiplier();
 
+            // 移動
             transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 
+            // 回転（進行方向を向く）
             Vector3 direction = target.position - transform.position;
             if (direction != Vector3.zero)
             {
@@ -54,6 +57,7 @@ namespace SK
                 transform.rotation = Quaternion.Euler(0, 0, angle);
             }
 
+            // 到着判定
             if (Vector3.Distance(transform.position, target.position) < 0.1f)
             {
                 isMoving = false;
@@ -68,15 +72,18 @@ namespace SK
 
             if (isFinalJump)
             {
-                if (animator) animator.SetTrigger("Jump"); 
-                nextWaypointIndex = waypoints.Length - 1;
-                // ★追加：物理挙動を完全に停止させる
+                // ★成功時：最後のジャンプ
+                if (animator) animator.SetTrigger("Jump");
+                
+                nextWaypointIndex = waypoints.Length - 1; // ゴールへ直行
+
+                // 物理挙動を完全に停止させる
                 if (rb != null)
                 {
-                    rb.linearVelocity = Vector2.zero;      // 移動速度を0に
-                    rb.angularVelocity = 0f;         // 回転速度を0に
-                    rb.isKinematic = true;           // 重力や衝突の影響を受けなくする
-                    rb.simulated = false;            // (念の為) 物理シミュレーションから除外
+                    rb.linearVelocity = Vector2.zero;
+                    rb.angularVelocity = 0f;
+                    rb.isKinematic = true;
+                    rb.simulated = false;
                 }
             }
             else
@@ -89,11 +96,11 @@ namespace SK
         {
             isMoving = false;
             if (animator) animator.SetTrigger("Fall");
-            // 失敗時は逆に物理挙動をONにして落下させる場合
+            
+            // 失敗時に落下させるなら物理有効化
             if (rb != null)
             {
-                rb.isKinematic = false; // 重力を有効化
-                // 必要であればここでランダムな回転などを加えても面白いです
+                rb.isKinematic = false;
             }
         }
     }
