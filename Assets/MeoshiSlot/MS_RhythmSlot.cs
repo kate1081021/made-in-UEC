@@ -17,7 +17,7 @@ namespace MeoshiSlotGame_IK
         [SerializeField] private Sprite[] sourceSprites;
 
         [Header("【基本設定】")]
-        [SerializeField] private float baseBpm = 120f;
+        [SerializeField] private float baseBpm = 160f; // BPM160
         [SerializeField] private int winSpriteIndex = 0;
         [SerializeField] private int symbolsPerBeat = 4;
         
@@ -26,9 +26,16 @@ namespace MeoshiSlotGame_IK
         [SerializeField] private float visualOffsetY = 0f;
 
         [Header("【サイズ調整】")]
-        [SerializeField, Range(0.1f, 2.0f)] private float stoppedScale = 1.0f; // 停止時の基本サイズ
-        [SerializeField, Range(0.1f, 2.0f)] private float movingScale = 0.7f;  // 回転中のサイズ
+        [SerializeField, Range(0.1f, 2.0f)] private float stoppedScale = 1.0f;
+        [SerializeField, Range(0.1f, 2.0f)] private float movingScale = 0.7f;
         [SerializeField, Range(1.0f, 3.0f)] private float movingBlur = 1.5f;
+
+        [Header("【絵柄のビート・色演出】")]
+        [SerializeField] private bool enableSymbolBeat = true;   // ビートに合わせて拡大するか
+        [SerializeField] private float beatPulseScale = 1.2f;    // ビート時の拡大率
+        [SerializeField] private float beatSmoothness = 10f;     // 元に戻る速さ
+        [SerializeField] private bool enableSymbolRainbow = false; // 七色にするか
+        [SerializeField] private float rainbowSpeed = 0.5f;
 
         [Header("【演出用】")]
         [SerializeField] private ParticleSystem winParticle; 
@@ -51,8 +58,14 @@ namespace MeoshiSlotGame_IK
         private float[] reelPositions = new float[3];
         
         // 演出用変数
-        private float[] bounceOffsets = new float[3]; // Y座標の揺れ
-        private float[] bounceScales = new float[3];  // ★追加：大きさの揺れ（拡大演出用）
+        private float[] bounceOffsets = new float[3];
+        private float[] bounceScales = new float[3]; // 停止時の衝撃用
+        
+        // ビート演出用
+        private float currentBeatScaleAdd = 0f;
+        private float beatTimer;
+        private float beatInterval;
+        private float rainbowHue;
 
         private float startTime;
         private bool isClear = false;
@@ -69,16 +82,22 @@ namespace MeoshiSlotGame_IK
             SetupReelImages();
 
             startTime = Time.time;
+            beatInterval = 60f / baseBpm;
+            
+            // 1拍目からドンッとなるようにタイマーセット
+            beatTimer = beatInterval;
 
             for(int i=0; i<3; i++) 
             {
                 bounceOffsets[i] = 0f;
-                bounceScales[i] = 0f; // 初期化
+                bounceScales[i] = 0f;
+                isStopped[i] = false;
             }
 
             if (bgmSource != null)
             {
-                bgmSource.loop = true;
+                // ★修正：ループをOFFにする（1回だけ流れる）
+                bgmSource.loop = false;
                 bgmSource.Play();
             }
 
@@ -125,14 +144,32 @@ namespace MeoshiSlotGame_IK
 
         void Update()
         {
+            // 時間管理
             float currentScale = Time.timeScale;
+            if (bgmSource != null) bgmSource.pitch = currentScale;
 
-            if (bgmSource != null)
+            // ▼▼▼ ビート計算処理 ▼▼▼
+            if (enableSymbolBeat)
             {
-                bgmSource.pitch = currentScale;
+                beatTimer += Time.deltaTime;
+                if (beatTimer >= beatInterval)
+                {
+                    beatTimer -= beatInterval;
+                    // ビートの瞬間に、拡大値をセット
+                    currentBeatScaleAdd = (beatPulseScale - 1.0f);
+                }
+                // 滑らかに0に戻る
+                currentBeatScaleAdd = Mathf.Lerp(currentBeatScaleAdd, 0f, Time.deltaTime * beatSmoothness);
             }
 
-            // ▼▼▼ ゲームプレイ（停止操作） ▼▼▼
+            // ▼▼▼ レインボー計算処理 ▼▼▼
+            if (enableSymbolRainbow && !isClear)
+            {
+                rainbowHue += Time.deltaTime * rainbowSpeed;
+                if (rainbowHue > 1.0f) rainbowHue -= 1.0f;
+            }
+
+            // ゲームプレイ（停止操作）
             if (!isClear)
             {
                 if (Action.WasPerformedThisFrame() || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
@@ -141,7 +178,7 @@ namespace MeoshiSlotGame_IK
                 }
             }
 
-            // ▼▼▼ リスタート（Rキーのみ） ▼▼▼
+            // リスタート（Rキーのみ）
             if (isDebugMode && isClear)
             {
                 if (Input.GetKeyDown(KeyCode.R))
@@ -150,22 +187,19 @@ namespace MeoshiSlotGame_IK
                 }
             }
 
-            // ▼▼▼ リールの計算 ▼▼▼
-            float baseBeatInterval = 60f / baseBpm;
+            // リールの計算
             float elapsedTime = Time.time - startTime;
 
             for (int i = 0; i < 3; i++)
             {
                 if (!isStopped[i])
                 {
-                    float currentBeatProgress = elapsedTime / baseBeatInterval;
+                    float currentBeatProgress = elapsedTime / beatInterval;
                     reelPositions[i] = (currentBeatProgress * symbolsPerBeat + winSpriteIndex) * cellHeight;
                 }
                 
                 // アニメーション減衰計算
-                // Y座標の戻り（バネのような動き）
                 bounceOffsets[i] = Mathf.Lerp(bounceOffsets[i], 0, Time.deltaTime * 10f);
-                // ★スケールの戻り（拡大から元のサイズへ）
                 bounceScales[i] = Mathf.Lerp(bounceScales[i], 0, Time.deltaTime * 8f);
 
                 UpdateReelVisuals(i, reelPositions[i] + bounceOffsets[i]);
@@ -187,32 +221,52 @@ namespace MeoshiSlotGame_IK
                 float basePosY = (2 - j) * cellHeight;
                 float currentY = basePosY - (scrollPos % totalHeight);
 
+                // ループ処理
                 if (currentY < -(totalHeight / 2)) currentY += totalHeight;
                 else if (currentY > (totalHeight / 2)) currentY -= totalHeight;
 
                 rt.anchoredPosition = new Vector2(0, currentY + visualOffsetY);
 
-                // 遠近感の計算
+                // 遠近感（パース）
                 float dist = Mathf.Abs(rt.anchoredPosition.y - visualOffsetY);
                 float perspective = Mathf.Lerp(1.0f, 0.6f, dist / cellHeight);
 
-                // ★最終サイズ計算：(基本サイズ + バウンス拡大分) × 遠近感
-                float finalScale = (baseScale + bounceScales[reelID]) * perspective;
+                // ★最終スケール計算
+                float finalScale = (baseScale + bounceScales[reelID] + currentBeatScaleAdd) * perspective;
 
                 rt.localScale = new Vector3(finalScale, finalScale * currentBlurY, 1f);
 
+                // 絵柄の切り替え
                 float virtualIndex = (scrollPos + currentY) / cellHeight;
                 int spriteId = Mathf.RoundToInt(virtualIndex);
                 spriteId = (-(spriteId - 2) % sourceSprites.Length + sourceSprites.Length) % sourceSprites.Length;
 
-                rt.GetComponent<Image>().sprite = sourceSprites[spriteId];
+                Image img = rt.GetComponent<Image>();
+                img.sprite = sourceSprites[spriteId];
+
+                // ★色の適用
+                if (!isClear)
+                {
+                    if (enableSymbolRainbow)
+                    {
+                        img.color = Color.HSVToRGB(rainbowHue, 0.7f, 1.0f);
+                    }
+                    else
+                    {
+                        img.color = Color.white;
+                    }
+                }
             }
         }
 
         public void OnPressButton()
         {
+            // 既に3つ止まっていたら何もしない（音も鳴らさない）
             if (currentReelIndex >= 3) return; 
 
+           if (seSource != null && stopSE != null) seSource.PlayOneShot(stopSE);
+
+            // ▼▼▼ ここから裏側の計算処理 ▼▼▼
             isStopped[currentReelIndex] = true;
 
             Image centerImg = GetCenterImage(currentReelIndex);
@@ -222,14 +276,8 @@ namespace MeoshiSlotGame_IK
                 reelPositions[currentReelIndex] += diffY;
             }
 
-            // 演出：停止時にY座標を少し沈ませる
             bounceOffsets[currentReelIndex] = -50f;
-            
-            // ★演出：停止時にサイズを「0.3」分大きく跳ねさせる
-            // これにより、止まった瞬間に絵柄がグッと手前に拡大表示されます
-            bounceScales[currentReelIndex] = 0.3f;
-
-            if (seSource != null && stopSE != null) seSource.PlayOneShot(stopSE);
+            bounceScales[currentReelIndex] = 0.3f; // 停止時の拡大演出
 
             currentReelIndex++;
             if (currentReelIndex >= 3) CheckWin();
@@ -280,7 +328,7 @@ namespace MeoshiSlotGame_IK
             {
                 isStopped[i] = false;
                 bounceOffsets[i] = 0f;
-                bounceScales[i] = 0f; // サイズ戻しもリセット
+                bounceScales[i] = 0f;
                 foreach (var rt in reelImages[i]) rt.GetComponent<Image>().color = Color.white;
             }
         }

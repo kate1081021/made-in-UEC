@@ -5,8 +5,8 @@ namespace MeoshiSlotGame_IK
     public class BackgroundBeat : MiniGameBase
     {
         [Header("【設定】")]
-        [SerializeField] private float bpm = 120f;       // 曲のBPM
-        [SerializeField] private float power = 1.05f;    // 拡大率（1.05 = 5%拡大）
+        [SerializeField] private float bpm = 160f;       // BPM160
+        [SerializeField] private float power = 1.05f;    // 拡大率
         [SerializeField] private float smoothness = 10f; // 元に戻る速さ
 
         // 内部変数
@@ -16,8 +16,7 @@ namespace MeoshiSlotGame_IK
 
         public override void OnGameStart()
         {
-            // ▼▼▼ 修正ポイント：ピボット（中心点）を強制的に画面中央にする ▼▼▼
-            // これで「左と右で動きが違う」現象が直り、真ん中から均等に広がります
+            // 中心ズレ補正（Pivotを中央へ）
             RectTransform rt = GetComponent<RectTransform>();
             if (rt != null)
             {
