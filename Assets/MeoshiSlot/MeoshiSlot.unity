@@ -6512,7 +6512,7 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 4
-    height: 2.6777472
+    height: 8.437388
 --- !u!222 &1782069992
 CanvasRenderer:
   m_ObjectHideFlags: 0
