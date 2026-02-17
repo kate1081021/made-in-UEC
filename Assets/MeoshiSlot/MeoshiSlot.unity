@@ -5824,7 +5824,7 @@ MonoBehaviour:
   movingScale: 0.6
   movingBlur: 1.5
   enableSymbolBeat: 1
-  beatPulseScale: 1.03
+  beatPulseScale: 1.05
   beatSmoothness: 15
   enableSymbolRainbow: 0
   rainbowSpeed: 0.5
@@ -6512,7 +6512,7 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 4
-    height: 2.6777472
+    height: 1.2047304
 --- !u!222 &1782069992
 CanvasRenderer:
   m_ObjectHideFlags: 0
