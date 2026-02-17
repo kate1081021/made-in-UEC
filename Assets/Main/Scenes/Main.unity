@@ -157,7 +157,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3d948a9d142db97408047253b1717241, type: 2}
   - {fileID: 11400000, guid: f489faf08f7888949837c4f1241ea068, type: 2}
   - {fileID: 11400000, guid: 7af98357a4bd56b4c91a454d1456ea94, type: 2}
-  - {fileID: 11400000, guid: a80b88e8285513646ba83318ff549028, type: 2}
   - {fileID: 11400000, guid: 2dfd0a9fd5237be4d95d28140d07d349, type: 2}
   - {fileID: 11400000, guid: 1d393a3c90a2bd84fa12e9cefb29368f, type: 2}
   - {fileID: 11400000, guid: f6417e45947ff5a4599d3bd8b342492d, type: 2}
@@ -1635,6 +1634,7 @@ MonoBehaviour:
   counter: {fileID: 1106284507}
   timer: {fileID: 753477589}
   zoomGroup: {fileID: 1292214106}
+  Lives: []
   first_duration: 0.5
   second_duration: 0.5
 --- !u!4 &1393399580
