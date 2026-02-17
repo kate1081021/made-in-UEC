@@ -10,12 +10,14 @@ namespace WI
         private BoxCollider2D cursorCollider;
 
         private bool cursorCollision;
+        private bool isCovered;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
         {
             rootManager = transform.parent.GetComponent<WI_M_buttonManager>();
             cursorCollider = GameObject.Find("WI_M_cursor").GetComponent<BoxCollider2D>();
             cursorCollision = false;
+            isCovered = false;
         }
 
         public override void OnGameEnd() { }
@@ -39,19 +41,35 @@ namespace WI
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision == cursorCollider)
+            if(collision.gameObject != transform.parent)
             {
-                cursorCollision = true;
-                
-            }
-            else
-            {
-                //nop
+                if (collision.bounds.Contains(this.gameObject.transform.position))
+                {
+                    //Debug.Log(collision.gameObject.GetComponent<SpriteRenderer>().sprite);
+                    //Debug.Log(isCovered);
+                    if (collision.gameObject.tag == "window")
+                    {
+                        isCovered = true;
+                    }
+                }
+                if (collision == cursorCollider)
+                {
+                    cursorCollision = true;
+
+                }
+                else
+                {
+                    //nop
+                }
             }
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
+            if (collision.gameObject.tag == "window")
+            {
+                isCovered = false;
+            }
             if (collision == cursorCollider)
             {
                 cursorCollision = false;
