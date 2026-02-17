@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a64a31a3f28fe574082f849c8579dbdd, type: 3}
   m_Name: EL
   m_EditorClassIdentifier: 
-  scene_name: "WI(\u4EEE)"
-  verb: "\u5168\u90E8\u9589\u3058\u308D\uFF01(\u4EEE)"
-  timelimit: 0
+  scene_name: EL
+  verb: "\u5408\u308F\u305B\u308D\uFF01"
+  timelimit: 7
