@@ -13,7 +13,8 @@ namespace EL
 		[SerializeField] private float targetVolt = 3f; // 目標電位
 		[SerializeField] private float tolerance = 0.2f; //クリア判定の許容範囲
 		[SerializeField] private float clearTime = 0.5f; //目標電位を維持する必要のある時間
-		[SerializeField] private Bounds bounds; // 電圧値を探す範囲
+
+		public Bounds bounds; // 電圧値を探す範囲
 		private void OnDrawGizmosSelected()
 		{
 			// シーンビューで範囲を視覚化
@@ -22,6 +23,21 @@ namespace EL
 
 		private float clearTimer = 0f; //クリアタイマー
 		[HideInInspector] public bool isVoltInRange = false; //電位が許容範囲内かどうかのフラグ
+
+		private void Awake()
+		{
+			// シングルトンインスタンスの設定
+			if (Instance == null)
+			{
+				Instance = this;
+			}
+			else
+			{
+				Debug.LogWarning("Multiple instances of EL_GameManager detected. There should only be one instance.");
+				Destroy(this);
+			}
+		}
+
 		public override void OnGameStart()
 		{
 			// MGManager.TestPlay(100);
@@ -34,16 +50,7 @@ namespace EL
 
 			isVoltInRange = false;
 
-			// シングルトンインスタンスの設定
-			if (Instance == null)
-			{
-				Instance = this;
-			}
-			else
-			{
-				Debug.LogWarning("Multiple instances of EL_GameManager detected. There should only be one instance.");
-				Destroy(this);
-			}
+
 		}
 
 		void Update()

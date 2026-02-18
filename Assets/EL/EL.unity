@@ -303,7 +303,7 @@ Transform:
   m_GameObject: {fileID: 214205121}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -662,7 +662,7 @@ Transform:
   m_GameObject: {fileID: 1482164177}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7, y: 0, z: 0}
+  m_LocalPosition: {x: -6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -739,7 +739,7 @@ Transform:
   m_GameObject: {fileID: 1614256414}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -946,6 +946,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1662861910}
   - component: {fileID: 1662861909}
+  - component: {fileID: 1662861911}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -972,7 +973,7 @@ MonoBehaviour:
   tolerance: 0.02
   clearTime: 0.5
   bounds:
-    m_Center: {x: 3.5, y: 0, z: 0}
+    m_Center: {x: 5, y: 0, z: 0}
     m_Extent: {x: 1, y: 1, z: 0}
   isVoltInRange: 0
 --- !u!4 &1662861910
@@ -990,6 +991,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1662861911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662861908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5690d5936dc038b40adb8bdef8f05422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameBGM: {fileID: 0}
+  voltCalculator: {fileID: 1614256420}
+  circleSegments: 50
+  lineThickness: 0.05
 --- !u!1 &1677879831
 GameObject:
   m_ObjectHideFlags: 0
