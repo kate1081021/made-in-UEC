@@ -105,7 +105,7 @@ namespace EL
 
 			for (float V = 0.5f; V < (int)V_0; V += 0.5f)
 			{
-				if (V != 3f)
+				if (V != V_0 / 2f)
 				{
 					float k = (2f * V / V_0 - 1f) * Mathf.Log(D / R);
 
