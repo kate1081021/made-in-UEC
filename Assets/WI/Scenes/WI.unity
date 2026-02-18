@@ -375,7 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
   windowType:
-  - {fileID: 0}
+  - {fileID: 1692362341}
   - {fileID: 1692362341}
   - {fileID: 1692362341}
 --- !u!4 &1394587489
