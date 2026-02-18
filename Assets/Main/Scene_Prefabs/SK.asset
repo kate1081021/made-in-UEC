@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a64a31a3f28fe574082f849c8579dbdd, type: 3}
   m_Name: SK
   m_EditorClassIdentifier: 
-  scene_name: "SK(\u4EEE)"
-  verb: "\u58C1\u3092\u306E\u307C\u308C\uFF01(\u4EEE)"
-  timelimit: 0
+  scene_name: SK
+  verb: "\u767B\u308C\uFF01"
+  timelimit: 7
