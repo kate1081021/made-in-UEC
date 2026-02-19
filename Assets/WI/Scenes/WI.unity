@@ -521,7 +521,8 @@ MonoBehaviour:
   windowType:
   - {fileID: 1692362341}
   - {fileID: 1692362341}
-  - {fileID: 1692362341}
+  - {fileID: 1800428181}
+  targetWindows: []
 --- !u!4 &1394587489
 Transform:
   m_ObjectHideFlags: 0
@@ -719,6 +720,11 @@ RectTransform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8255507914935086602, guid: f2562ed02e1908b459f672343fedb29d, type: 3}
   m_PrefabInstance: {fileID: 514395939}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1800428181 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8255507914935086602, guid: f2562ed02e1908b459f672343fedb29d, type: 3}
+  m_PrefabInstance: {fileID: 1410345474}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2039073449
 GameObject:
