@@ -29,13 +29,30 @@ namespace WI
 
                 GameObject newWindow = Instantiate(windowType[i], spawnPos, Quaternion.identity);
 
+                // レイヤー設定
+                SpriteRenderer sr = newWindow.GetComponent<SpriteRenderer>();
+                if (sr != null)
+                {
+                    sr.sortingOrder = i;
+                }
+
                 targetWindows.Add(newWindow);
             }
         }
 
-        public int GetWindowIndex(GameObject windowObj)
+        // インデックスを返す関数
+        // public int GetWindowIndex(GameObject windowObj)
+        // {
+        //     return targetWindows.IndexOf(windowObj);
+        // }
+
+        // レイヤー番号を返す関数
+        public int GetWindowRayer(GameObject windowObj)
         {
-            return targetWindows.IndexOf(windowObj);
+            SpriteRenderer sr = windowObj.GetComponent<SpriteRenderer>();
+            if (sr != null) return sr.sortingOrder;
+            // エラー回避
+            return -1;
         }
 
         public override void OnGameEnd() { }
