@@ -8,6 +8,7 @@ namespace UT
 {
     public class UT_stargenerator : MiniGameBase
     {
+        public UT_playermove pm;
         public UT_star star;
         public GameObject obj;
         public GameObject obj2;
@@ -41,6 +42,9 @@ namespace UT
         // Start is called before the first frame update
         public override void OnGameStart()
         {
+            pm = GameObject.Find("Player").GetComponent<UT_playermove>();
+            pm.generator = gameObject;
+            pm.timelimit = 13f;
             GameObject star1 = Instantiate(obj, new Vector3(centerx + Mathf.Sin(0 * Mathf.Deg2Rad), centery + Mathf.Cos(0 * Mathf.Deg2Rad), 0), Quaternion.identity);
             GameObject star2 = Instantiate(obj, new Vector3(centerx + Mathf.Sin(72 * Mathf.Deg2Rad), centery + Mathf.Cos(72 * Mathf.Deg2Rad), 0), Quaternion.identity);
             GameObject star3 = Instantiate(obj, new Vector3(centerx + Mathf.Sin(144 * Mathf.Deg2Rad), centery + Mathf.Cos(144 * Mathf.Deg2Rad), 0), Quaternion.identity);
@@ -89,11 +93,11 @@ namespace UT
         {
             GameObject star2 = Instantiate(obj2, new Vector2(centerx, centery), Quaternion.identity);
             star2.transform.localScale = size * Vector3.one;
-            float v = Random.value;
+            float v = Random.value/2;
             while (true)
             {
-                star2.transform.rotation *= Quaternion.Euler(0, 0, v * Time.timeScale);
-                star2.transform.position += speed * (1f + v) * new Vector3(Mathf.Sin(theta*Mathf.Deg2Rad), Mathf.Cos(theta * Mathf.Deg2Rad), 0) * Time.timeScale * Time.deltaTime;
+                star2.transform.rotation *= Quaternion.Euler(0, 0, 2 * v * Time.timeScale);
+                star2.transform.position += speed * (1.5f + v) * new Vector3(Mathf.Sin(theta*Mathf.Deg2Rad), Mathf.Cos(theta * Mathf.Deg2Rad), 0) * Time.timeScale * Time.deltaTime;
                 yield return null;
                 if (Mathf.Abs(star2.transform.position.x) > 13f || Mathf.Abs(star2.transform.position.y) > 6f)
                 {

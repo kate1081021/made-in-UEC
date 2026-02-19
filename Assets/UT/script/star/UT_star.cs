@@ -7,7 +7,6 @@ namespace UT
 {
     public class UT_star : MiniGameBase
     {
-        [Space(20)]
         UT_stargenerator gene;
         float radius;
         float centerx;
@@ -38,7 +37,7 @@ namespace UT
             {
                 timer += Time.deltaTime * timeScaleRad * Time.timeScale;
                 theta += Time.deltaTime * 0.1f * timeScaleRot * (1+2*Mathf.Sin(timer)) * Time.timeScale;
-                transform.rotation = Quaternion.Euler(0, 0, 100*timer);
+                transform.rotation = Quaternion.Euler(0, 0, 200*timer);
                 float r = dis * radius * 10 * Mathf.Sin(timer);
                 transform.position = new Vector2(centerx +r * Mathf.Cos(theta),centery + r * Mathf.Sin(theta));
                 while (transform.position.x > 9) transform.position += new Vector3(-18f, 0, 0);

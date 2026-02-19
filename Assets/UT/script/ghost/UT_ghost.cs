@@ -6,17 +6,27 @@ namespace UT
 {
     public class UT_ghost : MiniGameBase
     {
+        public UT_playermove pm;
         public GameObject ghostlight;
         public GameObject pole;
         public GameObject ghost;
+        [Tooltip("左下のライトの場所")]
         public Vector3 lightpos1;
+        [Tooltip("右のライトの場所")]
         public Vector3 lightpos2;
+        [Tooltip("上のライトの場所")]
         public Vector3 lightpos3;
+        [Tooltip("左と右のライトの回転速度")]
         public float rotatespeed;
+        [Tooltip("上のライトの揺れる速度")]
         public float swingspeed;
+        [Tooltip("上のライトの揺れる幅")]
         public float swingwidth;
+        [Tooltip("弾の速度")]
         public float ghostspeed;
+        [Tooltip("弾の間隔")]
         public float duration;
+        [Tooltip("弾の角度の幅")]
         public float ghostvectorrange;
         GameObject light1;
         GameObject light2;
@@ -28,6 +38,8 @@ namespace UT
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
         {
+            pm = GameObject.Find("Player").GetComponent<UT_playermove>();
+            pm.generator = gameObject;
             light1 = Instantiate(ghostlight, lightpos1, Quaternion.Euler(0, 0, 0));
             light2 = Instantiate(ghostlight, lightpos2, Quaternion.Euler(0, 0, -60));
             light3 = Instantiate(ghostlight, lightpos3, Quaternion.Euler(0, 0, 90));
@@ -58,7 +70,7 @@ namespace UT
         {
             float offset = Random.value * 20 - 10;
             GameObject ghostobj = Instantiate(ghost, new Vector3(offset, 5.5f, 0), Quaternion.identity);
-            float theta = Mathf.Atan(7.5f/offset) + (Random.value-0.5f)*ghostvectorrange * Mathf.Deg2Rad;
+            float theta = Mathf.Atan(6.5f/offset) + (Random.value-0.5f)*ghostvectorrange * Mathf.Deg2Rad;
             if (offset > 0)
             {
                 theta += Mathf.PI;
