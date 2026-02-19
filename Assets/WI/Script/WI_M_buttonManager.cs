@@ -8,6 +8,8 @@ namespace WI
     {
         private bool isClosing = false;
 
+        [SerializeField] private bool useAnimation = true;
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
         {
@@ -26,6 +28,21 @@ namespace WI
         {
             if (isClosing) return;
             StartCoroutine(AnimateAndDestroy());
+
+            if (useAnimation)
+            {
+                StartCoroutine(AnimateAndDestroy());
+            }
+            else
+            {
+                isClosing = true;
+                DestroyImmediate();
+            }
+        }
+
+        private void DestroyImmediate()
+        {
+            Destroy(this.gameObject);
         }
 
         private IEnumerator AnimateAndDestroy()
