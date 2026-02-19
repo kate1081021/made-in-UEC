@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic; //生成順用
 
 namespace WI 
 {
@@ -6,11 +7,8 @@ namespace WI
     public class WI_T_startstop : MiniGameBase 
     {
 
-        // private WI_M_buttonManager windowclose;
         public GameObject[] windowType;
-
-        private GameObject[] targetWindows;
-        // public static WI_T_startstop instance;
+        public List<GameObject> targetWindows = new List<GameObject>();
         private bool ClearFlag = false;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,7 +18,7 @@ namespace WI
 
             ClearFlag = false;
             int WindowCreate = 3;
-            targetWindows = new GameObject[WindowCreate];
+            targetWindows.Clear();
 
             for (int i = 0; i < WindowCreate; i++)
             {
@@ -31,8 +29,13 @@ namespace WI
 
                 GameObject newWindow = Instantiate(windowType[i], spawnPos, Quaternion.identity);
 
-                targetWindows[i] = newWindow;
+                targetWindows.Add(newWindow);
             }
+        }
+
+        public int GetWindowIndex(GameObject windowObj)
+        {
+            return targetWindows.IndexOf(windowObj);
         }
 
         public override void OnGameEnd() { }
