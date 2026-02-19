@@ -40,6 +40,7 @@ namespace UT
         {
             pm = GameObject.Find("Player").GetComponent<UT_playermove>();
             pm.generator = gameObject;
+            pm.timelimit = 15f;
             light1 = Instantiate(ghostlight, lightpos1, Quaternion.Euler(0, 0, 0));
             light2 = Instantiate(ghostlight, lightpos2, Quaternion.Euler(0, 0, -60));
             light3 = Instantiate(ghostlight, lightpos3, Quaternion.Euler(0, 0, 90));

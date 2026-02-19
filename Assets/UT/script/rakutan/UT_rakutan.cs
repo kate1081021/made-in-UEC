@@ -46,6 +46,7 @@ namespace UT
         {
             pm = GameObject.Find("Player").GetComponent<UT_playermove>();
             pm.generator = gameObject;
+            pm.timelimit = 15f;
             flaskobj = Instantiate(flask, new Vector3(0, -10f, 0), Quaternion.identity);
             StartCoroutine(generatemanage(1));
             StartCoroutine(Flaskappear());

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 170696947923441679}
   - component: {fileID: 6730931466980365416}
   m_Layer: 0
-  m_Name: rakytangenerator
+  m_Name: rakutangenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
