@@ -4,6 +4,9 @@ namespace SL
 {
     public class SL_GameManager : MiniGameBase
     {
+        [Header("クリアチェッカー変数")]
+        bool Cleared = true;
+
         [Header("パラメータ")]
         public float balloonDamage = 0f;
         public float balloonDamageMax = 30f;
@@ -13,6 +16,7 @@ namespace SL
         public SL_BalloonController balloonController;
         public SL_EachHandController rightHandController;
         public SL_EachHandController leftHandController;
+        public SL_AudioManager sL_AudioManager;
 
         public override void OnGameStart()
         {
@@ -57,9 +61,20 @@ namespace SL
         {
             //鼻風船へのダメージ
             balloonDamage += 1f;
+            //クリアしていないときのみSEを鳴らしています
+            if (Cleared)
+            {
+            sL_AudioManager.AttackSe();    
+            }
             if (balloonDamage >= balloonDamageMax)
             {
+                if (Cleared)
+                {
+                //OngameClearが何度も呼ばれてしまうことをついでに防いでいます
                 OnGameClear();
+                sL_AudioManager.GameClearSe();
+                Cleared = false;
+                }
             }
         }
 
