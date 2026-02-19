@@ -55,7 +55,7 @@ namespace UT
             lightangle += Time.deltaTime * Time.timeScale;
             light1.transform.rotation *= Quaternion.Euler(0, 0, Time.deltaTime*Time.timeScale * rotatespeed);
             light2.transform.rotation *= Quaternion.Euler(0, 0, -Time.deltaTime * Time.timeScale * rotatespeed);
-            light3.transform.rotation = Quaternion.Euler(0, 0, 90+ swingwidth * Mathf.Sin(lightangle * swingspeed));
+            light3.transform.rotation = Quaternion.Euler(0, 0, 90+ swingwidth * Mathf.Sin(lightangle * swingspeed * Time.timeScale));
         }
 
         IEnumerator generatemanage()

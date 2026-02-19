@@ -15,7 +15,7 @@ namespace UT
         [Tooltip("–³“GŽžŠÔ")]
         public float duration;
         bool Invincible = false;
-        public float timelimit = 10;
+        public float timelimit = 15;
 
         public Image I0;
         public Image I1;
@@ -39,6 +39,7 @@ namespace UT
         public Slider HPbar;
         public override void OnGameStart()
         {
+            //MGManager.TestPlay(100);
             MGManager.Load();
             rb = GetComponent<Rigidbody2D>();
             currentHp = initialHp; 
@@ -72,7 +73,7 @@ namespace UT
 
         IEnumerator wait()
         {
-            yield return new WaitForSeconds(timelimit);
+            yield return new WaitForSeconds(timelimit / Time.timeScale);
             OnGameEnd();
         }
         void FixedUpdate()

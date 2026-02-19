@@ -618,7 +618,7 @@ MonoBehaviour:
   gameBGM: {fileID: 0}
   movespeed: 4
   damage: 25
-  duration: 1
+  duration: 0.5
   timelimit: 10
   I0: {fileID: 1711112933}
   I1: {fileID: 1380368179}

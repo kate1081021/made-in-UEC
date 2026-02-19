@@ -78,7 +78,7 @@ namespace UT
                 GameObject dropobj = Instantiate(droplets, new Vector3(-6.8f, 0.72f, 0), Quaternion.Euler(0, 0, -15));
                 float v = speedD * (1 + (Random.value - 0.5f) * randomv);
                 StartCoroutine(drop(dropobj, v));
-                yield return new WaitForSeconds(durationD);
+                yield return new WaitForSeconds(durationD / Time.timeScale);
             }
         }
 
@@ -90,7 +90,7 @@ namespace UT
             float deltay1 = Mathf.Cos(theta * Mathf.Deg2Rad);
             while (obj != null)
             {
-                time += Time.deltaTime;
+                time += Time.deltaTime * Time.timeScale;
                 float deltaY = deltay1 - time * g;
                 obj.transform.position += v * Time.timeScale * Time.deltaTime * new Vector3(deltaX, deltaY, 0);
                 obj.transform.rotation = Quaternion.Euler(0, 0, 90+Mathf.Atan(deltaY/deltaX)*Mathf.Rad2Deg);
