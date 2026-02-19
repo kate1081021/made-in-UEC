@@ -10,9 +10,11 @@ namespace EL
 		[SerializeField] private EL_VoltCalculator voltCalculator;
 
 		[SerializeField] private TextMeshProUGUI voltText; // 電位表示用のテキストUI
-		[SerializeField] private float targetVolt = 3f; // 目標電位
-		[SerializeField] private float tolerance = 0.2f; //クリア判定の許容範囲
-		[SerializeField] private float clearTime = 0.5f; //目標電位を維持する必要のある時間
+		[SerializeField] private TextMeshProUGUI targetVoltText; // 目標電位表示用のテキストUI
+		[SerializeField] private EL_StageData stageData; // ステージデータ
+		private float targetVolt = 3f; // 目標電位
+		private float tolerance = 0.2f; //クリア判定の許容範囲
+		private float clearTime = 0.5f; //目標電位を維持する必要のある時間
 
 		public Bounds bounds; // 電圧値を探す範囲
 		private void OnDrawGizmosSelected()
@@ -50,7 +52,21 @@ namespace EL
 
 			isVoltInRange = false;
 
+			// ステージデータから目標電位と許容範囲を取得
+			if (stageData != null && stageData.clearConditions.Count > 0)
+			{
+				int randomIndex = Random.Range(0, stageData.clearConditions.Count);
+				targetVolt = stageData.clearConditions[randomIndex].targetVolt;
+				tolerance = stageData.clearConditions[randomIndex].tolerance;
+				bounds = stageData.clearConditions[randomIndex].bounds;
+			}
+			else
+			{
+				Debug.LogWarning("StageData is not set or has no clear conditions. Using default values.");
+			}
 
+			// 目標電位の表示更新
+			targetVoltText.text = $"欠けた部分から\n({targetVolt:F2} ± {tolerance:F2}) Vを探せ！";
 		}
 
 		void Update()
