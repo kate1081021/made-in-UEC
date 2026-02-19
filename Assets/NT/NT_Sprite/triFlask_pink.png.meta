@@ -247,7 +247,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      triFlask_pink_0: 77290071484890433
+      triFlask_pink_1: -4503060381009663340
+      triFlask_pink_2: -6466694947297017664
+      triFlask_pink_3: -8529847313730220825
+      triFlask_pink_4: -7089119816644157666
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

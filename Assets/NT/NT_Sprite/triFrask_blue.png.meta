@@ -247,7 +247,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      triFrask_blue_0: 1244827893600619701
+      triFrask_blue_1: -5934020081574960078
+      triFrask_blue_2: -6504116279722441540
+      triFrask_blue_3: -3105268622310363844
+      triFrask_blue_4: -9129631213108428334
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
