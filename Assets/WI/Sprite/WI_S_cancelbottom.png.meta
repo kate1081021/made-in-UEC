@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ea5a3df454c3fd14681d43f35524246e
+guid: 20537febcea1e4343a50c17439cfce00
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2540819596345800605
-    second: WI_S_background_0
+      213: -5848805764301869864
+    second: WI_S_cancelbottom_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WI_S_background_0
+      name: WI_S_cancelbottom_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2300
-        height: 1293
+        width: 161
+        height: 69
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d97fa8606fdc24320800000000000000
-      internalID: 2540819596345800605
+      spriteID: 8dca78a452ed4dea0800000000000000
+      internalID: -5848805764301869864
       vertices: []
       indices: 
       edges: []

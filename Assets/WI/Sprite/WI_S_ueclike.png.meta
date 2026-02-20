@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ea5a3df454c3fd14681d43f35524246e
+guid: 001a201f0c34eb844bfecae7e2a61c9c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2540819596345800605
-    second: WI_S_background_0
+      213: -8093636973144902611
+    second: WI_S_ueclike_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WI_S_background_0
+      name: WI_S_ueclike_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2300
-        height: 1293
+        width: 2560
+        height: 1440
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d97fa8606fdc24320800000000000000
-      internalID: 2540819596345800605
+      spriteID: d24faba0e00adaf80800000000000000
+      internalID: -8093636973144902611
       vertices: []
       indices: 
       edges: []
