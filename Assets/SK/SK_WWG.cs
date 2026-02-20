@@ -142,6 +142,7 @@ namespace SK
             if (targetNote.noteType != inputType)
             {
                 PlaySound(sfxMiss);
+                player.FallDown();
                 return; 
             }
 
@@ -157,6 +158,7 @@ namespace SK
             }
             else
             {
+                player.FallDown();
                 PlaySound(sfxMiss);
             }
         }
@@ -191,6 +193,11 @@ namespace SK
                     player.FallDown();
                     OnGameEnd();
                 }
+            }
+            else if (currentStep == 4)
+            {
+                player.StepForward(false);
+                player.PlayPreJumpAction();
             }
             else
             {
