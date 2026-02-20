@@ -961,11 +961,18 @@ MonoBehaviour:
   presents: []
   present_count: 5
   present_slope: 0
+  obstacle_power: 0
+  action_time: 0
+  move_x: 0
   ppm_x: 0
+  game_time: 0
   fall: 0
   present_parent: {fileID: 494727673}
   present: {fileID: 5642818953924444964, guid: 65c3e5f2a5a98574c96316a1a22b77a3, type: 3}
-  move: {fileID: 5422064317260158470}
+  obstacles:
+  - {fileID: 2298646354966823963, guid: a14981a8ea1ab354db31988db85bb2bc, type: 3}
+  mover: {fileID: 5422064317260158470}
+  obstacle_info: {fileID: 0}
   camera: {fileID: 766268018}
   testlevel: 1
 --- !u!4 &1213273100
