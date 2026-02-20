@@ -23,7 +23,7 @@ namespace PTgame
         [SerializeField] private List<GameObject> obstacles; //障害物リスト
         [SerializeField] private PT_Move mover; //操作スクリプト
         [SerializeField] private PT_Obstacle obstacle_info; //障害物スクリプト
-        [SerializeField] private Camera camera;
+        [SerializeField] private Camera game_camera;
         [SerializeField] private int testlevel;
 
         public override void OnGameStart()
@@ -33,8 +33,8 @@ namespace PTgame
 
             present_count = 5 + (int)((Time.timeScale - 1) * 30);
 
-            camera.orthographicSize = 2f + present_count / 1.25f;
-            camera.transform.position = new Vector3(0, -2.5f + (float)present_count / 2, -10);
+            game_camera.orthographicSize = 2f + present_count / 1.25f;
+            game_camera.transform.position = new Vector3(0, -2.5f + (float)present_count / 2, -10);
 
             action_time = 0f;
             obstacle_power = 0f;
@@ -46,7 +46,7 @@ namespace PTgame
 
             fall = false;
 
-            action_time = UnityEngine.Random.Range(1f, 6f / Time.timeScale);
+            action_time = UnityEngine.Random.Range(1f, 4f / Time.timeScale);
 
             for (int i = 0; i < present_count; i++)
             {
@@ -169,6 +169,7 @@ namespace PTgame
             if (action_time > -1f && action_time < 0f)
             {
                 action_time = -10f;
+                action_time = UnityEngine.Random.Range(2f, 4f / Time.timeScale);
                 if (obstacles.Count == 0) return;
                 int i = UnityEngine.Random.Range(0, obstacles.Count);
                 GameObject o = Instantiate(obstacles[i]);
