@@ -17,31 +17,40 @@ namespace UT
         bool Invincible = false;
         public float timelimit = 15;
 
-        public Image I0;
-        public Image I1;
-        public Sprite S0;
-        public Sprite S1;
-        public Sprite S2;
-        public Sprite S3;
-        public Sprite S4;
-        public Sprite S5;
-        public Sprite S6;
-        public Sprite S7;
-        public Sprite S8;
-        public Sprite S9;
-
+        [SerializeField] Image I0;
+        [SerializeField] Image I1;
+        [SerializeField] Sprite S0;
+        [SerializeField] Sprite S1;
+        [SerializeField] Sprite S2;
+        [SerializeField] Sprite S3;
+        [SerializeField] Sprite S4;
+        [SerializeField] Sprite S5;
+        [SerializeField] Sprite S6;
+        [SerializeField] Sprite S7;
+        [SerializeField] Sprite S8;
+        [SerializeField] Sprite S9;
+        [SerializeField] Canvas canvas;
+        [SerializeField] GameObject die_back;
         [Tooltip("最大HP")]
         public int maxHp = 68;
         [Tooltip("現在のHP")]
         public int initialHp;
         private int currentHp;
-        public GameObject generator; 
+        public GameObject generator;
         public Slider HPbar;
+        public Sprite heart;
+        public Sprite broken_heart;
+        public GameObject heart_piece;
+        bool alive;
         public override void OnGameStart()
         {
             //MGManager.TestPlay(100);
             MGManager.Load();
             rb = GetComponent<Rigidbody2D>();
+            alive = true;
+            canvas.gameObject.SetActive(true);
+            die_back.gameObject.SetActive(false);
+            gameObject.GetComponent<SpriteRenderer>().color = new Vector4(1, 0, 0, 1);
             currentHp = initialHp; 
             HPbar.maxValue = maxHp; // スライダーの最大値を設定
             HPbar.value = currentHp; // 現在のHPを反映
@@ -51,6 +60,7 @@ namespace UT
         {
             Destroy(generator);
             DestroyAllWithTag("bullet");
+            gameObject.GetComponent<SpriteRenderer>().sprite = heart;
             if (currentHp > 0)
             {
                 MGManager.ClearGame();
@@ -79,11 +89,12 @@ namespace UT
         void FixedUpdate()
         {
             Vector2 pos = Move.ReadValue<Vector2>() * movespeed * Time.timeScale * Time.fixedDeltaTime;
-            rb.MovePosition(rb.position + pos);
+            if(alive)rb.MovePosition(rb.position + pos);
         }
+
         private void OnTriggerStay2D(Collider2D collision)
         {
-            if (collision.CompareTag("bullet") && !Invincible)
+            if (collision.CompareTag("bullet") && !Invincible && alive)
             {
                 currentHp -= damage;
                 if (currentHp < 0) currentHp = 0;
@@ -105,8 +116,19 @@ namespace UT
                             (currentHp / 10 == 5) ? S5 : S6;
 
                 Debug.Log("HP = " + currentHp);
-                StartCoroutine(muteki());
-                if (currentHp <= 0) Debug.Log("failure");
+                if (currentHp <= 0)
+                {
+                    Debug.Log("failure");
+                    canvas.gameObject.SetActive(false);
+                    die_back.gameObject.SetActive(true);
+                    alive = false;
+                    gameObject.GetComponent<SpriteRenderer>().sprite = broken_heart;
+                    StartCoroutine(heart_break());
+                }
+                else
+                {
+                    StartCoroutine(muteki());
+                }
             }
         }
         IEnumerator muteki()
@@ -120,6 +142,45 @@ namespace UT
                 yield return new WaitForSeconds(duration / (8 * Time.timeScale));
             }
             Invincible = false;
+        }
+
+        [SerializeField] float g;
+        [SerializeField] Vector3 v1;
+        [SerializeField] Vector3 v2;
+        [SerializeField] Vector3 v3;
+        [SerializeField] Vector3 v4;
+        
+
+        IEnumerator heart_break()
+        {
+            yield return new WaitForSeconds(1f);
+            gameObject.GetComponent<SpriteRenderer>().color = new Vector4(1, 0, 0, 0);
+            GameObject piece1 = Instantiate(heart_piece, gameObject.transform.position, Quaternion.identity);
+            GameObject piece2 = Instantiate(heart_piece, gameObject.transform.position, Quaternion.identity);
+            GameObject piece3 = Instantiate(heart_piece, gameObject.transform.position, Quaternion.identity);
+            GameObject piece4 = Instantiate(heart_piece, gameObject.transform.position, Quaternion.identity);
+            float downV = 0;
+            while (true)
+            {
+                downV -= g * Time.deltaTime * Time.timeScale;
+                piece1.transform.position += (v1 + new Vector3(0, downV, 0)) * Time.deltaTime * Time.timeScale;
+                piece1.transform.rotation *= Quaternion.Euler(0, 0, 540 * Time.deltaTime * Time.timeScale);
+                piece2.transform.position += (v2 + new Vector3(0, downV, 0)) * Time.deltaTime * Time.timeScale;
+                piece2.transform.rotation *= Quaternion.Euler(0, 0, 700 * Time.deltaTime * Time.timeScale);
+                piece3.transform.position += (v3 + new Vector3(0, downV, 0)) * Time.deltaTime * Time.timeScale;
+                piece3.transform.rotation *= Quaternion.Euler(0, 0, 900 * Time.deltaTime * Time.timeScale);
+                piece4.transform.position += (v4 + new Vector3(0, downV, 0)) * Time.deltaTime * Time.timeScale;
+                piece4.transform.rotation *= Quaternion.Euler(0, 0, 1140 * Time.deltaTime * Time.timeScale);
+                if (piece1.transform.position.y < -5 && piece2.transform.position.y < -5 && piece3.transform.position.y < -5 && piece4.transform.position.y < -5)
+                {
+                    Destroy(piece1);
+                    Destroy(piece2);
+                    Destroy(piece3);
+                    Destroy(piece4);
+                    break;
+                }
+                yield return null;
+            }
         }
     }
 }

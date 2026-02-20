@@ -10,24 +10,33 @@ namespace UT
         public GameObject ghostlight;
         public GameObject pole;
         public GameObject ghost;
+        [SerializeField]
         [Tooltip("左下のライトの場所")]
-        public Vector3 lightpos1;
+        Vector3 lightpos1;
+        [SerializeField]
         [Tooltip("右のライトの場所")]
-        public Vector3 lightpos2;
+        Vector3 lightpos2;
+        [SerializeField]
         [Tooltip("上のライトの場所")]
-        public Vector3 lightpos3;
+        Vector3 lightpos3;
+        [SerializeField]
         [Tooltip("左と右のライトの回転速度")]
-        public float rotatespeed;
+        float rotatespeed;
+        [SerializeField]
         [Tooltip("上のライトの揺れる速度")]
-        public float swingspeed;
+        float swingspeed;
+        [SerializeField]
         [Tooltip("上のライトの揺れる幅")]
-        public float swingwidth;
+        float swingwidth;
+        [SerializeField]
         [Tooltip("弾の速度")]
-        public float ghostspeed;
+        float ghostspeed;
+        [SerializeField]
         [Tooltip("弾の間隔")]
-        public float duration;
+        float duration;
+        [SerializeField]
         [Tooltip("弾の角度の幅")]
-        public float ghostvectorrange;
+        float ghostvectorrange;
         GameObject light1;
         GameObject light2;
         GameObject light3;
@@ -76,11 +85,12 @@ namespace UT
             {
                 theta += Mathf.PI;
             }
-            while (true)
+            while (ghostobj.transform.position.y > -7)
             {
                 ghostobj.transform.Translate(ghostspeed * Time.timeScale * Time.deltaTime * new Vector3(Mathf.Cos(theta), Mathf.Sin(theta), 0));
                 yield return null;
             }
+            Destroy(ghostobj);
         }
     }
 }
