@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 47bcfce84c3743d4cadc83b7eecf4057
+guid: 001a201f0c34eb844bfecae7e2a61c9c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7909084440765366103
-    second: WI_S_dragonRough_0
+      213: -8093636973144902611
+    second: WI_S_ueclike_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1500
+  spritePixelsToUnits: 1200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WI_S_dragonRough_0
+      name: WI_S_ueclike_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2048
-        height: 2048
+        width: 2560
+        height: 1440
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 75f736e0566b2cd60800000000000000
-      internalID: 7909084440765366103
+      spriteID: d24faba0e00adaf80800000000000000
+      internalID: -8093636973144902611
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      WI_S_dragonRough_0: 7909084440765366103
+      WI_S_ueclike_0: -8093636973144902611
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
