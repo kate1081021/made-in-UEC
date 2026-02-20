@@ -155,7 +155,6 @@ MonoBehaviour:
   Speedup: {fileID: 1200137184}
   minigames:
   - {fileID: 11400000, guid: 3d948a9d142db97408047253b1717241, type: 2}
-  - {fileID: 11400000, guid: c59f0887aac30ec47ad08dc461f62100, type: 2}
 --- !u!4 &128823214
 Transform:
   m_ObjectHideFlags: 0
@@ -845,8 +844,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 10
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 33ad2538dd24bbc409a26d1b7fdbd13f, type: 2}
-  m_sharedMaterial: {fileID: -6664868025883717288, guid: 33ad2538dd24bbc409a26d1b7fdbd13f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1016,8 +1015,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 33ad2538dd24bbc409a26d1b7fdbd13f, type: 2}
-  m_sharedMaterial: {fileID: -6664868025883717288, guid: 33ad2538dd24bbc409a26d1b7fdbd13f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1768,8 +1767,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u305F\u3079\u308D!!"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 33ad2538dd24bbc409a26d1b7fdbd13f, type: 2}
-  m_sharedMaterial: {fileID: -6664868025883717288, guid: 33ad2538dd24bbc409a26d1b7fdbd13f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

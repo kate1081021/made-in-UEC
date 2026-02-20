@@ -5,8 +5,9 @@ using System.Collections.Generic;
 
 namespace YakinikuGameProject
 {
+    // クラス名は新しく「YK_BubbleData」とします
     [System.Serializable]
-    public class BubbleSetting
+    public class YK_BubbleData
     {
         public Transform positionTransform;
         public bool flipX = false;         
@@ -14,7 +15,7 @@ namespace YakinikuGameProject
     }
 
     [RequireComponent(typeof(AudioSource))]
-    public class Ya_Yakiniku : MiniGameBase
+    public class YK_Yakiniku : MiniGameBase
     {
         [Header("【デバッグ設定】")]
         [SerializeField] private bool useTestStage = false;
@@ -34,7 +35,7 @@ namespace YakinikuGameProject
         [SerializeField] private string[] msgClear = { "完璧！" };
 
         [Header("【吹き出し個別設定】")]
-        [SerializeField] private BubbleSetting[] bubbleSettings; 
+        [SerializeField] private YK_BubbleData[] bubbleSettings; 
         [SerializeField] private GameObject speechBubbleRoot; 
         [SerializeField] private Image shockOverlay; 
         [SerializeField] private Color shockOverlayColor = new Color(0.1f, 0.1f, 0.3f, 0.8f);
@@ -87,6 +88,10 @@ namespace YakinikuGameProject
         public override void OnGameStart() {
             if (useTestStage) MGManager.TestPlay(testStageNumber);
             MGManager.Load(); 
+            
+            // ★追加：ゲーム開始時にゲージの設定を強制的に直す！★
+            ForceFixUI();
+
             audioSource = GetComponent<AudioSource>();
             if (grillingAudioSource == null) grillingAudioSource = gameObject.AddComponent<AudioSource>();
             grillingAudioSource.clip = grillingSE; grillingAudioSource.loop = true;
@@ -95,6 +100,29 @@ namespace YakinikuGameProject
         }
 
         public override void OnGameEnd() { StopGrillingSound(); StopAllCoroutines(); }
+
+        // ★追加：インスペクターのズレを自動修正するメソッド★
+// ★追加：インスペクターのズレを自動修正するメソッド★
+        private void ForceFixUI() {
+            // 安全地帯の回転軸（Pivot）を中心にし、位置を(0,0)に強制リセット
+            if (safeZoneRect != null) {
+                safeZoneRect.pivot = new Vector2(0.5f, 0.5f);
+                safeZoneRect.anchoredPosition = Vector2.zero;
+            }
+            // ゲージの画像設定を強制的に「円形ゲージ（Radial 360）」にする
+            if (timerGauge != null) {
+                timerGauge.type = Image.Type.Filled;
+                timerGauge.fillMethod = Image.FillMethod.Radial360;
+                // ★追加：開始位置を「真上(Top=2)」に強制する
+                timerGauge.fillOrigin = (int)Image.Origin360.Top; 
+            }
+            if (safeZoneImage != null) {
+                safeZoneImage.type = Image.Type.Filled;
+                safeZoneImage.fillMethod = Image.FillMethod.Radial360;
+                // ★追加：開始位置を「真上(Top=2)」に強制する
+                safeZoneImage.fillOrigin = (int)Image.Origin360.Top; 
+            }
+        }
 
         private void Update() {
             if (!isPlaying) return;
@@ -137,23 +165,20 @@ namespace YakinikuGameProject
             }
         }
 
-        // ★ 変更部分：成功時にゲージを徐々にフェードアウトさせる ★
         private IEnumerator ClearSequence(string[] messages) {
             if (audioSource && winSE) audioSource.PlayOneShot(winSE, resultVolume);
             SetGaugeAlpha(1f); 
             yield return new WaitForSeconds(0.1f);
             StartCoroutine(SpawnBubblesSequence(messages));
             
-            // 0.8秒間そのままゲージを残す
             yield return new WaitForSeconds(0.8f); 
 
-            // 0.5秒かけて徐々に透明にしていく
             float fadeOutTime = 0.5f;
             for (float t = 0; t < fadeOutTime; t += Time.deltaTime) {
-                SetGaugeAlpha(1f - (t / fadeOutTime)); // 1から0へなめらかに減らす
-                yield return null; // 毎フレーム処理する
+                SetGaugeAlpha(1f - (t / fadeOutTime)); 
+                yield return null;
             }
-            SetGaugeAlpha(0f); // 念のため最後は完全に透明(0)にする
+            SetGaugeAlpha(0f); 
 
             yield return new WaitForSeconds(0.5f); 
             MGManager.ClearGame(); 
@@ -172,7 +197,7 @@ namespace YakinikuGameProject
         private IEnumerator SpawnBubblesSequence(string[] messages) {
             if (speechBubbleRoot == null || bubbleSettings == null) yield break;
             for (int i = 0; i < bubbleSettings.Length; i++) {
-                BubbleSetting setting = bubbleSettings[i];
+                YK_BubbleData setting = bubbleSettings[i];
                 if (setting.positionTransform == null) continue;
                 GameObject nb = Instantiate(speechBubbleRoot, speechBubbleRoot.transform.parent);
                 nb.transform.position = setting.positionTransform.position;

@@ -234,8 +234,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 318510962}
-  - component: {fileID: 318510963}
   - component: {fileID: 318510964}
+  - component: {fileID: 318510965}
   m_Layer: 0
   m_Name: YakinikuGame
   m_TagString: Untagged
@@ -258,76 +258,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &318510963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 318510961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d1023100fb769443bf18bd282fc4227, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameBGM: {fileID: 0}
-  useTestStage: 0
-  testStageNumber: 100
-  gameRoot: {fileID: 1696126931}
-  youImage: {fileID: 133140097}
-  blinkSpeed: 4
-  smokePrefab: {fileID: 6059222847406684732, guid: ad166b213825f4241ac467836d996542, type: 3}
-  smokeSpawnPoint: {fileID: 1426560880}
-  burntSmokeColor: {r: 0.2, g: 0.2, b: 0.2, a: 0.8}
-  msgTooEarly:
-  - "\u65E9\u3059\u304E\uFF01"
-  - "\u4E0B\u624B\u304F\u305D"
-  - "\u751F\u3084\u3093\u3051"
-  msgTooLate:
-  - "\u30FB\u30FB\u30FB"
-  - "\u4E0B\u624B\u304F\u305D"
-  - "\u7126\u304C\u3059\u306A\u3088"
-  msgClear:
-  - "\u3084\u308B\u3084\u3093"
-  - "\u3084\u308B\u3084\u3093"
-  - "\u3084\u308B\u3084\u3093"
-  bubbleSettings:
-  - positionTransform: {fileID: 1645011259}
-    flipX: 0
-    textOffset: {x: 80, y: -40}
-  - positionTransform: {fileID: 1263830009}
-    flipX: 1
-    textOffset: {x: -60, y: -40}
-  - positionTransform: {fileID: 188674267}
-    flipX: 1
-    textOffset: {x: -60, y: -40}
-  speechBubbleRoot: {fileID: 472094212}
-  shockOverlay: {fileID: 1910597147}
-  shockOverlayColor: {r: 0.1, g: 0.1, b: 0.3, a: 0.6}
-  resultVolume: 0.45
-  grillingVolume: 0.5
-  flipSE: {fileID: 8300000, guid: 06e8e79ae65dfc240acf8d243a67828d, type: 3}
-  winSE: {fileID: 8300000, guid: 90f641794e170a840849350576b81386, type: 3}
-  shockSE: {fileID: 8300000, guid: c139fb7e97bc1fa4eb22f60119c7b032, type: 3}
-  grillingSE: {fileID: 8300000, guid: 2c9f33ff9a0eecb43b0b3c88468b8313, type: 3}
-  speechSE: {fileID: 0}
-  landSE: {fileID: 0}
-  meatImage: {fileID: 1426560881}
-  rawSprite: {fileID: -659722471158990531, guid: d9400345b0e77f3438fbae08d7ada410, type: 3}
-  cookedSprite: {fileID: -2614906197904635646, guid: 9a8b740151bafa4478b1527130cb1465, type: 3}
-  burntSprite: {fileID: -6264987133273846246, guid: 09e6abaab0bf58449baccafc1c62d3b4, type: 3}
-  timerGauge: {fileID: 1838820246}
-  safeZoneImage: {fileID: 1846403765}
-  safeZoneRect: {fileID: 1846403764}
-  timeLimitPerSide: 3
-  safeZoneFirst: 0.3
-  safeZoneSecond: 0.3
-  randomStartMin: 2
-  randomStartMax: 2.3
-  fadeStartTime: 0.4
-  fadeDuration: 0.5
-  gameZoomSpeed: 0.02
-  maxGameZoom: 2
 --- !u!82 &318510964
 AudioSource:
   m_ObjectHideFlags: 0
@@ -425,6 +355,76 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &318510965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318510961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d1023100fb769443bf18bd282fc4227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameBGM: {fileID: 0}
+  useTestStage: 0
+  testStageNumber: 10
+  gameRoot: {fileID: 1696126931}
+  youImage: {fileID: 133140097}
+  blinkSpeed: 4
+  smokePrefab: {fileID: 6059222847406684732, guid: ad166b213825f4241ac467836d996542, type: 3}
+  smokeSpawnPoint: {fileID: 1426560880}
+  burntSmokeColor: {r: 0.2, g: 0.2, b: 0.2, a: 0.8}
+  msgTooEarly:
+  - "\u65E9\u3059\u304E\uFF01"
+  - "\u4E0B\u624B\u304F\u305D"
+  - "\u751F\u3084\u3093\u3051"
+  msgTooLate:
+  - "\u30FB\u30FB\u30FB"
+  - "\u4E0B\u624B\u304F\u305D"
+  - "\u7126\u304C\u3059\u306A\u3088"
+  msgClear:
+  - "\u3084\u308B\u3084\u3093"
+  - "\u3084\u308B\u3084\u3093"
+  - "\u3084\u308B\u3084\u3093"
+  bubbleSettings:
+  - positionTransform: {fileID: 1645011259}
+    flipX: 0
+    textOffset: {x: 80, y: -40}
+  - positionTransform: {fileID: 1263830009}
+    flipX: 1
+    textOffset: {x: -60, y: -40}
+  - positionTransform: {fileID: 188674267}
+    flipX: 1
+    textOffset: {x: -60, y: -40}
+  speechBubbleRoot: {fileID: 472094212}
+  shockOverlay: {fileID: 1910597147}
+  shockOverlayColor: {r: 0.1, g: 0.1, b: 0.3, a: 0.8}
+  resultVolume: 0.3
+  grillingVolume: 0.5
+  flipSE: {fileID: 8300000, guid: 06e8e79ae65dfc240acf8d243a67828d, type: 3}
+  winSE: {fileID: 8300000, guid: 90f641794e170a840849350576b81386, type: 3}
+  shockSE: {fileID: 8300000, guid: c139fb7e97bc1fa4eb22f60119c7b032, type: 3}
+  grillingSE: {fileID: 8300000, guid: 2c9f33ff9a0eecb43b0b3c88468b8313, type: 3}
+  speechSE: {fileID: 0}
+  landSE: {fileID: 0}
+  meatImage: {fileID: 1426560881}
+  rawSprite: {fileID: -659722471158990531, guid: d9400345b0e77f3438fbae08d7ada410, type: 3}
+  cookedSprite: {fileID: -2614906197904635646, guid: 9a8b740151bafa4478b1527130cb1465, type: 3}
+  burntSprite: {fileID: -6264987133273846246, guid: 09e6abaab0bf58449baccafc1c62d3b4, type: 3}
+  timerGauge: {fileID: 1838820246}
+  safeZoneImage: {fileID: 1846403765}
+  safeZoneRect: {fileID: 1846403764}
+  timeLimitPerSide: 3
+  safeZoneFirst: 0.3
+  safeZoneSecond: 0.3
+  randomStartMin: 1.8
+  randomStartMax: 2.3
+  fadeStartTime: 0.5
+  fadeDuration: 0.8
+  gameZoomSpeed: 0.03
+  maxGameZoom: 1.3
 --- !u!1 &382672869
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,7 +1181,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1838820246
@@ -1256,7 +1256,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1846403765
@@ -1408,7 +1408,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -173, y: -101}
+  m_AnchoredPosition: {x: -144, y: 22}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1975381171
