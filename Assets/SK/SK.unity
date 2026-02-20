@@ -1628,7 +1628,7 @@ MonoBehaviour:
   - {fileID: 2037808710}
   - {fileID: 637866246}
   - {fileID: 124060702}
-  baseMoveSpeed: 10
+  baseMoveSpeed: 15
   animator: {fileID: 0}
   rb: {fileID: 1010397837}
 --- !u!1 &1083881827
@@ -1754,7 +1754,7 @@ VideoPlayer:
   m_RenderMode: 2
   m_AspectRatio: 2
   m_DataSource: 0
-  m_TimeUpdateMode: 2
+  m_TimeUpdateMode: 0
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
   m_TargetAudioSources:
@@ -2486,6 +2486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 8300000, guid: 2970671497209974eaef93cc8e1ffb16, type: 3}
+  targetVideo: {fileID: 1196574746}
   player: {fileID: 1010397841}
   spawnPoint: {fileID: 65295521}
   targetZone: {fileID: 140183711}
