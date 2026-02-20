@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic; //生成順用
+using UnityEngine.Rendering;
 
 namespace WI 
 {
@@ -30,10 +31,10 @@ namespace WI
                 GameObject newWindow = Instantiate(windowType[i], spawnPos, Quaternion.identity);
 
                 // レイヤー設定
-                SpriteRenderer sr = newWindow.GetComponent<SpriteRenderer>();
-                if (sr != null)
+                SortingGroup sg = newWindow.GetComponent<SortingGroup>();
+                if (sg != null)
                 {
-                    sr.sortingOrder = i;
+                    sg.sortingOrder = i;
                 }
 
                 targetWindows.Add(newWindow);

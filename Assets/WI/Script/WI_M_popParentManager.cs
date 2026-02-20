@@ -4,20 +4,25 @@ using System.Collections;
 namespace WI
 {
 
-    public class WI_M_buttonManager : MiniGameBase
+    public class WI_M_popParentManager : MiniGameBase
     {
-        private bool isClosing = false;
         private GameObject closeButton;
+        private GameObject popupWindow;
+
+        private bool createPopup = false;
+
+        private bool isClosing = false;
+
         [SerializeField] private bool useAnimation = true;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
         {
-            this.gameObject.SetActive(true);
-
             closeButton = this.transform.GetChild(0).gameObject;
-            closeButton.GetComponent<WI_M_inputClose>().enabled = true;
-            closeButton.GetComponent<WI_M_createPop>().enabled = false;
+            closeButton.GetComponent<WI_M_inputClose>().enabled = false;
+            closeButton.GetComponent<WI_M_createPop>().enabled = true;
+
+            this.gameObject.SetActive(true);
         }
 
         public override void OnGameEnd() { }
@@ -25,7 +30,17 @@ namespace WI
         // Update is called once per frame
         void Update()
         {
-
+            if (createPopup)
+            {
+                if (popupWindow == null)
+                {
+                    // もう一度Closeボタンを押させる場合
+                    // buttonActivate();
+                    
+                    // ポップアップ削除と同時に消える場合
+                    this.setInputClose();
+                }
+            }
         }
 
         public void setInputClose()
@@ -71,6 +86,26 @@ namespace WI
 
             Destroy(this.gameObject);
             this.gameObject.SetActive(false);
+        }
+
+        public void registerPopup(GameObject popup)
+        {
+            this.popupWindow = popup;
+        }
+        public void buttonTypeChange()
+        {
+            closeButton.GetComponent<WI_M_inputClose>().enabled = true;
+            closeButton.GetComponent<WI_M_createPop>().enabled = false;
+            createPopup = true;
+        }
+
+        public void buttonDisactivate()
+        {
+            closeButton.GetComponent<BoxCollider2D>().enabled = false;
+        }
+        public void buttonActivate()
+        {
+            closeButton.GetComponent<BoxCollider2D>().enabled = true;
         }
     }
 }

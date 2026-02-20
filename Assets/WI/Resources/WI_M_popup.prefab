@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  useAnimation: 1
 --- !u!210 &245302914065454334
 SortingGroup:
   m_ObjectHideFlags: 0
