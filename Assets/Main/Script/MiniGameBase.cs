@@ -1,5 +1,4 @@
-using TMPro;
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +15,8 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     [Header("--- 運営設定エリア ---")]
     [Tooltip("このゲームで流したいBGM。未設定ならデフォルトBGMが流れます")]
     [SerializeField] private AudioClip gameBGM;
+    [SerializeField] private Dictionary<string, AudioClip> soundEffects;
+    private static AudioSource mainSource;
 
     
     /// <summary> 運営がBGMを取得するためのプロパティ </summary>
@@ -54,6 +55,7 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
         Action.canceled += OnAction;
 
         OnGameStart();
+        BGMPlay();
     }
 
     public void OnMove(InputAction.CallbackContext ctx)
@@ -146,13 +148,31 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     /// ゲーム終了時に、このプレハブ内から出ている全ての音を止めます。
     /// 運営側で終了時に自動実行することを想定しています。
     /// </summary>
-    public void StopAllSounds()
+    public void BGMPlay(bool applyToTimeScale = false)
     {
-        AudioSource[] sources = GetComponentsInChildren<AudioSource>();
-        foreach (var source in sources)
+        mainSource.clip = gameBGM;
+        if (applyToTimeScale)
         {
-            source.Stop();
+            mainSource.pitch = MGManager.timeScale;
         }
+        else
+        {
+            mainSource.pitch = MGManager.pitchScale;
+        }
+        mainSource.Play();
+    }
+
+    public void SEPlay(string id, bool applyToTimeScale = false)
+    {
+        if (applyToTimeScale)
+        {
+            mainSource.pitch = MGManager.timeScale;
+        }
+        else
+        {
+            mainSource.pitch = MGManager.pitchScale;
+        }
+        mainSource.PlayOneShot(soundEffects[id]);
     }
 }
 
