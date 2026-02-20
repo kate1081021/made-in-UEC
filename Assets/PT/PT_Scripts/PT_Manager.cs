@@ -70,10 +70,6 @@ namespace PTgame
                     Vector2 originalSize = sr.sprite.bounds.size;
                     // ランダムな新しいスプライト適用
                     sr.sprite = presentSprites[UnityEngine.Random.Range(0, presentSprites.Count)];
-                    // 新しいスプライトのサイズ取得
-                    Vector2 newSize = sr.sprite.bounds.size;
-                    // 比率を計算する
-                    g.transform.localScale = new Vector3(originalSize.x / newSize.x, originalSize.y / newSize.y, 1f);
                 }
 
                 presents.Add(g);

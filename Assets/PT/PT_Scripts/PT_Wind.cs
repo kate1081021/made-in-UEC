@@ -97,7 +97,7 @@ namespace PTgame
                 // サイズを一斉に変更
                 // 元のサイズに対して掛ける場合は、あらかじめ初期サイズを保持しておく必要がありますが、
                 // ここではシンプルに intensity をベースにします
-                particlesArray[i].startSize = intensity;
+                particlesArray[i].startSize = intensity * intensity;
 
                 // 速度（進み具合）を一斉に変更
                 // 各粒子の進む方向に、現在の強度に応じた速度を上書きします
