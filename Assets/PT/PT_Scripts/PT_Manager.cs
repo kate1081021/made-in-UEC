@@ -25,6 +25,7 @@ namespace PTgame
         [SerializeField] private PT_Obstacle obstacle_info; //障害物スクリプト
         [SerializeField] private Camera game_camera;
         [SerializeField] private int testlevel;
+        [SerializeField] private List<Sprite> presentSprites; // プレゼントテクスチャ制御 追加
 
         public override void OnGameStart()
         {
@@ -60,6 +61,21 @@ namespace PTgame
                 {
                     fallScript.manager = this;
                 }
+
+                SpriteRenderer sr = g.GetComponent<SpriteRenderer>();
+                // ランダムなスプライト（テクスチャ）を適用
+                if(sr != null && presentSprites.Count > 0)
+                { 
+                    // 元のSquareのサイズを取得
+                    Vector2 originalSize = sr.sprite.bounds.size;
+                    // ランダムな新しいスプライト適用
+                    sr.sprite = presentSprites[UnityEngine.Random.Range(0, presentSprites.Count)];
+                    // 新しいスプライトのサイズ取得
+                    Vector2 newSize = sr.sprite.bounds.size;
+                    // 比率を計算する
+                    g.transform.localScale = new Vector3(originalSize.x / newSize.x, originalSize.y / newSize.y, 1f);
+                }
+
                 presents.Add(g);
             }
         }
