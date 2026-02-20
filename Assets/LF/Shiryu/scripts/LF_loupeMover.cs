@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -7,9 +8,11 @@ namespace LoupeFire
     {
         [SerializeField] int Moving_Vertically; //上下のどちらに動いているか，または動いていないか．1:上，-1:下，0:動いていない
         [SerializeField] float speed; //虫眼鏡の速さ
+        public bool flag = false;  //trueになったら成功失敗を判定する
         public override void OnGameStart()
         {
             MGManager.Load();
+            //MGManager.TestPlay(100);  //テストプレイ用なので，後で消す．
             Moving_Vertically = 1;
             speed = 0.05f * Time.timeScale;
         }
@@ -29,7 +32,8 @@ namespace LoupeFire
             if (Action.WasPerformedThisFrame())
             {
                 Moving_Vertically = 0;
-                MGManager.ClearGame();
+                flag = true;
+                //MGManager.ClearGame();
             }
         }
     }
