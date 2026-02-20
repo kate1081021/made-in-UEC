@@ -1,0 +1,32 @@
+[33m92ceb4c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mkousuke[m[33m)[m HEAD@{0}: reset: moving to 92ceb4c421dfafc18b41425bd76d8e74a5fc13db
+[33m92ceb4c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mkousuke[m[33m)[m HEAD@{1}: reset: moving to 92ceb4c421dfafc18b41425bd76d8e74a5fc13db
+[33md150927[m HEAD@{2}: reset: moving to d1509272547e732eaa8913e3fa1076b171ceca4f
+[33m4934f57[m HEAD@{3}: commit (merge): no message
+[33md5df3be[m HEAD@{4}: commit: 20260220
+[33m00cd9ed[m HEAD@{5}: reset: moving to 00cd9edea963f7155d2fe43dc5b7f07212b3cd6e
+[33m0c16ef4[m[33m ([m[1;31morigin/kousuke[m[33m)[m HEAD@{6}: commit (merge): Merge branch 'kousuke' of https://github.com/kate1081021/made-in-UEC into kousuke
+[33me8f0bf4[m HEAD@{7}: commit (merge): Merge branch 'main' of https://github.com/kate1081021/made-in-UEC into kousuke
+[33m00cd9ed[m HEAD@{8}: commit: 20260220 α版前最終調整その2
+[33mfe6ec0a[m[33m ([m[1;32mmain[m[33m)[m HEAD@{9}: reset: moving to fe6ec0a5104e74b62271637666b4667370d5a82f
+[33m2c0d2fd[m HEAD@{10}: pull origin main: Merge made by the 'ort' strategy.
+[33m27d50df[m HEAD@{11}: commit: 20260220 フォントがバグったため修正
+[33md150927[m HEAD@{12}: commit: 20260220 α版前最終調整
+[33mc47b1a7[m HEAD@{13}: commit: 20260220
+[33mb0b891e[m HEAD@{14}: commit (merge): Merge branch 'main' of https://github.com/kate1081021/made-in-UEC into kousuke
+[33m92ceb4c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mkousuke[m[33m)[m HEAD@{15}: commit: 20260220 α用
+[33m391b068[m HEAD@{16}: commit: 20260218
+[33m10472e9[m HEAD@{17}: pull origin main: Fast-forward
+[33m26cbba4[m HEAD@{18}: commit: 20260217-4　プロトタイプ発表前最後の調整
+[33m23e254d[m HEAD@{19}: commit: 20260217-3 最終調整ラスト
+[33m36042f6[m HEAD@{20}: commit: 20260217-2 最終調整その2
+[33me62c60a[m HEAD@{21}: commit: 20260217-最終調整その1
+[33mab69851[m HEAD@{22}: commit: 20260216-1 絵と音の調整
+[33mfecb0e4[m HEAD@{23}: commit: 20260215背景追加
+[33m2e766de[m HEAD@{24}: pull origin main: Merge made by the 'ort' strategy.
+[33m877b761[m HEAD@{25}: commit: 20260215
+[33mfe6ec0a[m[33m ([m[1;32mmain[m[33m)[m HEAD@{26}: checkout: moving from main to kousuke
+[33mfe6ec0a[m[33m ([m[1;32mmain[m[33m)[m HEAD@{27}: pull origin main: Merge made by the 'ort' strategy.
+[33m26825b5[m HEAD@{28}: commit: スロット20260215
+[33m69a0e11[m HEAD@{29}: pull origin main: Merge made by the 'ort' strategy.
+[33ma19e8b5[m HEAD@{30}: commit: スロットのテスト
+[33mc7a3681[m HEAD@{31}: clone: from https://github.com/kate1081021/made-in-UEC.git

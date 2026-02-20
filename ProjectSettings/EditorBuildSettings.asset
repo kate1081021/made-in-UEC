@@ -39,8 +39,24 @@ EditorBuildSettings:
     path: Assets/LF/LF.unity
     guid: a287b3dd326accb4aa52ec9691455c42
   - enabled: 1
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d1509272547e732eaa8913e3fa1076b171ceca4f
     path: Assets/Yakiniku/Yakiniku.unity
     guid: 666057f1c62d64c4781daca1189d80ae
+=======
+    path: Assets/EL/EL.unity
+    guid: d784bf717c37ca24285adcfcee4844a0
+>>>>>>> c85ebd97de56a7d15185a96e4dc3c20ccf17b511
+<<<<<<< HEAD
+=======
+    path: Assets/EL/EL.unity
+    guid: d784bf717c37ca24285adcfcee4844a0
+>>>>>>> dfbd1dd3bf26d2abae21f681799612b2411d645e
+=======
+>>>>>>> d1509272547e732eaa8913e3fa1076b171ceca4f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

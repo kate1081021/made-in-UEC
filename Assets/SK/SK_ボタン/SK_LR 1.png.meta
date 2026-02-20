@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 97d8dcfdf16fab44d9fdefec46704bf1
+guid: 2d7cabe90c5280f47b592ee73bff73b4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3193553769266703163
-    second: "\u713C\u8089_0"
+      213: 8051082401188131004
+    second: SK_LR_0
+  - first:
+      213: 6868334881591713047
+    second: SK_LR_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +103,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u713C\u8089_0"
+      name: SK_LR_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1264
-        height: 848
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 131
+        y: 167
+        width: 291
+        height: 163
+      alignment: 9
+      pivot: {x: 0.44927156, y: 0.49999985}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b3b6044ab38c15c20800000000000000
-      internalID: 3193553769266703163
+      spriteID: cb0b73499c03bbf60800000000000000
+      internalID: 8051082401188131004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SK_LR_1
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 177
+        width: 281
+        height: 161
+      alignment: 9
+      pivot: {x: 0.5162779, y: 0.50000155}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71dd2bf4f2a315f50800000000000000
+      internalID: 6868334881591713047
       vertices: []
       indices: 
       edges: []
@@ -125,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\u713C\u8089_0": 3193553769266703163
+      SK_LR_0: 8051082401188131004
+      SK_LR_1: 6868334881591713047
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
