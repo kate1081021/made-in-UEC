@@ -29,7 +29,7 @@ namespace WI
             {
                 if (parentWindow != null)
                 {
-                    parentWindow.CloseWindow();
+                    parentWindow.setInputClose();
                 }
             }
         }
