@@ -35,7 +35,7 @@ namespace WI
                     {
                         popup = GameObject.Find("WI_M_popup");
                         popup = Instantiate(popup, this.transform.parent.position, Quaternion.identity);
-                        popup.GetComponent<SortingGroup>().sortingOrder = this.transform.parent.GetComponent<SortingGroup>().sortingOrder;
+                        popup.GetComponent<SortingGroup>().sortingOrder = this.transform.parent.GetComponent<SortingGroup>().sortingOrder + 1;
                         popup.transform.parent = this.transform.parent;
                         rootManager.registerPopup(popup);
                         rootManager.buttonDisactivate();
