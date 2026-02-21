@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 93c2b547acc221d46aa68f2489404a5e
+guid: 916a7ab35ef56ef489d99ba2ce86ac41
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7001324474034715697
-    second: WI_S_uechpRough_0
+      213: -5195289915233943999
+    second: WI_S_popupyes_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1300
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -96,40 +96,27 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WI_S_uechpRough_0
+      name: WI_S_popupyes_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 412
-        width: 2048
-        height: 1636
+        y: 0
+        width: 161
+        height: 69
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 13c7618b383b92160800000000000000
-      internalID: 7001324474034715697
+      spriteID: 14ebf41195f96e7b0800000000000000
+      internalID: -5195289915233943999
       vertices: []
       indices: 
       edges: []
@@ -138,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 192065b24c88f944089054721fb5a5fa
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      WI_S_uechpRough_0: 7001324474034715697
+      WI_S_popupyes_0: -5195289915233943999
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
