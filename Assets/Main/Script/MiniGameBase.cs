@@ -54,6 +54,8 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
         Action.canceled += OnAction;
 
         OnGameStart();
+        if (gameBGM != null) { BGMPlay(); }
+        
     }
 
     public void OnMove(InputAction.CallbackContext ctx)
