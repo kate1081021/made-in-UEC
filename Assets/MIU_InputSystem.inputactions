@@ -32,6 +32,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Trigger_left",
+                    "type": "Button",
+                    "id": "7e3a16c6-58df-4126-acb4-8d8091d340bd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Trigger_right",
+                    "type": "Button",
+                    "id": "ac9d8203-d729-4c95-8cd9-69bfa1629c1f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -199,6 +217,28 @@
                     "action": "Trigger",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "1cd44fdc-312f-4766-9d47-e41602b98e07",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Trigger_left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dc75bf5e-d623-4824-8820-da890ad882b0",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Trigger_right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

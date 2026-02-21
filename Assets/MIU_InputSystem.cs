@@ -118,6 +118,24 @@ public partial class @MIU_InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Trigger_left"",
+                    ""type"": ""Button"",
+                    ""id"": ""7e3a16c6-58df-4126-acb4-8d8091d340bd"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Trigger_right"",
+                    ""type"": ""Button"",
+                    ""id"": ""ac9d8203-d729-4c95-8cd9-69bfa1629c1f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -285,6 +303,28 @@ public partial class @MIU_InputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Trigger"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1cd44fdc-312f-4766-9d47-e41602b98e07"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Trigger_left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc75bf5e-d623-4824-8820-da890ad882b0"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Trigger_right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -296,6 +336,8 @@ public partial class @MIU_InputSystem: IInputActionCollection2, IDisposable
         m_MIU_Move = m_MIU.FindAction("Move", throwIfNotFound: true);
         m_MIU_Action = m_MIU.FindAction("Action", throwIfNotFound: true);
         m_MIU_Trigger = m_MIU.FindAction("Trigger", throwIfNotFound: true);
+        m_MIU_Trigger_left = m_MIU.FindAction("Trigger_left", throwIfNotFound: true);
+        m_MIU_Trigger_right = m_MIU.FindAction("Trigger_right", throwIfNotFound: true);
     }
 
     ~@MIU_InputSystem()
@@ -379,6 +421,8 @@ public partial class @MIU_InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_MIU_Move;
     private readonly InputAction m_MIU_Action;
     private readonly InputAction m_MIU_Trigger;
+    private readonly InputAction m_MIU_Trigger_left;
+    private readonly InputAction m_MIU_Trigger_right;
     /// <summary>
     /// Provides access to input actions defined in input action map "MIU".
     /// </summary>
@@ -402,6 +446,14 @@ public partial class @MIU_InputSystem: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "MIU/Trigger".
         /// </summary>
         public InputAction @Trigger => m_Wrapper.m_MIU_Trigger;
+        /// <summary>
+        /// Provides access to the underlying input action "MIU/Trigger_left".
+        /// </summary>
+        public InputAction @Trigger_left => m_Wrapper.m_MIU_Trigger_left;
+        /// <summary>
+        /// Provides access to the underlying input action "MIU/Trigger_right".
+        /// </summary>
+        public InputAction @Trigger_right => m_Wrapper.m_MIU_Trigger_right;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -437,6 +489,12 @@ public partial class @MIU_InputSystem: IInputActionCollection2, IDisposable
             @Trigger.started += instance.OnTrigger;
             @Trigger.performed += instance.OnTrigger;
             @Trigger.canceled += instance.OnTrigger;
+            @Trigger_left.started += instance.OnTrigger_left;
+            @Trigger_left.performed += instance.OnTrigger_left;
+            @Trigger_left.canceled += instance.OnTrigger_left;
+            @Trigger_right.started += instance.OnTrigger_right;
+            @Trigger_right.performed += instance.OnTrigger_right;
+            @Trigger_right.canceled += instance.OnTrigger_right;
         }
 
         /// <summary>
@@ -457,6 +515,12 @@ public partial class @MIU_InputSystem: IInputActionCollection2, IDisposable
             @Trigger.started -= instance.OnTrigger;
             @Trigger.performed -= instance.OnTrigger;
             @Trigger.canceled -= instance.OnTrigger;
+            @Trigger_left.started -= instance.OnTrigger_left;
+            @Trigger_left.performed -= instance.OnTrigger_left;
+            @Trigger_left.canceled -= instance.OnTrigger_left;
+            @Trigger_right.started -= instance.OnTrigger_right;
+            @Trigger_right.performed -= instance.OnTrigger_right;
+            @Trigger_right.canceled -= instance.OnTrigger_right;
         }
 
         /// <summary>
@@ -518,5 +582,19 @@ public partial class @MIU_InputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTrigger(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Trigger_left" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTrigger_left(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Trigger_right" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTrigger_right(InputAction.CallbackContext context);
     }
 }
