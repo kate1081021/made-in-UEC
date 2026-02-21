@@ -26,9 +26,13 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     protected InputAction Move;
     protected InputAction Trigger;
     protected InputAction Action;
+    protected InputAction Trigger_left;
+    protected InputAction Trigger_right;
     protected Vector2 moveValue;
     protected float triggerValue;
     protected float actionValue;
+    protected float triggerleftValue;
+    protected float triggerrightValue;
 
     // --- Unity標準機能の制限 ---
 
@@ -41,8 +45,10 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
         InputSystems = new MIU_InputSystem();
         InputSystems.Enable();
         Move = InputSystems.FindAction("Move");  // WASD
-        Trigger = InputSystems.FindAction("Trigger");  // Enter
+        Trigger = InputSystems.FindAction("Trigger");  // q/e
         Action = InputSystems.FindAction("Action");  // Space
+        Trigger_left = InputSystems.FindAction("Trigger_left");  // q
+        Trigger_right = InputSystems.FindAction("Trigger_right");  // r
 
         Move.performed += OnMove;
         Move.canceled += OnMove;
@@ -53,6 +59,12 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
         Action.started += OnAction;
         Action.performed += OnAction;
         Action.canceled += OnAction;
+        Trigger_left.started += OnTriggerLeft;
+        Trigger_left.performed += OnTriggerLeft;
+        Trigger_left.canceled += OnTriggerLeft;
+        Trigger_right.started += OnTriggerRight;
+        Trigger_right.performed += OnTriggerRight;
+        Trigger_right.canceled += OnTriggerRight;
 
         OnGameStart();
         BGMPlay();
@@ -85,6 +97,26 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
         if (ctx.canceled)  {OnActionCanceled(actionValue);}
 
     }
+
+    public void OnTriggerLeft(InputAction.CallbackContext ctx)
+    {
+        triggerleftValue = ctx.ReadValue<float>();
+        
+        if (ctx.started)   {OnTriggerLeftStarted(triggerleftValue);}
+        if (ctx.performed) {OnTriggerLeftPerformed(triggerleftValue);}
+        if (ctx.canceled)  {OnTriggerLeftCanceled(triggerleftValue);}
+
+    }
+
+    public void OnTriggerRight(InputAction.CallbackContext ctx)
+    {
+        triggerrightValue = ctx.ReadValue<float>();
+        
+        if (ctx.started)   {OnTriggerRightStarted(triggerrightValue);}
+        if (ctx.performed) {OnTriggerRightPerformed(triggerrightValue);}
+        if (ctx.canceled)  {OnTriggerRightCanceled(triggerrightValue);}
+
+    }
     /*
     このStartについては他に上書きすべきメソッドがない場合エラーを履いちゃうからコメントアウトした
     */
@@ -100,6 +132,12 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     protected virtual void OnActionStarted(float value) {}
     protected virtual void OnActionPerformed(float value) {}
     protected virtual void OnActionCanceled(float value) {}
+    protected virtual void OnTriggerLeftStarted(float value) {}
+    protected virtual void OnTriggerLeftPerformed(float value) {}
+    protected virtual void OnTriggerLeftCanceled(float value) {}
+    protected virtual void OnTriggerRightStarted(float value) {}
+    protected virtual void OnTriggerRightPerformed(float value) {}
+    protected virtual void OnTriggerRightCanceled(float value) {}
 
 
     // --- 部員が必ず実装（オーバーライド）する関数 ---
@@ -136,6 +174,18 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
             Action.started -= OnAction;
             Action.performed -= OnAction;
             Action.canceled -= OnAction;
+        }
+        if (Trigger_left != null)
+        {
+            Trigger_left.started -= OnTriggerLeft;
+            Trigger_left.performed -= OnTriggerLeft;
+            Trigger_left.canceled -= OnTriggerLeft;
+        }
+        if (Trigger_right != null)
+        {
+            Trigger_right.started -= OnTriggerRight;
+            Trigger_right.performed -= OnTriggerRight;
+            Trigger_right.canceled -= OnTriggerRight;
         }
         if (InputSystems != null)
         {
