@@ -17,6 +17,7 @@ namespace SL
         public SL_EachHandController rightHandController;
         public SL_EachHandController leftHandController;
         public SL_AudioManager sL_AudioManager;
+        public SL_ImageController sL_ImageController;
 
         public override void OnGameStart()
         {
@@ -84,6 +85,8 @@ namespace SL
             balloonController.BreakBaloon();
             rightHandController.HideHand();
             leftHandController.HideHand();
+            sL_ImageController.changeDogImage();
+            sL_ImageController.changeBackGround();
             //表情変化
             //背景処理
         }
