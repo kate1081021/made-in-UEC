@@ -745,7 +745,6 @@ GameObject:
   - component: {fileID: 4734558247803820820}
   - component: {fileID: 775427316300159011}
   - component: {fileID: 7199347423545463369}
-  - component: {fileID: 5537372584432002866}
   - component: {fileID: 6929022417793760395}
   - component: {fileID: 7248951125727096562}
   - component: {fileID: 5550298439526045385}
@@ -843,20 +842,6 @@ MonoBehaviour:
   gameBGM: {fileID: 0}
   parentCloseButton: {fileID: 790112611267392780}
   adWindow: {fileID: 1853909302742600491}
---- !u!114 &5537372584432002866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4747210655433137121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72590d41cfd549d4c82b55a109503f7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameBGM: {fileID: 0}
-  useAnimation: 1
 --- !u!210 &6929022417793760395
 SortingGroup:
   m_ObjectHideFlags: 0
