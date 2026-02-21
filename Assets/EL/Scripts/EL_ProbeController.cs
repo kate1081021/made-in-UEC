@@ -6,6 +6,9 @@ namespace EL
 	{
 		[SerializeField] private float force = 100f;
 		[SerializeField] private float margin = 0.5f; // 画面端から移動範囲を少し内側にするためのマージン
+		[SerializeField] private float originforce = 100f; //初期移動速度
+		[SerializeField] private float slowforce = 30f; //bounds内での低下移動速度
+		[SerializeField] private EL_GameManager gameManager;
 
 		private Rigidbody2D rb;
 
@@ -25,6 +28,15 @@ namespace EL
 			else
 			{
 				GetComponentInChildren<SpriteRenderer>().color = Color.white; // 元の色に戻す
+			}
+
+			if (gameManager.bounds.Contains(transform.position) && Action.IsPressed())
+			{
+				force = slowforce;
+			}
+			else
+			{
+				force = originforce;
 			}
 		}
 
