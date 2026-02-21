@@ -19,9 +19,9 @@ namespace EL
 
 		void Update()
 		{
-			if (EL_GameManager.Instance.isVoltInRange)
+			if (EL_GameManager.Instance.isVoltInRange || MGManager.IsClear)
 			{
-				// 電圧値が許容範囲内であれば何かしらのフィードバックを与える（例: 色を変える、エフェクトを出すなど）
+				// 電圧値が許容範囲内もしくはゲームがクリアされた場合は何かしらのフィードバックを与える（例: 色を変える、エフェクトを出すなど）
 				// TODO: 仮なのでUpdate内でGetComponentしていますが，重くなるのでフィードバックの方針が決まったら変更します
 				GetComponentInChildren<SpriteRenderer>().color = Color.green; // 仮：緑色にする
 			}

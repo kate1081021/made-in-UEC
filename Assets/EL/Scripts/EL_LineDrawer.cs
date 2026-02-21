@@ -38,8 +38,8 @@ namespace EL
 			}
 		}
 
-		// マスク範囲内を切り取るためのDraw関数
-		public void Draw(GameObject parent, float lineThickness, Bounds maskBounds)
+		// マスク範囲内を切り取るためのDraw関数（欠けた座標をtargetPointsとして取得）
+		public void Draw(GameObject parent, float lineThickness, Bounds maskBounds, ref List<Vector3> targetPoints)
 		{
 			Shader shader = Shader.Find("Sprites/Default");
 			if (shader == null) { Debug.LogError("Shaderが見つかりません"); return; }
@@ -58,10 +58,11 @@ namespace EL
 
 				if (maskBounds.Contains(pos))
 				{
-					// 範囲内 → 現在のセグメントを区切る
+					// 現在のセグメントを区切る
 					if (currentSegment.Count >= 2)
 						segments_list.Add(currentSegment);
 					currentSegment = new List<Vector3>();
+					targetPoints.Add(pos);
 				}
 				else
 				{
@@ -92,11 +93,16 @@ namespace EL
 	public class EL_LineDrawer : MiniGameBase
 	{
 		[SerializeField] private EL_VoltCalculator voltCalculator;
-		[SerializeField] private int circleSegments = 50;
+		[SerializeField] private int circleSegmentsFactor = 10; // 円の滑らかさを決めるセグメント数の係数
 		[SerializeField] private float lineThickness = 0.05f;
+
+		// 欠けた部分の全座標を保持するリスト
+		public List<Vector3> allTargetPoints;
 
 		public override void OnGameStart()
 		{
+			allTargetPoints = new List<Vector3>();
+
 			Transform electroA = voltCalculator.electroA;
 			Transform electroB = voltCalculator.electroB;
 			float V_0 = voltCalculator.V_0;
@@ -117,10 +123,13 @@ namespace EL
 					Vector2 midPoint = (electroA.position + electroB.position) / 2f;
 					Vector2 direction = ((Vector2)electroB.position - (Vector2)electroA.position).normalized;
 					Vector2 center = midPoint + direction * centerX;
+					int circleSegments = Mathf.Max(10, (int)(circleSegmentsFactor * radius)); // 半径に応じてセグメント数を調整
 
 					Circle circle = new Circle(radius, center, circleSegments);
 					GameObject circleObj = new GameObject($"Circle_{V}");
-					circle.Draw(circleObj, lineThickness, EL_GameManager.Instance.bounds);
+
+					// targetPointsを渡して欠けた部分の座標を収集
+					circle.Draw(circleObj, lineThickness, EL_GameManager.Instance.bounds, ref allTargetPoints);
 				}
 				else
 				{
@@ -135,11 +144,9 @@ namespace EL
 					Vector2 direction = ((Vector2)electroB.position - (Vector2)electroA.position).normalized;
 					Vector2 normal = new Vector2(-direction.y, direction.x); // 電極間の法線ベクトル
 
-					// 電極AとBの中点を基準にした中心座標
 					Vector2 midPoint = (electroA.position + electroB.position) / 2f;
 
-					// V=3の等電位線は電極間の中点を通る直線になる
-					lineRenderer.SetPosition(0, midPoint + normal * 10f); // 適当な長さの線を引く
+					lineRenderer.SetPosition(0, midPoint + normal * 10f);
 					lineRenderer.SetPosition(1, midPoint - normal * 10f);
 				}
 			}
