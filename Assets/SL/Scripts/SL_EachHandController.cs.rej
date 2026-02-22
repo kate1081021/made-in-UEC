@@ -1,9 +1,0 @@
-diff a/Assets/SL/Scripts/SL_EachHandController.cs b/Assets/SL/Scripts/SL_EachHandController.cs	(rejected hunks)
-@@ -4,6 +4,7 @@
- {
-     public class SL_EachHandController : MiniGameBase
-     {
-+        [Header("パラメータ")]
-         public float moveDistance = 1f;
-         private SpriteRenderer spriteRenderer;
-         private Vector3 initialPosition;

@@ -89,3 +89,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 800
+  noteType: 0
+  pressedColor: {r: 1, g: 0.9, b: 0.4, a: 1}
