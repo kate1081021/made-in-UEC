@@ -9,9 +9,16 @@ namespace WI
         public GameObject parentCloseButton;
         public GameObject adWindow;
 
+        public Color darkerColor = new Color(0.5f, 0.5f, 0.5f, 1f);
+        private SpriteRenderer myRenderer;
+        private Color originalColor = Color.white;
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
         {
+            myRenderer = GetComponent<SpriteRenderer>();
+            myRenderer.color = darkerColor;
+
             if (parentCloseButton != null)
             {
                 parentCloseButton.GetComponent<BoxCollider2D>().enabled = false;
@@ -25,6 +32,8 @@ namespace WI
         {
             if (adWindow == null)
             {
+                myRenderer.color = originalColor;
+
                 if (parentCloseButton != null)
                 {
                     parentCloseButton.GetComponent<BoxCollider2D>().enabled = true;
