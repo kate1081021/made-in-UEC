@@ -1,0 +1,15 @@
+diff a/Assets/WI/Scenes/WI.unity b/Assets/WI/Scenes/WI.unity	(rejected hunks)
+@@ -508,11 +536,11 @@
+       objectReference: {fileID: 0}
+     - target: {fileID: 5936518592548625062, guid: f2562ed02e1908b459f672343fedb29d, type: 3}
+       propertyPath: m_LocalPosition.x
+-      value: 7.25
++      value: 7.4
+       objectReference: {fileID: 0}
+     - target: {fileID: 5936518592548625062, guid: f2562ed02e1908b459f672343fedb29d, type: 3}
+       propertyPath: m_LocalPosition.y
+-      value: -2.35
++      value: -2
+       objectReference: {fileID: 0}
+     - target: {fileID: 5936518592548625062, guid: f2562ed02e1908b459f672343fedb29d, type: 3}
+       propertyPath: m_LocalPosition.z

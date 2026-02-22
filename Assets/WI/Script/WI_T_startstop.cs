@@ -2,15 +2,16 @@ using UnityEngine;
 using System.Collections.Generic; //生成順用
 using UnityEngine.Rendering;
 
-namespace WI 
+namespace WI
 {
-
-    public class WI_T_startstop : MiniGameBase 
+    public class WI_T_startstop : MiniGameBase
     {
 
         public GameObject[] windowType;
         public List<GameObject> targetWindows = new List<GameObject>();
         private bool ClearFlag = false;
+        private bool isWindowAllClosed = false;
+        private bool isBusterAllClosed = false;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
@@ -19,15 +20,21 @@ namespace WI
             MGManager.Load();
 
             ClearFlag = false;
-            int WindowCreate = 3;
             targetWindows.Clear();
 
-            for (int i = 0; i < WindowCreate; i++)
+            for (int i = 0; i < windowType.Length; i++)
             {
+                Vector2 spawnPos = Vector2.zero;
+
                 float randomX = Random.Range(-3.3f, 3.3f);
                 float randomY = Random.Range(-0.15f, 0.15f);
 
-                Vector2 spawnPos = new Vector2(randomX, randomY);
+                spawnPos = new Vector2(randomX, randomY);
+                if (windowType[i].name == "WI_M_window_virus buster")
+                {
+                    spawnPos = new Vector2(7f,-2.5f);
+                }
+
 
                 GameObject newWindow = Instantiate(windowType[i], spawnPos, Quaternion.identity);
 
@@ -37,8 +44,8 @@ namespace WI
                 {
                     sg.sortingOrder = i;
                 }
-
                 targetWindows.Add(newWindow);
+                
             }
         }
 
@@ -62,25 +69,38 @@ namespace WI
         // Update is called once per frame
         void Update()
         {
-            if (ClearFlag) return;
-            int windowCount;
-            int activeCount = 0;
+            if (ClearFlag || targetWindows.Count == 0) return;
+
+            int currentWindowCount = 0;
+            int currentBusterCount = 0;
 
             foreach (GameObject win in targetWindows)
             {
-                if (win != null && win.activeSelf == true)
+                if (win != null)
                 {
-                    activeCount++;
+                    if (win.name.Contains("indow(Clone)") && win.activeInHierarchy)
+                    {
+                        currentWindowCount++;
+                    }
+            
+                    if (win.name.Contains("WI_M_window_virus buster"))
+                    {
+                        currentBusterCount++;
+                    }
                 }
             }
 
-            windowCount = activeCount;
+            if (currentWindowCount <= 0) isWindowAllClosed = true;
 
-            if (windowCount <= 0)
+            if (currentBusterCount <= 0) isBusterAllClosed = true;
+
+            if (isWindowAllClosed && isBusterAllClosed)
             {
                 ClearFlag = true;
+                Debug.Log("[System] 全ての指定ウィンドウが削除されました。クリア！");
                 MGManager.ClearGame();
             }
         }
+        
     }
 }
