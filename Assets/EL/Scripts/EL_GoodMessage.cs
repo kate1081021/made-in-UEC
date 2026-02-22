@@ -1,22 +1,25 @@
 using UnityEngine;
 
-public class EL_GoodMessage : MiniGameBase
+namespace EL
 {
-	private RectTransform rt;
-	private Animator animator;
-
-	public override void OnGameStart()
+	public class EL_GoodMessage : MiniGameBase
 	{
-		rt = GetComponent<RectTransform>();
-		rt.position = new Vector3(-rt.sizeDelta.x, rt.position.y, 0);
-		animator = GetComponent<Animator>();
-	}
+		private RectTransform rt;
+		private Animator animator;
 
-	void Update()
-	{
-		if (MGManager.IsClear)
+		public override void OnGameStart()
 		{
-			animator.SetBool("IsClear", true);
+			rt = GetComponent<RectTransform>();
+			rt.position = new Vector3(-rt.sizeDelta.x, rt.position.y, 0);
+			animator = GetComponent<Animator>();
+		}
+
+		void Update()
+		{
+			if (MGManager.IsClear)
+			{
+				animator.SetBool("IsClear", true);
+			}
 		}
 	}
 }
