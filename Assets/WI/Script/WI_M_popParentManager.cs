@@ -94,18 +94,9 @@ namespace WI
         }
         public void buttonTypeChange()
         {
-            if (createPopup)
-            {
-                closeButton.GetComponent<WI_M_inputClose>().enabled = false;
-                closeButton.GetComponent<WI_M_createPop>().enabled = true;
-                createPopup = false;
-            }
-            else
-            {
-                closeButton.GetComponent<WI_M_inputClose>().enabled = true;
-                closeButton.GetComponent<WI_M_createPop>().enabled = false;
-                createPopup = true;
-            }
+            closeButton.GetComponent<WI_M_inputClose>().enabled = true;
+            closeButton.GetComponent<WI_M_createPop>().enabled = false;
+            createPopup = true;
         }
 
         public void buttonDisactivate()
@@ -115,12 +106,6 @@ namespace WI
         public void buttonActivate()
         {
             closeButton.GetComponent<BoxCollider2D>().enabled = true;
-        }
-
-        public void colorChange(Color c)
-        {
-            this.GetComponent<SpriteRenderer>().color = c;
-            this.transform.GetChild(0).GetComponent<SpriteRenderer>().color = c;
         }
     }
 }

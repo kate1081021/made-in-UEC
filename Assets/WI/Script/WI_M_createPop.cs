@@ -35,10 +35,9 @@ namespace WI
                     {
                         popup = GameObject.Find("WI_M_popup");
                         popup = Instantiate(popup, this.transform.parent.position, Quaternion.identity);
-                        popup.GetComponent<SortingGroup>().sortingOrder = this.transform.parent.GetComponent<SortingGroup>().sortingOrder + 1;
+                        popup.GetComponent<SortingGroup>().sortingOrder = this.transform.parent.GetComponent<SortingGroup>().sortingOrder;
                         popup.transform.parent = this.transform.parent;
                         rootManager.registerPopup(popup);
-                        rootManager.colorChange(new Color(0.5f, 0.5f, 0.5f, 1.0f));
                         rootManager.buttonDisactivate();
                         rootManager.buttonTypeChange();
                     }

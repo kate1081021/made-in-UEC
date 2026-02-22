@@ -3,7 +3,7 @@ using TMPro;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -41,7 +41,7 @@ public class UIManager : MonoBehaviour
         targetText.transform.localScale = Vector3.one * 1.2f; // 最初から1.2倍
 
         // 演出開始
-        StartCoroutine(PlayUIAnimation(scene, verb));
+        StartCoroutine(PlayUIAnimation(verb));
     }
 
     // ミニゲーム中のUI
@@ -79,7 +79,7 @@ public class UIManager : MonoBehaviour
     }
 
     // メインのアニメーションを表示
-    IEnumerator PlayUIAnimation(string scene, string verb)
+    IEnumerator PlayUIAnimation(string verb)
     {
         float elapsed = 0f;
 

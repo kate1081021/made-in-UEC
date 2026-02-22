@@ -29,7 +29,7 @@ namespace WI
                     {
                         if (this.transform.parent.GetComponent<WI_M_popParentManager>() != null)
                         {
-                            this.transform.parent.GetComponent<WI_M_popParentManager>().setInputClose();
+                            this.transform.parent.GetComponent<WI_M_popParentManager>().setInputClose(); ;
                         }
                         else
                         {

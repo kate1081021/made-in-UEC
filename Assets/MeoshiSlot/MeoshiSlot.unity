@@ -397,7 +397,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 1
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -422,9 +422,9 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -897,7 +897,7 @@ ParticleSystemRenderer:
   m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
-  m_MaxParticleSize: 0.05
+  m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
   m_LengthScale: 2
@@ -1061,7 +1061,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1503,7 +1503,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.8
+      scalar: 0.6
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5657,8 +5657,8 @@ Transform:
   m_GameObject: {fileID: 1127899506}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -100}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalPosition: {x: -13, y: 111, z: -2375.9998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1796091345}
@@ -5811,16 +5811,13 @@ MonoBehaviour:
   reel2Parent: {fileID: 1088254096}
   reel3Parent: {fileID: 18455151}
   sourceSprites:
-  - {fileID: 8755319695995711807, guid: 9888a5f87c943f44a8d86e7d9badee40, type: 3}
-  - {fileID: -1285620809150930105, guid: 9888a5f87c943f44a8d86e7d9badee40, type: 3}
-  - {fileID: 2104281590849084697, guid: 9888a5f87c943f44a8d86e7d9badee40, type: 3}
-  - {fileID: 5845636497037491241, guid: 9888a5f87c943f44a8d86e7d9badee40, type: 3}
+  - {fileID: 5591422608897019170, guid: f1fb58fc6be86cb4b9c171fd10391269, type: 3}
+  - {fileID: 7028616704906629411, guid: 80b62149855a39a4eafebde311b27c78, type: 3}
+  - {fileID: 1098770389547517647, guid: bed09b11d5d00eb4a91941645d86caae, type: 3}
+  - {fileID: -1366655912843611306, guid: 74a8dbb593fb8b243910fe69807ff43d, type: 3}
   baseBpm: 160
   winSpriteIndex: 0
   symbolsPerBeat: 4
-  inputCooldown: 0.1
-  winParticle: {fileID: 1127899508}
-  particleStartSize: 1.5
   cellHeight: 330
   visualOffsetY: 0
   stoppedScale: 0.7
@@ -5831,6 +5828,7 @@ MonoBehaviour:
   beatSmoothness: 15
   enableSymbolRainbow: 0
   rainbowSpeed: 0.5
+  winParticle: {fileID: 1127899508}
   bgmSource: {fileID: 1271377809}
   seSource: {fileID: 1271377812}
   stopSE: {fileID: 8300000, guid: 5c31dcd822d436f4fb5a2db86b73723c, type: 3}
@@ -6514,7 +6512,7 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 4
-    height: 1.2485079
+    height: 8.437388
 --- !u!222 &1782069992
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6662,12 +6660,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
+  m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
