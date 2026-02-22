@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 63924d13980e45f4f8ab7e6ab490ad39
+guid: fc0ec8e7131381445ad1241d212c45d8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2312677724219644309
-    second: WI_S_batu_0
+      213: 4659698543100882630
+    second: WI_S_discordwindow_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 800
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -96,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WI_S_batu_0
+      name: WI_S_discordwindow_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 100
-        height: 40
+        width: 1000
+        height: 1205
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b66ede7ecd7b7efd0800000000000000
-      internalID: -2312677724219644309
+      spriteID: 6ceeee503239aa040800000000000000
+      internalID: 4659698543100882630
       vertices: []
       indices: 
       edges: []
@@ -125,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      WI_S_batu_0: -2312677724219644309
+      WI_S_discordwindow_0: 4659698543100882630
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
