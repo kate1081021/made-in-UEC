@@ -1271,6 +1271,7 @@ MonoBehaviour:
   o: {fileID: 0}
   obstacles:
   - {fileID: 3191390350222655228, guid: e14a885d8012770488ff679e2d1e4eaf, type: 3}
+  - {fileID: 5096191905461504581, guid: 5e7301327da08f9418a95834f69d9504, type: 3}
   mover: {fileID: 5422064317260158470}
   obstacle_info: {fileID: 0}
   game_camera: {fileID: 766268018}
