@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4530370601095003183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5648829058213979394}
+  - component: {fileID: 5027967850129698829}
+  m_Layer: 0
+  m_Name: enadorigenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5648829058213979394
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4530370601095003183}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.1859494, y: -0.20628397, z: 0.05538357}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5027967850129698829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4530370601095003183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee073dbc27c30ba488fb9c8ac059e1c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameBGM: {fileID: 0}
+  bottle: {fileID: 4787887759221063778, guid: 6696ef8e3c4d5c749bc302e4430c4208, type: 3}
+  drink1: {fileID: 3914278131876630823, guid: 514e80bf862965440b53fdaf0a34b345, type: 3}
+  drink2: {fileID: 8136793222873985179, guid: b58f127b2d572114783c614d733c04b3, type: 3}
+  drink3: {fileID: 3914278131876630823, guid: 49a5a15058d1f944a83174ef3e1470cd, type: 3}
+  drink4: {fileID: 3914278131876630823, guid: e1c531ca6d1ec8e48bcc2372b6e41e63, type: 3}
+  g: 2
+  pos: {x: -9.5, y: -1, z: 0}
+  duration: 0.5
+  Rx1: -6
+  Rx2: 6
+  Ry1: 2
+  Ry2: 4
+  expTime: 1.5
+  RS1: 3
+  RS2: 7
+  numOfBlue: 6
+  blueSpreadSpeed: 4
+  blueRotateSpeed: 0.5
+  numOfGreen: 4
+  greenSpreadSpeed: 1
+  greenMoveSpeed: 3.5
+  greenRotateSpeed: 0.5
+  greenRadiusMax: 2
+  yellowRandomTheta: 90
+  numOfYellow: 6
+  yellowSpeedMax: 10
+  yellowSpeedMin: 2
+  yellowG: 7
