@@ -22,6 +22,8 @@ namespace SL
         public override void OnGameStart()
         {
             MGManager.Load();
+            //BGMPlay(); 運営の方針の関数です。こちらにする場合、この下のやつは消しちゃってください。
+            sL_AudioManager.SL_BGMStart();
         }
 
         void Update()
@@ -82,6 +84,7 @@ namespace SL
         private void OnGameClear()
         {
             MGManager.ClearGame();
+            sL_AudioManager.SL_BGMStop();
             balloonController.BreakBaloon();
             rightHandController.HideHand();
             leftHandController.HideHand();
