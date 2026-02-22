@@ -365,11 +365,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8255507914935086602, guid: 3d6c7424cd1a2c44b92c3af76d105a00, type: 3}
   m_PrefabInstance: {fileID: 256188499}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &277926343 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4747210655433137121, guid: 4a711aa643afd4360a068f104bd7763d, type: 3}
-  m_PrefabInstance: {fileID: 1806005757}
-  m_PrefabAsset: {fileID: 0}
 --- !u!212 &277926349 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 775427316300159011, guid: 4a711aa643afd4360a068f104bd7763d, type: 3}
@@ -542,7 +537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5936518592548625062, guid: f2562ed02e1908b459f672343fedb29d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.9
+      value: -13.63
       objectReference: {fileID: 0}
     - target: {fileID: 5936518592548625062, guid: f2562ed02e1908b459f672343fedb29d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -739,7 +734,7 @@ MonoBehaviour:
   windowType:
   - {fileID: 256188500}
   - {fileID: 1692362341}
-  - {fileID: 277926343}
+  - {fileID: 44478009}
   targetWindows: []
 --- !u!4 &1394587489
 Transform:
