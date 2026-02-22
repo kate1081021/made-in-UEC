@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc630a6d25658ce469d865566005b08a, type: 3}
+  m_Name: ER_StageData
+  m_EditorClassIdentifier: 
+  correctReportList:
+  - {fileID: 5483746588343433821, guid: d518b31638c43e44895d90669ac40cd1, type: 3}
+  incorrectReportList:
+  - {fileID: 7088106511976476706, guid: eef3717ea383ed442b17de09a9df5a54, type: 3}
+  correctAnswerRate: 0.5
