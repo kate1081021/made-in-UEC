@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 namespace WI
 {
-    public class WI_M_hoverDestroy : MiniGameBase, IPointerEnterHandler, IPointerExitHandler
+    public class Destroy : MiniGameBase, IPointerEnterHandler, IPointerExitHandler
     {
         private bool isHovering = false;
 
