@@ -183,10 +183,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 574896072898599285}
-  - component: {fileID: 6278525045384480774}
   - component: {fileID: 3690283589988866104}
   m_Layer: 0
-  m_Name: star
+  m_Name: UT_star 1
   m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -213,20 +212,6 @@ Transform:
   - {fileID: 631635627002975528}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6278525045384480774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3336162317971572820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5003c310f7ab2dc408ce6fb1a9f7511a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameBGM: {fileID: 0}
-  gene: {fileID: 0}
 --- !u!60 &3690283589988866104
 PolygonCollider2D:
   m_ObjectHideFlags: 0

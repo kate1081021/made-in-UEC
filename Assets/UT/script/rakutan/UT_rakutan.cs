@@ -9,6 +9,7 @@ namespace UT
         public GameObject tanni;
         public GameObject flask;
         public GameObject droplets;
+        public GameObject enemy;
         [SerializeField]
         [Tooltip("íPà ÇÃxç¿ïW")]
         float offsetT;
@@ -47,6 +48,7 @@ namespace UT
             pm = GameObject.Find("Player").GetComponent<UT_playermove>();
             pm.generator = gameObject;
             pm.timelimit = 15f;
+            Instantiate(enemy, Vector3.zero, Quaternion.identity);
             flaskobj = Instantiate(flask, new Vector3(0, -10f, 0), Quaternion.identity);
             StartCoroutine(generatemanage(1));
             StartCoroutine(Flaskappear());

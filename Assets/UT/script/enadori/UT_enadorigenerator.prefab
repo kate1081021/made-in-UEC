@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5648829058213979394}
   - component: {fileID: 5027967850129698829}
   m_Layer: 0
-  m_Name: enadorigenerator
+  m_Name: UT_enadorigenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  enemy: {fileID: 5336750216515394525, guid: b615f4d917032544e985824a8db7fee1, type: 3}
   bottle: {fileID: 4787887759221063778, guid: 6696ef8e3c4d5c749bc302e4430c4208, type: 3}
   drink1: {fileID: 3914278131876630823, guid: 514e80bf862965440b53fdaf0a34b345, type: 3}
   drink2: {fileID: 8136793222873985179, guid: b58f127b2d572114783c614d733c04b3, type: 3}
@@ -52,14 +53,14 @@ MonoBehaviour:
   drink4: {fileID: 3914278131876630823, guid: e1c531ca6d1ec8e48bcc2372b6e41e63, type: 3}
   g: 2
   pos: {x: -9.5, y: -1, z: 0}
-  duration: 0.5
+  duration: 0.6
   Rx1: -6
   Rx2: 6
   Ry1: 2
   Ry2: 4
   expTime: 1.5
-  RS1: 3
-  RS2: 7
+  RS1: 1.5
+  RS2: 4.5
   numOfBlue: 6
   blueSpreadSpeed: 4
   blueRotateSpeed: 0.5

@@ -10,6 +10,7 @@ namespace UT
         public GameObject ghostlight;
         public GameObject pole;
         public GameObject ghost;
+        public GameObject enemy;
         [SerializeField]
         [Tooltip("ç∂â∫ÇÃÉâÉCÉgÇÃèÍèä")]
         Vector3 lightpos1;
@@ -50,6 +51,7 @@ namespace UT
             pm = GameObject.Find("Player").GetComponent<UT_playermove>();
             pm.generator = gameObject;
             pm.timelimit = 15f;
+            Instantiate(enemy, Vector3.zero, Quaternion.identity);
             light1 = Instantiate(ghostlight, lightpos1, Quaternion.Euler(0, 0, 0));
             light2 = Instantiate(ghostlight, lightpos2, Quaternion.Euler(0, 0, -60));
             light3 = Instantiate(ghostlight, lightpos3, Quaternion.Euler(0, 0, 90));

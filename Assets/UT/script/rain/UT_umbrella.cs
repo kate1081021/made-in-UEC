@@ -13,7 +13,7 @@ namespace UT
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag("bullet") && collision.name == "rain(Clone)")
+            if (collision.CompareTag("bullet") && collision.name == "UT_rain(Clone)")
             {
                 Destroy(collision.gameObject);
             }

@@ -9,9 +9,9 @@ namespace UT
     public class UT_stargenerator : MiniGameBase
     {
         public UT_playermove pm;
-        public UT_star star;
         public GameObject obj;
         public GameObject obj2;
+        public GameObject enemy;
         [SerializeField]
 
         [Header("êØå`ägéUíeÇÃê›íË")]
@@ -45,6 +45,7 @@ namespace UT
             pm = GameObject.Find("Player").GetComponent<UT_playermove>();
             pm.generator = gameObject;
             pm.timelimit = 13f;
+            Instantiate(enemy, Vector3.zero, Quaternion.identity);
             GameObject star1 = Instantiate(obj, new Vector3(centerx + Mathf.Sin(0 * Mathf.Deg2Rad), centery + Mathf.Cos(0 * Mathf.Deg2Rad), 0), Quaternion.identity);
             GameObject star2 = Instantiate(obj, new Vector3(centerx + Mathf.Sin(72 * Mathf.Deg2Rad), centery + Mathf.Cos(72 * Mathf.Deg2Rad), 0), Quaternion.identity);
             GameObject star3 = Instantiate(obj, new Vector3(centerx + Mathf.Sin(144 * Mathf.Deg2Rad), centery + Mathf.Cos(144 * Mathf.Deg2Rad), 0), Quaternion.identity);
@@ -60,13 +61,18 @@ namespace UT
             float y4 = star4.gameObject.transform.position.y;
             float x5 = star5.gameObject.transform.position.x;
             float y5 = star5.gameObject.transform.position.y;
+            StartCoroutine(starmove(star1));
+            StartCoroutine(starmove(star2));
+            StartCoroutine(starmove(star3));
+            StartCoroutine(starmove(star4));
+            StartCoroutine(starmove(star5));
             for (int i = 1; i < d; i++)
             {
-                Instantiate(obj, new Vector2((i * x1 + (d - i) * x3) / d, (i * y1 + (d - i) * y3) / d), Quaternion.identity);
-                Instantiate(obj, new Vector2((i * x2 + (d - i) * x4) / d, (i * y2 + (d - i) * y4) / d), Quaternion.identity);
-                Instantiate(obj, new Vector2((i * x3 + (d - i) * x5) / d, (i * y3 + (d - i) * y5) / d), Quaternion.identity);
-                Instantiate(obj, new Vector2((i * x4 + (d - i) * x1) / d, (i * y4 + (d - i) * y1) / d), Quaternion.identity);
-                Instantiate(obj, new Vector2((i * x5 + (d - i) * x2) / d, (i * y5 + (d - i) * y2) / d), Quaternion.identity);
+                StartCoroutine(starmove(Instantiate(obj, new Vector2((i * x1 + (d - i) * x3) / d, (i * y1 + (d - i) * y3) / d), Quaternion.identity)));
+                StartCoroutine(starmove(Instantiate(obj, new Vector2((i * x2 + (d - i) * x4) / d, (i * y2 + (d - i) * y4) / d), Quaternion.identity)));
+                StartCoroutine(starmove(Instantiate(obj, new Vector2((i * x3 + (d - i) * x5) / d, (i * y3 + (d - i) * y5) / d), Quaternion.identity)));
+                StartCoroutine(starmove(Instantiate(obj, new Vector2((i * x4 + (d - i) * x1) / d, (i * y4 + (d - i) * y1) / d), Quaternion.identity)));
+                StartCoroutine(starmove(Instantiate(obj, new Vector2((i * x5 + (d - i) * x2) / d, (i * y5 + (d - i) * y2) / d), Quaternion.identity)));
             }
         }
 
@@ -105,6 +111,30 @@ namespace UT
                     break;
                 }
             }
+        }
+
+        IEnumerator starmove(GameObject star)
+        {
+            star.transform.localScale = new Vector3(scale, scale, scale);
+            float timer = 0;
+            float dis = Mathf.Sqrt(Mathf.Pow(centerx - star.transform.position.x, 2) + Mathf.Pow(centery - star.transform.position.y, 2));
+            float theta = (star.transform.position.x == centerx) ? Mathf.PI / 2 : Mathf.Atan((centery - star.transform.position.y) / (centerx - star.transform.position.x));
+            if (star.transform.position.x < centerx) theta += Mathf.PI;
+            Debug.Log(theta);
+            while (timer < Mathf.PI)
+            {
+                timer += Time.deltaTime * timeScaleRad * Time.timeScale;
+                theta += Time.deltaTime * 0.1f * timeScaleRot * (1 + 2 * Mathf.Sin(timer)) * Time.timeScale;
+                star.transform.rotation = Quaternion.Euler(0, 0, 200 * timer);
+                float r = dis * radius * 10 * Mathf.Sin(timer);
+                star.transform.position = new Vector2(centerx + r * Mathf.Cos(theta), centery + r * Mathf.Sin(theta));
+                while (star.transform.position.x > 9) star.transform.position += new Vector3(-18f, 0, 0);
+                while (star.transform.position.x < -9) star.transform.position += new Vector3(18f, 0, 0);
+                while (star.transform.position.y > 5.1f) star.transform.position += new Vector3(0, -10.2f, 0);
+                while (star.transform.position.y < -5.1f) star.transform.position += new Vector3(0, 10.2f, 0);
+                yield return null;
+            }
+             Destroy(star);
         }
     }
 }

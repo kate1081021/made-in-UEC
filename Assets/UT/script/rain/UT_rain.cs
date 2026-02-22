@@ -14,6 +14,7 @@ namespace UT
         public GameObject rain;
         public GameObject pigeon;
         GameObject player;
+        public GameObject enemy;
         [SerializeField]
         [Tooltip("雨粒の速度")]
         float rainspeed;
@@ -41,6 +42,18 @@ namespace UT
         [SerializeField]
         [Tooltip("2回目の風の変わり終わり")]
         float w2e;
+        [SerializeField]
+        [Tooltip("2回目の風の変わり始め")]
+        float w3s;
+        [SerializeField]
+        [Tooltip("2回目の風の変わり終わり")]
+        float w3e;
+        [SerializeField]
+        [Tooltip("2回目の風の変わり始め")]
+        float w4s;
+        [SerializeField]
+        [Tooltip("2回目の風の変わり終わり")]
+        float w4e;
         float theta = 0;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
@@ -48,6 +61,7 @@ namespace UT
             pm = GameObject.Find("Player").GetComponent<UT_playermove>();
             pm.generator = gameObject;
             pm.timelimit = 15f;
+            Instantiate(enemy, Vector3.zero, Quaternion.identity);
             player = GameObject.Find("Player");
             uobj = Instantiate(umbrella, new Vector3(0, -1, 0), Quaternion.identity);
             StartCoroutine(rainmanager());
@@ -59,6 +73,11 @@ namespace UT
             float time = 0;
             float theta1 =  (0.5f - Random.value) * 120;
             float theta2 =  (0.5f - Random.value) * 120;
+            while(Mathf.Abs(theta2 - theta1) < 30) theta2 = (0.5f - Random.value) * 120;
+            float theta3 =  (0.5f - Random.value) * 150;
+            while (Mathf.Abs(theta3 - theta2) < 50) theta3 = (0.5f - Random.value) * 120;
+            float theta4 =  (Random.value * 30 + 45) * (Random.Range(0, 2)*2-1);
+            while (Mathf.Abs(theta4 - theta3) < 70) theta4 = (Random.value * 30 + 45) * (Random.Range(0, 2) * 2 - 1);
             StartCoroutine(pigeongenerate(p1t, p1s));
             StartCoroutine(pigeongenerate(p2t, p2s));
             while (true)
@@ -70,7 +89,15 @@ namespace UT
                 }
                 else if (w2s < time && time < w2e)
                 {
-                    theta = theta1 + (time - w2s) / (w2e - w2s) * (theta2-theta1);
+                    theta = theta1 + (time - w2s) / (w2e - w2s) * (theta2 - theta1);
+                }
+                else if (w3s < time && time < w3e)
+                {
+                    theta = theta2 + (time - w3s) / (w3e - w3s) * (theta3 - theta2);
+                }
+                else if (w4s < time && time < w4e)
+                {
+                    theta = theta3 + (time - w4s) / (w4e - w4s) * (theta4 - theta3);
                 }
                 yield return null;
             }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5481663878230809623
+--- !u!1 &2139279805513923704
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,53 +8,55 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 413634719452580066}
-  - component: {fileID: 3294319995445714449}
+  - component: {fileID: 170696947923441679}
+  - component: {fileID: 6730931466980365416}
   m_Layer: 0
-  m_Name: raingenerator
+  m_Name: UT_rakutangenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &413634719452580066
+--- !u!4 &170696947923441679
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5481663878230809623}
+  m_GameObject: {fileID: 2139279805513923704}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.38808542, y: 0.681461, z: -0.02093051}
+  m_LocalPosition: {x: -5.005021, y: -0.081138626, z: -0.011124351}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3294319995445714449
+--- !u!114 &6730931466980365416
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5481663878230809623}
+  m_GameObject: {fileID: 2139279805513923704}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44a83cb875a424944b27a1cef68eda2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5228e81b4fbf7fc45ba9187d9feb3a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
   pm: {fileID: 0}
-  umbrella: {fileID: 6555385779280390753, guid: dddf14bf5b23dc64fb8fb348581bca65, type: 3}
-  rain: {fileID: 5677886676739865732, guid: 3f82b2d411c316942b74e34bdc8bbbc2, type: 3}
-  pigeon: {fileID: 1627456972674995499, guid: db43e276532427747a4ffe1377e304d5, type: 3}
-  rainspeed: 8
-  p1t: 2
-  p1s: 1
-  p2t: 6
-  p2s: 1.5
-  w1s: 2
-  w1e: 4
-  w2s: 6
-  w2e: 8
+  tanni: {fileID: 5176048661101571858, guid: 02f221136a3a7714cb3616d1fc1945c7, type: 3}
+  flask: {fileID: 562055395193226138, guid: dd97a768a09bc3342bd4b781bcb33e89, type: 3}
+  droplets: {fileID: 4548265084187607840, guid: 742390855e57a2d4abb817c0d3fabd08, type: 3}
+  enemy: {fileID: 5336750216515394525, guid: b615f4d917032544e985824a8db7fee1, type: 3}
+  offsetT: 3
+  durationT: 2.5
+  speedT: 4
+  durationA: 1
+  offsetF: -7
+  durationD: 0.07
+  speedD: 6
+  g: 0.6
+  randomv: 0.4
+  randomtheta: 40

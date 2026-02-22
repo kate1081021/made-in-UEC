@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI; // UI操作に必要
@@ -8,6 +10,10 @@ namespace UT
 
     public class UT_playermove : MiniGameBase
     {
+        public List<GameObject> level1;
+        public List<GameObject> level2;
+        public List<GameObject> level3;
+        public bool random;
         [SerializeField] private float movespeed;
         private Rigidbody2D rb;
         [Tooltip("被弾時に受けるダメージ")]
@@ -54,6 +60,8 @@ namespace UT
             currentHp = initialHp; 
             HPbar.maxValue = maxHp; // スライダーの最大値を設定
             HPbar.value = currentHp; // 現在のHPを反映
+            int a = Random.Range(0, level1.Count);
+            if(random)Instantiate(level1[a]);
             StartCoroutine(wait());
         }
         public override void OnGameEnd() 

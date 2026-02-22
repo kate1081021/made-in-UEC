@@ -778,10 +778,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  level1:
+  - {fileID: 469646815665846420, guid: 21b46c0c3db270147b0ae73108010cee, type: 3}
+  - {fileID: 4018892506554468397, guid: 2fe48a177049f5b4ebc1a9b47fcfc508, type: 3}
+  - {fileID: 2139279805513923704, guid: 21bb58f0f3b5c08439668f7bc5dc461b, type: 3}
+  - {fileID: 5481663878230809623, guid: 0b5b71a9d9af92549af13a52ed8612da, type: 3}
+  - {fileID: 4530370601095003183, guid: 1353387b8b0b8274ba4aa8ca8ea33f60, type: 3}
+  level2: []
+  level3: []
+  random: 1
   movespeed: 4
   damage: 25
   duration: 0.8
-  timelimit: 10
+  timelimit: 13
   I0: {fileID: 1711112933}
   I1: {fileID: 1380368179}
   S0: {fileID: 5088316998373936774, guid: 8b90d08496963614ba7283c61c832c51, type: 3}

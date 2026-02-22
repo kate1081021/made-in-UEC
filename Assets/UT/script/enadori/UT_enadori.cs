@@ -8,6 +8,7 @@ namespace UT
     {
         UT_playermove pm;
         GameObject player;
+        public GameObject enemy;
         [SerializeField]
         GameObject bottle;
         [SerializeField]
@@ -101,6 +102,7 @@ namespace UT
             pm = GameObject.Find("Player").GetComponent<UT_playermove>();
             pm.generator = gameObject;
             pm.timelimit = 15f;
+            Instantiate(enemy, Vector3.zero, Quaternion.identity);
             player = GameObject.Find("Player");
             StartCoroutine(throwmanage());
         }
@@ -242,12 +244,6 @@ namespace UT
                     Destroy(obj);
                 }
             }
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
     }
 }
