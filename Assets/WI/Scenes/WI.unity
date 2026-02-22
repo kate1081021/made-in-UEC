@@ -375,6 +375,37 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 775427316300159011, guid: 4a711aa643afd4360a068f104bd7763d, type: 3}
   m_PrefabInstance: {fileID: 1806005757}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &345043890
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 345043891}
+  m_Layer: 0
+  m_Name: TestFile
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &345043891
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345043890}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &514395939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1436,3 +1467,4 @@ SceneRoots:
   - {fileID: 1517672517}
   - {fileID: 1806005757}
   - {fileID: 1109582537}
+  - {fileID: 345043891}
