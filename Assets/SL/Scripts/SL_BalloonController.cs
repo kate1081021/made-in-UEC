@@ -4,7 +4,6 @@ namespace SL
 {
     public class SL_BalloonController : MiniGameBase
     {
-        [Header("パラメータ")]
         public float maxScale = 3f;
         public float minScale = 1f;
         private SpriteRenderer spriteRenderer;
@@ -22,7 +21,6 @@ namespace SL
 
         public void BreakBaloon()
         {
-            //アニメーションに変更
             spriteRenderer.enabled = false;
         }
     }
