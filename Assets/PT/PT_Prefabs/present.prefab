@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -1398081587101633475}
   - component: {fileID: 4503481992569531371}
   - component: {fileID: -9158294665150970654}
+  - component: {fileID: 5547515086164850073}
   m_Layer: 0
   m_Name: present
   m_TagString: Untagged
@@ -178,3 +179,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5547515086164850073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5642818953924444964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf35494e27a084a439f4fb35019cfaf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  presentSprites:
+  - {fileID: 2616271140421873840, guid: 0b1f26e7f2ff4cd4cada549110fa2601, type: 3}
+  - {fileID: 2074131032069657448, guid: 23dfa94f728fe914aad0404a3fa79f65, type: 3}
+  - {fileID: 8862547545159352364, guid: b36d124a9bafed74bb5a8e6ca60c6c02, type: 3}
+  - {fileID: 5117573376070710608, guid: 9e0daf6fee3bb564cb93878adf294e08, type: 3}
+  - {fileID: 6841709645748872757, guid: 6d722ce3eefb4334f9b8bf8cfa3eacc7, type: 3}
+  - {fileID: -6064957517710513403, guid: aa73b013bbf25b04e8d8361a87e7d4c3, type: 3}
+  - {fileID: 1459859153047744996, guid: 2dcfb97f70b8dd94e8dc74c30ef9a729, type: 3}
+  sr: {fileID: 6496442399579720882}

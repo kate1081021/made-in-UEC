@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using TMPro;
 using Unity.Burst.Intrinsics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace PTgame
@@ -10,6 +11,7 @@ namespace PTgame
     public class PT_Manager : MiniGameBase
     {
         [SerializeField] private List<GameObject> presents; //プレゼント個々制御
+        [SerializeField] private List<PT_FallLeaves> leaves; //風用の葉群
         [SerializeField] private int present_count;
         [SerializeField] private float present_slope;
         [SerializeField] private float obstacle_power;
@@ -20,17 +22,18 @@ namespace PTgame
         [SerializeField] public bool fall; //落下したか判定
         [SerializeField] private GameObject present_parent; //プレゼント全体制御
         [SerializeField] private GameObject present;
+        [SerializeField] private GameObject o;
         [SerializeField] private List<GameObject> obstacles; //障害物リスト
         [SerializeField] private PT_Move mover; //操作スクリプト
         [SerializeField] private PT_Obstacle obstacle_info; //障害物スクリプト
         [SerializeField] private Camera game_camera;
         [SerializeField] private int testlevel;
-        [SerializeField] private List<Sprite> presentSprites; // プレゼントテクスチャ制御 追加
 
         public override void OnGameStart()
         {
             MGManager.TestPlay(testlevel);
             MGManager.Load();
+            //MGManager.BGMPlay(false);
 
             present_count = 5 + (int)((Time.timeScale - 1) * 30);
 
@@ -60,16 +63,6 @@ namespace PTgame
                 if (fallScript != null)
                 {
                     fallScript.manager = this;
-                }
-
-                SpriteRenderer sr = g.GetComponent<SpriteRenderer>();
-                // ランダムなスプライト（テクスチャ）を適用
-                if(sr != null && presentSprites.Count > 0)
-                { 
-                    // 元のSquareのサイズを取得
-                    Vector2 originalSize = sr.sprite.bounds.size;
-                    // ランダムな新しいスプライト適用
-                    sr.sprite = presentSprites[UnityEngine.Random.Range(0, presentSprites.Count)];
                 }
 
                 presents.Add(g);
@@ -110,6 +103,8 @@ namespace PTgame
                 Debug.Log("Lose...");
                 fall = true;
                 change_animation(); //プレゼントの傾けるや左右移動のアニメーション関連
+
+                manage_obstacles(); //障害物の管理
             }
         }
 
@@ -184,17 +179,36 @@ namespace PTgame
                 action_time = UnityEngine.Random.Range(2f, 4f / Time.timeScale);
                 if (obstacles.Count == 0) return;
                 int i = UnityEngine.Random.Range(0, obstacles.Count);
-                GameObject o = Instantiate(obstacles[i]);
+                o = Instantiate(obstacles[i]);
                 obstacle_info = o.GetComponent<PT_Obstacle>();
             }
             if (obstacle_info != null)
             {
                 Debug.Log("障害物出現中 影響度: " + obstacle_info.power);
                 obstacle_power = obstacle_info.power;
+                PT_Wind w = o.GetComponent<PT_Wind>();
+                if (w != null)
+                {
+                    foreach (PT_FallLeaves l in leaves)
+                    {
+                        l.obstacle_power = obstacle_power;
+                    }
+                }
+                else
+                {
+                    foreach (PT_FallLeaves l in leaves)
+                    {
+                        l.obstacle_power = 0;
+                    }
+                }
             }
             else
             {
                 obstacle_power = 0f;
+                foreach (PT_FallLeaves l in leaves)
+                {
+                    l.obstacle_power = 0;
+                }
             }
         }
     }
