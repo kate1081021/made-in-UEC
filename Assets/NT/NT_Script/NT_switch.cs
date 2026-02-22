@@ -6,10 +6,11 @@ namespace NT
 public class NT_switch : MiniGameBase
 {
     public TMP_Text countText;
-    public int count = 0;
+    public float count = 0;
 
 
     public override void OnGameStart(){
+        MGManager.TestPlay(100);
     MGManager.Load();
     count = 0;
     }
@@ -20,7 +21,7 @@ public class NT_switch : MiniGameBase
     {
         if (Action.IsPressed())
         {
-            count++;
+            count=count+Time.timeScale;
             countText.text = "" + count;
         }
     }

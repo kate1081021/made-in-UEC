@@ -4,7 +4,7 @@ namespace NT
 {
     public class NT_judge : MiniGameBase
     {
-        private int count;
+        private float count;
         private NT_switch switchComponent; // スクリプト宣言
 
         [Header("NT")]

@@ -5,7 +5,7 @@ namespace NT
 {
     public class NT_graph : MiniGameBase
     {
-        private int count;
+        private float count;
         [SerializeField] private Image image;
         [SerializeField] private NT_switch switchComponent;
 
