@@ -1115,7 +1115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 463fff6ce242f894694a780cef89ad9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameBGM: {fileID: 0}
+  gameBGM: {fileID: 8300000, guid: 862316b74e3b8b54da54a4aa1fbef855, type: 3}
   SL_audioSource: {fileID: 2103181553}
   SL_AttackAudioClip: {fileID: 8300000, guid: a4929518a25f2f047b5cee067a5a1509, type: 3}
   SL_AttackAudioClip2: {fileID: 8300000, guid: 026bd09e0af5b7d46bd7ebbb670180a6, type: 3}
