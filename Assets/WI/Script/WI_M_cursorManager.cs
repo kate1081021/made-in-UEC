@@ -5,8 +5,6 @@ namespace WI
 
     public class WI_M_cursorManager : MiniGameBase
     {
-        private BoxCollider2D cursorCollider;
-
         [SerializeField] private float cursorSpeed;
         [SerializeField] private Vector2 cursorPosition;
         
@@ -15,7 +13,6 @@ namespace WI
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
         {
-            cursorCollider = this.GetComponent<BoxCollider2D>();
             inputDirection = new Vector2(0f, 0f);
             cursorPosition = transform.position;
             viewPosition = Camera.main.WorldToViewportPoint(cursorPosition);
@@ -33,8 +30,8 @@ namespace WI
             
             viewPosition = Camera.main.WorldToViewportPoint(cursorPosition);
             
-            viewPosition.x = Mathf.Clamp(viewPosition.x, 0.02f, 0.98f);
-            viewPosition.y = Mathf.Clamp(viewPosition.y, 0.02f, 0.98f);
+            viewPosition.x = Mathf.Clamp(viewPosition.x, 0.02f, 1.02f);
+            viewPosition.y = Mathf.Clamp(viewPosition.y, -0.035f, 0.965f);
             
             cursorPosition = Camera.main.ViewportToWorldPoint(viewPosition);
             transform.position = new Vector2(cursorPosition.x, cursorPosition.y);

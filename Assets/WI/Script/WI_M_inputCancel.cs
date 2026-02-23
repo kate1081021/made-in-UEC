@@ -1,17 +1,21 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace WI 
+namespace WI
 {
 
-    public class WI_M_inputClose : MiniGameBase
+    public class WI_M_inputCancel : MiniGameBase
     {
+        private WI_M_popParentManager rootManager;
+
         private BoxCollider2D cursorCollider;
 
         private bool cursorCollision;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
         {
+            if (transform.parent.parent != null)
+                rootManager = transform.parent.parent.GetComponent<WI_M_popParentManager>();
             cursorCollider = GameObject.Find("WI_M_cursor").GetComponent<BoxCollider2D>();
             cursorCollision = false;
         }
@@ -27,14 +31,10 @@ namespace WI
                 {
                     if (cursorCollision)
                     {
-                        if (this.transform.parent.GetComponent<WI_M_popParentManager>() != null)
-                        {
-                            this.transform.parent.GetComponent<WI_M_popParentManager>().setInputClose();
-                        }
-                        else
-                        {
-                            this.transform.parent.GetComponent<WI_M_buttonManager>().setInputClose();
-                        }
+                        rootManager.buttonTypeChange();
+                        rootManager.buttonActivate();
+                        rootManager.colorChange(new Color(1.0f, 1.0f, 1.0f, 1.0f));
+                        this.transform.parent.GetComponent<WI_M_buttonManager>().setInputClose();
                     }
                 }
             }
@@ -43,7 +43,7 @@ namespace WI
         private bool isTopWindowFromCursor()
         {
             SpriteRenderer cursorPos = cursorCollider.GetComponent<SpriteRenderer>();
-            Vector2 cursorPosition = new Vector2(cursorPos.bounds.min.x+0.06f,
+            Vector2 cursorPosition = new Vector2(cursorPos.bounds.min.x + 0.06f,
                                                  cursorPos.bounds.max.y);
 
             SortingGroup renderer;
@@ -62,7 +62,7 @@ namespace WI
 
                 if (renderer == null) continue;
 
-                if(renderer.sortingOrder > highestOrder)
+                if (renderer.sortingOrder > highestOrder)
                 {
                     highestOrder = renderer.sortingOrder;
                     topWindow = hit.collider.gameObject;
@@ -78,7 +78,7 @@ namespace WI
             {
                 cursorCollision = true;
             }
-            
+
         }
 
         private void OnTriggerExit2D(Collider2D collision)
