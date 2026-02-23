@@ -17,6 +17,9 @@ public static class MGManager
     /// ゲームが何倍速で動いているのかを管理する
     public static float timeScale = 1.0f;
 
+    // 音の倍速
+    public static float pitchScale = 1.0f;
+
     // --- 部員が自由に使える便利関数 ---
     /// <summary>
     /// ゲームが開始した直後にこれを呼んでください。
