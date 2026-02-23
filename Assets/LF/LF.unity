@@ -247,8 +247,8 @@ Transform:
   m_GameObject: {fileID: 224195453}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -17.43, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -7.2, z: 0}
+  m_LocalScale: {x: 0.34, y: 0.34, z: 0.34}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 773696205}
@@ -612,7 +612,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3836461269260553174, guid: c9f23c0ea95a9dd4fbb23dc4acd51174, type: 3}
+  m_Sprite: {fileID: -5079223292451459607, guid: e6168669e23923d46a67e6ae01077ce6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -633,7 +633,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.57, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 224195454}
@@ -652,7 +652,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  howToMove: 0
   Moving_Vertically: 0
+  Moving_Horizontally: 0
+  Moving_Roundly: 0
   speed: 0
   flag: 0
 --- !u!1 &1298012110

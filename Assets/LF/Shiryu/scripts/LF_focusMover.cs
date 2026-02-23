@@ -2,6 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.Collections;
 
 namespace LoupeFire
 {
@@ -25,18 +26,28 @@ namespace LoupeFire
             flag = loupescript.flag;
             if (flag && SuccessOrFailure == 0)
             {
-                float abssqrd = Mathf.Pow(transform.position.x - matchtransform.position.x, 2f) + Mathf.Pow(transform.position.y - matchtransform.position.y, 2f); //焦点とマッチまでの距離の平方．もっといい方法あるんですかね……？
-                if (abssqrd <= 0.1)  //距離の平方が0.1以下なら成功とする
+                Vector2 matchpos = matchtransform.position;
+                Vector2 pos = transform.position;
+                float abs = Vector2.Distance(matchpos, pos);
+                //float abssqrd = Mathf.Pow(transform.position.x - matchtransform.position.x, 2f) + Mathf.Pow(transform.position.y - matchtransform.position.y, 2f); //焦点とマッチまでの距離の平方．もっといい方法あるんですかね……？
+                if (abs <= 0.4)  //距離が0.4以下なら成功とする
                 {
                     SuccessOrFailure = 1;
                     MGManager.ClearGame();
-                    Debug.Log(abssqrd.ToString());
+                    Debug.Log(abs.ToString());
                 } else
                 {
                     SuccessOrFailure = -1;
-                    Debug.Log("失敗！！！！ " + abssqrd.ToString());
+                    Debug.Log("失敗！！！！ " + abs.ToString());
+                    StartCoroutine(retry());
                 }
             }
+        }
+        IEnumerator retry()
+        {
+            yield return new WaitForSeconds(1f * Time.timeScale);  //１秒待つ
+            loupescript.flag = false;
+            SuccessOrFailure = 0;
         }
     }
 }
