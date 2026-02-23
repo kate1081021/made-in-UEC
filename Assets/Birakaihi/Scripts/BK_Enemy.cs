@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class BK_Enemy : MonoBehaviour
+public class BK_Enemy
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    // プロパティ
+    public float direction;
+    public float Y;
 
-    // Update is called once per frame
-    void Update()
+    // コンストラクター
+    public BK_Enemy(float dir, float y)
     {
-        
+        direction = dir;
+        Y = y;
     }
+    
 }

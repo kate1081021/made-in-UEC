@@ -9,6 +9,7 @@ namespace BK
 
         // パラメーター
         public int escape = 0;  // よけていないときは0、右によけたら1、左によけたら-1をそれぞれ持つ
+        private bool success = true;  // ミニゲーム成功or失敗
 
         // ゲーム開始時に呼ばれる
         public override void OnGameStart()
@@ -44,7 +45,14 @@ namespace BK
         // Walkingアニメーションが終了したとき
         public void walkingEnded()
         {
-            animator.SetBool("Success", true);
+            if (success) { animator.SetBool("Success", true); }
+        }
+
+        // Failureアニメーションが呼ばれる
+        public void FailureAnimation()
+        {
+            animator.SetBool("Failure", true);
+            success = false;
         }
 
         // 毎フレームごとに呼ばれる
