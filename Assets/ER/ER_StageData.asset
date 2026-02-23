@@ -16,4 +16,6 @@ MonoBehaviour:
   - {fileID: 5483746588343433821, guid: d518b31638c43e44895d90669ac40cd1, type: 3}
   incorrectReportList:
   - {fileID: 7088106511976476706, guid: eef3717ea383ed442b17de09a9df5a54, type: 3}
-  correctAnswerRate: 0.5
+  - {fileID: -1116093352444877886, guid: 9f0d093cb62e39a44a0a07e7471eefbe, type: 3}
+  - {fileID: 6139093453089157111, guid: 00b3233dfdf594444a724d6a56571dd1, type: 3}
+  correctAnswerRate: 0.3

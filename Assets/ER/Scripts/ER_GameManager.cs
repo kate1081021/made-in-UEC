@@ -10,6 +10,7 @@ namespace ER
 		[SerializeField] private SpriteRenderer reportRenderer;
 		[SerializeField] private GameObject submitUI;
 		[SerializeField] private ER_StageData stageData;
+		[SerializeField] private ER_Stamp stamp;
 		private Sprite currentReport;
 		private bool isCorrectReport;
 		private bool isNotClear = false;
@@ -64,12 +65,14 @@ namespace ER
 			if (isSubmitted && isCorrectReport && !MGManager.IsClear)
 			{
 				Debug.Log("正解");
+				stamp.ShowStamp(true);
 				MGManager.ClearGame();
 			}
 			else if (isSubmitted && !isCorrectReport && !isNotClear)
 			{
 				Debug.Log("不正解");
 				isNotClear = true;
+				stamp.ShowStamp(false);
 				// 不正解の処理をここに追加
 			}
 		}

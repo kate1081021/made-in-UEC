@@ -13,7 +13,7 @@ namespace ER
 		public override void OnGameStart()
 		{
 			submitAnimation = GetComponent<Animator>();
-			submitAnimation.SetBool("isSubmitted", false);
+			submitAnimation.SetBool("IsSubmitted", false);
 			canSubmit = false;
 		}
 
@@ -21,7 +21,7 @@ namespace ER
 		{
 			if (ER_GameManager.Instance.isSubmitted)
 			{
-				submitAnimation.SetBool("isSubmitted", true);
+				submitAnimation.SetBool("IsSubmitted", true);
 			}
 			else
 			{
