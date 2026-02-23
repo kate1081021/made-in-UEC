@@ -13,7 +13,9 @@ namespace LoupeFire
         [SerializeField] bool flag;
         [SerializeField] int SuccessOrFailure = 0; //成功失敗を記録．まだわからない場合は0，成功は1，失敗は-1
         [SerializeField] GameObject match;
+        [SerializeField] LF_SceneChange scenechange;
         private Transform matchtransform;
+
         public override void OnGameStart()
         {
             parent = this.gameObject.transform.parent.gameObject;  //自分の親（ルーペ）を取得
@@ -34,6 +36,7 @@ namespace LoupeFire
                 {
                     SuccessOrFailure = 1;
                     MGManager.ClearGame();
+                    scenechange.StartClear();
                     Debug.Log(abs.ToString());
                 } else
                 {
