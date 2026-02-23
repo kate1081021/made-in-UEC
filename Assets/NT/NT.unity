@@ -437,20 +437,6 @@ Transform:
   - {fileID: 160285647}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1095874356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5427046660123316541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56ba2dbf67b829f4792adaf815e08ccf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameBGM: {fileID: 0}
-  stamp_script: {fileID: 0}
 --- !u!1 &1210811664
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,7 +1193,6 @@ GameObject:
   - component: {fileID: 4003787295530545945}
   - component: {fileID: 8047941679037284637}
   - component: {fileID: 6325792457244175932}
-  - component: {fileID: 1095874356}
   - component: {fileID: 8047941679037284638}
   m_Layer: 0
   m_Name: Gamecontroller
