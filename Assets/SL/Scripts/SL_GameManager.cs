@@ -5,7 +5,7 @@ namespace SL
     public class SL_GameManager : MiniGameBase
     {
         [Header("クリアチェッカー変数")]
-        bool Cleared = true;
+        bool Cleared = false;
 
         [Header("パラメータ")]
         public float balloonDamage = 0f;
@@ -29,21 +29,24 @@ namespace SL
         void Update()
         {
             //手の移動(可能なら同時押しに対応)
-            float trigger = Trigger.ReadValue<float>();
-            if (trigger > 0)
+            float triggerLeft = Trigger_left.ReadValue<float>();
+            if (triggerLeft > 0)
             {
-                rightHandController.UpdateHand(true);
-                leftHandController.UpdateHand(false);
-            }
-            else if (trigger < 0)
-            {
-                rightHandController.UpdateHand(false);
                 leftHandController.UpdateHand(true);
             }
             else
             {
-                rightHandController.UpdateHand(false);
                 leftHandController.UpdateHand(false);
+            }
+
+            float triggerRight = Trigger_right.ReadValue<float>();
+            if (triggerRight > 0)
+            {
+                rightHandController.UpdateHand(true);
+            }
+            else
+            {
+                rightHandController.UpdateHand(false);
             }
 
             //鼻風船のサイズ変更
@@ -60,23 +63,31 @@ namespace SL
             }
         }
 
-        protected override void OnTriggerStarted(float value)
+        protected override void OnTriggerLeftStarted(float value)
+        {
+            OnAnyTriggerStarted(value);
+        }
+
+        protected override void OnTriggerRightStarted(float value)
+        {
+            OnAnyTriggerStarted(value);
+        }
+
+        //従来のOnTriggerStartedだと動作しない
+        private void OnAnyTriggerStarted(float value)
         {
             //鼻風船へのダメージ
             balloonDamage += 1f;
             //クリアしていないときのみSEを鳴らしています
-            if (Cleared)
+            if (!Cleared)
             {
-            sL_AudioManager.AttackSe();    
-            }
-            if (balloonDamage >= balloonDamageMax)
-            {
-                if (Cleared)
+                sL_AudioManager.AttackSe();
+                if (balloonDamage >= balloonDamageMax)
                 {
-                //OngameClearが何度も呼ばれてしまうことをついでに防いでいます
-                OnGameClear();
-                sL_AudioManager.GameClearSe();
-                Cleared = false;
+                    //OngameClearが何度も呼ばれてしまうことをついでに防いでいます
+                    OnGameClear();
+                    sL_AudioManager.GameClearSe();
+                    Cleared = true;
                 }
             }
         }
