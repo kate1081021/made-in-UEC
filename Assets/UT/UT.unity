@@ -784,9 +784,11 @@ MonoBehaviour:
   - {fileID: 2139279805513923704, guid: 21bb58f0f3b5c08439668f7bc5dc461b, type: 3}
   - {fileID: 5481663878230809623, guid: 0b5b71a9d9af92549af13a52ed8612da, type: 3}
   - {fileID: 4530370601095003183, guid: 1353387b8b0b8274ba4aa8ca8ea33f60, type: 3}
+  - {fileID: 472407195154502836, guid: 0da39fed8a4d56b4badc47b780fccaf8, type: 3}
+  - {fileID: 0}
   level2: []
   level3: []
-  random: 1
+  random: 0
   movespeed: 4
   damage: 25
   duration: 0.8
