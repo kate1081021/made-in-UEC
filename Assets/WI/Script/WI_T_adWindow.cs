@@ -11,13 +11,15 @@ namespace WI
 
         public Color darkerColor = new Color(0.5f, 0.5f, 0.5f, 1f);
         private SpriteRenderer myRenderer;
+        private SpriteRenderer myButtonRenderer;
         private Color originalColor = Color.white;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
         {
             myRenderer = GetComponent<SpriteRenderer>();
-            myRenderer.color = darkerColor;
+            myButtonRenderer = parentCloseButton.GetComponent<SpriteRenderer>();
+            myRenderer.color = myButtonRenderer.color = darkerColor;
 
             if (parentCloseButton != null)
             {
@@ -32,7 +34,7 @@ namespace WI
         {
             if (adWindow == null)
             {
-                myRenderer.color = originalColor;
+                myRenderer.color = myButtonRenderer.color = originalColor;
 
                 if (parentCloseButton != null)
                 {

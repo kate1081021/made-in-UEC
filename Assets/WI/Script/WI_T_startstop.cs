@@ -9,6 +9,7 @@ namespace WI
 
         public GameObject[] windowType;
         public List<GameObject> targetWindows = new List<GameObject>();
+        public int windowCreates = 2;
         private bool ClearFlag = false;
         private bool isWindowAllClosed = false;
         private bool isBusterAllClosed = false;
@@ -16,27 +17,31 @@ namespace WI
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
         {
-            // MGManager.TestPlay(1);
+            MGManager.TestPlay(30);
             MGManager.Load();
 
             ClearFlag = false;
             targetWindows.Clear();
+            // int windowCreates = 2;
 
-            for (int i = 0; i < windowType.Length; i++)
+            for (int i = 0; i < windowCreates; i++)
             {
                 Vector2 spawnPos = Vector2.zero;
 
                 float randomX = Random.Range(-3.3f, 3.3f);
                 float randomY = Random.Range(-0.15f, 0.15f);
 
+                int ramdomWindow = Random.Range(0, windowType.Length);
+                Debug.Log("windowType: " + windowType[ramdomWindow]);
+
                 spawnPos = new Vector2(randomX, randomY);
-                if (windowType[i].name == "WI_M_window_virus buster")
+                if (windowType[ramdomWindow].name == "WI_M_window_virus buster")
                 {
                     spawnPos = new Vector2(7f,-2.5f);
                 }
 
 
-                GameObject newWindow = Instantiate(windowType[i], spawnPos, Quaternion.identity);
+                GameObject newWindow = Instantiate(windowType[ramdomWindow], spawnPos, Quaternion.identity);
 
                 // レイヤー設定
                 SortingGroup sg = newWindow.GetComponent<SortingGroup>();
@@ -97,7 +102,8 @@ namespace WI
             if (isWindowAllClosed && isBusterAllClosed)
             {
                 ClearFlag = true;
-                Debug.Log("[System] 全ての指定ウィンドウが削除されました。クリア！");
+                // Debug.Log("[System] 全ての指定ウィンドウが削除されました。クリア！");
+                Debug.Log("time: " + Time.time);
                 MGManager.ClearGame();
             }
         }
