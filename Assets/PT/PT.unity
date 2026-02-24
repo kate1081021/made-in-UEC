@@ -166,8 +166,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leaf: {fileID: 3935051574513996141, guid: 320265cab29468149908817323607074, type: 3}
   leaves: []
+  leaves_random_index: []
   falltime: 0
   obstacle_power: 0
+  time: 0
 --- !u!212 &257296981
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -270,8 +272,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leaf: {fileID: 3935051574513996141, guid: 320265cab29468149908817323607074, type: 3}
   leaves: []
+  leaves_random_index: []
   falltime: 0
   obstacle_power: 0
+  time: 0
 --- !u!212 &294297512
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -602,17 +606,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.050167084, y: 2.6694207}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 38.399998, y: 8.19}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 25.858337, y: 2.8008556}
   m_EdgeRadius: 0
 --- !u!50 &585940745
 Rigidbody2D:
@@ -685,8 +689,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.95019156, g: 1, b: 0.68490565, a: 1}
+  m_Sprite: {fileID: -9070142321650769751, guid: dd0c2c43246c6a245a8b2eb0cf47ad7b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -705,9 +709,9 @@ Transform:
   m_GameObject: {fileID: 585940743}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -6, z: 0}
-  m_LocalScale: {x: 100, y: 6, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0.908, y: -15.05, z: -0.01}
+  m_LocalScale: {x: 2.49, y: 2.9603913, z: 4.521957}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1674270457}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1482,7 +1486,7 @@ MonoBehaviour:
   mover: {fileID: 5422064317260158470}
   obstacle_info: {fileID: 0}
   game_camera: {fileID: 766268018}
-  testlevel: 101
+  testlevel: 1
 --- !u!4 &1213273100
 Transform:
   m_ObjectHideFlags: 0
