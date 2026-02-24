@@ -49,6 +49,7 @@ public static class MGManager
     {   
         timeScale = Stage2TimeScale(s);
         Time.timeScale = timeScale;
+        stage = s;
         Debug.Log($"<color=green>【System】ステージ{s}での速度が再現されます。(timeScale={timeScale}) </color>");
     }
 
