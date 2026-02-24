@@ -19,7 +19,9 @@ namespace PTgame
         [SerializeField] private float move_x; //移動距離
         [SerializeField] private float ppm_x; //アニメーション移動 (present parent move x)
         [SerializeField] private float game_time;
+        [SerializeField] private float endless_timer;
         [SerializeField] public bool fall; //落下したか判定
+        [SerializeField] public bool endlessmode;
         [SerializeField] private GameObject present_parent; //プレゼント全体制御
         [SerializeField] private GameObject present;
         [SerializeField] private GameObject o;
@@ -34,19 +36,26 @@ namespace PTgame
             MGManager.TestPlay(testlevel);
             MGManager.Load();
             //MGManager.BGMPlay(false);
+            if (endlessmode)
+            {
+                present_count = 5;
+                present_slope = 0;
+                endless_timer = 0;
+            }
+            else
+            {
+                present_count = 5 + (int)((Time.timeScale - 1) * 30);
+                game_camera.orthographicSize = 2f + present_count / 1.25f;
+                game_camera.transform.position = new Vector3(0, -2.5f + (float)present_count / 2, -10);
+                if (Time.timeScale < 1.25f)
+                    present_slope = UnityEngine.Random.Range(-1.25f + Time.timeScale, 1.25f - Time.timeScale);
+                else
+                    present_slope = UnityEngine.Random.Range(-0.01f, 0.01f);
 
-            present_count = 5 + (int)((Time.timeScale - 1) * 30);
-
-            game_camera.orthographicSize = 2f + present_count / 1.25f;
-            game_camera.transform.position = new Vector3(0, -2.5f + (float)present_count / 2, -10);
+            }
 
             action_time = 0f;
             obstacle_power = 0f;
-
-            if (Time.timeScale < 1.25f)
-                present_slope = UnityEngine.Random.Range(-1.25f + Time.timeScale, 1.25f - Time.timeScale);
-            else
-                present_slope = UnityEngine.Random.Range(-0.01f, 0.01f);
 
             fall = false;
 
@@ -63,6 +72,20 @@ namespace PTgame
                 if (fallScript != null)
                 {
                     fallScript.manager = this;
+                    if (endlessmode)
+                    {
+                        // 1. 現在のカメラの「上端」の座標を計算
+                        // orthographicSize は中心から上端までの距離
+                        float cameraTop = game_camera.transform.position.y + game_camera.orthographicSize;
+
+                        // 2. カメラの上端よりさらに外側に配置（マージンとして +2f ほど）
+                        float spawnY = cameraTop + 2f + i;
+
+                        // 3. 親オブジェクト(present_parent)の座標系に変換してセット
+                        // 親が動いている場合は InverseTransformPoint を使うのが安全です
+                        g.transform.position = new Vector3(present_slope * i, spawnY, 0);
+                        fallScript.present_tp = i;
+                    }
                 }
 
                 presents.Add(g);

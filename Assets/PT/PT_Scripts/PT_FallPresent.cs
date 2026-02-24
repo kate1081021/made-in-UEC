@@ -6,6 +6,7 @@ namespace PTgame
     public class PT_FallPresent : MonoBehaviour
     {
         [SerializeField] public PT_Manager manager;
+        [SerializeField] public float present_tp;
         [SerializeField] private Rigidbody2D rigid;
         [SerializeField] private float pushForce = 2.0f; // 左右に飛ばす強さ
         private bool isFalling = false; // すでに落下開始したかどうかのフラグ
