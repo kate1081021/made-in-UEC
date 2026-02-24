@@ -6,6 +6,15 @@ namespace WI
 {
     public class WI_T_startstop : MiniGameBase
     {
+        // 1以上であればTestPlay(TestStage)でゲーム実行
+        [SerializeField] private int TestStage = 0;
+
+        // trueであれば全てのウィンドウ表示
+        [SerializeField] private bool allInstanciate = false;
+
+        // BGM
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip startSound;
 
         public GameObject[] windowType;
         public List<GameObject> targetWindows = new List<GameObject>();
@@ -17,41 +26,59 @@ namespace WI
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
         {
-            MGManager.TestPlay(30);
-            MGManager.Load();
+            if (audioSource != null && startSound != null)
+            {
+                audioSource.clip = startSound;
+                audioSource.playOnAwake = false;
+                audioSource.Play();
+            }
+
+            if (TestStage > 0)
+            {
+                MGManager.TestPlay(TestStage);
+            }
+            else
+            {
+                MGManager.Load();
+            }
 
             ClearFlag = false;
             targetWindows.Clear();
             // int windowCreates = 2;
 
-            for (int i = 0; i < windowCreates; i++)
+            if (allInstanciate)
             {
-                Vector2 spawnPos = Vector2.zero;
-
-                float randomX = Random.Range(-3.3f, 3.3f);
-                float randomY = Random.Range(-0.15f, 0.15f);
-
-                int ramdomWindow = Random.Range(0, windowType.Length);
-                Debug.Log("windowType: " + windowType[ramdomWindow]);
-
-                spawnPos = new Vector2(randomX, randomY);
-                if (windowType[ramdomWindow].name == "WI_M_window_virus buster")
+                for (int i = 0; i < windowCreates; i++)
                 {
-                    spawnPos = new Vector2(7f,-2.5f);
+                    Vector2 spawnPos;
+
+                    float randomX = Random.Range(-3.3f, 3.3f);
+                    float randomY = Random.Range(-0.15f, 0.15f);
+
+                    spawnPos = new Vector2(randomX, randomY);
+                    if (windowType[i].name == "WI_M_window_virus buster")
+                    {
+                        spawnPos = new Vector2(7f, -2.5f);
+                    }
+
+
+                    GameObject newWindow = Instantiate(windowType[i], spawnPos, Quaternion.identity);
+
+                    // レイヤー設定
+                    SortingGroup sg = newWindow.GetComponent<SortingGroup>();
+                    if (sg != null)
+                    {
+                        sg.sortingOrder = i;
+                    }
+                    targetWindows.Add(newWindow);
+
                 }
-
-
-                GameObject newWindow = Instantiate(windowType[ramdomWindow], spawnPos, Quaternion.identity);
-
-                // レイヤー設定
-                SortingGroup sg = newWindow.GetComponent<SortingGroup>();
-                if (sg != null)
-                {
-                    sg.sortingOrder = i;
-                }
-                targetWindows.Add(newWindow);
-                
             }
+            else
+            {
+                gameSetting();
+            }
+            
         }
 
         // インデックスを返す関数
@@ -69,7 +96,10 @@ namespace WI
             return -1;
         }
 
-        public override void OnGameEnd() { }
+        public override void OnGameEnd()
+        {
+            if (audioSource != null) audioSource.Stop();
+        }
 
         // Update is called once per frame
         void Update()
@@ -105,6 +135,50 @@ namespace WI
                 // Debug.Log("[System] 全ての指定ウィンドウが削除されました。クリア！");
                 Debug.Log("time: " + Time.time);
                 MGManager.ClearGame();
+            }
+        }
+
+        // 生成するウィンドウを設定する関数
+        private void gameSetting()
+        {
+            int stage = MGManager.stage;
+            
+            if(stage < 6)
+            {
+                setTarget(new int[2] { 0, 1 });
+            }
+        }
+
+        // 指定したidのウィンドウを全て生成する関数
+        private void setTarget(int[] id)
+        {
+            int sortNum = id.Length;
+            foreach(int i in id)
+            {
+                Vector2 spawnPos;
+
+                float randomX = Random.Range(-3.3f, 3.3f);
+                float randomY = Random.Range(-0.15f, 0.15f);
+
+                Debug.Log("windowType: " + windowType[i]);
+
+                spawnPos = new Vector2(randomX, randomY);
+                if (windowType[i].name == "WI_M_window_virus buster")
+                {
+                    spawnPos = new Vector2(7f, -2.5f);
+                }
+
+
+                GameObject newWindow = Instantiate(windowType[i], spawnPos, Quaternion.identity);
+
+                // レイヤー設定
+                SortingGroup sg = newWindow.GetComponent<SortingGroup>();
+                if (sg != null)
+                {
+                    sg.sortingOrder = i;
+                }
+                targetWindows.Add(newWindow);
+
             }
         }
         
