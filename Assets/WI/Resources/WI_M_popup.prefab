@@ -283,18 +283,18 @@ PrefabInstance:
     - target: {fileID: 4624970501168867128, guid: bb7bedd531da58743ad651ad0cffd01a, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -5195289915233943999, guid: 916a7ab35ef56ef489d99ba2ce86ac41, type: 3}
+      objectReference: {fileID: 2341724396255989760, guid: 9e5faaaa035d8704a853b377a3338516, type: 3}
     - target: {fileID: 4624970501168867128, guid: bb7bedd531da58743ad651ad0cffd01a, type: 3}
       propertyPath: m_Color.b
-      value: 0.9481132
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4624970501168867128, guid: bb7bedd531da58743ad651ad0cffd01a, type: 3}
       propertyPath: m_Color.g
-      value: 0.9481132
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4624970501168867128, guid: bb7bedd531da58743ad651ad0cffd01a, type: 3}
       propertyPath: m_Color.r
-      value: 0.9481132
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4624970501168867128, guid: bb7bedd531da58743ad651ad0cffd01a, type: 3}
       propertyPath: m_SortingOrder
@@ -448,3 +448,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1c496500e4cd34bbb9685480a1a7b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameBGM: {fileID: 0}
