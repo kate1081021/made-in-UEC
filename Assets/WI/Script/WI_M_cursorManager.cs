@@ -25,8 +25,8 @@ namespace WI
         {
             inputDirection = Move.ReadValue<Vector2>();
             
-            cursorPosition = new Vector2(transform.position.x + inputDirection.x * cursorSpeed,
-                                         transform.position.y + inputDirection.y * cursorSpeed);
+            cursorPosition = new Vector2(transform.position.x + inputDirection.x * cursorSpeed * MGManager.timeScale,
+                                         transform.position.y + inputDirection.y * cursorSpeed * MGManager.timeScale);
             
             viewPosition = Camera.main.WorldToViewportPoint(cursorPosition);
             
@@ -38,10 +38,10 @@ namespace WI
             
         }
 
-        //public BoxCollider2D getCollider()
-        //{
-        //    return this.cursorCollider;
-        //}
+        public void setCursorSpeed(int speed)
+        {
+            this.cursorSpeed = speed;
+        }
     }
 }
 
