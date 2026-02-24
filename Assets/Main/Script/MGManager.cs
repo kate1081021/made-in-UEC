@@ -17,6 +17,9 @@ public static class MGManager
     /// ゲームが何倍速で動いているのかを管理する
     public static float timeScale = 1.0f;
 
+    // 音の倍速
+    public static float pitchScale = 1.0f;
+
     // --- 部員が自由に使える便利関数 ---
     /// <summary>
     /// ゲームが開始した直後にこれを呼んでください。
@@ -46,6 +49,7 @@ public static class MGManager
     {   
         timeScale = Stage2TimeScale(s);
         Time.timeScale = timeScale;
+        stage = s;
         Debug.Log($"<color=green>【System】ステージ{s}での速度が再現されます。(timeScale={timeScale}) </color>");
     }
 
