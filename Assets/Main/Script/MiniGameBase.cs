@@ -16,7 +16,7 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     [Tooltip("このゲームで流したいBGM。未設定ならデフォルトBGMが流れます")]
     [SerializeField] private AudioClip gameBGM;
     [SerializeField] private Dictionary<string, AudioClip> soundEffects;
-    private static AudioSource mainSource;
+    private static AudioSource mainSource = new AudioSource();
 
     
     /// <summary> 運営がBGMを取得するためのプロパティ </summary>
