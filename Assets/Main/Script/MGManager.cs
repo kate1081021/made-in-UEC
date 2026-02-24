@@ -25,6 +25,9 @@ public static class MGManager
     // 終了フラグ（これを各ミニゲームが書き換えるのではなく、管理側で制御する）
     public static bool isAllGameEndProcessed = false;
 
+    // テストプレイの判断
+    public static bool isMainCalled = false;
+
     // --- 部員が自由に使える便利関数 ---
     /// <summary>
     /// ゲームが開始した直後にこれを呼んでください。
@@ -52,10 +55,13 @@ public static class MGManager
     /// <summary>
     public static void TestPlay(int s)
     {   
-        timeScale = Stage2TimeScale(s);
-        Time.timeScale = timeScale;
-        stage = s;
-        Debug.Log($"<color=green>【System】ステージ{s}での速度が再現されます。(timeScale={timeScale}) </color>");
+        if (!isMainCalled)
+        {
+            timeScale = Stage2TimeScale(s);
+            Time.timeScale = timeScale;
+            stage = s;
+            Debug.Log($"<color=green>【System】ステージ{s}での速度が再現されます。(timeScale={timeScale}) </color>");
+        }
     }
 
     /// これより下の関数(メソッド)は呼び出さないでください。

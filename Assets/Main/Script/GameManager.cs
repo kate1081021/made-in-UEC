@@ -39,7 +39,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // タイトルコール
-
+        
+        // テストプレイではないことを確認
+        MGManager.isMainCalled = true;
+        
         // ゲーム進行コルーチン呼び出し
         StartCoroutine(MainCoroutine());
     }
