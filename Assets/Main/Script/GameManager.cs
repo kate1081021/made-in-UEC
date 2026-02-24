@@ -60,8 +60,8 @@ public class GameManager : MonoBehaviour
     }
 
     private IEnumerator MainCoroutine()
-    {   
-        
+    {
+        yield return null;
         // BGMの総プレイ時間
         double TotalPlayTime = 0.0f;
         double FirstPlayTime = 0.0f;
@@ -214,7 +214,10 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         uiManager.UITimer(last);
-
+        foreach (var game in MGManager.ActiveMiniGames.ToArray())
+        {
+            if (game != null) game.ExecuteGameEnd();
+        }
         // 3. アニメーションが終わるまで、かつロードが90%（準備完了）まで待機
         while (asyncLoad.progress < 0.9f)
         {
@@ -229,10 +232,6 @@ public class GameManager : MonoBehaviour
 
         // UIをもとに戻す
         uiManager.UIReset();
-        while (!MGManager.isMiniGameEnded)
-        {
-            yield return null;
-        }
 
         // 5. MainCouroutineに戻る
         StartCoroutine(MainCoroutine());

@@ -189,8 +189,6 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
             InputSystems.Disable();
             InputSystems.Dispose();
         }
-        OnGameEnd();
-        MGManager.isMiniGameEnded = true;
         Debug.Log("OnGameEnd");
     }
     /// <summary>
@@ -234,6 +232,32 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
             mainSource.pitch = MGManager.pitchScale;
         }
         mainSource.PlayOneShot(soundEffects[id]);
+    }
+    // 二重実行防止用のフラグ
+    private bool isEndProcessed = false;
+
+    protected virtual void OnEnable()
+    {
+        // リストに自分を追加
+        if (!MGManager.ActiveMiniGames.Contains(this))
+        {
+            MGManager.ActiveMiniGames.Add(this);
+        }
+    }
+
+    protected virtual void OnDisable()
+    {
+        // リストから自分を削除
+        MGManager.ActiveMiniGames.Remove(this);
+    }
+
+    // 運営側から一斉に呼ばれる終了関数
+    public void ExecuteGameEnd()
+    {
+        if (isEndProcessed) return; // 既に実行済みならスルー
+
+        OnGameEnd(); // 部員が書いた終了処理（判定更新など）を実行
+        isEndProcessed = true;
     }
 }
 

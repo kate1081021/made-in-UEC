@@ -3,6 +3,8 @@ using System;
 
 public static class MGManager
 {
+    // 現在シーン内に存在するMiniGameBaseを継承したオブジェクトのリスト
+    public static System.Collections.Generic.List<MiniGameBase> ActiveMiniGames = new();
     /// <summary> 
     /// ミニゲームのロードを確認する
     /// </summary>
@@ -20,8 +22,8 @@ public static class MGManager
     // 音の倍速
     public static float pitchScale = 1.0f;
 
-    // OnGameEndが呼ばれたかどうか
-    public static bool isMiniGameEnded { get; set; } = false;
+    // 終了フラグ（これを各ミニゲームが書き換えるのではなく、管理側で制御する）
+    public static bool isAllGameEndProcessed = false;
 
     // --- 部員が自由に使える便利関数 ---
     /// <summary>
@@ -74,8 +76,8 @@ public static class MGManager
     public static void Finished()
     {
         isMinigameLoaded = false;
-        isMiniGameEnded = false;
         IsClear = false;
+        isAllGameEndProcessed = false; // フラグもリセット
     }
 
     // ステージ数を入力したら、それに対応するtimeScaleを返す
