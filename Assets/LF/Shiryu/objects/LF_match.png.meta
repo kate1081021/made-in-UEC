@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c9f23c0ea95a9dd4fbb23dc4acd51174
+guid: b7a03349a11765d429a19362fbeb2d6f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3836461269260553174
-    second: LF_Loupe_0
+      213: -5500508756910994796
+    second: LF_match 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,40 +96,27 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LF_Loupe_0
+      name: LF_match 1_0
       rect:
         serializedVersion: 2
-        x: 280
-        y: 938
-        width: 1726
-        height: 388
+        x: 143
+        y: 743
+        width: 1744
+        height: 394
       alignment: 9
-      pivot: {x: 0.29048702, y: 0.46590212}
+      pivot: {x: 0.8868857, y: 0.4999997}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a243e235dc622cac0800000000000000
-      internalID: -3836461269260553174
+      spriteID: 49a0564bd644aa3b0800000000000000
+      internalID: -5500508756910994796
       vertices: []
       indices: 
       edges: []
@@ -138,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b37b1a12aa826744a94e431a7d817527
+    spriteID: 54d2294a3d154fc44858ee7e24ff3fa3
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      LF_Loupe_0: -3836461269260553174
+      LF_match 1_0: -5500508756910994796
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

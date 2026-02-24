@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c9f23c0ea95a9dd4fbb23dc4acd51174
+guid: e6168669e23923d46a67e6ae01077ce6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3836461269260553174
-    second: LF_Loupe_0
+      213: -5079223292451459607
+    second: LF_Loupe_truth_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,40 +96,27 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LF_Loupe_0
+      name: LF_Loupe_truth_0
       rect:
         serializedVersion: 2
-        x: 280
-        y: 938
-        width: 1726
-        height: 388
+        x: 176
+        y: 173
+        width: 806
+        height: 133
       alignment: 9
-      pivot: {x: 0.29048702, y: 0.46590212}
+      pivot: {x: 0.3131504, y: 0.5198658}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a243e235dc622cac0800000000000000
-      internalID: -3836461269260553174
+      spriteID: 9ed6a8e8359f289b0800000000000000
+      internalID: -5079223292451459607
       vertices: []
       indices: 
       edges: []
@@ -138,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b37b1a12aa826744a94e431a7d817527
+    spriteID: 57b7dc9bd33c77a409543fd13da756e1
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      LF_Loupe_0: -3836461269260553174
+      LF_Loupe_truth_0: -5079223292451459607
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
