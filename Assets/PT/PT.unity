@@ -1482,7 +1482,7 @@ MonoBehaviour:
   mover: {fileID: 5422064317260158470}
   obstacle_info: {fileID: 0}
   game_camera: {fileID: 766268018}
-  testlevel: 1
+  testlevel: 101
 --- !u!4 &1213273100
 Transform:
   m_ObjectHideFlags: 0

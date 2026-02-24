@@ -85,7 +85,7 @@ namespace PTgame
             action_time -= game_time;
             if (present_slope * present_slope < 1)
             {
-                present_slope = presents[1].transform.localPosition.x + presents[1].transform.localPosition.x * (float)present_count / 10 * game_time;
+                present_slope = presents[1].transform.localPosition.x + presents[1].transform.localPosition.x * game_time;
 
                 //Debug.Log("1.00 "+present_slope+" vs "+Time.timeScale+" "+(present_slope*Time.timeScale));
                 //present_slope += Time.timeScale*move.transform.position.x/500f;
@@ -167,7 +167,7 @@ namespace PTgame
                 if (power > 0.1f)
                     power = 0.1f;
                 //Debug.Log("power"+power);
-                g.transform.localPosition = new Vector3((present_slope + obstacle_power / 100 - move_x * 4 * power) * i, i, 0);
+                g.transform.localPosition = new Vector3((present_slope + obstacle_power * game_time - move_x * 4 * power) * i, i, 0);
             }
         }
 
