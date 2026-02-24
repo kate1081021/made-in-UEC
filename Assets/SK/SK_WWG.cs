@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Video; // ★ビデオ制御に必要
 
 namespace SK
 {
@@ -8,6 +9,8 @@ namespace SK
         // ★ボタンタイプは L と R のみ
         public enum ButtonType { Left, Right }
 
+        [Header("Video Settings")]
+        public VideoPlayer targetVideo; // インスペクターでVideoPlayerをアタッチ
         [Header("References")]
         public SK_WarpedWallPlayer player; 
         public Transform spawnPoint;
@@ -44,6 +47,14 @@ namespace SK
         public override void OnGameStart()
         {
             MGManager.TestPlay(1);
+            
+            if (targetVideo != null)
+            {
+                targetVideo.Play();
+                // もし動画の速さもステージに合わせるなら以下を追加
+                targetVideo.playbackSpeed = 1.0f * Time.timeScale; 
+            }
+
             MGManager.Load();
 
             isGameActive = true;
@@ -142,6 +153,7 @@ namespace SK
             if (targetNote.noteType != inputType)
             {
                 PlaySound(sfxMiss);
+                player.FallDown();
                 return; 
             }
 
@@ -157,6 +169,7 @@ namespace SK
             }
             else
             {
+                player.FallDown();
                 PlaySound(sfxMiss);
             }
         }
@@ -179,6 +192,11 @@ namespace SK
                     // 成功
                     if (bgmSource != null) bgmSource.Stop();
                     if (sfxJump != null) PlaySound(sfxJump);
+                    // ★クリア時にビデオ映像のみを停止
+                    if (targetVideo != null)
+                    {
+                        targetVideo.Pause();
+                    }
                     
                     player.StepForward(true);
                     MGManager.ClearGame();
@@ -191,6 +209,11 @@ namespace SK
                     player.FallDown();
                     OnGameEnd();
                 }
+            }
+            else if (currentStep == 4)
+            {
+                player.StepForward(false);
+                player.PlayPreJumpAction();
             }
             else
             {
