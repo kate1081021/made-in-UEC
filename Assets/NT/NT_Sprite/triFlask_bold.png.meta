@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      triFlask_bold_0: -7956004926483056868
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
