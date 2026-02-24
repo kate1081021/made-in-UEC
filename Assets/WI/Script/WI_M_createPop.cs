@@ -1,17 +1,23 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace WI 
+namespace WI
 {
 
-    public class WI_M_inputClose : MiniGameBase
+    public class WI_M_createPop : MiniGameBase
     {
+        private WI_M_popParentManager rootManager;
+
         private BoxCollider2D cursorCollider;
 
         private bool cursorCollision;
+
+        GameObject popup;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
         {
+            rootManager = this.transform.parent.GetComponent<WI_M_popParentManager>();
+
             cursorCollider = GameObject.Find("WI_M_cursor").GetComponent<BoxCollider2D>();
             cursorCollision = false;
         }
@@ -27,14 +33,14 @@ namespace WI
                 {
                     if (cursorCollision)
                     {
-                        if (this.transform.parent.GetComponent<WI_M_popParentManager>() != null)
-                        {
-                            this.transform.parent.GetComponent<WI_M_popParentManager>().setInputClose();
-                        }
-                        else
-                        {
-                            this.transform.parent.GetComponent<WI_M_buttonManager>().setInputClose();
-                        }
+                        popup = GameObject.Find("WI_M_popup");
+                        popup = Instantiate(popup, this.transform.parent.position, Quaternion.identity);
+                        popup.GetComponent<SortingGroup>().sortingOrder = this.transform.parent.GetComponent<SortingGroup>().sortingOrder + 1;
+                        popup.transform.parent = this.transform.parent;
+                        rootManager.registerPopup(popup);
+                        rootManager.colorChange(new Color(0.5f, 0.5f, 0.5f, 1.0f));
+                        rootManager.buttonDisactivate();
+                        rootManager.buttonTypeChange();
                     }
                 }
             }
@@ -43,7 +49,7 @@ namespace WI
         private bool isTopWindowFromCursor()
         {
             SpriteRenderer cursorPos = cursorCollider.GetComponent<SpriteRenderer>();
-            Vector2 cursorPosition = new Vector2(cursorPos.bounds.min.x+0.06f,
+            Vector2 cursorPosition = new Vector2(cursorPos.bounds.min.x + 0.06f,
                                                  cursorPos.bounds.max.y);
 
             SortingGroup renderer;
@@ -62,13 +68,13 @@ namespace WI
 
                 if (renderer == null) continue;
 
-                if(renderer.sortingOrder > highestOrder)
+                if (renderer.sortingOrder > highestOrder)
                 {
                     highestOrder = renderer.sortingOrder;
                     topWindow = hit.collider.gameObject;
                 }
             }
-            //if (topWindow != null) Debug.Log(topWindow.name);
+            if (topWindow != null) Debug.Log(topWindow.name);
             return topWindow == this.transform.parent.gameObject;
         }
 
@@ -78,7 +84,7 @@ namespace WI
             {
                 cursorCollision = true;
             }
-            
+
         }
 
         private void OnTriggerExit2D(Collider2D collision)
