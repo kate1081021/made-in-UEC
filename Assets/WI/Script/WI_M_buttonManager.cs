@@ -7,11 +7,17 @@ namespace WI
     public class WI_M_buttonManager : MiniGameBase
     {
         private bool isClosing = false;
+        private GameObject closeButton;
+        [SerializeField] private bool useAnimation = true;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
         {
             this.gameObject.SetActive(true);
+
+            closeButton = this.transform.GetChild(0).gameObject;
+            closeButton.GetComponent<WI_M_inputClose>().enabled = true;
+            closeButton.GetComponent<WI_M_createPop>().enabled = false;
         }
 
         public override void OnGameEnd() { }
@@ -26,6 +32,21 @@ namespace WI
         {
             if (isClosing) return;
             StartCoroutine(AnimateAndDestroy());
+
+            if (useAnimation)
+            {
+                StartCoroutine(AnimateAndDestroy());
+            }
+            else
+            {
+                isClosing = true;
+                DestroyImmediate();
+            }
+        }
+
+        private void DestroyImmediate()
+        {
+            Destroy(this.gameObject);
         }
 
         private IEnumerator AnimateAndDestroy()

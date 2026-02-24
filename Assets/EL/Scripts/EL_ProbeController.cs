@@ -6,25 +6,44 @@ namespace EL
 	{
 		[SerializeField] private float force = 100f;
 		[SerializeField] private float margin = 0.5f; // 画面端から移動範囲を少し内側にするためのマージン
+		[SerializeField] private float originforce = 100f; //初期移動速度
+		[SerializeField] private float slowforce = 30f; //bounds内での低下移動速度
+		[SerializeField] private EL_GameManager gameManager;
+
+		[SerializeField] private float maxEmissionRate = 10f; // 電位が許容範囲内のときの最大エミッションレート
 
 		private Rigidbody2D rb;
+		private ParticleSystem particleSystem;
+		private ParticleSystem.EmissionModule emissionModule;
 
 		public override void OnGameStart()
 		{
 			rb = GetComponent<Rigidbody2D>();
+			particleSystem = GetComponentInChildren<ParticleSystem>();
+			emissionModule = particleSystem.emission;
+			emissionModule.rateOverTime = maxEmissionRate; // 最大エミッションレートを設定
 		}
 
 		void Update()
 		{
 			if (EL_GameManager.Instance.isVoltInRange)
 			{
-				// 電圧値が許容範囲内であれば何かしらのフィードバックを与える（例: 色を変える、エフェクトを出すなど）
-				// TODO: 仮なのでUpdate内でGetComponentしていますが，重くなるのでフィードバックの方針が決まったら変更します
-				GetComponentInChildren<SpriteRenderer>().color = Color.green; // 仮：緑色にする
+				// 電圧値が許容範囲内もしくはゲームがクリアされた場合は何かしらのフィードバックを与える（例: 色を変える、エフェクトを出すなど）
+				emissionModule.enabled = true; // 仮：エフェクトを再生
+
 			}
 			else
 			{
-				GetComponentInChildren<SpriteRenderer>().color = Color.white; // 元の色に戻す
+				emissionModule.enabled = false; // エフェクトを停止
+			}
+
+			if (gameManager.bounds.Contains(transform.position) && Action.IsPressed())
+			{
+				force = slowforce;
+			}
+			else
+			{
+				force = originforce;
 			}
 		}
 
