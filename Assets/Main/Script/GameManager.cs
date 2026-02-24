@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour
 
         // 勝利状況の確認(Stage2以降)
         if (MGManager.stage > 1) {
+            Debug.Log("checked");
             if (MGManager.IsClear)
             {
                 Debug.Log("ミニゲームクリア!!");
@@ -132,7 +133,7 @@ public class GameManager : MonoBehaviour
         } else {
             PlayNext(BGM_start_2, PitchScale);
             TotalPlayTime += BGM_start_2.clip.length / PitchScale;
-        }
+        } 
 
         // 曲の再生終了とアニメーションの終了を同期させる
         while (BGM_start_1.isPlaying || BGM_start_2.isPlaying)  // ここの1.1(s)は現在のアニメーションが再生し終わるまでにかかる時間
@@ -228,6 +229,10 @@ public class GameManager : MonoBehaviour
 
         // UIをもとに戻す
         uiManager.UIReset();
+        while (!MGManager.isMiniGameEnded)
+        {
+            yield return null;
+        }
 
         // 5. MainCouroutineに戻る
         StartCoroutine(MainCoroutine());

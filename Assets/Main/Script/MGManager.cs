@@ -20,6 +20,9 @@ public static class MGManager
     // 音の倍速
     public static float pitchScale = 1.0f;
 
+    // OnGameEndが呼ばれたかどうか
+    public static bool isMiniGameEnded { get; set; } = false;
+
     // --- 部員が自由に使える便利関数 ---
     /// <summary>
     /// ゲームが開始した直後にこれを呼んでください。
@@ -71,6 +74,7 @@ public static class MGManager
     public static void Finished()
     {
         isMinigameLoaded = false;
+        isMiniGameEnded = false;
         IsClear = false;
     }
 

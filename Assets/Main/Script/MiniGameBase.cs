@@ -190,6 +190,8 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
             InputSystems.Dispose();
         }
         OnGameEnd();
+        MGManager.isMiniGameEnded = true;
+        Debug.Log("OnGameEnd");
     }
     /// <summary>
     /// ゲーム終了時に、このプレハブ内から出ている全ての音を止めます。
