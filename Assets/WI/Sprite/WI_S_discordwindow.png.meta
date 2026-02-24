@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 93c2b547acc221d46aa68f2489404a5e
+guid: fc0ec8e7131381445ad1241d212c45d8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7001324474034715697
-    second: WI_S_uechpRough_0
+      213: 4659698543100882630
+    second: WI_S_discordwindow_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1300
+  spritePixelsToUnits: 800
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WI_S_uechpRough_0
+      name: WI_S_discordwindow_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 412
-        width: 2048
-        height: 1636
+        y: 0
+        width: 1000
+        height: 1205
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 13c7618b383b92160800000000000000
-      internalID: 7001324474034715697
+      spriteID: 6ceeee503239aa040800000000000000
+      internalID: 4659698543100882630
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 192065b24c88f944089054721fb5a5fa
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      WI_S_uechpRough_0: 7001324474034715697
+      WI_S_discordwindow_0: 4659698543100882630
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
