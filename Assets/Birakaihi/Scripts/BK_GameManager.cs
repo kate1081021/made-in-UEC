@@ -12,7 +12,7 @@ namespace BK
         public List<BK_Enemy> EnemyData = new List<BK_Enemy>();  // BK_Enemy(enemyが立っている場所とy座標を持っている)を保存したデータ
         public List<BK_LocationData> dataset_easy;  // データのまとめ
         private List<float> y_list;
-        public static float escapableRange = 50f;  // 回避の反転許容範囲
+        public static float escapableRange = 30f;  // 回避の反転許容範囲
         
         // Playerを取得
         public GameObject player;
@@ -20,7 +20,7 @@ namespace BK
         private RectTransform player_pos;  // Playerの位置
 
         // ゲームの進行フラグ
-        private bool gameClear = true; 
+        public bool gameClear = true; 
 
         // 最初に呼び出し
         public override void OnGameStart()

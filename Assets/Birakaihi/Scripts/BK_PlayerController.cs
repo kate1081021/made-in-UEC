@@ -23,6 +23,9 @@ namespace BK
             // すでによけている場合はすぐに戻す
             if (escape != 0) { return; }
 
+            // ゲームがすでに終わっている場合は戻る
+            if (MGManager.IsClear) { return; }
+
             // 左によけた時
             if (value.x < -0.5f) {
                 animator.SetTrigger("isLeftKeyPressed");
@@ -52,6 +55,7 @@ namespace BK
         public void FailureAnimation()
         {
             animator.SetBool("Failure", true);
+            animator.SetFloat("LayerSpeed", 0.0f);
             success = false;
         }
 

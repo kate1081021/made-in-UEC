@@ -49,7 +49,7 @@ namespace BK
             // アニメーションがまだ一度も動いていないときだけ
             if (!isAnimationTriggered) 
             {
-                // プレイヤーが許容範囲内に入った時
+                // プレイヤーが許容範囲内(やや厳しめ)に入った時
                 float player_y = player_pos.anchoredPosition.y;
                 float enemy_y = enemy_pos.anchoredPosition.y;
                 if (Mathf.Abs(player_y - enemy_y) <= BK_GameManager.escapableRange / 4)
@@ -57,6 +57,14 @@ namespace BK
                     isAnimationTriggered = true;
                     triggerAnimation();  // アニメーションを発動
                 }
+
+                // 許容範囲内に入っていて、ミニゲームに失敗したことが確定したとき
+                else if (Mathf.Abs(player_y - enemy_y) <= BK_GameManager.escapableRange && !gameManager.gameClear)
+                {
+                    isAnimationTriggered = true;
+                    triggerAnimation();  // アニメーションを発動
+                }
+
             }
         }
     }
