@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace PTgame
 {
-    public class PT_move : MonoBehaviour
+    public class PT_Move : MonoBehaviour
     {
         [SerializeField]
         private float moveSpeed = 5f;
