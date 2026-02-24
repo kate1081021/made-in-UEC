@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 00b3233dfdf594444a724d6a56571dd1
+guid: 4bcec9dfa6eca714f9b1be367e5709f0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6139093453089157111
-    second: ER_Report03_0
+      213: -7956004926483056868
+    second: triFlask_bold_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ER_Report03_0
+      name: triFlask_bold_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2481
-        height: 3508
+        x: 456
+        y: 57
+        width: 1136
+        height: 1606
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7ff2e4228f0723550800000000000000
-      internalID: 6139093453089157111
+      spriteID: c1738bd0ca7969190800000000000000
+      internalID: -7956004926483056868
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ER_Report03_0: 6139093453089157111
+      triFlask_bold_0: -7956004926483056868
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

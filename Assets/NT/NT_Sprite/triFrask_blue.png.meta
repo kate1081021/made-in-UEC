@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 00b3233dfdf594444a724d6a56571dd1
+guid: 74c17cfe690d11b45b900c44d6f69acd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6139093453089157111
-    second: ER_Report03_0
+      213: 1244827893600619701
+    second: triFrask_blue_0
+  - first:
+      213: -5934020081574960078
+    second: triFrask_blue_1
+  - first:
+      213: -6504116279722441540
+    second: triFrask_blue_2
+  - first:
+      213: -3105268622310363844
+    second: triFrask_blue_3
+  - first:
+      213: -9129631213108428334
+    second: triFrask_blue_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +125,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ER_Report03_0
+      name: triFrask_blue_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2481
-        height: 3508
+        x: 466
+        y: 67
+        width: 1116
+        height: 1696
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +140,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7ff2e4228f0723550800000000000000
-      internalID: 6139093453089157111
+      spriteID: 5bc0094bf54864110800000000000000
+      internalID: 1244827893600619701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triFrask_blue_1
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 1668
+        width: 37
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 234a0b3fc2026ada0800000000000000
+      internalID: -5934020081574960078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triFrask_blue_2
+      rect:
+        serializedVersion: 2
+        x: 1348
+        y: 1668
+        width: 37
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb40f4134bcbcb5a0800000000000000
+      internalID: -6504116279722441540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triFrask_blue_3
+      rect:
+        serializedVersion: 2
+        x: 2018
+        y: 1278
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3d2603f3aed7e4d0800000000000000
+      internalID: -3105268622310363844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triFrask_blue_4
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 1064
+        width: 38
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d18a5458c80d4180800000000000000
+      internalID: -9129631213108428334
       vertices: []
       indices: 
       edges: []
@@ -148,7 +248,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ER_Report03_0: 6139093453089157111
+      triFrask_blue_0: 1244827893600619701
+      triFrask_blue_1: -5934020081574960078
+      triFrask_blue_2: -6504116279722441540
+      triFrask_blue_3: -3105268622310363844
+      triFrask_blue_4: -9129631213108428334
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

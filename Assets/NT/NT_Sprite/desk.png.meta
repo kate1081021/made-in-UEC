@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 00b3233dfdf594444a724d6a56571dd1
+guid: b289c0c27781ac64185eac1fd8b66c35
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6139093453089157111
-    second: ER_Report03_0
+      213: 8033975403568566451
+    second: desk_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ER_Report03_0
+      name: desk_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2481
-        height: 3508
+        width: 1920
+        height: 143
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7ff2e4228f0723550800000000000000
-      internalID: 6139093453089157111
+      spriteID: 3b01eef401a6e7f60800000000000000
+      internalID: 8033975403568566451
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ER_Report03_0: 6139093453089157111
+      desk_0: 8033975403568566451
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

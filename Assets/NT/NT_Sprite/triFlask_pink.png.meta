@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 00b3233dfdf594444a724d6a56571dd1
+guid: b557e03feead1e9419c5bfbfd3ff950c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6139093453089157111
-    second: ER_Report03_0
+      213: 77290071484890433
+    second: triFlask_pink_0
+  - first:
+      213: -4503060381009663340
+    second: triFlask_pink_1
+  - first:
+      213: -6466694947297017664
+    second: triFlask_pink_2
+  - first:
+      213: -8529847313730220825
+    second: triFlask_pink_3
+  - first:
+      213: -7089119816644157666
+    second: triFlask_pink_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +125,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ER_Report03_0
+      name: triFlask_pink_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2481
-        height: 3508
+        x: 466
+        y: 67
+        width: 1116
+        height: 1696
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +140,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7ff2e4228f0723550800000000000000
-      internalID: 6139093453089157111
+      spriteID: 14d758719e6921100800000000000000
+      internalID: 77290071484890433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triFlask_pink_1
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 1668
+        width: 37
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49aa8c3117ae181c0800000000000000
+      internalID: -4503060381009663340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triFlask_pink_2
+      rect:
+        serializedVersion: 2
+        x: 1348
+        y: 1668
+        width: 37
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c04c8b153fa146a0800000000000000
+      internalID: -6466694947297017664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triFlask_pink_3
+      rect:
+        serializedVersion: 2
+        x: 2018
+        y: 1278
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ec4accaf05ef9980800000000000000
+      internalID: -8529847313730220825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: triFlask_pink_4
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 1064
+        width: 38
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1f1eb626136e9d90800000000000000
+      internalID: -7089119816644157666
       vertices: []
       indices: 
       edges: []
@@ -148,7 +248,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ER_Report03_0: 6139093453089157111
+      triFlask_pink_0: 77290071484890433
+      triFlask_pink_1: -4503060381009663340
+      triFlask_pink_2: -6466694947297017664
+      triFlask_pink_3: -8529847313730220825
+      triFlask_pink_4: -7089119816644157666
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
