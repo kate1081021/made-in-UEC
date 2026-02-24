@@ -154,7 +154,15 @@ MonoBehaviour:
   Success: {fileID: 2082529369}
   Speedup: {fileID: 1200137184}
   minigames:
-  - {fileID: 11400000, guid: 284eafaebbac3074a8701abbbff6b792, type: 2}
+  - {fileID: 11400000, guid: 3d948a9d142db97408047253b1717241, type: 2}
+  - {fileID: 11400000, guid: f489faf08f7888949837c4f1241ea068, type: 2}
+  - {fileID: 11400000, guid: 7af98357a4bd56b4c91a454d1456ea94, type: 2}
+  - {fileID: 11400000, guid: 2dfd0a9fd5237be4d95d28140d07d349, type: 2}
+  - {fileID: 11400000, guid: 1d393a3c90a2bd84fa12e9cefb29368f, type: 2}
+  - {fileID: 11400000, guid: f6417e45947ff5a4599d3bd8b342492d, type: 2}
+  - {fileID: 11400000, guid: ab5b544b397082e4795b948305f03652, type: 2}
+  - {fileID: 11400000, guid: 665e673a0b630b741835af4143f4a3d6, type: 2}
+  - {fileID: 11400000, guid: fe876523c1656064696744500949dd64, type: 2}
 --- !u!4 &128823214
 Transform:
   m_ObjectHideFlags: 0
@@ -844,8 +852,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 10
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 33ad2538dd24bbc409a26d1b7fdbd13f, type: 2}
+  m_sharedMaterial: {fileID: -8275376154291706823, guid: 33ad2538dd24bbc409a26d1b7fdbd13f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1015,8 +1023,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 33ad2538dd24bbc409a26d1b7fdbd13f, type: 2}
+  m_sharedMaterial: {fileID: -8275376154291706823, guid: 33ad2538dd24bbc409a26d1b7fdbd13f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1626,6 +1634,7 @@ MonoBehaviour:
   counter: {fileID: 1106284507}
   timer: {fileID: 753477589}
   zoomGroup: {fileID: 1292214106}
+  Lives: []
   first_duration: 0.5
   second_duration: 0.5
 --- !u!4 &1393399580
@@ -1767,8 +1776,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u305F\u3079\u308D!!"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 33ad2538dd24bbc409a26d1b7fdbd13f, type: 2}
+  m_sharedMaterial: {fileID: -8275376154291706823, guid: 33ad2538dd24bbc409a26d1b7fdbd13f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
