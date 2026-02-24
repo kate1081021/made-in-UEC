@@ -10,7 +10,10 @@ namespace BK
         public GameObject EnemyRight; // Imageがついたプレハブ
         public Transform canvasTransform; // CanvasのTransform
         public List<BK_Enemy> EnemyData = new List<BK_Enemy>();  // BK_Enemy(enemyが立っている場所とy座標を持っている)を保存したデータ
-        public List<BK_LocationData> dataset_easy;  // データのまとめ
+        public List<BK_LocationData> dataset_easy;  // データのまとめ(難易度簡単)
+        public List<BK_LocationData> dataset_normal;  // データのまとめ(難易度普通)
+        public List<BK_LocationData> dataset_difficult;  // データのまとめ(難易度難しい)
+        public List<BK_LocationData> dataset;  // 上の３つのうちどれか一つを格納する
         private List<float> y_list;
         public static float escapableRange = 30f;  // 回避の反転許容範囲
         
@@ -28,6 +31,23 @@ namespace BK
             // Playerオブジェクトからコンポーネントを抽出
             player_controller = player.GetComponent<BK_PlayerController>();
             player_pos = player.GetComponent<RectTransform>();
+            MGManager.TestPlay(16);
+
+            // 難易度設定
+            int s = MGManager.stage;
+            if (1 <= s && s <= 15)  // 簡単
+            {
+                dataset = dataset_easy;
+            }
+            else if (16 <= s && s <= 30)  // 普通
+            {
+                dataset = dataset_normal;
+            }
+            else  // 難しい
+            {
+                dataset = dataset_difficult;
+            }
+
             
             // Enemy呼び出し
             y_list = new List<float>
@@ -35,7 +55,7 @@ namespace BK
                 204.96f, 125.88f, 46.846f, -32.192f, -111.2308f, -190.2692f, -269.3077f
             };
 
-            List<int> data = dataset_easy[Random.Range(0, dataset_easy.Count)].data;
+            List<int> data = dataset[Random.Range(0, dataset.Count)].data;
             for (int i = 0; i < data.Count; i++)
             {
                 int rand = Random.Range(0, 2);
