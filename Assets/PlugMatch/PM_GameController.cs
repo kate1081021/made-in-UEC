@@ -38,6 +38,10 @@ namespace plugmatch
         public AudioSource bgmSource; 
         public AudioSource seSource;  
 
+        // ▼ 追加：プログラムから直接音量を指定するスライダー
+        [Range(0f, 1f)] public float bgmVolume = 0.2f; // BGMの音量（デフォルト0.2）
+        [Range(0f, 1f)] public float seVolume = 0.4f;  // SEの音量（デフォルト0.4）
+
         public AudioClip bgmClip;     
         public AudioClip clearSeClip; 
         public AudioClip missSeClip;  
@@ -58,7 +62,6 @@ namespace plugmatch
         private Vector3 originalScale; 
         private Vector3 applianceOriginalScale; 
 
-        // 吹き出し全体を固定するための変数
         private Transform bubbleParentTransform; 
         private Vector3 bubbleFixedPos; 
         private bool isBubbleFixed = false; 
@@ -67,13 +70,14 @@ namespace plugmatch
         {
             MGManager.Load(); 
             
-            // ゲーム開始時にフラグをリセット
             isBubbleFixed = false;
 
             if (bgmSource != null && bgmClip != null)
             {
                 bgmSource.clip = bgmClip;
                 bgmSource.loop = true; 
+                // ★追加：BGMの音量を強制的に指定した数値にする
+                bgmSource.volume = bgmVolume; 
                 bgmSource.Play();
             }
 
@@ -94,7 +98,6 @@ namespace plugmatch
                 failurePanel.gameObject.SetActive(false);
             }
 
-            // ★追加：吹き出しの中身から見て「親（＝空の吹き出し）」を取得しておく
             if (bubbleShapeImage != null)
             {
                 bubbleParentTransform = bubbleShapeImage.transform.parent;
@@ -213,19 +216,15 @@ namespace plugmatch
                 
                 if (Vector3.Distance(plugObject.transform.position, targetPos) < 0.1f)
                 {
-                    // ▼ 変更：「空の吹き出し（親）」の座標を記憶する
                     if (!isBubbleFixed && bubbleParentTransform != null)
                     {
                         bubbleFixedPos = bubbleParentTransform.position;
                         isBubbleFixed = true; 
                     }
 
-                    // プラグ本体を揺らす
                     float shakeOffset = Mathf.Sin(Time.time * shakeSpeed) * shakeAmount;
                     plugObject.transform.position = targetPos + new Vector3(shakeOffset, 0, 0);
 
-                    // ▼ 変更：「空の吹き出し（親）」を記憶した位置に上書き固定する
-                    // （親を固定すれば、子である中身の図形も一緒に固定されます）
                     if (isBubbleFixed && bubbleParentTransform != null)
                     {
                         bubbleParentTransform.position = bubbleFixedPos;
@@ -260,7 +259,8 @@ namespace plugmatch
         {
             if (seSource != null && clip != null)
             {
-                seSource.PlayOneShot(clip);
+                // ★変更：指定したSEの音量（seVolume）で強制的に鳴らす
+                seSource.PlayOneShot(clip, seVolume);
             }
         }
 

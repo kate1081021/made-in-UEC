@@ -1309,6 +1309,8 @@ MonoBehaviour:
   appliancePopSpeed: 25
   bgmSource: {fileID: 1985519257}
   seSource: {fileID: 1985519256}
+  bgmVolume: 0.3
+  seVolume: 1
   bgmClip: {fileID: 8300000, guid: 089a1131c926d994c89305ac34b479b9, type: 3}
   clearSeClip: {fileID: 8300000, guid: 290698ffd4827c64ba8cf263ada53582, type: 3}
   missSeClip: {fileID: 8300000, guid: 3c4a9324fce5d7e4ea84e8a6e84a4730, type: 3}
@@ -1342,7 +1344,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1439,7 +1441,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

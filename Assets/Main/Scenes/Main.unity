@@ -154,7 +154,7 @@ MonoBehaviour:
   Success: {fileID: 2082529369}
   Speedup: {fileID: 1200137184}
   minigames:
-  - {fileID: 11400000, guid: a3d3a69ebee110e46996662560ea56e5, type: 2}
+  - {fileID: 11400000, guid: 284eafaebbac3074a8701abbbff6b792, type: 2}
 --- !u!4 &128823214
 Transform:
   m_ObjectHideFlags: 0
