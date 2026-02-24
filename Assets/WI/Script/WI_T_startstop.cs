@@ -143,16 +143,46 @@ namespace WI
         {
             int stage = MGManager.stage;
             
-            if(stage < 6)
+            if(stage < 16)
             {
-                setTarget(new int[2] { 0, 1 });
+                int random = Random.Range(0, 5);
+                if (random < 1)
+                {
+                    int random2 = Random.Range(0, 2);
+                    if (random2 < 1) { setTarget(new int[2] { 0, 1 }); }
+                    else { setTarget(new int[2] { 1, 0 }); }
+                } 
+                else if(random < 2)
+                {
+                    int random2 = Random.Range(0, 2);
+                    if (random2 < 1) { setTarget(new int[2] { 0, 2 }); }
+                    else { setTarget(new int[2] { 2, 0 }); }
+                }
+                else if (random < 3)
+                {
+                    int random2 = Random.Range(0, 2);
+                    if (random2 < 1) { setTarget(new int[2] { 1, 2 }); }
+                    else { setTarget(new int[2] { 2, 1 }); }
+                }
+                else if (random < 4)
+                {
+                    setTarget(new int[1] { 3 });
+                }
+                else if (random < 5)
+                {
+                    setTarget(new int[1] { 4 });
+                } 
+                else
+                {
+                    setTarget(new int[2] { 0, 1 });
+                }
             }
         }
 
         // 指定したidのウィンドウを全て生成する関数
         private void setTarget(int[] id)
         {
-            int sortNum = id.Length;
+            int sortNum = 0;
             foreach(int i in id)
             {
                 Vector2 spawnPos;
@@ -175,7 +205,8 @@ namespace WI
                 SortingGroup sg = newWindow.GetComponent<SortingGroup>();
                 if (sg != null)
                 {
-                    sg.sortingOrder = i;
+                    sg.sortingOrder = sortNum;
+                    sortNum++;
                 }
                 targetWindows.Add(newWindow);
 
