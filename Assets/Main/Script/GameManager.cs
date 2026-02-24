@@ -191,9 +191,24 @@ public class GameManager : MonoBehaviour
         float timelimit = minigames[loaded_minigame].timelimit;
         int last = (int)timelimit;
 
-        while (elapsed < timelimit) { 
+        // 仮の爆弾が出てくる時間
+        float bombtime = 3f;
+        // 仮のシーン切り替えまでの猶予
+        float waitUntilClearTime = 1f;
+        // ゲームの早期切り上げが可能かどうか(通常はtrue)
+        bool stopEarlyFinish = minigames[loaded_minigame].stopEarlyFinish;
+
+        while (elapsed < timelimit) {
             // カウントダウン
             if (last > (timelimit - elapsed)) { uiManager.UITimer(last); last--; }
+            if (!stopEarlyFinish && MGManager.IsClear && (timelimit - elapsed) > (bombtime + waitUntilClearTime))
+            // 早めに切り上げてる待ち時間中に爆弾が現れないように
+            {
+                Debug.Log("早めに切り上げ");
+                yield return new WaitForSeconds(waitUntilClearTime);
+                Debug.Log("早めに切り上げた");
+                break;
+            }
             elapsed += Time.deltaTime;
             yield return null;
         }

@@ -16,7 +16,7 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     [Tooltip("このゲームで流したいBGM。未設定ならデフォルトBGMが流れます")]
     [SerializeField] private AudioClip gameBGM;
     [SerializeField] private Dictionary<string, AudioClip> soundEffects;
-    private static AudioSource mainSource;
+    private AudioSource mainSource;
 
     
     /// <summary> 運営がBGMを取得するためのプロパティ </summary>
@@ -197,7 +197,13 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     /// </summary>
     public void BGMPlay(bool applyToTimeScale = false)
     {
+        // mainSourceがnullなら追加する
+        if (mainSource == null)
+        {
+            mainSource = gameObject.AddComponent<AudioSource>();
+        }
         mainSource.clip = gameBGM;
+
         if (applyToTimeScale)
         {
             mainSource.pitch = MGManager.timeScale;
@@ -211,6 +217,12 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
 
     public void SEPlay(string id, bool applyToTimeScale = false)
     {
+        // mainSourceがnullなら追加する
+        if (mainSource == null)
+        {
+            mainSource = gameObject.AddComponent<AudioSource>();
+        }
+
         if (applyToTimeScale)
         {
             mainSource.pitch = MGManager.timeScale;
