@@ -132,7 +132,7 @@ MonoBehaviour:
   gameBGM: {fileID: 0}
   frag: 0
   destroyPointY: -50
-  finishPointY: -2.1
+  finishPointY: -1.96
 --- !u!82 &7297601010677298243
 AudioSource:
   m_ObjectHideFlags: 0
