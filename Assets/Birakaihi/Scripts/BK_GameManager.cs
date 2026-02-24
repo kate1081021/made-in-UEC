@@ -21,7 +21,7 @@ namespace BK
         public GameObject player;
         private BK_PlayerController player_controller;
         private RectTransform player_pos;  // Playerの位置
-
+        
         // ゲームの進行フラグ
         public bool gameClear = true; 
 
@@ -47,7 +47,6 @@ namespace BK
             {
                 dataset = dataset_difficult;
             }
-
             
             // Enemy呼び出し
             y_list = new List<float>
@@ -85,6 +84,7 @@ namespace BK
                 
             }
             MGManager.Load();  // 最初に呼び出し
+            BGMPlay(applyToTimeScale: true);
             StartCoroutine(MainCoroutine());
         }
 

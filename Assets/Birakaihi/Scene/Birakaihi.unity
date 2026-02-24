@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbdeba64932f8e44920e824591fb6f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameBGM: {fileID: 0}
+  gameBGM: {fileID: 8300000, guid: e831161e411d3f74eb32af5dba7e425b, type: 3}
   EnemyLeft: {fileID: 1435223123}
   EnemyRight: {fileID: 1738557689}
   canvasTransform: {fileID: 1238382687}
