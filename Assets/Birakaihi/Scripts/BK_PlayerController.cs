@@ -45,6 +45,12 @@ namespace BK
             escape = 0;
         }
 
+        // Walkingアニメーション開始
+        public void startWalking()
+        {
+            animator.SetBool("walking", true);
+        }
+        
         // Walkingアニメーションが終了したとき
         public void walkingEnded()
         {

@@ -15,7 +15,7 @@ namespace BK
         public List<BK_LocationData> dataset_difficult;  // データのまとめ(難易度難しい)
         public List<BK_LocationData> dataset;  // 上の３つのうちどれか一つを格納する
         private List<float> y_list;
-        public static float escapableRange = 30f;  // 回避の反転許容範囲
+        public static float escapableRange = 50f;  // 回避の反転許容範囲
         
         // Playerを取得
         public GameObject player;
@@ -31,7 +31,7 @@ namespace BK
             // Playerオブジェクトからコンポーネントを抽出
             player_controller = player.GetComponent<BK_PlayerController>();
             player_pos = player.GetComponent<RectTransform>();
-            MGManager.TestPlay(16);
+            // MGManager.TestPlay(16);
 
             // 難易度設定
             int s = MGManager.stage;
@@ -84,12 +84,16 @@ namespace BK
                 
             }
             MGManager.Load();  // 最初に呼び出し
-            BGMPlay(applyToTimeScale: true);
             StartCoroutine(MainCoroutine());
         }
 
         private IEnumerator MainCoroutine()
         {
+            // ちょっと待つ
+            yield return new WaitForSeconds(2.0f);
+            BGMPlay(applyToTimeScale: true);
+            player_controller.startWalking();
+
             // 敵のy座標を上から順に参照していく
             for (int i = 0; i < EnemyData.Count; i++)
             {
