@@ -49,7 +49,7 @@ MonoBehaviour:
   obj: {fileID: 3336162317971572820, guid: 337be2542e402e2469da1f85fa109978, type: 3}
   obj2: {fileID: 3336162317971572820, guid: ecdb0e308cb47864bb75baf92cd784fb, type: 3}
   enemy: {fileID: 3993119995772396090, guid: 13af3eaf48976fa4e998ec2b5271d7e0, type: 3}
-  d: 6
+  d: 8
   radius: 2
   centerx: 0
   centery: 2
@@ -58,4 +58,4 @@ MonoBehaviour:
   timeScaleRot: 1.2
   num: 10
   size: 0.5
-  speed: 3
+  speed: 2.5

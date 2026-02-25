@@ -56,6 +56,6 @@ MonoBehaviour:
   rotatespeed: 40
   swingspeed: 1
   swingwidth: 45
-  ghostspeed: 4
-  duration: 0.4
+  ghostspeed: 3.5
+  duration: 0.45
   ghostvectorrange: 40
