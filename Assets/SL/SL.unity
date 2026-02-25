@@ -823,13 +823,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 8300000, guid: 862316b74e3b8b54da54a4aa1fbef855, type: 3}
   balloonDamage: 0
-  balloonDamageMax: 30
-  balloonReducingSpeed: 0.05
+  balloonDamageMax: 20
+  balloonReducingSpeed: 0.1
   balloonController: {fileID: 1348797909}
   rightHandController: {fileID: 34595421}
   leftHandController: {fileID: 418929944}
   sL_AudioManager: {fileID: 2103181552}
   sL_ImageController: {fileID: 1574275730}
+  isTesting: 0
+  testStageNumber: 100
 --- !u!1 &1574275729
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,6 +1123,8 @@ MonoBehaviour:
   SL_AttackAudioClip: {fileID: 8300000, guid: a4929518a25f2f047b5cee067a5a1509, type: 3}
   SL_AttackAudioClip2: {fileID: 8300000, guid: 026bd09e0af5b7d46bd7ebbb670180a6, type: 3}
   SL_BreakAudioClip: {fileID: 8300000, guid: 34ba0477b799b2c4890bd9a543438237, type: 3}
+  SL_Fanfare: {fileID: 8300000, guid: feb465f36b88e754698dd8e2e4b0aa50, type: 3}
+  SL_Shine: {fileID: 8300000, guid: 880bb0138bb28ee43a12c0019c22a859, type: 3}
 --- !u!82 &2103181553
 AudioSource:
   m_ObjectHideFlags: 0
