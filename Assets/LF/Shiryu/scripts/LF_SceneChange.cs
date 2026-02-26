@@ -12,24 +12,34 @@ public class LF_SceneChange : MonoBehaviour
     public GameObject backgroundImage;
     public GameObject bomb;
     public GameObject explpsion;
+    public GameObject hand; 
 
     [Header("諸設定")]
     public Transform ThrowTarget;
     public float throwDuration = 0.3f;
+    [SerializeField] LF_handChange handChange;
 
     public void StartClear(){
         StartCoroutine(ClearMovie());
     }
 
     private IEnumerator ClearMovie(){
-        loupe.SetActive(false);
-        match.SetActive(false);
+        // game用オブジェクトを非表示
+        loupe.SetActive(false); 
+        match.SetActive(false); 
 
+        // 爆弾と手を表示
         bomb.SetActive(true);
+        hand.SetActive(true);
         Vector3 startPos = bomb.transform.position;
 
-        yield return new WaitForSeconds(0.2f);
+        // 待機
+        yield return new WaitForSeconds(0.3f);
 
+        // 手の画像の切り替え
+        handChange.change();
+
+        // 座標の移動
         float elapsed = 0;
         while (elapsed < throwDuration){
             elapsed += Time.deltaTime;
