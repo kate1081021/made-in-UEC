@@ -16,7 +16,7 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     [Tooltip("このゲームで流したいBGM。未設定ならデフォルトBGMが流れます")]
     [SerializeField] private AudioClip gameBGM;
     [SerializeField] private Dictionary<string, AudioClip> soundEffects;
-    private static AudioSource mainSource;
+    private AudioSource mainSource;
 
     
     /// <summary> 運営がBGMを取得するためのプロパティ </summary>
@@ -189,7 +189,7 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
             InputSystems.Disable();
             InputSystems.Dispose();
         }
-        OnGameEnd();
+        Debug.Log("OnGameEnd");
     }
     /// <summary>
     /// ゲーム終了時に、このプレハブ内から出ている全ての音を止めます。
@@ -197,7 +197,13 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     /// </summary>
     public void BGMPlay(bool applyToTimeScale = false)
     {
+        // mainSourceがnullなら追加する
+        if (mainSource == null)
+        {
+            mainSource = gameObject.AddComponent<AudioSource>();
+        }
         mainSource.clip = gameBGM;
+
         if (applyToTimeScale)
         {
             mainSource.pitch = MGManager.timeScale;
@@ -211,6 +217,12 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
 
     public void SEPlay(string id, bool applyToTimeScale = false)
     {
+        // mainSourceがnullなら追加する
+        if (mainSource == null)
+        {
+            mainSource = gameObject.AddComponent<AudioSource>();
+        }
+
         if (applyToTimeScale)
         {
             mainSource.pitch = MGManager.timeScale;
@@ -220,6 +232,32 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
             mainSource.pitch = MGManager.pitchScale;
         }
         mainSource.PlayOneShot(soundEffects[id]);
+    }
+    // 二重実行防止用のフラグ
+    private bool isEndProcessed = false;
+
+    protected virtual void OnEnable()
+    {
+        // リストに自分を追加
+        if (!MGManager.ActiveMiniGames.Contains(this))
+        {
+            MGManager.ActiveMiniGames.Add(this);
+        }
+    }
+
+    protected virtual void OnDisable()
+    {
+        // リストから自分を削除
+        MGManager.ActiveMiniGames.Remove(this);
+    }
+
+    // 運営側から一斉に呼ばれる終了関数
+    public void ExecuteGameEnd()
+    {
+        if (isEndProcessed) return; // 既に実行済みならスルー
+
+        OnGameEnd(); // 部員が書いた終了処理（判定更新など）を実行
+        isEndProcessed = true;
     }
 }
 
