@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      WI_S_goodnight_0: -4274137273743403902
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
