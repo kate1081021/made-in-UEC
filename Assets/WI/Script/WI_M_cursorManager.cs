@@ -5,9 +5,11 @@ namespace WI
 
     public class WI_M_cursorManager : MiniGameBase
     {
-        [SerializeField] private float cursorSpeed;
+        [SerializeField] private float speed = 0.1f;
         [SerializeField] private Vector2 cursorPosition;
-        
+
+        private float cursorSpeed = 0.1f;
+        private bool slow = false;
         private Vector2 inputDirection;
         private Vector3 viewPosition;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,10 +26,20 @@ namespace WI
         void FixedUpdate()
         {
             inputDirection = Move.ReadValue<Vector2>();
-            
-            cursorPosition = new Vector2(transform.position.x + inputDirection.x * cursorSpeed * MGManager.timeScale,
-                                         transform.position.y + inputDirection.y * cursorSpeed * MGManager.timeScale);
-            
+
+            if (slow)
+            {
+                cursorSpeed = 0.05f;
+            }
+            else
+            {
+                cursorSpeed = this.speed * MGManager.timeScale;
+            }
+            Debug.Log(cursorSpeed);
+
+            cursorPosition = new Vector2(transform.position.x + inputDirection.x * cursorSpeed,
+                                         transform.position.y + inputDirection.y * cursorSpeed);
+
             viewPosition = Camera.main.WorldToViewportPoint(cursorPosition);
             
             viewPosition.x = Mathf.Clamp(viewPosition.x, 0.02f, 1.02f);
@@ -38,9 +50,19 @@ namespace WI
             
         }
 
-        public void setCursorSpeed(int speed)
+        // L/R“ü—ÍŽž0.5f‚ÉŒ¸‘¬
+        protected override void OnTriggerPerformed(float value)
         {
-            this.cursorSpeed = speed;
+            slow = true;
+        }
+        protected override void OnTriggerCanceled(float value)
+        {
+            slow = false;
+        }
+
+        public void setSpeed(float s)
+        {
+            this.speed = s;
         }
     }
 }
