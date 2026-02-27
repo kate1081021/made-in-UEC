@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEditor.SceneManagement;
 using System.Data.Common;
 using TMPro;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,12 +17,15 @@ public class GameManager : MonoBehaviour
     public AudioSource BGM_start_1;  // ゲーム開始時のBGM
     public AudioSource BGM_start_2;  // 各ゲームの間の曲(1の短縮ver.)
     public AudioSource Success;  // ミニゲーム成功時のBGM
+    public AudioSource Failure; // ミニゲーム失敗時のBGM
     public AudioSource Speedup;  // スピードアップ時のBGM
     private double nextPlayTime;  // BGMを次に再生するまでの時間
     private float PitchScale = 1.0f;  // BGMのピッチを管理する
     
 
     [SerializeField] private List<CreateScene> minigames;  // ミニゲーム一覧を持つ
+    [SerializeField] private Transform lives; // ライフたちの親の参照
+    private int lifeRemain = 4;
     private int loaded_minigame = 0;  // ロードされているゲームの番号
 
 
@@ -55,6 +59,9 @@ public class GameManager : MonoBehaviour
         }
         // 加速設定
         ScaleChangeTestPlay();
+        lifeRemain = 4;
+        LifeReset lr = lives.gameObject.GetComponent<LifeReset>();
+        lr.lifeReset();
         // ゲーム進行コルーチン呼び出し
         StartCoroutine(MainCoroutine());
     }
@@ -145,15 +152,27 @@ public class GameManager : MonoBehaviour
             else
             {
                 Debug.Log("ミニゲーム失敗");
-                PlayImmidiate(Success, PitchScale);
-                FirstPlayTime += Success.clip.length / PitchScale;
-                TotalPlayTime += Success.clip.length / PitchScale;
+                PlayImmidiate(Failure, PitchScale);
+                FirstPlayTime += Failure.clip.length / PitchScale;
+                TotalPlayTime += Failure.clip.length / PitchScale;
+                Transform target = lives.GetChild(lifeRemain-1);
+                target.gameObject.SetActive(false);
+                lifeRemain--;
+                yield return new WaitForEndOfFrame(); // 無効化まで待つ
+                if (lifeRemain == 0)
+                {
+                    Debug.Log("gameover");
+                }
             }
         }
 
         // クリア判定をリセット
         MGManager.Finished();
-
+        if (lifeRemain == 0)
+        {
+            // GameOver();
+            yield break;
+        }
         // スピードアップ
         if (speedup)
         {
@@ -207,6 +226,7 @@ public class GameManager : MonoBehaviour
 
         // 最後にSuccessとFailureのPitchを変える
         Success.pitch = PitchScale;
+        Failure.pitch = PitchScale;
 
         // デバッグ後初回の終わり
         MGManager.isMainCalled = true;
