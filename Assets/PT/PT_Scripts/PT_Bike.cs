@@ -18,7 +18,7 @@ namespace PTgame
         private float basePower;
         private bool hasBelled = false;
 
-        void Awake()
+        void Start()
         {
             obstacle = GetComponent<PT_Obstacle>();
             if (obstacle != null)

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3707250307485641461}
   - component: {fileID: 8530343808187535267}
-  - component: {fileID: 3284735683412091921}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Untagged
@@ -88,17 +87,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3284735683412091921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8162782439380046546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 749f0e1a4242112418a5015cecb05f64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  stopTime: 0.5
