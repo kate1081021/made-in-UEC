@@ -31,6 +31,12 @@ namespace SK
             isMoving = false;
         }
 
+        void Start()
+        {
+            animator = GetComponentInChildren<Animator>();
+
+        }
+
         void Update()
         {
             if (isMoving && nextWaypointIndex < waypoints.Length && gameManager != null)
@@ -50,12 +56,12 @@ namespace SK
             transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 
             // 回転（進行方向を向く）
-            Vector3 direction = target.position - transform.position;
-            if (direction != Vector3.zero)
-            {
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.Euler(0, 0, angle);
-            }
+    //        Vector3 direction = target.position - transform.position;
+    //        if (direction != Vector3.zero)
+    //        {
+    //            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+    //            transform.rotation = Quaternion.Euler(0, 0, angle);
+    //        }
 
             // 到着判定
             if (Vector3.Distance(transform.position, target.position) < 0.1f)
@@ -90,6 +96,11 @@ namespace SK
             {
                 nextWaypointIndex++;
             }
+        }
+
+        public void PlayPreJumpAction()
+        {
+            if (animator) animator.SetTrigger("prejump");
         }
 
         public void FallDown()

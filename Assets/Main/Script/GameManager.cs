@@ -60,8 +60,8 @@ public class GameManager : MonoBehaviour
     }
 
     private IEnumerator MainCoroutine()
-    {   
-        
+    {
+        yield return null;
         // BGMの総プレイ時間
         double TotalPlayTime = 0.0f;
         double FirstPlayTime = 0.0f;
@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour
 
         // 勝利状況の確認(Stage2以降)
         if (MGManager.stage > 1) {
+            Debug.Log("checked");
             if (MGManager.IsClear)
             {
                 Debug.Log("ミニゲームクリア!!");
@@ -132,7 +133,7 @@ public class GameManager : MonoBehaviour
         } else {
             PlayNext(BGM_start_2, PitchScale);
             TotalPlayTime += BGM_start_2.clip.length / PitchScale;
-        }
+        } 
 
         // 曲の再生終了とアニメーションの終了を同期させる
         while (BGM_start_1.isPlaying || BGM_start_2.isPlaying)  // ここの1.1(s)は現在のアニメーションが再生し終わるまでにかかる時間
@@ -191,14 +192,32 @@ public class GameManager : MonoBehaviour
         float timelimit = minigames[loaded_minigame].timelimit;
         int last = (int)timelimit;
 
-        while (elapsed < timelimit) { 
+        // 仮の爆弾が出てくる時間
+        float bombtime = 3f;
+        // 仮のシーン切り替えまでの猶予
+        float waitUntilClearTime = 1f;
+        // ゲームの早期切り上げが可能かどうか(通常はtrue)
+        bool stopEarlyFinish = minigames[loaded_minigame].stopEarlyFinish;
+
+        while (elapsed < timelimit) {
             // カウントダウン
             if (last > (timelimit - elapsed)) { uiManager.UITimer(last); last--; }
+            if (!stopEarlyFinish && MGManager.IsClear && (timelimit - elapsed) > (bombtime + waitUntilClearTime))
+            // 早めに切り上げてる待ち時間中に爆弾が現れないように
+            {
+                Debug.Log("早めに切り上げ");
+                yield return new WaitForSeconds(waitUntilClearTime);
+                Debug.Log("早めに切り上げた");
+                break;
+            }
             elapsed += Time.deltaTime;
             yield return null;
         }
         uiManager.UITimer(last);
-
+        foreach (var game in MGManager.ActiveMiniGames.ToArray())
+        {
+            if (game != null) game.ExecuteGameEnd();
+        }
         // 3. アニメーションが終わるまで、かつロードが90%（準備完了）まで待機
         while (asyncLoad.progress < 0.9f)
         {
