@@ -35,8 +35,8 @@ namespace LoupeFire
                 if (abs <= 0.4)  //距離が0.4以下なら成功とする
                 {
                     SuccessOrFailure = 1;
-                    MGManager.ClearGame();
                     scenechange.StartClear();
+                    MGManager.ClearGame();
                     Debug.Log(abs.ToString());
                 } else
                 {
@@ -46,6 +46,15 @@ namespace LoupeFire
                 }
             }
         }
+        /*
+        public override void OnGameEnd()  //ゲームの終了時にClearGameを呼ぼうと企んだ残骸
+        {
+            if (SuccessOrFailure == 1)
+            {
+                MGManager.ClearGame();
+            }
+        }
+        */
         IEnumerator retry()
         {
             yield return new WaitForSeconds(1f * Time.timeScale);  //１秒待つ
