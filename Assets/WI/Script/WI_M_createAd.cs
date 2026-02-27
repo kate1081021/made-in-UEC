@@ -33,13 +33,10 @@ namespace WI
         {
             if (Action.WasPerformedThisFrame())
             {
-                Debug.Log("push");
                 if (isTopWindowFromCursor())
                 {
-                    Debug.Log("top");
                     if (cursorCollision)
                     {
-                        Debug.Log("act");
                         gameOver();
                     }
                 }
@@ -122,7 +119,7 @@ namespace WI
             float elapsed = 0f;
 
             float randomX, randomY;
-            int sr = this.transform.parent.parent.GetComponent<SpriteRenderer>().sortingOrder;
+            int sr = this.transform.parent.parent.GetComponent<SortingGroup>().sortingOrder;
             Vector2 adPosition;
             GameObject newAd;
 

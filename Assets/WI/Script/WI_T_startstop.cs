@@ -73,7 +73,6 @@ namespace WI
                         sg.sortingOrder = sortNum;
                         if (windowType[i].name.Contains("WI_M_popup") || windowType[i].name.Contains("WI_T_ad"))
                         {
-                            Debug.Log("skip");
                             sortNum += 2;
                         }
                         else
