@@ -12,7 +12,6 @@ namespace BK
         public List<BK_Enemy> EnemyData = new List<BK_Enemy>();  // BK_Enemy(enemyが立っている場所とy座標を持っている)を保存したデータ
         public List<BK_LocationData> dataset_easy;  // データのまとめ(難易度簡単)
         public List<BK_LocationData> dataset_normal;  // データのまとめ(難易度普通)
-        public List<BK_LocationData> dataset_difficult;  // データのまとめ(難易度難しい)
         public List<BK_LocationData> dataset;  // 上の３つのうちどれか一つを格納する
         private List<float> y_list;
         public static float escapableRange = 50f;  // 回避の反転許容範囲
@@ -31,21 +30,17 @@ namespace BK
             // Playerオブジェクトからコンポーネントを抽出
             player_controller = player.GetComponent<BK_PlayerController>();
             player_pos = player.GetComponent<RectTransform>();
-            // MGManager.TestPlay(16);
+            MGManager.TestPlay(101);
 
             // 難易度設定
             int s = MGManager.stage;
-            if (1 <= s && s <= 15)  // 簡単
+            if (1 <= s && s <= 30)  // 簡単
             {
                 dataset = dataset_easy;
             }
-            else if (16 <= s && s <= 30)  // 普通
+            else  // 普通
             {
                 dataset = dataset_normal;
-            }
-            else  // 難しい
-            {
-                dataset = dataset_difficult;
             }
             
             // Enemy呼び出し
@@ -61,7 +56,7 @@ namespace BK
                 float dir = rand == 0 ? -1.0f : 1.0f;
                 Vector2 position;
                 GameObject newImage;
-                float x = 250 + 200*Random.Range(1, 4);
+                float x = 450 + 50 * Random.Range(0, 9);
 
                 // 左
                 if (dir == -1.0f)
