@@ -16,24 +16,26 @@ namespace LoupeFire
         int lastdir;
         float initialTime;  //円運動用
         float lasttime = 0f; //円運動用
+        float initialDeg; //円運動用
         public bool flag = false;  //trueになったら成功失敗を判定する
         public override void OnGameStart()
         {
             MGManager.Load();
             //MGManager.TestPlay(100);  //テストプレイ用なので，後で消す．
             howToMove = UnityEngine.Random.Range(0, 3);
-            howToMove = 2;
+            //howToMove = 0;
             speed = 0.05f * Time.timeScale;
             lastdir = 1;
             switch (howToMove)
             {
                 case 0:
-                    lastpos = new Vector3(0, 0, 0);
+                    lastpos = new Vector3(0, UnityEngine.Random.Range(-1f, 1f), 0);
                 break;
                 case 1:
-                    lastpos = new Vector3(0, 0.6f, 0);
+                    lastpos = new Vector3(UnityEngine.Random.Range(-1.5f, 1.5f), 0.6f, 0);
                 break;
                 case 2:
+                    initialDeg = UnityEngine.Random.Range(0, 360);
                 break;
             }
             init();
@@ -70,7 +72,7 @@ namespace LoupeFire
             {
                 Moving_Vertically = 1;
             }
-            if (Action.WasPerformedThisFrame())
+            if (Action.WasPerformedThisFrame() && !flag)
             {
                 lastdir = Moving_Vertically;
                 Moving_Vertically = 0;
@@ -93,7 +95,7 @@ namespace LoupeFire
             {
                 Moving_Horizontally = 1;
             }
-            if (Action.WasPerformedThisFrame())
+            if (Action.WasPerformedThisFrame() && !flag)
             {
                 lastdir = Moving_Horizontally;
                 Moving_Horizontally = 0;
@@ -108,12 +110,12 @@ namespace LoupeFire
             if (Moving_Roundly == 1)
             {
                 Vector2 pos = transform.position;
-                float rad = speed * Mathf.Rad2Deg * (Time.time - initialTime + lasttime) / circle_radius;
+                float rad = speed * Mathf.Rad2Deg * (Time.time - initialTime + lasttime) / circle_radius + Mathf.Rad2Deg * initialDeg ;
                 pos.x = Mathf.Cos(rad) * circle_radius;
                 pos.y = 2.7f + Mathf.Sin(rad) * circle_radius;
                 transform.position = pos;
             }
-            if (Action.WasPerformedThisFrame())
+            if (Action.WasPerformedThisFrame() && !flag)
             {
                 lasttime = Time.time - initialTime + lasttime;
                 Moving_Roundly = 0;
