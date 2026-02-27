@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3837228280199662648}
   - component: {fileID: 7134755163946570182}
   m_Layer: 0
-  m_Name: WI_M_window_virus buster
+  m_Name: WI_I_window_virus buster
   m_TagString: window
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

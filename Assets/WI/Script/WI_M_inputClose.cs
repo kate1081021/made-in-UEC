@@ -12,7 +12,10 @@ namespace WI
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
         {
-            cursorCollider = GameObject.Find("WI_M_cursor").GetComponent<BoxCollider2D>();
+            if (GameObject.Find("WI_M_cursor") != null)
+            {
+                cursorCollider = GameObject.Find("WI_M_cursor").GetComponent<BoxCollider2D>();
+            }
             cursorCollision = false;
         }
 
@@ -74,7 +77,7 @@ namespace WI
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision == cursorCollider)
+            if (cursorCollider != null && collision == cursorCollider)
             {
                 cursorCollision = true;
             }
@@ -83,7 +86,7 @@ namespace WI
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision == cursorCollider)
+            if (cursorCollider != null && collision == cursorCollider)
             {
                 cursorCollision = false;
             }

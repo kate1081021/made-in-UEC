@@ -28,6 +28,7 @@ namespace WI
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
         {
+            int sortNum = 0;
             if (audioSource != null && startSound != null)
             {
                 audioSource.clip = startSound;
@@ -57,7 +58,7 @@ namespace WI
                     float randomY = Random.Range(-0.15f, 0.15f);
 
                     spawnPos = new Vector2(randomX, randomY);
-                    if (windowType[i].name == "WI_M_window_virus buster")
+                    if (windowType[i].name == "WI_I_window_virus buster")
                     {
                         spawnPos = new Vector2(7f, -2.5f);
                     }
@@ -69,7 +70,16 @@ namespace WI
                     SortingGroup sg = newWindow.GetComponent<SortingGroup>();
                     if (sg != null)
                     {
-                        sg.sortingOrder = i;
+                        sg.sortingOrder = sortNum;
+                        if (windowType[i].name.Contains("WI_M_popup") || windowType[i].name.Contains("WI_T_ad"))
+                        {
+                            Debug.Log("skip");
+                            sortNum += 2;
+                        }
+                        else
+                        {
+                            sortNum++;
+                        }
                     }
                     targetWindows.Add(newWindow);
 
@@ -113,7 +123,7 @@ namespace WI
                         currentWindowCount++;
                     }
             
-                    if (win.name.Contains("WI_M_window_virus buster"))
+                    if (win.name.Contains("WI_I_window_virus buster"))
                     {
                         currentBusterCount++;
                     }
@@ -174,7 +184,7 @@ namespace WI
                 Debug.Log("windowType: " + windowType[i]);
 
                 spawnPos = new Vector2(randomX, randomY);
-                if (windowType[i].name == "WI_M_window_virus buster")
+                if (windowType[i].name == "WI_I_window_virus buster")
                 {
                     spawnPos = new Vector2(7f, -2.5f);
                 }
@@ -187,7 +197,15 @@ namespace WI
                 if (sg != null)
                 {
                     sg.sortingOrder = sortNum;
-                    sortNum++;
+                    if (windowType[i].name.Contains("WI_M_popup") || windowType[i].name.Contains("WI_T_ad"))
+                    {
+                        Debug.Log("skip");
+                        sortNum += 2;
+                    }
+                    else
+                    {
+                        sortNum++;
+                    }
                 }
                 targetWindows.Add(newWindow);
 

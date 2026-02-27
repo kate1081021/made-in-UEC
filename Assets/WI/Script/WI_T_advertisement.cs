@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Rendering;
 
 namespace WI
 {
@@ -7,8 +8,27 @@ namespace WI
     {
         private bool isClosing = false;
         [SerializeField] private bool useAnimation = true;
+
+        private SortingGroup sr, parentSr;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        public override void OnGameStart() { }
+        public override void OnGameStart() 
+        {
+            if(this.GetComponent<SortingGroup>() != null)
+            {
+                sr = this.GetComponent<SortingGroup>();
+            }
+            if(this.transform.parent != null)
+            {
+                if(this.transform.parent.GetComponent<SortingGroup>() != null)
+                {
+                    parentSr = this.transform.parent.GetComponent<SortingGroup>();
+                }
+            }
+            if(sr != null && parentSr != null)
+            {
+                sr.sortingOrder = parentSr.sortingOrder + 1;
+            }
+        }
 
         public override void OnGameEnd() { }
         void Update() { }

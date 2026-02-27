@@ -35,7 +35,7 @@ namespace WI
             {
                 cursorSpeed = this.speed * MGManager.timeScale;
             }
-            Debug.Log(cursorSpeed);
+            // Debug.Log(cursorSpeed);
 
             cursorPosition = new Vector2(transform.position.x + inputDirection.x * cursorSpeed,
                                          transform.position.y + inputDirection.y * cursorSpeed);
