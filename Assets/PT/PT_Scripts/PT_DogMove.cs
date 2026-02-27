@@ -45,7 +45,7 @@ namespace PTgame
             yield return new WaitForSeconds(stopTime);
 
             if (parentDog != null)
-                parentDog.ActiveBark();
+                parentDog.ActiveBark(direction);
 
             Debug.Log("呼び出し");
 
