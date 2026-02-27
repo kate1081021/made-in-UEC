@@ -14,14 +14,18 @@ public class LF_SceneChange : MonoBehaviour
     public GameObject explpsion;
     public GameObject hand;
     public GameObject fire;
+    [SerializeField] AudioClip bakuhatsu;
+    AudioSource audioSource;
 
     [Header("諸設定")]
     public Transform ThrowTarget;
-    public float throwDuration = 0.3f;
+    public float throwDuration;
     [SerializeField] LF_handChange handChange;
     [SerializeField] LF_fire fireMove;
 
     public void StartClear(){
+        throwDuration = 0.3f / Time.timeScale;
+        audioSource = GetComponent<AudioSource>();
         StartCoroutine(ClearMovie());
     }
 
@@ -47,7 +51,7 @@ public class LF_SceneChange : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f / Time.timeScale);
         
         // 爆弾と手を表示
         bomb.SetActive(true);
@@ -55,7 +59,7 @@ public class LF_SceneChange : MonoBehaviour
         Vector3 startPos = bomb.transform.position;
 
         // 待機
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f / Time.timeScale);
 
         // 手の画像の切り替え
         handChange.change();
@@ -72,6 +76,7 @@ public class LF_SceneChange : MonoBehaviour
         }
 
         explpsion.transform.position = bomb.transform.position;
+        audioSource.PlayOneShot(bakuhatsu);
         explpsion.SetActive(true);
         bomb.SetActive(false);
     }
