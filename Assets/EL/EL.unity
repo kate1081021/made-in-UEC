@@ -6078,7 +6078,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 15
+  m_LinearDamping: 20
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -6335,7 +6335,8 @@ MonoBehaviour:
   playerLineRenderer: {fileID: 2131784250}
   voltText: {fileID: 903276754}
   targetVoltText: {fileID: 1584093921}
-  clearRatio: 0.55
+  clearRatio: 0.5
+  errorMultiplier: 2
   stageData: {fileID: 11400000, guid: 47063fbf26c9a314dbfee395945dcfcb, type: 2}
   bounds:
     m_Center: {x: 0, y: -1, z: 0}

@@ -55,7 +55,7 @@ namespace EL
 
 		private void MoveProbe(Vector2 direction)
 		{
-			rb.AddForce(direction * Time.timeScale * force);
+			rb.AddForce(direction * force);
 			// 画面外に出ないようにする
 			Vector2 maxPosition = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)); // 画面右上のワールド座標を取得
 			Vector2 minPosition = Camera.main.ScreenToWorldPoint(Vector2.zero); // 画面左下のワールド座標を取得
