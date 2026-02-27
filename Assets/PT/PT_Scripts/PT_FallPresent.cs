@@ -9,8 +9,16 @@ namespace PTgame
         [SerializeField] public float present_tp;
         [SerializeField] private Rigidbody2D rigid;
         [SerializeField] private float pushForce = 2.0f; // 左右に飛ばす強さ
+        [SerializeField] private bool endless_isFall;
+        [SerializeField] private float gravity;
         private bool isFalling = false; // すでに落下開始したかどうかのフラグ
         // Update is called once per frame
+
+        void Awake()
+        {
+            endless_isFall = true;
+            gravity = 0;
+        }
         void Update()
         {
             if (manager.fall && !isFalling)
@@ -19,6 +27,21 @@ namespace PTgame
                 isFalling = true;
                 // 左右に力を加える
                 ApplyHorizontalForce();
+            }
+            if (manager.endless_mode && endless_isFall)
+            {
+                Debug.Log("transform.localPosition.y vs present_tp " + transform.localPosition.y +" "+ present_tp);
+                Vector3 tp = transform.localPosition;
+                if (transform.localPosition.y > present_tp)
+                {
+                    gravity += 0.098f * Time.deltaTime * Time.timeScale;
+                    transform.localPosition = new Vector3(tp.x, tp.y - gravity, tp.z);
+                }
+                else
+                {
+                    transform.localPosition = new Vector3(tp.x, present_tp, tp.z);
+                    endless_isFall = false;
+                }
             }
         }
 

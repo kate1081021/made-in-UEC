@@ -13,9 +13,6 @@ namespace PTgame
         [SerializeField] private float time;
         [SerializeField] private Camera game_camera;
 
-        // パーティクル書き換え用の配列キャッシュ
-        private ParticleSystem.Particle[] particlesArray;
-
         void Awake()
         {
             if (game_camera == null) game_camera = Camera.main;
