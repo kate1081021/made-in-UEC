@@ -18,7 +18,7 @@ namespace PTgame
         private float basePower;
         private bool hasBarked = false;
 
-        void Start()
+        void Awake()
         {
             obstacle = GetComponent<PT_Obstacle>();
             if (obstacle != null)
@@ -46,7 +46,7 @@ namespace PTgame
             }
         }
 
-        private void Bark()
+        public void ActiveBark()
         {
             if (obstacle == null) return;
 
@@ -54,20 +54,29 @@ namespace PTgame
             int pm = Random.Range(1, 3);
             obstacle.power = (pm == 1) ? -basePower : basePower;
 
-            float dir = Mathf.Sign(obstacle.power);
+            barkTimer = barkDuration;
+            hasBarked = true;
+        }
+
+        private void Bark()
+        {
+            
 
             // ★オブジェクト生成
             if (barkPrefab != null)
             {
-                Vector3 offset = new Vector3(dir * -2.8f, -2.5f, 0f); 
-                Vector3 pos = offset;
-
+                float dir = Mathf.Sign(obstacle.power);
+                
+                float edgeX = (dir > 0)
+                ? Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x - 1f
+                : Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)).x + 1f;
+                
+                Vector3 pos = new Vector3(edgeX, -2.5f, 0f);
                 GameObject obj = Instantiate(barkPrefab, pos, Quaternion.identity);
-                Destroy(obj, 1f);
+                
+                // PT_DogMove に親犬を渡す
+                obj.GetComponent<PT_DogMove>().Init(dir, this);
             }
-
-            barkTimer = barkDuration;
-            hasBarked = true;
         }
     }
 }
