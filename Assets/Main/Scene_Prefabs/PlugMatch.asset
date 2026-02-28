@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene_name: PlugMatch
   verb: "\u5DEE\u305B!"
-  timelimit: 2
+  timelimit: 2.5
+  stopEarlyFinish: 0
