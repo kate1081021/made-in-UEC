@@ -294,6 +294,17 @@ public partial class @MIU_InputSystem: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": """",
+                    ""id"": ""b2ed8381-b77a-4d3d-8c13-f98567131c4d"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
                     ""name"": ""1D Axis"",
                     ""id"": ""484ab1bc-2f71-4b2c-9350-2eced0f792ee"",
                     ""path"": ""1DAxis"",

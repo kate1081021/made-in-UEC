@@ -10,6 +10,7 @@ namespace PTgame
 {
     public class PT_Manager : MiniGameBase
     {
+        [SerializeField] private AudioClip[] se;
         [SerializeField] private List<GameObject> presents; //プレゼント個々制御
         [SerializeField] private List<PT_FallLeaves> leaves; //風用の葉群
         [SerializeField] private int present_count;
