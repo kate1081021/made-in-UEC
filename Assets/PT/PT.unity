@@ -7286,7 +7286,7 @@ MonoBehaviour:
   obstacle_info: []
   game_camera: {fileID: 766268018}
   testlevel: 1
-  endless_mode: 0
+  endless_mode: 1
   endless_timer: 0
   endless_apt: 0
   endless_apt_duration: 0
