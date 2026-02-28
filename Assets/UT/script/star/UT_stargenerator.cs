@@ -44,7 +44,7 @@ namespace UT
         {
             pm = GameObject.Find("Player").GetComponent<UT_playermove>();
             pm.generator = gameObject;
-            pm.timelimit = 15f;
+            pm.timelimit = 13f;
             Instantiate(enemy, Vector3.zero, Quaternion.identity);
             GameObject star1 = Instantiate(obj, new Vector3(centerx + Mathf.Sin(0 * Mathf.Deg2Rad), centery + Mathf.Cos(0 * Mathf.Deg2Rad), 0), Quaternion.identity);
             GameObject star2 = Instantiate(obj, new Vector3(centerx + Mathf.Sin(72 * Mathf.Deg2Rad), centery + Mathf.Cos(72 * Mathf.Deg2Rad), 0), Quaternion.identity);

@@ -57,5 +57,5 @@ MonoBehaviour:
   swingspeed: 1
   swingwidth: 45
   ghostspeed: 3.5
-  duration: 0.5
+  duration: 0.45
   ghostvectorrange: 40

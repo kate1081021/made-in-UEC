@@ -22,7 +22,7 @@ namespace UT
         {
             pm = GameObject.Find("Player").GetComponent<UT_playermove>();
             pm.generator = gameObject;
-            pm.timelimit = 15f;
+            pm.timelimit = 13f;
             Instantiate(enemy, Vector3.zero, Quaternion.identity);
             StartCoroutine(generate());
         }

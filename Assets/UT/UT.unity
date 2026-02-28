@@ -777,8 +777,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d76ea6cea3d4704486e62c4bc7bc828, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameBGM: {fileID: 8300000, guid: 1dd41fda8c7756b4c8bb525f13f3e3b2, type: 3}
-  stage: 1
+  gameBGM: {fileID: 0}
+  stage: 100
   level1:
   - {fileID: 5481663878230809623, guid: 0b5b71a9d9af92549af13a52ed8612da, type: 3}
   - {fileID: 6467286396666339201, guid: ef6220e8319e07f48b9ba6e641789ac7, type: 3}
@@ -789,8 +789,6 @@ MonoBehaviour:
   - {fileID: 4530370601095003183, guid: 1353387b8b0b8274ba4aa8ca8ea33f60, type: 3}
   - {fileID: 472407195154502836, guid: 0da39fed8a4d56b4badc47b780fccaf8, type: 3}
   - {fileID: 469646815665846420, guid: 21b46c0c3db270147b0ae73108010cee, type: 3}
-  hidan: {fileID: 8300000, guid: 9f389e5844edc624f8237a19e77a1212, type: 3}
-  die: {fileID: 8300000, guid: 36622b0579cd4f34abe3b4c69a1f6199, type: 3}
   movespeed: 4
   damage: 25
   duration: 0.8
