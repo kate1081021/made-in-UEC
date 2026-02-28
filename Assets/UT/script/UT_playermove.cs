@@ -14,7 +14,7 @@ namespace UT
         public List<GameObject> level1;
         public List<GameObject> level2;
         public List<GameObject> level3;
-        Dictionary<string, AudioClip> se = new Dictionary<string, AudioClip>();
+        private AudioSource mainSource;
         [SerializeField]AudioClip hidan;
         [SerializeField] AudioClip die;
         [SerializeField] private float movespeed;
@@ -58,8 +58,6 @@ namespace UT
             BGMPlay();
             rb = GetComponent<Rigidbody2D>();
             alive = true;
-            se.Add("hidan", hidan);
-            se.Add("die", die);
             canvas.gameObject.SetActive(true);
             die_back.gameObject.SetActive(false);
             gameObject.GetComponent<SpriteRenderer>().color = new Vector4(1, 0, 0, 1);
@@ -135,7 +133,11 @@ namespace UT
                 Debug.Log("HP = " + currentHp);
                 if (currentHp <= 0)
                 {
-                    //SEPlay("die");
+                    if (mainSource == null)
+                    {
+                        mainSource = gameObject.AddComponent<AudioSource>();
+                    }
+                    mainSource.PlayOneShot(die);
                     Debug.Log("failure");
                     canvas.gameObject.SetActive(false);
                     die_back.gameObject.SetActive(true);
@@ -145,7 +147,11 @@ namespace UT
                 }
                 else
                 {
-                    //SEPlay("hidan");
+                    if (mainSource == null)
+                    {
+                        mainSource = gameObject.AddComponent<AudioSource>();
+                    }
+                    mainSource.PlayOneShot(hidan);
                     StartCoroutine(muteki());
                 }
             }
