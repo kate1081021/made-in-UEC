@@ -30,7 +30,7 @@ namespace BK
             // Playerオブジェクトからコンポーネントを抽出
             player_controller = player.GetComponent<BK_PlayerController>();
             player_pos = player.GetComponent<RectTransform>();
-            MGManager.TestPlay(101);
+            MGManager.TestPlay(50);
 
             // 難易度設定
             int s = MGManager.stage;
@@ -85,7 +85,6 @@ namespace BK
         private IEnumerator MainCoroutine()
         {
             // ちょっと待つ
-            yield return new WaitForSeconds(2.0f);
             BGMPlay(applyToTimeScale: true);
             player_controller.startWalking();
 
