@@ -564,6 +564,37 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &288762230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 288762231}
+  m_Layer: 0
+  m_Name: LF_fireRestart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &288762231
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288762230}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9, y: -2.7, z: -0.037210822}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &439720250
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,7 +740,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FireGoal: {fileID: 1641615277}
-  throwDuration: 0.3
+  FireRestart: {fileID: 288762231}
+  bomb: {fileID: 598681678}
+  match: {fileID: 0}
+  fireDuration: 0.5
+  lastDuration: 0.2
 --- !u!212 &471358013
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -964,6 +999,7 @@ GameObject:
   m_Component:
   - component: {fileID: 653785790}
   - component: {fileID: 653785789}
+  - component: {fileID: 653785791}
   m_Layer: 0
   m_Name: LF_match 1_0
   m_TagString: Untagged
@@ -1041,6 +1077,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &653785791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653785788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2d2b6c31674d843a2693957411003b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 6251664537316397058, guid: df0832d5a3883f9408cbbc8d70a975dd, type: 3}
+  - {fileID: -5891815666261957016, guid: 232a7c70f6ff78542b2e15a6c31d2607, type: 3}
+  - {fileID: 4371160929549431675, guid: 9e814bfdff4f72148a0c7e593fb25352, type: 3}
+  - {fileID: 6794628017702415033, guid: 489821028b9cffc489d9319ec04ce4c7, type: 3}
+  - {fileID: 1510102103603264805, guid: fb4ceb726c45dc74388f73625dc1bcdf, type: 3}
+  - {fileID: 1510102103603264805, guid: fb4ceb726c45dc74388f73625dc1bcdf, type: 3}
+  interval: 0.1
 --- !u!1 &773696203
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,6 +1248,7 @@ MonoBehaviour:
   throwDuration: 0.3
   handChange: {fileID: 439720255}
   fireMove: {fileID: 471358012}
+  match_fired: {fileID: 653785791}
 --- !u!4 &972919298
 Transform:
   m_ObjectHideFlags: 0
@@ -1682,3 +1739,4 @@ SceneRoots:
   - {fileID: 439720254}
   - {fileID: 471358014}
   - {fileID: 1641615277}
+  - {fileID: 288762231}
