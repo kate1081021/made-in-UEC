@@ -7,6 +7,7 @@ TagManager:
   - bullet
   - window
   - closeButton
+  - Ground
   layers:
   - Default
   - TransparentFX

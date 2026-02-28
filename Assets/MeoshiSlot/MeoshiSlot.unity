@@ -5811,13 +5811,12 @@ MonoBehaviour:
   reel2Parent: {fileID: 1088254096}
   reel3Parent: {fileID: 18455151}
   sourceSprites:
-  - {fileID: 5591422608897019170, guid: f1fb58fc6be86cb4b9c171fd10391269, type: 3}
-  - {fileID: 7028616704906629411, guid: 80b62149855a39a4eafebde311b27c78, type: 3}
-  - {fileID: 1098770389547517647, guid: bed09b11d5d00eb4a91941645d86caae, type: 3}
-  - {fileID: -1366655912843611306, guid: 74a8dbb593fb8b243910fe69807ff43d, type: 3}
+  - {fileID: 503099678794697293, guid: 838787c6fe9fcb540b173731e30a856f, type: 3}
+  - {fileID: -6023584363536068767, guid: 838787c6fe9fcb540b173731e30a856f, type: 3}
+  - {fileID: -6773781289770685678, guid: 838787c6fe9fcb540b173731e30a856f, type: 3}
   baseBpm: 160
   winSpriteIndex: 0
-  symbolsPerBeat: 4
+  symbolsPerBeat: 3
   cellHeight: 330
   visualOffsetY: 0
   stoppedScale: 0.7
@@ -6512,7 +6511,7 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 4
-    height: 8.437388
+    height: 1.6206615
 --- !u!222 &1782069992
 CanvasRenderer:
   m_ObjectHideFlags: 0
