@@ -2496,7 +2496,7 @@ MonoBehaviour:
   voiceStart: {fileID: 8300000, guid: b53f8c9dd11943741aa32e83e8a9e140, type: 3}
   sfxStepPerfect: {fileID: 8300000, guid: 93cf2528e74c74f418219e7acc6f57e1, type: 3}
   sfxStepGood: {fileID: 8300000, guid: a45644a1fd0be2b4288426adab6665ea, type: 3}
-  sfxMiss: {fileID: 0}
+  sfxMiss: {fileID: 8300000, guid: c8d9ce260ce9b684d998cd5edc5515e5, type: 3}
   sfxJump: {fileID: 0}
   spriteLeft: {fileID: 8051082401188131004, guid: 2d7cabe90c5280f47b592ee73bff73b4, type: 3}
   spriteRight: {fileID: 6868334881591713047, guid: 2d7cabe90c5280f47b592ee73bff73b4, type: 3}
