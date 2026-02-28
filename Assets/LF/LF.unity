@@ -962,8 +962,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -919411731209816819, guid: cfeff0cf04f4a5b42900273c384d45a7, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 3592337542235201030, guid: d63eb6ad7898d4e44aaa37f1276e0c42, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1644,6 +1644,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2042684684}
   - component: {fileID: 2042684683}
+  - component: {fileID: 2042684685}
   m_Layer: 0
   m_Name: LF_background
   m_TagString: Untagged
@@ -1695,7 +1696,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6236940535067763299, guid: 25b6947daad52164bbcc5a944a715486, type: 3}
+  m_Sprite: {fileID: -2433730644181734509, guid: 17db5ce1c8a2aaa4c915998d56029c89, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1716,11 +1717,33 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2042684685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042684682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec35413bbd6519c428b7fb00919f6246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameBGM: {fileID: 0}
+  sprites:
+  - {fileID: -6724081435047004277, guid: c162444368b13ac42b2e7a079bef4b92, type: 3}
+  - {fileID: -5235458627987336850, guid: 3365348d1d5a20c4393380d085517a7b, type: 3}
+  - {fileID: -5848706774194993553, guid: 8acbb2e22a6f663458713c17172c4385, type: 3}
+  - {fileID: 8029969612597407781, guid: c0b06fbadd99ea6469b6c7bf62206016, type: 3}
+  - {fileID: 3625141480544433576, guid: aa73111d75779c5439743224136dfd61, type: 3}
+  - {fileID: -8712338801956429557, guid: caadf4a4d8f6bba4990f15bf8e878cad, type: 3}
+  - {fileID: 7787258012655543349, guid: 0811275dd7248b04aae0114e8d6f60d5, type: 3}
+  - {fileID: -2433730644181734509, guid: 17db5ce1c8a2aaa4c915998d56029c89, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
