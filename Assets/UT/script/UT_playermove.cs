@@ -10,10 +10,13 @@ namespace UT
 
     public class UT_playermove : MiniGameBase
     {
-        public int stage = 15;
+        public int stage;
         public List<GameObject> level1;
         public List<GameObject> level2;
         public List<GameObject> level3;
+        private AudioSource mainSource;
+        [SerializeField]AudioClip hidan;
+        [SerializeField] AudioClip die;
         [SerializeField] private float movespeed;
         private Rigidbody2D rb;
         [Tooltip("îÌíeéûÇ…éÛÇØÇÈÉ_ÉÅÅ[ÉW")]
@@ -52,6 +55,7 @@ namespace UT
         {
             MGManager.TestPlay(stage);
             MGManager.Load();
+            BGMPlay();
             rb = GetComponent<Rigidbody2D>();
             alive = true;
             canvas.gameObject.SetActive(true);
@@ -98,7 +102,8 @@ namespace UT
         }
         void FixedUpdate()
         {
-            Vector2 pos = Move.ReadValue<Vector2>() * movespeed * Time.timeScale * Time.fixedDeltaTime;
+            float slow = Action.IsPressed() ? 0.5f : 1f;
+            Vector2 pos = Move.ReadValue<Vector2>() * movespeed * Time.timeScale * Time.fixedDeltaTime * slow;
             if(alive)rb.MovePosition(rb.position + pos);
         }
 
@@ -128,6 +133,11 @@ namespace UT
                 Debug.Log("HP = " + currentHp);
                 if (currentHp <= 0)
                 {
+                    if (mainSource == null)
+                    {
+                        mainSource = gameObject.AddComponent<AudioSource>();
+                    }
+                    mainSource.PlayOneShot(die);
                     Debug.Log("failure");
                     canvas.gameObject.SetActive(false);
                     die_back.gameObject.SetActive(true);
@@ -137,6 +147,11 @@ namespace UT
                 }
                 else
                 {
+                    if (mainSource == null)
+                    {
+                        mainSource = gameObject.AddComponent<AudioSource>();
+                    }
+                    mainSource.PlayOneShot(hidan);
                     StartCoroutine(muteki());
                 }
             }
