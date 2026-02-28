@@ -64,7 +64,7 @@ namespace PTgame
                 ? Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x - 1f
                 : Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)).x + 1f;
                 
-                Vector3 pos = new Vector3(edgeX, -2.5f, 0f);
+                Vector3 pos = new Vector3(edgeX, -2.5f, 2f);
                 GameObject obj = Instantiate(bikePrefab, pos, Quaternion.identity);
                 
                 // ←★ここが重要
