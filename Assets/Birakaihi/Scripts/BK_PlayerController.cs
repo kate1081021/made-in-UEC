@@ -14,7 +14,7 @@ namespace BK
         // ゲーム開始時に呼ばれる
         public override void OnGameStart()
         {
-            animator.speed = MGManager.timeScale;  // アニメーションの再生速度をtimeScaleにあわせる
+            // 特に何もしない
         }
 
         // 方向キーが押されたとき
