@@ -17,6 +17,7 @@ namespace EL
 		[SerializeField] private TextMeshProUGUI voltText; // 電位表示用のテキストUI
 		[SerializeField] private TextMeshProUGUI targetVoltText; // 目標電位表示用のテキストUI
 		[SerializeField] private float clearRatio = 0.7f; // クリア判定のための一致率
+		[SerializeField] private float errorMultiplier = 2f; // クリア判定のための距離閾値にかける倍率
 		[SerializeField] private EL_StageData stageData; // ステージデータ
 		private float targetVolt = 3f; // 目標電位
 		private float tolerance = 0.2f; //クリア判定の許容範囲
@@ -47,7 +48,7 @@ namespace EL
 
 		public override void OnGameStart()
 		{
-			// MGManager.TestPlay(100);
+			// MGManager.TestPlay(500);
 			MGManager.Load();
 
 			if (voltCalculator == null)
@@ -82,7 +83,7 @@ namespace EL
 			targetPoints = lineDrawer.allTargetPoints;
 			List<Vector3> playerDrawnPoints = new List<Vector3>();
 
-			// 成功判定点の隣り合う点同士の距離の最小値をerrorDistanceとする
+			// 成功判定点の隣り合う点同士の距離の最小値のerrorMultiplier倍をerrorDistanceとする
 			errorDistance = Vector2.Distance(targetPoints[0], targetPoints[1]);
 			for (int i = 1; i < targetPoints.Count; i++)
 			{
@@ -95,6 +96,7 @@ namespace EL
 					}
 				}
 			}
+			errorDistance *= errorMultiplier * Time.timeScale; // 時間が早くなったときにクリアが難しくなりすぎないようにTime.timeScaleをかける
 			Debug.Log($"Error distance set to: {errorDistance}");
 
 			for (int i = 0; i < playerLineRenderer.positionCount; i++)

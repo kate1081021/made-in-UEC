@@ -51,7 +51,7 @@ MonoBehaviour:
   droplets: {fileID: 4548265084187607840, guid: 742390855e57a2d4abb817c0d3fabd08, type: 3}
   enemy: {fileID: 5336750216515394525, guid: b615f4d917032544e985824a8db7fee1, type: 3}
   offsetT: 3
-  durationT: 2.5
+  durationT: 3
   speedT: 4
   durationA: 1
   offsetF: -7

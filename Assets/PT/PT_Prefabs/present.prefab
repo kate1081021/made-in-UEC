@@ -103,9 +103,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9aa6f45ff74f66498fa5dbb61d87940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName:
+  - p
+  SEFile:
+  - {fileID: 8300000, guid: f65e1f02885a1f148a6c5146b05c8f12, type: 3}
   manager: {fileID: 0}
+  present_tp: 0
   rigid: {fileID: 4503481992569531371}
   pushForce: 1
+  endless_isFall: 0
+  gravity: 0
+  isse: 0
+  se: {fileID: 8300000, guid: f65e1f02885a1f148a6c5146b05c8f12, type: 3}
 --- !u!50 &4503481992569531371
 Rigidbody2D:
   serializedVersion: 5

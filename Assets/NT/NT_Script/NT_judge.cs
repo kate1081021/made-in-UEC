@@ -29,6 +29,14 @@ namespace NT
             if (150 < count && count < 200 && sw.ElapsedMilliseconds > 2000)
             {
                 isCleared = true;
+                UnityEngine.Debug.Log("NT成功");
+
+                // スタンプを押す
+                if (stamp_script != null)
+                {
+                    stamp_script.PressStamp(count);
+                }
+                if (isCleared) return;
                 MGManager.ClearGame();
             }
         }
@@ -45,7 +53,7 @@ namespace NT
                 // スタンプを押す
                 if (stamp_script != null)
                 {
-                    stamp_script.PressStamp(true);
+                    stamp_script.PressStamp(count);
                 }
                 if (isCleared) return;
                 MGManager.ClearGame();
@@ -58,9 +66,10 @@ namespace NT
                 // スタンプを押す
                 if (stamp_script != null)
                 {
-                    stamp_script.PressStamp(false);
+                    stamp_script.PressStamp(count);
                 }
             }
         }
     }
 }
+
