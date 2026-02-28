@@ -1311,7 +1311,7 @@ MonoBehaviour:
   seSource: {fileID: 1985519256}
   bgmVolume: 0.3
   seVolume: 1
-  bgmClip: {fileID: 8300000, guid: 089a1131c926d994c89305ac34b479b9, type: 3}
+  bgmClip: {fileID: 8300000, guid: 42aeb246332265e4ea3435d992d3ade4, type: 3}
   clearSeClip: {fileID: 8300000, guid: 290698ffd4827c64ba8cf263ada53582, type: 3}
   missSeClip: {fileID: 8300000, guid: 3c4a9324fce5d7e4ea84e8a6e84a4730, type: 3}
   moveSeClip: {fileID: 8300000, guid: fca92dbecd5870948b690a891a42dee4, type: 3}
