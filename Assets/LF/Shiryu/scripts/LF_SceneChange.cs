@@ -22,6 +22,7 @@ public class LF_SceneChange : MonoBehaviour
     public float throwDuration;
     [SerializeField] LF_handChange handChange;
     [SerializeField] LF_fire fireMove;
+    [SerializeField] LF_match match_fired;
 
     public void StartClear(){
         throwDuration = 0.3f / Time.timeScale;
@@ -38,9 +39,8 @@ public class LF_SceneChange : MonoBehaviour
 
         // 2. fireMove がついている本体の状態を詳しくチェック
         if (fireMove != null) {
-            fireMove.gameObject.SetActive(true); // 念のため自分自身をオンにする
+            fireMove.gameObject.SetActive(true);
 
-            // 【重要】ここで状態をログに出す
             Debug.Log($"fireMove自体の状態: {fireMove.gameObject.activeSelf}");
             Debug.Log($"シーン内での実質的な状態: {fireMove.gameObject.activeInHierarchy}");
 
@@ -51,11 +51,25 @@ public class LF_SceneChange : MonoBehaviour
             }
         }
 
+        if (match_fired != null) {
+            match_fired.gameObject.SetActive(true);
+
+            Debug.Log($"match_fired自体の状態: {match_fired.gameObject.activeSelf}");
+            Debug.Log($"シーン内での実質的な状態: {match_fired.gameObject.activeInHierarchy}");
+
+            if (match_fired.gameObject.activeInHierarchy) {
+                match_fired.StartFire();
+            } else {
+                Debug.LogError("警告: 親オブジェクトの誰かがオフなので、match_firedはまだ眠ったままです！");
+            }
+        }
+
         yield return new WaitForSeconds(0.5f / Time.timeScale);
         
-        // 爆弾と手を表示
+        // 爆弾と手を表示、導火線非表示
         bomb.SetActive(true);
         hand.SetActive(true);
+        match.SetActive(false);
         Vector3 startPos = bomb.transform.position;
 
         // 待機
