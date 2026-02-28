@@ -1,16 +1,16 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.Video; 
+using UnityEngine.Video; // ★ビデオ制御に必要
 
 namespace SK
 {
     public class SK_WWG : MiniGameBase
     {
+        // ★ボタンタイプは L と R のみ
         public enum ButtonType { Left, Right }
 
         [Header("Video Settings")]
-        public VideoPlayer targetVideo; 
-
+        public VideoPlayer targetVideo; // インスペクターでVideoPlayerをアタッチ
         [Header("References")]
         public SK_WarpedWallPlayer player; 
         public Transform spawnPoint;
@@ -18,9 +18,8 @@ namespace SK
         public GameObject notePrefab; 
 
         [Header("Audio Settings")]
-        // ★BGMは運営システムを使うため削除。SE（効果音）用のみ残します
-        public AudioSource audioSource; 
-        
+        public AudioSource bgmSource;   // BGM
+        public AudioSource audioSource; // SE
         public AudioClip voiceStart;    
         public AudioClip sfxStepPerfect;
         public AudioClip sfxStepGood;   
@@ -28,8 +27,8 @@ namespace SK
         public AudioClip sfxJump;       
 
         [Header("Note Images")]
-        public Sprite spriteLeft;   
-        public Sprite spriteRight;  
+        public Sprite spriteLeft;   // L画像
+        public Sprite spriteRight;  // R画像
 
         [Header("Game Settings")]
         public float[] spawnTimings = { 1.0f, 2.0f, 2.8f, 3.5f, 4.1f, 4.8f };
@@ -47,14 +46,16 @@ namespace SK
 
         public override void OnGameStart()
         {
-            MGManager.TestPlay(100);
-            MGManager.Load(); 
-
+            MGManager.TestPlay(1);
+            
             if (targetVideo != null)
             {
                 targetVideo.Play();
+                // もし動画の速さもステージに合わせるなら以下を追加
                 targetVideo.playbackSpeed = 1.0f * Time.timeScale; 
             }
+
+            MGManager.Load();
 
             isGameActive = true;
             timer = 0f;
@@ -65,15 +66,11 @@ namespace SK
             foreach(var note in activeNotes) { if(note) Destroy(note); }
             activeNotes.Clear();
 
+            // パターン生成 (L, R, L, R...)
             GenerateFixedPattern();
 
             if (player != null) player.Initialize(this);
-
-            // ★BGMは運営システムを使用（falseなのでゲーム速度が上がってもBGMの速さは変わりません）
-            BGMPlay(true); 
-            
-            // ★SEは独自のAudioSourceで再生（0.5fなどで音量調整可能）
-            PlaySound(voiceStart, 1.0f); 
+            PlaySound(voiceStart);
         }
 
         public override void OnGameEnd()
@@ -83,13 +80,14 @@ namespace SK
 
         void GenerateFixedPattern()
         {
+            // LとRのみの交互配置
             spawnTypes = new ButtonType[] {
                 ButtonType.Left,  
                 ButtonType.Right, 
                 ButtonType.Left,  
                 ButtonType.Right, 
                 ButtonType.Left,  
-                ButtonType.Right  
+                ButtonType.Right  // 最後
             };
         }
 
@@ -109,12 +107,19 @@ namespace SK
             }
         }
 
+        // 入力受け取り (Left / Right)
         protected override void OnTriggerStarted(float value) 
         { 
             if (!isGameActive) return;
 
-            if (value < -0.1f) CheckInput(ButtonType.Left);
-            else if (value > 0.1f) CheckInput(ButtonType.Right);
+            if (value < -0.1f) // 左入力
+            {
+                CheckInput(ButtonType.Left);
+            }
+            else if (value > 0.1f) // 右入力
+            {
+                CheckInput(ButtonType.Right);
+            }
         }
 
         protected override void OnTriggerPerformed(float value) { }
@@ -144,18 +149,18 @@ namespace SK
 
             SK_NoteMover targetNote = targetObj.GetComponent<SK_NoteMover>();
 
+            // 1. タイプ不一致 (LなのにRを押した)
             if (targetNote.noteType != inputType)
             {
-                PlaySound(sfxMiss, 1.0f); // 失敗音
+                PlaySound(sfxMiss);
                 player.FallDown();
-                
-                
-                OnGameEnd(); 
                 return; 
             }
 
+            // ★正解タイプなので、見た目を変える
             targetNote.OnInputReceived();
 
+            // 2. 距離判定
             float distance = Mathf.Abs(targetObj.transform.localPosition.x - targetZone.localPosition.x);
 
             if (distance <= perfectDistance)
@@ -164,10 +169,8 @@ namespace SK
             }
             else
             {
-                PlaySound(sfxMiss, 1.0f); 
                 player.FallDown();
-                
-                OnGameEnd(); 
+                PlaySound(sfxMiss);
             }
         }
 
@@ -179,25 +182,30 @@ namespace SK
             
             currentMomentum += accuracy * 20f;
 
-            if (ratio <= 0.4f) PlaySound(sfxStepPerfect, 1.0f);
-            else PlaySound(sfxStepGood, 1.0f);
+            if (ratio <= 0.4f) PlaySound(sfxStepPerfect);
+            else PlaySound(sfxStepGood);
 
             if (currentStep == 5) // 最後
             {
                 if (currentMomentum >= momentumThreshold)
                 {
-                    if (sfxJump != null) PlaySound(sfxJump, 1.0f);
-                    
-                    if (targetVideo != null) targetVideo.Pause(); 
-                    
+                    // 成功
+                    if (bgmSource != null) bgmSource.Stop();
+                    if (sfxJump != null) PlaySound(sfxJump);
+                    // ★クリア時にビデオ映像のみを停止
+                    if (targetVideo != null)
+                    {
+                        targetVideo.Pause();
+                    }
                     
                     player.StepForward(true);
-                    MGManager.ClearGame(); 
+                    MGManager.ClearGame();
                     OnGameEnd();
                 }
                 else
                 {
-                    
+                    // 失敗
+                    if (bgmSource != null) bgmSource.Stop();
                     player.FallDown();
                     OnGameEnd();
                 }
@@ -213,6 +221,7 @@ namespace SK
             }
 
             currentStep++;
+            // 少し遅らせて消すと色が確認しやすいが、即消しでもOK
             Destroy(note, 0.1f); 
             activeNotes.RemoveAt(0);
         }
@@ -222,12 +231,11 @@ namespace SK
             return Time.timeScale;
         }
 
-        // ★第2引数で音量(volume)を指定できるPlaySound関数
-        void PlaySound(AudioClip clip, float volume = 1.0f)
+        void PlaySound(AudioClip clip)
         {
             if (audioSource != null && clip != null)
             {
-                audioSource.PlayOneShot(clip, volume);
+                audioSource.PlayOneShot(clip);
             }
         }
     }
