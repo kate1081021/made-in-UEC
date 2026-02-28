@@ -12,6 +12,9 @@ namespace SL
         public AudioClip SL_AttackAudioClip;
         public AudioClip SL_AttackAudioClip2;
         public AudioClip SL_BreakAudioClip;
+        public AudioClip SL_Fanfare;
+        public AudioClip SL_Shine;
+
         public override void OnGameStart()
         {
             SL_audioSource = GetComponent<AudioSource>();
@@ -42,6 +45,8 @@ namespace SL
         public void GameClearSe()
         {
             SL_audioSource.PlayOneShot(SL_BreakAudioClip);
+            SL_audioSource.PlayOneShot(SL_Fanfare);
+            SL_audioSource.PlayOneShot(SL_Shine);
         }
     }
 }
