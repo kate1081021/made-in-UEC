@@ -122,6 +122,8 @@ namespace PTgame
             action_time -= game_time;
             if (present_slope * present_slope < 1)
             {
+
+                pc.text = "現在のプレゼント数：" + present_count.ToString() + "個";
                 if (endless_mode)
                 {
                     endless_timer += game_time;
@@ -131,7 +133,6 @@ namespace PTgame
                         endless_apt += endless_apt_duration;
                         endless_difficult = 1f + present_count / 50f;
                     }
-                    pc.text = "現在のプレゼント数：" + present_count.ToString() + "個";
                     int minutes = (int)endless_timer / 60;
                     int seconds = (int)endless_timer % 60;
                     int milliseconds = (int)((endless_timer * 1000) % 1000);

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace PTgame
 {
-    public class PT_FallPresent : MonoBehaviour
+    public class PT_FallPresent : MiniGameBase
     {
         [SerializeField] public PT_Manager manager;
         [SerializeField] public float present_tp;
@@ -11,11 +11,14 @@ namespace PTgame
         [SerializeField] private float pushForce = 2.0f; // 左右に飛ばす強さ
         [SerializeField] private bool endless_isFall;
         [SerializeField] private float gravity;
+        [SerializeField] private bool isse;
+        [SerializeField] private AudioClip se;
         private bool isFalling = false; // すでに落下開始したかどうかのフラグ
         // Update is called once per frame
 
-        void Awake()
+        public override void OnGameStart()
         {
+            isse = true;
             endless_isFall = true;
             gravity = 0;
         }
@@ -30,7 +33,7 @@ namespace PTgame
             }
             if (manager.endless_mode && endless_isFall)
             {
-                Debug.Log("transform.localPosition.y vs present_tp " + transform.localPosition.y +" "+ present_tp);
+                Debug.Log("transform.localPosition.y vs present_tp " + transform.localPosition.y + " " + present_tp);
                 Vector3 tp = transform.localPosition;
                 if (transform.localPosition.y > present_tp)
                 {
@@ -57,6 +60,15 @@ namespace PTgame
 
             // ついでに少し回転させるとよりリアルになります
             rigid.AddTorque(direction * -0.1f, ForceMode2D.Impulse);
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("Ground") && isse)
+            {
+                isse = false;
+                SEPlay("p", se);
+            }
         }
     }
 }
