@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bb61e5fecba8e3f4caa53f14a5882a5e
+guid: d510725eee473124b8c76189f4320bc7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3276073239009770110
-    second: WI_S_68homepage_0
+      213: -2176862394253692469
+    second: WI_S_tuki_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 750
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -96,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WI_S_68homepage_0
+      name: WI_S_tuki_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1184
-        height: 666
+        x: 1063
+        y: 877
+        width: 214
+        height: 199
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e7a3755e043f67d20800000000000000
-      internalID: 3276073239009770110
+      spriteID: bc13a999f2b3ac1e0800000000000000
+      internalID: -2176862394253692469
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      WI_S_68homepage_0: 3276073239009770110
+      WI_S_tuki_0: -2176862394253692469
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

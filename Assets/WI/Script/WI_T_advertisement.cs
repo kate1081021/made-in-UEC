@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Rendering;
 
 namespace WI
 {
@@ -7,8 +8,36 @@ namespace WI
     {
         private bool isClosing = false;
         [SerializeField] private bool useAnimation = true;
+
+        private SortingGroup sr, parentSr;
+
+        // SE
+        private AudioSource audioSource;
+        [SerializeField] private AudioClip destroySE;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        public override void OnGameStart() { }
+        public override void OnGameStart() 
+        {
+            if ((audioSource = this.GetComponent<AudioSource>()) == null)
+            {
+                audioSource = this.gameObject.AddComponent<AudioSource>();
+            }
+
+            if (this.GetComponent<SortingGroup>() != null)
+            {
+                sr = this.GetComponent<SortingGroup>();
+            }
+            if(this.transform.parent != null)
+            {
+                if(this.transform.parent.GetComponent<SortingGroup>() != null)
+                {
+                    parentSr = this.transform.parent.GetComponent<SortingGroup>();
+                }
+            }
+            if(sr != null && parentSr != null)
+            {
+                sr.sortingOrder = parentSr.sortingOrder + 1;
+            }
+        }
 
         public override void OnGameEnd() { }
         void Update() { }
@@ -16,6 +45,8 @@ namespace WI
         public void setInputClose()
         {
             if (isClosing) return;
+            // SEPlay("closeWindow", false);
+            soundPlay(audioSource, destroySE);
             StartCoroutine(AnimateAndDestroy());
 
             if (useAnimation)
@@ -56,6 +87,15 @@ namespace WI
 
             Destroy(this.gameObject);
             this.gameObject.SetActive(false);
+        }
+
+        private void soundPlay(AudioSource audioSource, AudioClip audioClip)
+        {
+            if (audioSource != null && audioClip != null)
+            {
+                audioSource.clip = audioClip;
+                audioSource.PlayOneShot(audioClip);
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace WI
 {
@@ -27,11 +28,46 @@ namespace WI
         {
             if (isCursorHovering && Action.WasPerformedThisFrame())
             {
-                if (parentWindow != null)
+                if (isTopWindowFromCursor())
                 {
-                    parentWindow.setInputClose();
+                    if (parentWindow != null)
+                    {
+                        parentWindow.setInputClose();
+                    }
                 }
             }
+        }
+
+        private bool isTopWindowFromCursor()
+        {
+            SpriteRenderer cursorPos = cursorCollider.GetComponent<SpriteRenderer>();
+            Vector2 cursorPosition = new Vector2(cursorPos.bounds.min.x + 0.06f,
+                                                 cursorPos.bounds.max.y);
+
+            SortingGroup renderer;
+
+            // ç¿ïWposÇ…Ç†ÇÈëSÇƒÇÃCollider2DéÊìæ
+            RaycastHit2D[] hits = Physics2D.RaycastAll(cursorPosition, Vector2.zero);
+
+            int highestOrder = int.MinValue;
+            GameObject topWindow = null;
+
+            foreach (RaycastHit2D hit in hits)
+            {
+                if (hit.collider.tag != "window") continue;
+
+                renderer = hit.collider.GetComponent<SortingGroup>();
+
+                if (renderer == null) continue;
+
+                if (renderer.sortingOrder > highestOrder)
+                {
+                    highestOrder = renderer.sortingOrder;
+                    topWindow = hit.collider.gameObject;
+                }
+            }
+            //if (topWindow != null) Debug.Log(topWindow.name);
+            return topWindow == this.transform.parent.gameObject;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
