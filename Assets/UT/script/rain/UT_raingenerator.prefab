@@ -51,15 +51,15 @@ MonoBehaviour:
   pigeon: {fileID: 1627456972674995499, guid: db43e276532427747a4ffe1377e304d5, type: 3}
   enemy: {fileID: 5336750216515394525, guid: b615f4d917032544e985824a8db7fee1, type: 3}
   rainspeed: 8
-  p1t: 2
+  p1t: 3
   p1s: 1
-  p2t: 6
+  p2t: 999
   p2s: 1.5
   w1s: 2
   w1e: 5
-  w2s: 6
-  w2e: 8
-  w3s: 9
-  w3e: 11
-  w4s: 11
-  w4e: 13
+  w2s: 7
+  w2e: 11
+  w3s: 999
+  w3e: 999
+  w4s: 999
+  w4e: 999

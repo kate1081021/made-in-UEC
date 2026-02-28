@@ -10,10 +10,13 @@ namespace UT
 
     public class UT_playermove : MiniGameBase
     {
+        public int stage;
         public List<GameObject> level1;
         public List<GameObject> level2;
         public List<GameObject> level3;
-        public bool random;
+        private AudioSource mainSource;
+        [SerializeField]AudioClip hidan;
+        [SerializeField] AudioClip die;
         [SerializeField] private float movespeed;
         private Rigidbody2D rb;
         [Tooltip("被弾時に受けるダメージ")]
@@ -50,8 +53,9 @@ namespace UT
         bool alive;
         public override void OnGameStart()
         {
-            //MGManager.TestPlay(100);
+            MGManager.TestPlay(stage);
             MGManager.Load();
+            BGMPlay();
             rb = GetComponent<Rigidbody2D>();
             alive = true;
             canvas.gameObject.SetActive(true);
@@ -60,8 +64,10 @@ namespace UT
             currentHp = initialHp; 
             HPbar.maxValue = maxHp; // スライダーの最大値を設定
             HPbar.value = currentHp; // 現在のHPを反映
-            int a = Random.Range(0, level1.Count);
-            if(random)Instantiate(level1[a]);
+            
+            if(MGManager.stage <= 20) Instantiate(level1[Random.Range(0, level1.Count)]);
+            else if(MGManager.stage <= 40) Instantiate(level2[Random.Range(0, level2.Count)]);
+            else Instantiate(level3[Random.Range(0, level3.Count)]);
             StartCoroutine(wait());
         }
         public override void OnGameEnd() 
@@ -96,7 +102,8 @@ namespace UT
         }
         void FixedUpdate()
         {
-            Vector2 pos = Move.ReadValue<Vector2>() * movespeed * Time.timeScale * Time.fixedDeltaTime;
+            float slow = Action.IsPressed() ? 0.5f : 1f;
+            Vector2 pos = Move.ReadValue<Vector2>() * movespeed * Time.timeScale * Time.fixedDeltaTime * slow;
             if(alive)rb.MovePosition(rb.position + pos);
         }
 
@@ -126,6 +133,11 @@ namespace UT
                 Debug.Log("HP = " + currentHp);
                 if (currentHp <= 0)
                 {
+                    if (mainSource == null)
+                    {
+                        mainSource = gameObject.AddComponent<AudioSource>();
+                    }
+                    mainSource.PlayOneShot(die);
                     Debug.Log("failure");
                     canvas.gameObject.SetActive(false);
                     die_back.gameObject.SetActive(true);
@@ -135,6 +147,11 @@ namespace UT
                 }
                 else
                 {
+                    if (mainSource == null)
+                    {
+                        mainSource = gameObject.AddComponent<AudioSource>();
+                    }
+                    mainSource.PlayOneShot(hidan);
                     StartCoroutine(muteki());
                 }
             }
