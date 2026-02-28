@@ -19,11 +19,19 @@ namespace SL
         public SL_AudioManager sL_AudioManager;
         public SL_ImageController sL_ImageController;
 
+        [Header("テストプレイ用")]
+        public bool isTesting = false;
+        public int testStageNumber = 1;
+
         public override void OnGameStart()
         {
+            if (isTesting)
+            {
+                MGManager.TestPlay(testStageNumber);
+            }
             MGManager.Load();
-            //BGMPlay(); 運営の方針の関数です。こちらにする場合、この下のやつは消しちゃってください。
-            sL_AudioManager.SL_BGMStart();
+            BGMPlay(); //運営の方針の関数です。こちらにする場合、この下のやつは消しちゃってください。
+            //sL_AudioManager.SL_BGMStart();
         }
 
         void Update()
