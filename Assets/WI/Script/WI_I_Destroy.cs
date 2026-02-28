@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 namespace WI
 {
-    public class WI_M_hoverDestroy : MiniGameBase, IPointerEnterHandler, IPointerExitHandler
+    public class WI_I_hoverDestroy : MiniGameBase, IPointerEnterHandler, IPointerExitHandler
     {
         private bool isHovering = false;
 
@@ -14,13 +14,7 @@ namespace WI
 
         public override void OnGameEnd() { }
 
-        void Update()
-        {
-            if (isHovering && Input.GetKeyDown(KeyCode.Space))
-            {
-                setInputClose();
-            }
-        }
+        void Update() { }
 
         public void OnPointerEnter(PointerEventData eventData)
         {

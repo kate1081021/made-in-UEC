@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace WI
 {
-    public class WI_M_window_virus_buster : MiniGameBase
+    public class WI_I_window_virus_buster : MiniGameBase
     {
         private bool isClosing = false;
 

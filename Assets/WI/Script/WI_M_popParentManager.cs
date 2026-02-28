@@ -15,9 +15,19 @@ namespace WI
 
         [SerializeField] private bool useAnimation = true;
 
+        // SE
+        private AudioSource audioSource;
+        [SerializeField] private AudioClip destroySE;
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
+
         public override void OnGameStart()
         {
+            if ((audioSource = this.GetComponent<AudioSource>()) == null)
+            {
+                audioSource = this.gameObject.AddComponent<AudioSource>();
+            }
+
             closeButton = this.transform.GetChild(0).gameObject;
             closeButton.GetComponent<WI_M_inputClose>().enabled = false;
             closeButton.GetComponent<WI_M_createPop>().enabled = true;
@@ -44,8 +54,9 @@ namespace WI
         }
 
         public void setInputClose()
-        {
+        {   
             if (isClosing) return;
+            soundPlay(audioSource, destroySE);
             StartCoroutine(AnimateAndDestroy());
 
             if (useAnimation)
@@ -121,6 +132,15 @@ namespace WI
         {
             this.GetComponent<SpriteRenderer>().color = c;
             this.transform.GetChild(0).GetComponent<SpriteRenderer>().color = c;
+        }
+
+        private void soundPlay(AudioSource audioSource, AudioClip audioClip)
+        {
+            if(this.gameObject.name.Contains("(Clone)") && audioSource != null && audioClip != null)
+            {
+                audioSource.clip = audioClip;
+                audioSource.PlayOneShot(audioClip);
+            }
         }
     }
 }

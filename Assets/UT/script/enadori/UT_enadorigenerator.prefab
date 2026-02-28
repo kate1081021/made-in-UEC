@@ -53,7 +53,7 @@ MonoBehaviour:
   drink4: {fileID: 3914278131876630823, guid: e1c531ca6d1ec8e48bcc2372b6e41e63, type: 3}
   g: 2
   pos: {x: -9.5, y: -1, z: 0}
-  duration: 0.5
+  duration: 0.7
   Rx1: -6
   Rx2: 6
   Ry1: 2

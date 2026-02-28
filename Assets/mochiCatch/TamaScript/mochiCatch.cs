@@ -81,7 +81,7 @@ namespace catchMochi
                     // statusが"eat"であるとき、食べるSEを鳴らす
                     if (status == "eat" && !mother.isMotherSeeing)
                     {
-                        SEPlay("食べ物をパクッ");// SePlayer.Instance.Play("食べ物をパクッ");
+                        // SePlayer.Instance.Play("食べ物をパクッ");
                     }
                     yield return WaitPhase(waitSeconds[i] * factor);
                     if (!Action.IsPressed())

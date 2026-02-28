@@ -18,7 +18,7 @@ namespace UT
         {
             pm = GameObject.Find("Player").GetComponent<UT_playermove>();
             pm.generator = gameObject;
-            pm.timelimit = 13f;
+            pm.timelimit = 15f;
             Instantiate(enemy, Vector3.zero, Quaternion.identity);
             for (int i = 0; i < num; i++)
             {
@@ -42,7 +42,7 @@ namespace UT
                 time += Time.deltaTime * Time.timeScale;
                 speed = 0.5f - 0.5f *Mathf.Cos(Mathf.PI / 3 * time);
                 yield return null;
-            }
+            }//1
             while (time < time1)
             {
                 time += Time.deltaTime * Time.timeScale;
@@ -55,7 +55,7 @@ namespace UT
                     time += Time.deltaTime * Time.timeScale;
                     speed = Mathf.Cos(Mathf.PI * (time - time1) / (time2 - time1));
                     yield return null;
-                }
+                }//-1
                 while (time < time2 + 1)
                 {
                     time += Time.deltaTime * Time.timeScale;
@@ -70,7 +70,7 @@ namespace UT
                         speed = -1.3f + 0.3f*Mathf.Cos(Mathf.PI * (time - time2-1) / (time3 - time2-1));
                         yield return null;
                     }
-                }
+                }//-1.6
                 else
                 {
                     while (time < time3)
@@ -79,7 +79,7 @@ namespace UT
                         speed = 0.1f - 1.1f * Mathf.Cos(Mathf.PI * (time - time2-1) / (time3 - time2-1));
                         yield return null;
                     }
-                }
+                }//1.2
             }
             else
             {
@@ -88,7 +88,7 @@ namespace UT
                     time += Time.deltaTime * Time.timeScale;
                     speed = 1.3f - 0.3f * Mathf.Cos(Mathf.PI  * (time - time1) / (time2 - time1));
                     yield return null;
-                }
+                }//1.6
                 while (time < time2 + 1)
                 {
                     time += Time.deltaTime * Time.timeScale;
@@ -100,7 +100,6 @@ namespace UT
                     while (time < time3)
                     {
                         time += Time.deltaTime * Time.timeScale;
-                        speed = 1.5f - 0.2f * Mathf.Cos(Mathf.PI * (time - time2-1) / (time3 - time2-1));
                         yield return null;
                     }
                 }
@@ -109,7 +108,7 @@ namespace UT
                     while (time < time3)
                     {
                         time += Time.deltaTime * Time.timeScale;
-                        speed = 0.95f + 0.35f * Mathf.Cos(Mathf.PI * (time - time2-1) / (time3 - time2-1));
+                        speed = 1.1f + 0.5f * Mathf.Cos(Mathf.PI * (time - time2-1) / (time3 - time2-1));
                         yield return null;
                     }
                 }

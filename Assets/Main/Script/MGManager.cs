@@ -12,9 +12,6 @@ public static class MGManager
 
     /// <summary> 運営が現在のクリア状況を確認するためのプロパティ </summary>
     public static bool IsClear { get; private set; } = false;
-
-    /// <summary> 今はデバッグ中かのプロパティ 公開前にfalseにする </summary>
-    public static bool isDebugMode { get; private set; } = true;
     
     /// 現在いるステージ(何ゲームクリアしたのかを管理)
     public static int stage { get; private set; } = 1;
@@ -27,9 +24,6 @@ public static class MGManager
 
     // 終了フラグ（これを各ミニゲームが書き換えるのではなく、管理側で制御する）
     public static bool isAllGameEndProcessed = false;
-
-    // テストプレイの判断
-    public static bool isMainCalled = false;
 
     // --- 部員が自由に使える便利関数 ---
     /// <summary>
@@ -58,14 +52,10 @@ public static class MGManager
     /// <summary>
     public static void TestPlay(int s)
     {   
-        if (!isMainCalled)
-        {
-            timeScale = Stage2TimeScale(s);
-            Time.timeScale = timeScale;
-            stage = s;
-            Debug.Log($"<color=green>【System】ステージ{s}での速度が再現されます。(timeScale={timeScale}) </color>");
-            isDebugMode = false;
-        }
+        timeScale = Stage2TimeScale(s);
+        Time.timeScale = timeScale;
+        stage = s;
+        Debug.Log($"<color=green>【System】ステージ{s}での速度が再現されます。(timeScale={timeScale}) </color>");
     }
 
     /// これより下の関数(メソッド)は呼び出さないでください。

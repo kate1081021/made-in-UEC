@@ -31,6 +31,12 @@ namespace ER
 		{
 			// MGManager.TestPlay(100);
 			MGManager.Load();
+			BGMPlay(false);
+			AudioSource audioSource = GetComponent<AudioSource>();
+			if (audioSource != null)
+			{
+				audioSource.loop = true;
+			}
 
 			isSubmitted = false;
 			submitUI.SetActive(false);
@@ -73,7 +79,15 @@ namespace ER
 				Debug.Log("不正解");
 				isNotClear = true;
 				stamp.ShowStamp(false);
-				// 不正解の処理をここに追加
+			}
+		}
+
+		public override void OnGameEnd()
+		{
+			if (!isCorrectReport && !isNotClear)
+			{
+				// 異変があるレポートを提出しなかったらクリア
+				MGManager.ClearGame();
 			}
 		}
 	}
