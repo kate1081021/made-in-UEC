@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEditor.SceneManagement;
+using System.Data.Common;
+using TMPro;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,11 +17,15 @@ public class GameManager : MonoBehaviour
     public AudioSource BGM_start_1;  // ゲーム開始時のBGM
     public AudioSource BGM_start_2;  // 各ゲームの間の曲(1の短縮ver.)
     public AudioSource Success;  // ミニゲーム成功時のBGM
+    public AudioSource Failure; // ミニゲーム失敗時のBGM
     public AudioSource Speedup;  // スピードアップ時のBGM
     private double nextPlayTime;  // BGMを次に再生するまでの時間
     private float PitchScale = 1.0f;  // BGMのピッチを管理する
+    
 
     [SerializeField] private List<CreateScene> minigames;  // ミニゲーム一覧を持つ
+    [SerializeField] private Transform lives; // ライフたちの親の参照
+    private int lifeRemain = 4;
     private int loaded_minigame = 0;  // ロードされているゲームの番号
 
 
@@ -38,13 +46,46 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // タイトルコール
-        
-        // テストプレイではないことを確認
-        MGManager.isMainCalled = true;
-        
+        // デバッグ用の中間コルーチン isDebugModeを折れば、通常通りのゲームが始まる
+        StartCoroutine(TestPlayCoroutine());
+    }
+
+    IEnumerator TestPlayCoroutine()
+    {
+
+        yield return null;
+        while (MGManager.isDebugMode){
+            yield return null;
+        }
+        // 加速設定
+        ScaleChangeTestPlay();
+        lifeRemain = 4;
+        LifeReset lr = lives.gameObject.GetComponent<LifeReset>();
+        lr.lifeReset();
         // ゲーム進行コルーチン呼び出し
         StartCoroutine(MainCoroutine());
+    }
+
+    /* テストプレイ時の加速用 */
+    private void ScaleChangeTestPlay()
+    {
+        int stage = MGManager.stage;
+        if (stage == 1) { MGManager.isMainCalled = true; } // 初期状態のときは通常通りにする
+        else
+        {
+            int multiple = 0;
+            for (int i = 1; i <= stage; i++)
+            {
+                if ((5 < i && i <= 15 && i % 5 == 1) || (i > 15 && (i - 15) % 10 == 1))
+                { multiple++; }
+            }
+            Debug.Log(multiple);
+            for (int i = 0; i < multiple; i++)
+            {
+                PitchScale *= 1.059463094f;  // 各音階の比率
+            }
+            BGM_start_2.pitch = PitchScale;
+        }
     }
 
     /* BGM */
@@ -64,6 +105,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator MainCoroutine()
     {
+        Debug.Log("Started");
         yield return null;
         // BGMの総プレイ時間
         double TotalPlayTime = 0.0f;
@@ -76,7 +118,8 @@ public class GameManager : MonoBehaviour
         // スピードアップ
         bool speedup = false;
         int stage = MGManager.stage;
-        if ((5 < stage && stage <= 15 && stage % 5 == 1) || (stage > 15 && (stage - 15) % 10 == 1)) { speedup = true; }
+        // デバッグ後に、スピードが上がったかどうかのチェック
+        if ((MGManager.isMainCalled && ((5 < stage && stage <= 15 && stage % 5 == 1) || (stage > 15 && (stage - 15) % 10 == 1))) || (!MGManager.isMainCalled && stage > 5)) { speedup = true; }
 
         // アニメーション&シーン切り替え
         loaded_minigame = Random.Range(0, minigames.Count);
@@ -98,8 +141,7 @@ public class GameManager : MonoBehaviour
         bool isAnimationPlaying = false;  // メインのアニメーションが表示されたら
 
         // 勝利状況の確認(Stage2以降)
-        if (MGManager.stage > 1) {
-            Debug.Log("checked");
+        if (MGManager.stage > 1 && MGManager.isMainCalled) {
             if (MGManager.IsClear)
             {
                 Debug.Log("ミニゲームクリア!!");
@@ -110,23 +152,44 @@ public class GameManager : MonoBehaviour
             else
             {
                 Debug.Log("ミニゲーム失敗");
-                PlayImmidiate(Success, PitchScale);
-                FirstPlayTime += Success.clip.length / PitchScale;
-                TotalPlayTime += Success.clip.length / PitchScale;
+                PlayImmidiate(Failure, PitchScale);
+                FirstPlayTime += Failure.clip.length / PitchScale;
+                TotalPlayTime += Failure.clip.length / PitchScale;
+                Transform target = lives.GetChild(lifeRemain-1);
+                target.gameObject.SetActive(false);
+                lifeRemain--;
+                yield return new WaitForEndOfFrame(); // 無効化まで待つ
+                if (lifeRemain == 0)
+                {
+                    Debug.Log("gameover");
+                }
             }
         }
 
         // クリア判定をリセット
         MGManager.Finished();
-
+        if (lifeRemain == 0)
+        {
+            // GameOver();
+            yield break;
+        }
         // スピードアップ
         if (speedup)
         {
+            if (MGManager.isMainCalled){
             PlayNext(Speedup, 1.0f);
             FirstPlayTime += Speedup.clip.length;
             TotalPlayTime += Speedup.clip.length;
             PitchScale *= 1.059463094f;  // 各音階の比率
             BGM_start_2.pitch = PitchScale;
+            }
+            else // テストプレイでステージをいじった後は効果音だけ鳴らすように
+            {
+                PlayImmidiate(Speedup, 1.0f);
+                FirstPlayTime += Speedup.clip.length;
+                TotalPlayTime += Speedup.clip.length;
+                BGM_start_2.pitch = PitchScale;
+            }
         }
         
         // 曲を再生し始める
@@ -163,6 +226,10 @@ public class GameManager : MonoBehaviour
 
         // 最後にSuccessとFailureのPitchを変える
         Success.pitch = PitchScale;
+        Failure.pitch = PitchScale;
+
+        // デバッグ後初回の終わり
+        MGManager.isMainCalled = true;
 
         // 3. ロードが90%（準備完了）まで待機
         while (asyncLoad.progress < 0.9f)

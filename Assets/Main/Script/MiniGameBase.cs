@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,7 +16,10 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     [Header("--- 運営設定エリア ---")]
     [Tooltip("このゲームで流したいBGM。未設定ならデフォルトBGMが流れます")]
     [SerializeField] private AudioClip gameBGM;
-    [SerializeField] private Dictionary<string, AudioClip> soundEffects;
+    [SerializeField] private bool isLoopBGM = false;
+    [SerializeField] private List<string> SEName;
+    [SerializeField] private List<AudioClip> SEFile;
+    private Dictionary<string, AudioClip> soundEffects = new Dictionary<string, AudioClip>();
     private AudioSource mainSource;
 
     
@@ -49,6 +53,13 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
         Trigger_left = InputSystems.FindAction("Trigger_left");  // q
         Trigger_right = InputSystems.FindAction("Trigger_right");  // e
         Action = InputSystems.FindAction("Action");  // Space
+
+        if(SEName.Count != 0){
+            for (int i = 0; i < SEName.Count; i++)
+            {
+                soundEffects.Add(SEName[i],SEFile[i]);
+            }
+        }
 
         Move.performed += OnMove;
         Move.canceled += OnMove;
@@ -212,6 +223,7 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
         {
             mainSource.pitch = MGManager.pitchScale;
         }
+        if (isLoopBGM) { mainSource.loop = true; }
         mainSource.Play();
     }
 

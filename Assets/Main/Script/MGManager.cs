@@ -12,6 +12,9 @@ public static class MGManager
 
     /// <summary> 運営が現在のクリア状況を確認するためのプロパティ </summary>
     public static bool IsClear { get; private set; } = false;
+
+    /// <summary> 今はデバッグ中かのプロパティ 公開前にfalseにする </summary>
+    public static bool isDebugMode { get; private set; } = true;
     
     /// 現在いるステージ(何ゲームクリアしたのかを管理)
     public static int stage { get; private set; } = 1;
@@ -61,6 +64,7 @@ public static class MGManager
             Time.timeScale = timeScale;
             stage = s;
             Debug.Log($"<color=green>【System】ステージ{s}での速度が再現されます。(timeScale={timeScale}) </color>");
+            isDebugMode = false;
         }
     }
 
