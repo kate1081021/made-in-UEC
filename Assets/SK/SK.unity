@@ -2465,7 +2465,6 @@ GameObject:
   - component: {fileID: 2101462735}
   - component: {fileID: 2101462734}
   - component: {fileID: 2101462737}
-  - component: {fileID: 2101462738}
   m_Layer: 0
   m_Name: WarpedWallGame
   m_TagString: Untagged
@@ -2485,19 +2484,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d3e7e37588e4747a880821d99026ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameBGM: {fileID: 8300000, guid: 2970671497209974eaef93cc8e1ffb16, type: 3}
+  gameBGM: {fileID: 8300000, guid: 2d1ae0b919a795b43b6c12392b8675d5, type: 3}
   targetVideo: {fileID: 1196574746}
   player: {fileID: 1010397841}
   spawnPoint: {fileID: 65295521}
   targetZone: {fileID: 140183711}
   notePrefab: {fileID: 3520315567752988852, guid: b02e2207effd7ae43b818f00a255c4e2, type: 3}
-  bgmSource: {fileID: 2101462738}
   audioSource: {fileID: 2101462737}
   voiceStart: {fileID: 8300000, guid: b53f8c9dd11943741aa32e83e8a9e140, type: 3}
   sfxStepPerfect: {fileID: 8300000, guid: 93cf2528e74c74f418219e7acc6f57e1, type: 3}
   sfxStepGood: {fileID: 8300000, guid: a45644a1fd0be2b4288426adab6665ea, type: 3}
   sfxMiss: {fileID: 8300000, guid: c8d9ce260ce9b684d998cd5edc5515e5, type: 3}
-  sfxJump: {fileID: 0}
+  sfxJump: {fileID: 8300000, guid: 16ac47c21729e6b48bc2f6d1e412505f, type: 3}
   spriteLeft: {fileID: 8051082401188131004, guid: 2d7cabe90c5280f47b592ee73bff73b4, type: 3}
   spriteRight: {fileID: 6868334881591713047, guid: 2d7cabe90c5280f47b592ee73bff73b4, type: 3}
   spawnTimings:
@@ -2538,103 +2536,6 @@ AudioSource:
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!82 &2101462738
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2101462733}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 1318285934618984141, guid: d4855be0bb89de84f8ba8d9e50de8eb3, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 2970671497209974eaef93cc8e1ffb16, type: 3}
-  m_Resource: {fileID: 8300000, guid: 2970671497209974eaef93cc8e1ffb16, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.15
   m_Pitch: 1
   Loop: 0
   Mute: 0
