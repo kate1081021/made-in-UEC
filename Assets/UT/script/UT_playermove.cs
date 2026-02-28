@@ -10,10 +10,13 @@ namespace UT
 
     public class UT_playermove : MiniGameBase
     {
-        public int stage = 15;
+        public int stage;
         public List<GameObject> level1;
         public List<GameObject> level2;
         public List<GameObject> level3;
+        Dictionary<string, AudioClip> se = new Dictionary<string, AudioClip>();
+        [SerializeField]AudioClip hidan;
+        [SerializeField] AudioClip die;
         [SerializeField] private float movespeed;
         private Rigidbody2D rb;
         [Tooltip("îÌíeéûÇ…éÛÇØÇÈÉ_ÉÅÅ[ÉW")]
@@ -52,8 +55,11 @@ namespace UT
         {
             MGManager.TestPlay(stage);
             MGManager.Load();
+            BGMPlay();
             rb = GetComponent<Rigidbody2D>();
             alive = true;
+            se.Add("hidan", hidan);
+            se.Add("die", die);
             canvas.gameObject.SetActive(true);
             die_back.gameObject.SetActive(false);
             gameObject.GetComponent<SpriteRenderer>().color = new Vector4(1, 0, 0, 1);
@@ -98,7 +104,8 @@ namespace UT
         }
         void FixedUpdate()
         {
-            Vector2 pos = Move.ReadValue<Vector2>() * movespeed * Time.timeScale * Time.fixedDeltaTime;
+            float slow = Action.IsPressed() ? 0.5f : 1f;
+            Vector2 pos = Move.ReadValue<Vector2>() * movespeed * Time.timeScale * Time.fixedDeltaTime * slow;
             if(alive)rb.MovePosition(rb.position + pos);
         }
 
@@ -128,6 +135,7 @@ namespace UT
                 Debug.Log("HP = " + currentHp);
                 if (currentHp <= 0)
                 {
+                    //SEPlay("die");
                     Debug.Log("failure");
                     canvas.gameObject.SetActive(false);
                     die_back.gameObject.SetActive(true);
@@ -137,6 +145,7 @@ namespace UT
                 }
                 else
                 {
+                    //SEPlay("hidan");
                     StartCoroutine(muteki());
                 }
             }
