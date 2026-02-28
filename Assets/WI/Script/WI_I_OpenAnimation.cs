@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 namespace WI
 {
-    public class WI_I_OpenAnimation : MonoBehaviour
+    public class WI_I_OpenAnimation : MiniGameBase
     {
         [Header("アニメーション設定")]
         public float duration = 0.5f;
@@ -27,9 +27,8 @@ namespace WI
             }
         }
 
-        void Start()
+        public override void OnGameStart()
         {
-
             if (_isClone)
             {
                 StartCoroutine(AnimateIn());

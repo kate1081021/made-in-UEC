@@ -12,6 +12,10 @@ namespace WI
         private bool slow = false;
         private Vector2 inputDirection;
         private Vector3 viewPosition;
+
+        // SE
+        private AudioSource audioSource;
+        [SerializeField] private AudioClip cursorSE;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
         {
@@ -25,6 +29,17 @@ namespace WI
         // Update is called once per frame
         void FixedUpdate()
         {
+            if ((audioSource = this.GetComponent<AudioSource>()) == null)
+            {
+                audioSource = this.gameObject.AddComponent<AudioSource>();
+            }
+
+            if (Action.WasPerformedThisFrame())
+            {
+                // SEPlay("click", false);
+                soundPlay(audioSource, cursorSE);
+            }
+
             inputDirection = Move.ReadValue<Vector2>();
 
             if (slow)
@@ -63,6 +78,14 @@ namespace WI
         public void setSpeed(float s)
         {
             this.speed = s;
+        }
+        private void soundPlay(AudioSource audioSource, AudioClip audioClip)
+        {
+            if (audioSource != null && audioClip != null)
+            {
+                audioSource.clip = audioClip;
+                audioSource.PlayOneShot(audioClip);
+            }
         }
     }
 }

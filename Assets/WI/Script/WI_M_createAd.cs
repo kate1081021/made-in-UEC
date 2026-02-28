@@ -15,9 +15,19 @@ namespace WI
 
         GameObject advertisement;
         BoxCollider2D filter;
+
+        // SE
+        private AudioSource audioSource;
+        [SerializeField] AudioClip popSE;
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
         {
+            if((audioSource = this.GetComponent<AudioSource>()) == null)
+            {
+                audioSource = this.gameObject.AddComponent<AudioSource>();
+            }
+
             advertisement = GameObject.Find("WI_M_copyAd");
             filter = GameObject.Find("WI_M_gameOverFilter").GetComponent<BoxCollider2D>();
             filter.transform.position = Vector3.zero;
@@ -101,15 +111,6 @@ namespace WI
             {
                 StartCoroutine(CreateNewAds());
             }
-            /*for (int i = 1; i < 51; i++)
-            {
-                randomX = Random.Range(0f, 1f);
-                randomY = Random.Range(0f, 1f);
-                adPosition = Camera.main.ViewportToWorldPoint(new Vector2(randomX, randomY));
-                newAd = Instantiate(advertisement, adPosition, Quaternion.identity);
-                newAd.GetComponent<SortingGroup>().sortingOrder = this.transform.parent.parent.GetComponent<SpriteRenderer>().sortingOrder + i;
-            }*/
-
         }
         private IEnumerator CreateNewAds()
         {
@@ -125,7 +126,8 @@ namespace WI
 
             while (elapsed < duration)
             {
-                Debug.Log(elapsed);
+                // SEPlay("popup", false);
+                soundPlay(audioSource, popSE);
                 elapsed += Time.deltaTime;
                 randomX = Random.Range(0f, 1f);
                 randomY = Random.Range(0f, 1f);
@@ -134,6 +136,15 @@ namespace WI
                 newAd.GetComponent<SortingGroup>().sortingOrder = ++sr;
 
                 yield return null;
+            }
+        }
+
+        private void soundPlay(AudioSource audioSource, AudioClip audioClip)
+        {
+            if (audioSource != null && audioClip != null)
+            {
+                audioSource.clip = audioClip;
+                audioSource.PlayOneShot(audioClip);
             }
         }
     }

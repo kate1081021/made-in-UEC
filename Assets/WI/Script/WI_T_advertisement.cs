@@ -10,10 +10,19 @@ namespace WI
         [SerializeField] private bool useAnimation = true;
 
         private SortingGroup sr, parentSr;
+
+        // SE
+        private AudioSource audioSource;
+        [SerializeField] private AudioClip destroySE;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart() 
         {
-            if(this.GetComponent<SortingGroup>() != null)
+            if ((audioSource = this.GetComponent<AudioSource>()) == null)
+            {
+                audioSource = this.gameObject.AddComponent<AudioSource>();
+            }
+
+            if (this.GetComponent<SortingGroup>() != null)
             {
                 sr = this.GetComponent<SortingGroup>();
             }
@@ -36,6 +45,8 @@ namespace WI
         public void setInputClose()
         {
             if (isClosing) return;
+            // SEPlay("closeWindow", false);
+            soundPlay(audioSource, destroySE);
             StartCoroutine(AnimateAndDestroy());
 
             if (useAnimation)
@@ -76,6 +87,15 @@ namespace WI
 
             Destroy(this.gameObject);
             this.gameObject.SetActive(false);
+        }
+
+        private void soundPlay(AudioSource audioSource, AudioClip audioClip)
+        {
+            if (audioSource != null && audioClip != null)
+            {
+                audioSource.clip = audioClip;
+                audioSource.PlayOneShot(audioClip);
+            }
         }
     }
 }

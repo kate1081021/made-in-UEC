@@ -1,8 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic; //生成順用
 using UnityEngine.Rendering;
-using System.ComponentModel;
-using Unity.VisualScripting;
 
 namespace WI
 {
@@ -13,10 +11,6 @@ namespace WI
 
         // trueであれば全てのウィンドウ表示
         [SerializeField] private bool allInstanciate = false;
-
-        // BGM
-        [SerializeField] private AudioSource audioSource;
-        [SerializeField] private AudioClip startSound;
 
         public GameObject[] windowType;
         public List<GameObject> targetWindows = new List<GameObject>();
@@ -29,12 +23,8 @@ namespace WI
         public override void OnGameStart()
         {
             int sortNum = 0;
-            if (audioSource != null && startSound != null)
-            {
-                audioSource.clip = startSound;
-                audioSource.playOnAwake = false;
-                audioSource.Play();
-            }
+
+            BGMPlay(true);
 
             if (TestStage > 0)
             {
@@ -100,10 +90,7 @@ namespace WI
             return -1;
         }
 
-        public override void OnGameEnd()
-        {
-            if (audioSource != null) audioSource.Stop();
-        }
+        public override void OnGameEnd() { }
 
         // Update is called once per frame
         void Update()
