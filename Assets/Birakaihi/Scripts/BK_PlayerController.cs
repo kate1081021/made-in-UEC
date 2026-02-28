@@ -14,7 +14,7 @@ namespace BK
         // ゲーム開始時に呼ばれる
         public override void OnGameStart()
         {
-            
+            animator.speed = MGManager.timeScale;  // アニメーションの再生速度をtimeScaleにあわせる
         }
 
         // 方向キーが押されたとき
@@ -60,14 +60,7 @@ namespace BK
         // Failureアニメーションが呼ばれる
         public void FailureAnimation()
         {
-            int rand = Random.Range(0, 10);
-            if (rand == 5) { 
-                animator.SetBool("Naoya", true);
-            }
-            else
-            {
-                animator.SetBool("Failure", true);
-            }
+            animator.SetBool("Failure", true);
             animator.SetFloat("LayerSpeed", 0.0f);
             success = false;
         }
