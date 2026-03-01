@@ -43,7 +43,8 @@ namespace PTgame
 
         public override void OnGameStart()
         {
-            MGManager.TestPlay(testlevel);
+            if (testlevel != 0)
+                MGManager.TestPlay(testlevel);
             MGManager.Load();
             BGMPlay(false);
             endless_difficult = 1.0f;
