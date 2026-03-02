@@ -24,7 +24,7 @@ namespace WI
         {
             int sortNum = 0;
 
-            BGMPlay(true);
+            BGMPlay(false);
 
             if (TestStage > 0)
             {
@@ -132,7 +132,15 @@ namespace WI
         // 生成するウィンドウを設定する関数
         private void gameSetting()
         {
-            int stage = TestStage;
+            int stage;
+            if (TestStage > 0)
+            {
+                stage = TestStage;
+            }
+            else
+            {
+                stage = MGManager.stage;
+            }
             Debug.Log("stage: " + stage);
             int number1 = 0, number2 = 0;
             int random = Random.Range(0, 2);
@@ -185,7 +193,7 @@ namespace WI
                     sg.sortingOrder = sortNum;
                     if (windowType[i].name.Contains("WI_M_popup") || windowType[i].name.Contains("WI_T_ad"))
                     {
-                        Debug.Log("skip");
+                        //Debug.Log("skip");
                         sortNum += 2;
                     }
                     else
