@@ -12,10 +12,6 @@ namespace WI
         // trueであれば全てのウィンドウ表示
         [SerializeField] private bool allInstanciate = false;
 
-        // BGM
-        [SerializeField] private AudioSource audioSource;
-        [SerializeField] private AudioClip startSound;
-
         public GameObject[] windowType;
         public List<GameObject> targetWindows = new List<GameObject>();
         public int windowCreates = 2;
@@ -26,12 +22,9 @@ namespace WI
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
         {
-            if (audioSource != null && startSound != null)
-            {
-                audioSource.clip = startSound;
-                audioSource.playOnAwake = false;
-                audioSource.Play();
-            }
+            int sortNum = 0;
+
+            BGMPlay(true);
 
             if (TestStage > 0)
             {
@@ -55,7 +48,7 @@ namespace WI
                     float randomY = Random.Range(-0.15f, 0.15f);
 
                     spawnPos = new Vector2(randomX, randomY);
-                    if (windowType[i].name == "WI_M_window_virus buster")
+                    if (windowType[i].name == "WI_I_window_virus buster")
                     {
                         spawnPos = new Vector2(7f, -2.5f);
                     }
@@ -67,7 +60,15 @@ namespace WI
                     SortingGroup sg = newWindow.GetComponent<SortingGroup>();
                     if (sg != null)
                     {
-                        sg.sortingOrder = i;
+                        sg.sortingOrder = sortNum;
+                        if (windowType[i].name.Contains("WI_M_popup") || windowType[i].name.Contains("WI_T_ad"))
+                        {
+                            sortNum += 2;
+                        }
+                        else
+                        {
+                            sortNum++;
+                        }
                     }
                     targetWindows.Add(newWindow);
 
@@ -89,10 +90,7 @@ namespace WI
             return -1;
         }
 
-        public override void OnGameEnd()
-        {
-            if (audioSource != null) audioSource.Stop();
-        }
+        public override void OnGameEnd() { }
 
         // Update is called once per frame
         void Update()
@@ -111,7 +109,7 @@ namespace WI
                         currentWindowCount++;
                     }
             
-                    if (win.name.Contains("WI_M_window_virus buster"))
+                    if (win.name.Contains("WI_I_window_virus buster"))
                     {
                         currentBusterCount++;
                     }
@@ -134,191 +132,28 @@ namespace WI
         // 生成するウィンドウを設定する関数
         private void gameSetting()
         {
-            int stage = MGManager.stage;
+            int stage = TestStage;
             Debug.Log("stage: " + stage);
-            
-            if(stage < 16)
+            int number1 = 0, number2 = 0;
+            int random = Random.Range(0, 2);
+
+            if (stage <= 15)
             {
-                int random = Random.Range(0, 5);
-                if (random < 1)
-                {
-                    int random2 = Random.Range(0, 2);
-                    if (random2 < 1) { setTarget(new int[2] { 0, 1 }); }
-                    else { setTarget(new int[2] { 1, 0 }); }
-                } 
-                else if(random < 2)
-                {
-                    int random2 = Random.Range(0, 2);
-                    if (random2 < 1) { setTarget(new int[2] { 0, 2 }); }
-                    else { setTarget(new int[2] { 2, 0 }); }
-                }
-                else if (random < 3)
-                {
-                    int random2 = Random.Range(0, 2);
-                    if (random2 < 1) { setTarget(new int[2] { 1, 2 }); }
-                    else { setTarget(new int[2] { 2, 1 }); }
-                }
-                else if (random < 4)
-                {
-                    setTarget(new int[1] { 3 });
-                }
-                else if (random < 5)
-                {
-                    setTarget(new int[1] { 4 });
-                } 
-                else
-                {
-                    setTarget(new int[2] { 0, 1 });
-                }
+                if (random == 0) { number1 = 2; }
+                else { number2 = 1; }
             }
-            else if (stage < 31)
+            else if (stage <= 30)
             {
-                int random = Random.Range(0, 7);
-                if (random == 0)
-                {
-                    int random2 = Random.Range(0, 6);
-                    if (random2 == 0) { setTarget(new int[3] { 0, 1, 2 }); }
-                    else if (random2 == 1) { setTarget(new int[3] { 0, 2, 1 }); }
-                    else if (random2 == 2) { setTarget(new int[3] { 1, 0, 2 }); }
-                    else if (random2 == 3) { setTarget(new int[3] { 1, 2, 0 }); }
-                    else if (random2 == 4) { setTarget(new int[3] { 2, 0, 1 }); }
-                    else if (random2 == 5) { setTarget(new int[3] { 2, 1, 0 }); }
-                    else { setTarget(new int[3] { 0, 1, 2 }); }
-                }
-                else if (random == 1)
-                {
-                    int random2 = Random.Range(0, 2);
-                    if (random2 == 0) { setTarget(new int[2] { 0, 3 }); }
-                    else if (random2 == 1) { setTarget(new int[2] { 3, 0 }); }
-                    else { setTarget(new int[2] { 0, 3 }); }
-                }
-                else if (random == 2)
-                {
-                    int random2 = Random.Range(0, 2);
-                    if (random2 == 0) { setTarget(new int[2] { 1, 3 }); }
-                    else if (random2 == 1) { setTarget(new int[2] { 3, 1 }); }
-                    else { setTarget(new int[2] { 1, 3 }); }
-                }
-                else if (random == 3)
-                {
-                    int random2 = Random.Range(0, 2);
-                    if (random2 == 0) { setTarget(new int[2] { 2, 3 }); }
-                    else if (random2 == 1) { setTarget(new int[2] { 3, 2 }); }
-                    else { setTarget(new int[2] { 2, 3 }); }
-                }
-                else if (random == 4)
-                {
-                    int random2 = Random.Range(0, 2);
-                    if (random2 == 0) { setTarget(new int[2] { 0, 4 }); }
-                    else if (random2 == 1) { setTarget(new int[2] { 4, 0 }); }
-                    else { setTarget(new int[2] { 0, 4 }); }
-                }
-                else if (random == 5)
-                {
-                    int random2 = Random.Range(0, 2);
-                    if (random2 == 0) { setTarget(new int[2] { 1, 4 }); }
-                    else if (random2 == 1) { setTarget(new int[2] { 4, 1 }); }
-                    else { setTarget(new int[2] { 1, 4 }); }
-                }
-                else if (random == 6)
-                {
-                    int random2 = Random.Range(0, 2);
-                    if (random2 == 0) { setTarget(new int[2] { 2, 4 }); }
-                    else if (random2 == 1) { setTarget(new int[2] { 4, 2 }); }
-                    else { setTarget(new int[2] { 2, 4 }); }
-                }
-                else
-                {
-                    int random2 = Random.Range(0, 2);
-                    if (random2 == 0) { setTarget(new int[2] { 2, 4 }); }
-                    else if (random2 == 1) { setTarget(new int[2] { 4, 2 }); }
-                    else { setTarget(new int[2] { 2, 4 }); }
-                }
+                if (random == 0) { number1 = 3; }
+                else { number1 = 1; number2 = 1; }
             }
             else
             {
-                int random = Random.Range(0, 7);
-                if (random == 0)
-                {
-                    int random2 = Random.Range(0, 6);
-                    if (random2 == 0) { setTarget(new int[3] { 0, 1, 3 }); }
-                    else if (random2 == 1) { setTarget(new int[3] { 0, 3, 1 }); }
-                    else if (random2 == 2) { setTarget(new int[3] { 1, 0, 3 }); }
-                    else if (random2 == 3) { setTarget(new int[3] { 1, 3, 0 }); }
-                    else if (random2 == 4) { setTarget(new int[3] { 3, 0, 1 }); }
-                    else if (random2 == 5) { setTarget(new int[3] { 3, 1, 0 }); }
-                    else { setTarget(new int[3] { 0, 1, 3 }); }
-                }
-                else if (random == 1)
-                {
-                    int random2 = Random.Range(0, 6);
-                    if (random2 == 0) { setTarget(new int[3] { 0, 1, 4 }); }
-                    else if (random2 == 1) { setTarget(new int[3] { 0, 4, 1 }); }
-                    else if (random2 == 2) { setTarget(new int[3] { 1, 0, 4 }); }
-                    else if (random2 == 3) { setTarget(new int[3] { 1, 4, 0 }); }
-                    else if (random2 == 4) { setTarget(new int[3] { 4, 0, 1 }); }
-                    else if (random2 == 5) { setTarget(new int[3] { 4, 1, 0 }); }
-                    else { setTarget(new int[3] { 0, 1, 4 }); }
-                }
-                else if (random == 2)
-                {
-                    int random2 = Random.Range(0, 6);
-                    if (random2 == 0) { setTarget(new int[3] { 0, 2, 3 }); }
-                    else if (random2 == 1) { setTarget(new int[3] { 0, 3, 2 }); }
-                    else if (random2 == 2) { setTarget(new int[3] { 2, 0, 3 }); }
-                    else if (random2 == 3) { setTarget(new int[3] { 2, 3, 0 }); }
-                    else if (random2 == 4) { setTarget(new int[3] { 3, 0, 2 }); }
-                    else if (random2 == 5) { setTarget(new int[3] { 3, 2, 0 }); }
-                    else { setTarget(new int[3] { 0, 2, 3 }); }
-                }
-                else if (random == 3)
-                {
-                    int random2 = Random.Range(0, 6);
-                    if (random2 == 0) { setTarget(new int[3] { 0, 2, 4 }); }
-                    else if (random2 == 1) { setTarget(new int[3] { 0, 4, 2 }); }
-                    else if (random2 == 2) { setTarget(new int[3] { 2, 0, 4 }); }
-                    else if (random2 == 3) { setTarget(new int[3] { 2, 4, 0 }); }
-                    else if (random2 == 4) { setTarget(new int[3] { 4, 0, 2 }); }
-                    else if (random2 == 5) { setTarget(new int[3] { 4, 2, 0 }); }
-                    else { setTarget(new int[3] { 0, 2, 4 }); }
-                }
-                else if (random == 4)
-                {
-                    int random2 = Random.Range(0, 6);
-                    if (random2 == 0) { setTarget(new int[3] { 1, 2, 3 }); }
-                    else if (random2 == 1) { setTarget(new int[3] { 1, 3, 2 }); }
-                    else if (random2 == 2) { setTarget(new int[3] { 2, 1, 3 }); }
-                    else if (random2 == 3) { setTarget(new int[3] { 2, 3, 1 }); }
-                    else if (random2 == 4) { setTarget(new int[3] { 3, 1, 2 }); }
-                    else if (random2 == 5) { setTarget(new int[3] { 3, 2, 1 }); }
-                    else { setTarget(new int[3] { 1, 2, 3 }); }
-                }
-                else if (random == 5)
-                {
-                    int random2 = Random.Range(0, 6);
-                    if (random2 == 0) { setTarget(new int[3] { 1, 2, 4 }); }
-                    else if (random2 == 1) { setTarget(new int[3] { 1, 4, 2 }); }
-                    else if (random2 == 2) { setTarget(new int[3] { 2, 1, 4 }); }
-                    else if (random2 == 3) { setTarget(new int[3] { 2, 4, 1 }); }
-                    else if (random2 == 4) { setTarget(new int[3] { 4, 1, 2 }); }
-                    else if (random2 == 5) { setTarget(new int[3] { 4, 2, 1 }); }
-                    else { setTarget(new int[3] { 1, 2, 4 }); }
-                }
-                else if (random == 6)
-                {
-                    int random2 = Random.Range(0, 2);
-                    if (random2 == 0) { setTarget(new int[2] { 3, 4 }); }
-                    else if (random2 == 1) { setTarget(new int[2] { 4, 3 }); }
-                    else { setTarget(new int[2] { 3, 4 }); }
-                }
-                else
-                {
-                    int random2 = Random.Range(0, 2);
-                    if (random2 == 0) { setTarget(new int[2] { 3, 4 }); }
-                    else if (random2 == 1) { setTarget(new int[2] { 4, 3 }); }
-                    else { setTarget(new int[2] { 3, 4 }); }
-                }
+                if (random == 0) { number1 = 2; number2 = 1; }
+                else { number2 = 2; }
             }
+
+            pattern(number1, number2);
         }
 
         // 指定したidのウィンドウを全て生成する関数
@@ -335,7 +170,7 @@ namespace WI
                 Debug.Log("windowType: " + windowType[i]);
 
                 spawnPos = new Vector2(randomX, randomY);
-                if (windowType[i].name == "WI_M_window_virus buster")
+                if (windowType[i].name == "WI_I_window_virus buster")
                 {
                     spawnPos = new Vector2(7f, -2.5f);
                 }
@@ -348,12 +183,58 @@ namespace WI
                 if (sg != null)
                 {
                     sg.sortingOrder = sortNum;
-                    sortNum++;
+                    if (windowType[i].name.Contains("WI_M_popup") || windowType[i].name.Contains("WI_T_ad"))
+                    {
+                        Debug.Log("skip");
+                        sortNum += 2;
+                    }
+                    else
+                    {
+                        sortNum++;
+                    }
                 }
                 targetWindows.Add(newWindow);
 
             }
         }
-        
+
+        private int[] GetnCrPattern(int[] baseArray, int r)
+        {
+            int[] result = new int[r];
+            int n = baseArray.Length;
+            for (int i = 0; i < r; i++)
+            {
+                int random = Random.Range(0, n - i);
+                int tmp = baseArray[random];
+                baseArray[random] = baseArray[n - 1 - i];
+                baseArray[n - 1 - i] = tmp;
+                result[i] = tmp;
+            }
+            return result;
+        }
+
+        private int[] GetRandomPattern(int[] baseArray)
+        {
+            int[] result = (int[])baseArray.Clone();
+            for (int i = result.Length - 1; i > 0; i--)
+            {
+                int r = Random.Range(0, i + 1);
+                int tmp = result[i];
+                result[i] = result[r];
+                result[r] = tmp;
+            }
+            return result;
+        }
+
+        private void pattern(int number1, int number2)
+        {
+            int[] result = new int[number1 + number2];
+            int[] result1 = GetnCrPattern(new int[] {0, 1, 2, 3}, number1);
+            int[] result2 = GetnCrPattern(new int[] {4, 5, 6}, number2);
+            result1.CopyTo(result, 0);
+            result2.CopyTo(result, number1);
+
+            setTarget(GetRandomPattern(result));
+        }
     }
 }

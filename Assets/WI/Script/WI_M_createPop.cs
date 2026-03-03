@@ -13,9 +13,18 @@ namespace WI
         private bool cursorCollision;
 
         GameObject popup;
+
+        // SE
+        private AudioSource audioSource;
+        [SerializeField] private AudioClip popSE;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
         {
+            if ((audioSource = this.GetComponent<AudioSource>()) == null)
+            {
+                audioSource = this.gameObject.AddComponent<AudioSource>();
+            }
+
             rootManager = this.transform.parent.GetComponent<WI_M_popParentManager>();
 
             cursorCollider = GameObject.Find("WI_M_cursor").GetComponent<BoxCollider2D>();
@@ -33,6 +42,8 @@ namespace WI
                 {
                     if (cursorCollision)
                     {
+                        // SEPlay("popup", false);
+                        soundPlay(audioSource, popSE);
                         popup = GameObject.Find("WI_M_popup");
                         popup = Instantiate(popup, this.transform.parent.position, Quaternion.identity);
                         popup.GetComponent<SortingGroup>().sortingOrder = this.transform.parent.GetComponent<SortingGroup>().sortingOrder + 1;
@@ -92,6 +103,15 @@ namespace WI
             if (collision == cursorCollider)
             {
                 cursorCollision = false;
+            }
+        }
+
+        private void soundPlay(AudioSource audioSource, AudioClip audioClip)
+        {
+            if (audioSource != null && audioClip != null)
+            {
+                audioSource.clip = audioClip;
+                audioSource.PlayOneShot(audioClip);
             }
         }
     }
