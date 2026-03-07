@@ -368,6 +368,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   useTestStage: 0
   testStageNumber: 10
   gameRoot: {fileID: 1696126931}
@@ -410,9 +413,9 @@ MonoBehaviour:
   speechSE: {fileID: 0}
   landSE: {fileID: 0}
   meatImage: {fileID: 1426560881}
-  rawSprite: {fileID: -659722471158990531, guid: d9400345b0e77f3438fbae08d7ada410, type: 3}
-  cookedSprite: {fileID: -2614906197904635646, guid: 9a8b740151bafa4478b1527130cb1465, type: 3}
-  burntSprite: {fileID: -6264987133273846246, guid: 09e6abaab0bf58449baccafc1c62d3b4, type: 3}
+  rawSprite: {fileID: -1667583943385514053, guid: ed6d5f182cb9cea47990d64393a8eb92, type: 3}
+  cookedSprite: {fileID: -5913868328097134230, guid: 8bf28651d96040646b90ca39ac83a263, type: 3}
+  burntSprite: {fileID: 5740041834833750083, guid: ae43a21180f414940a2404e798d0d976, type: 3}
   timerGauge: {fileID: 1838820246}
   safeZoneImage: {fileID: 1846403765}
   safeZoneRect: {fileID: 1846403764}
@@ -984,7 +987,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3193553769266703163, guid: 2c35889337ba99549849ca6b6199cd7b, type: 3}
+  m_Sprite: {fileID: 5559120533067711443, guid: 65b3d3767baaf15499354bee4f78c376, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
