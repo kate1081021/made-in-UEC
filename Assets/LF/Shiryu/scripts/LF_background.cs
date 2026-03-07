@@ -14,7 +14,7 @@ namespace LoupeFire{
         public override void OnGameStart()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
-            currentIndex = UnityEngine.Random.Range(0, 9);
+            currentIndex = UnityEngine.Random.Range(0, 8);
             spriteRenderer.sprite = sprites[currentIndex];
         }
     }

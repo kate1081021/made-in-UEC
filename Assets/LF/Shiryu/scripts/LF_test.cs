@@ -6,7 +6,7 @@ namespace LoupeFire
     {
         public override void OnGameStart()
         {
-            BGMPlay(false);
+            BGMPlay(true);
         }
         void Update()
         {
