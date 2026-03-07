@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform lives; // ライフたちの親の参照
     private int lifeRemain = 4;
     private int loaded_minigame = 0;  // ロードされているゲームの番号
+    private int debug_scene = -1;  // デバッグでロード中のシーンの番号
 
 
     public static GameManager Instance;
@@ -57,6 +58,13 @@ public class GameManager : MonoBehaviour
         while (MGManager.isDebugMode){
             yield return null;
         }
+
+        // シーン検索
+        for (int i = 0; i < minigames.Count; i++)
+        {
+            if (MGManager.scene == minigames[i].scene_name) { debug_scene = i; }
+        }
+
         // 加速設定
         ScaleChangeTestPlay();
         lifeRemain = 4;
@@ -122,7 +130,7 @@ public class GameManager : MonoBehaviour
         if ((MGManager.isMainCalled && ((5 < stage && stage <= 15 && stage % 5 == 1) || (stage > 15 && (stage - 15) % 10 == 1))) || (!MGManager.isMainCalled && stage > 5)) { speedup = true; }
 
         // アニメーション&シーン切り替え
-        loaded_minigame = Random.Range(0, minigames.Count);
+        loaded_minigame = debug_scene == -1 ? Random.Range(0, minigames.Count) : debug_scene;
         string scene = minigames[loaded_minigame].scene_name;  // ミニゲームの名前
         string verb = minigames[loaded_minigame].verb;  // ミニゲームの動詞
 
