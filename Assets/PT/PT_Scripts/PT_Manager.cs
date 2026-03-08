@@ -59,18 +59,17 @@ namespace PTgame
         private float failureDelayTimer = 0f;
         private bool isWaitingForFailureUI = false; // 待ち時間中かどうかのフラグ
 
-        [Header("Audio Settings")]
-        [SerializeField] private AudioClip resultSE; // 成功・失敗共通のSE
-        private AudioSource audioSource;
+        [SerializeField] private bool isse = true;
 
         // UIアニメーション用
         private void StartUIAnimation(GameObject uiObj, RectTransform rect, ParticleSystem ps)
         {
             if (uiObj != null) uiObj.SetActive(true);
 
-            if (audioSource != null && resultSE != null)
+            if (isse)
             {
-                audioSource.PlayOneShot(resultSE);
+                isse = false;
+                SEPlay("result", se[4]);
             }
 
             if (rect != null)
@@ -88,8 +87,6 @@ namespace PTgame
 
         public override void OnGameStart()
         {
-            audioSource = GetComponent<AudioSource>();
-            if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
 
             if (testlevel != 0)
                 MGManager.TestPlay(testlevel);

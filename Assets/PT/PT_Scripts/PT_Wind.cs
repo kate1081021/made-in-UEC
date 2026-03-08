@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 
 namespace PTgame
 {
-    public class PT_Wind : MonoBehaviour
+    public class PT_Wind : MiniGameBase
     {
         [SerializeField] private PT_Obstacle obstacle;
         [SerializeField] private float max_power;
@@ -14,12 +14,12 @@ namespace PTgame
         [SerializeField] private float time;
         [SerializeField] private Camera game_camera;
 
-        [SerializeField] private AudioSource audioSource; // インスペクターでアサイン
 
-        // パーティクル書き換え用の配列キャッシュ
-        private ParticleSystem.Particle[] particlesArray;
+        [SerializeField] private bool isse = true;
+        [SerializeField] private AudioClip se;
 
-        void Awake()
+
+        public override void OnGameStart()
         {
             if (game_camera == null) game_camera = Camera.main;
 
@@ -39,9 +39,10 @@ namespace PTgame
 
             obstacle.power = direction * max_power * sinWave;
 
-            if (audioSource != null)
+            if (isse)
             {
-                audioSource.volume = Math.Abs(sinWave); // 0〜1の間で音量が変化
+                isse = false;
+                SEPlay("w", se);
             }
 
             if (time < 0)

@@ -7900,16 +7900,19 @@ MonoBehaviour:
   - dog bark
   - bike ring
   - ball fall
+  - result
   SEFile:
   - {fileID: 8300000, guid: f65e1f02885a1f148a6c5146b05c8f12, type: 3}
   - {fileID: 8300000, guid: e04b8d1fbda7ab348bed50d668a92100, type: 3}
   - {fileID: 8300000, guid: b2c4eea59bf4189439796ffb3dab87d2, type: 3}
   - {fileID: 8300000, guid: 21365c572924a4440834853852a87390, type: 3}
+  - {fileID: 8300000, guid: 23779917160eef54c8f6d4829f37f57c, type: 3}
   se:
   - {fileID: 8300000, guid: f65e1f02885a1f148a6c5146b05c8f12, type: 3}
   - {fileID: 8300000, guid: e04b8d1fbda7ab348bed50d668a92100, type: 3}
   - {fileID: 8300000, guid: b2c4eea59bf4189439796ffb3dab87d2, type: 3}
   - {fileID: 8300000, guid: 21365c572924a4440834853852a87390, type: 3}
+  - {fileID: 8300000, guid: 23779917160eef54c8f6d4829f37f57c, type: 3}
   presents: []
   leaves:
   - {fileID: 570586064}
@@ -7954,7 +7957,7 @@ MonoBehaviour:
   animDuration: 0.5
   targetScale: 0.5
   failureDelay: 1
-  resultSE: {fileID: 8300000, guid: 23779917160eef54c8f6d4829f37f57c, type: 3}
+  isse: 1
 --- !u!4 &1213273100
 Transform:
   m_ObjectHideFlags: 0

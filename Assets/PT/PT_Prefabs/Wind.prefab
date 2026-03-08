@@ -59,13 +59,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16b71d8f37b4fab48959785cfcc16d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName:
+  - w
+  SEFile:
+  - {fileID: 8300000, guid: 81f0d5de4cd675c45a68bdb6dab7c812, type: 3}
   obstacle: {fileID: 1585791059025724978}
   max_power: 0.4
   direction: 0
   max_time: 0
   time: 0
   game_camera: {fileID: 0}
-  audioSource: {fileID: 8128120166374253241}
+  isse: 1
+  se: {fileID: 8300000, guid: 81f0d5de4cd675c45a68bdb6dab7c812, type: 3}
 --- !u!82 &8128120166374253241
 AudioSource:
   m_ObjectHideFlags: 0
