@@ -3,7 +3,7 @@ using PTgame;
 
 namespace PTgame
 {
-    public class PT_Ball : MonoBehaviour
+    public class PT_Ball : MiniGameBase
     {
         [Header("Ball Settings")]
         [SerializeField] private float ballDuration = 0.2f;
@@ -13,12 +13,14 @@ namespace PTgame
         [Header("Ball Effect")]
         [SerializeField] private GameObject ballPrefab; // ★Prefab名をballに変更
         [SerializeField] private Transform spawnPoint;  // ★任意
+        [SerializeField] private bool isse = true;
+        [SerializeField] private AudioClip se;
 
         private float ballTimer = 0f;
         private float basePower;
         private bool hasBalled = false;
 
-        void Awake()
+        public override void OnGameStart()
         {
             obstacle = GetComponent<PT_Obstacle>();
             if (obstacle != null)
@@ -42,6 +44,11 @@ namespace PTgame
                     obstacle.power = 0f;
                     hasBalled = false;
                     Destroy(gameObject, 1f);
+                }
+                if (isse)
+                {
+                    isse = false;
+                    SEPlay("c", se);
                 }
             }
         }

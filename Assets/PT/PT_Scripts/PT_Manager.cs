@@ -55,7 +55,7 @@ namespace PTgame
                 present_slope = 0;
                 endless_timer = 0;
                 endless_apt = 10f;
-                endless_apt_duration = 1f;
+                endless_apt_duration = 10f;
                 et_ui.SetActive(true);
             }
             else
