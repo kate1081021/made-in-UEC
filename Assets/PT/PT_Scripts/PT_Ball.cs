@@ -56,7 +56,6 @@ namespace PTgame
         private void Ball()
         {
             if (obstacle == null) return;
-
             // パワー設定
             int pm = Random.Range(1, 3);
             obstacle.power = (pm == 1) ? -basePower : basePower;
