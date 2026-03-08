@@ -69,10 +69,5 @@ MonoBehaviour:
   obstacle: {fileID: 2533706162779385275}
   bikePrefab: {fileID: 1995104306936667513, guid: 94d91a9991d4d834db649a8bce7a2f4f, type: 3}
   spawnPoint: {fileID: 0}
-<<<<<<< HEAD
   isse: 1
   se: {fileID: 8300000, guid: b2c4eea59bf4189439796ffb3dab87d2, type: 3}
-=======
-  bellSE: {fileID: 8300000, guid: b2c4eea59bf4189439796ffb3dab87d2, type: 3}
-  bellVolume: 0.5
->>>>>>> 634231473fe4180736d36fa29257979d15499640
