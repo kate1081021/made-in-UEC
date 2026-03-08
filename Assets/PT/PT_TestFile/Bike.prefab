@@ -58,16 +58,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f272277c48df1843b0f17f4ed933dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameBGM: {fileID: 0}
-  isLoopBGM: 0
-  SEName:
-  - b
-  SEFile:
-  - {fileID: 8300000, guid: b2c4eea59bf4189439796ffb3dab87d2, type: 3}
   bellDuration: 0.2
   randomDirection: 1
   obstacle: {fileID: 2533706162779385275}
   bikePrefab: {fileID: 1995104306936667513, guid: 94d91a9991d4d834db649a8bce7a2f4f, type: 3}
   spawnPoint: {fileID: 0}
-  isse: 1
-  se: {fileID: 8300000, guid: b2c4eea59bf4189439796ffb3dab87d2, type: 3}
+  bellSE: {fileID: 8300000, guid: b2c4eea59bf4189439796ffb3dab87d2, type: 3}
+  bellVolume: 0.5

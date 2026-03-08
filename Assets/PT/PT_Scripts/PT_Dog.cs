@@ -12,8 +12,10 @@ namespace PTgame
 
         [Header("Bark Effect")]
         [SerializeField] private GameObject barkPrefab; // ★追加
+        [SerializeField] private GameObject obj;
+
         [SerializeField] private Transform spawnPoint;  // ★追加（任意）
-        [SerializeField] private bool isse;
+        [SerializeField] private bool isse = true;
         [SerializeField] private AudioClip se;
 
 
@@ -23,7 +25,6 @@ namespace PTgame
 
         public override void OnGameStart()
         {
-            isse = true;
             obstacle = GetComponent<PT_Obstacle>();
             if (obstacle != null)
             {
@@ -45,12 +46,14 @@ namespace PTgame
                     isse = false;
                     SEPlay("d", se);
                 }
-                if (barkTimer <= 0f)
-                {
-                    obstacle.power = 0f;
-                    hasBarked = false;
+            }
+
+            if (barkTimer <= 0f)
+            {
+                obstacle.power = 0f;
+                hasBarked = false;
+                if (obj == null)
                     Destroy(gameObject, 1f);
-                }
             }
         }
 
