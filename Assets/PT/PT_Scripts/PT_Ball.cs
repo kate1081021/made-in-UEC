@@ -18,8 +18,17 @@ namespace PTgame
         private float basePower;
         private bool hasBalled = false;
 
+        [Header("Audio Settings")] // ★追加
+        [SerializeField] private AudioClip ballSE;       // ボールが飛んでくる音
+        [SerializeField, Range(0, 1)] private float ballVolume = 0.5f; // 音量調整用
+
+        private AudioSource audioSource; // ★追加
+
         void Awake()
         {
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
+
             obstacle = GetComponent<PT_Obstacle>();
             if (obstacle != null)
             {
@@ -49,6 +58,11 @@ namespace PTgame
         private void Ball()
         {
             if (obstacle == null) return;
+
+            if (audioSource != null && ballSE != null)
+            {
+                audioSource.PlayOneShot(ballSE, ballVolume);
+            }
 
             // パワー設定
             int pm = Random.Range(1, 3);

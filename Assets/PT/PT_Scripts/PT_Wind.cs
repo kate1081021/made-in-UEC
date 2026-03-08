@@ -1,6 +1,7 @@
-using System;
 using PTgame;
+using System;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace PTgame
 {
@@ -12,6 +13,8 @@ namespace PTgame
         [SerializeField] private float max_time;
         [SerializeField] private float time;
         [SerializeField] private Camera game_camera;
+
+        [SerializeField] private AudioSource audioSource; // インスペクターでアサイン
 
         // パーティクル書き換え用の配列キャッシュ
         private ParticleSystem.Particle[] particlesArray;
@@ -35,6 +38,11 @@ namespace PTgame
             float sinWave = (float)Math.Sin(time * Math.PI / max_time);
 
             obstacle.power = direction * max_power * sinWave;
+
+            if (audioSource != null)
+            {
+                audioSource.volume = Math.Abs(sinWave); // 0〜1の間で音量が変化
+            }
 
             if (time < 0)
             {
