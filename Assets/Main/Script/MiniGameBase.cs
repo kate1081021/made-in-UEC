@@ -165,6 +165,8 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     // 「メモリ解放」を忘れがちなので、ベース側でケアします
     protected virtual void OnDestroy()
     {
+
+        MGManager.ActiveMiniGames.Remove(this);
         if (Move != null)
         {
             Move.performed -= OnMove;
@@ -257,11 +259,7 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
         }
     }
 
-    protected virtual void OnDisable()
-    {
-        // リストから自分を削除
-        MGManager.ActiveMiniGames.Remove(this);
-    }
+
 
     // 運営側から一斉に呼ばれる終了関数
     public void ExecuteGameEnd()
