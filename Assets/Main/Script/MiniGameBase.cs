@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -130,6 +131,25 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     */
 
     // 便利関数一覧 使いたいときにぜひ使ってね
+    public Vector2 convert_stick_to_dir(Vector2 val)
+    {
+        float mag = val.magnitude;
+        Vector2 ans = new Vector2(0,0);
+        if (mag < 0.5) { return ans; }
+        float theta = Mathf.Atan2(val.y,val.x) * Mathf.Rad2Deg;
+        if (-45 < theta && theta <= 45)
+        {
+            ans = new Vector2(1,0);
+        } else if (45 < theta && theta <= 135)
+        {
+            ans = new Vector2(0,1);
+        } else if (-135 < theta && theta <= -45)
+        {
+            ans = new Vector2(0,-1);
+        } else
+        { ans = new Vector2(-1,0); } //左に-180と180の境目があってめんどくさい
+        return ans;
+    }
 
     protected virtual void OnMoveStarted(Vector2 value) {}
     protected virtual void OnMovePerformed(Vector2 value) {}
