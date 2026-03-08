@@ -58,8 +58,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0f1c740c11aa74d9c46246e7a9968d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName:
+  - c
+  SEFile:
+  - {fileID: 8300000, guid: 21365c572924a4440834853852a87390, type: 3}
   ballDuration: 0.2
   randomDirection: 1
   obstacle: {fileID: -6382892721256238541}
   ballPrefab: {fileID: 828473419558954203, guid: d14f7a6b8b59eeb46ae4b59c47383e42, type: 3}
   spawnPoint: {fileID: 0}
+  isse: 1
+  se: {fileID: 8300000, guid: 21365c572924a4440834853852a87390, type: 3}
