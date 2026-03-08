@@ -21,6 +21,11 @@ namespace PTgame
             direction = dir;
             parentDog = dog;
 
+            if (dir > 0)
+                destroyX = Camera.main.ViewportToWorldPoint(new Vector3(0.4f, 0, 0)).x;
+            else
+                destroyX = Camera.main.ViewportToWorldPoint(new Vector3(0.6f, 0, 0)).x;
+
             // 子オブジェクト（Dog_Visual）を直接探して向きを変える
             Transform visual = transform.Find("Dog_Visual");
             if (visual != null)
@@ -30,19 +35,19 @@ namespace PTgame
                 visual.localScale = new Vector3(-Mathf.Abs(s.x) * dir, s.y, s.z);
                 
                 // 犬巨大化
-                if (Random.Range(0f, 1f) > 0.95f)
+                if (Random.Range(0f, 1f) > 0.05f)
                 {
                     Vector3 p = this.transform.localPosition;
                     this.transform.localPosition = new Vector3(p.x, p.y + dog_big_height, p.z);
-                    visual.localScale = new Vector3(-Mathf.Abs(s.x) * dir * 2f, s.y * 2f, s.z);
+                    visual.localScale = new Vector3(-Mathf.Abs(s.x) * dir * 2.0f, s.y * 2.0f, s.z);
+                    
+                    // 大きな犬の止まる位置を調整
+                    float offset = 1.5f;
+                    destroyX -= direction * offset;
                 }
                 
             }
 
-            if (dir > 0)
-                destroyX = Camera.main.ViewportToWorldPoint(new Vector3(0.4f, 0, 0)).x;
-            else
-                destroyX = Camera.main.ViewportToWorldPoint(new Vector3(0.6f, 0, 0)).x;
         }
 
         void Update()
