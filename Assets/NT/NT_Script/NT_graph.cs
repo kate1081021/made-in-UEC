@@ -12,7 +12,7 @@ namespace NT
 
         public override void OnGameStart()
         {
-            MGManager.Load();
+            // MGManager.Load();
         }
         void Update()
         {
