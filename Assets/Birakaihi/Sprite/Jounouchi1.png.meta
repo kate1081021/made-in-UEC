@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: caadf4a4d8f6bba4990f15bf8e878cad
+guid: 5da07eb13d2b3b04b93b442cad4e406c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8712338801956429557
-    second: "LF_\u897F9(2)_0"
+      213: -5854166061128699567
+    second: Jounouchi1_0
+  - first:
+      213: -7225739918288319750
+    second: Jounouchi1_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +116,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "LF_\u897F9(2)_0"
+      name: Jounouchi1_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 5
         y: 0
-        width: 1920
-        height: 1080
+        width: 426
+        height: 927
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b01e882050e871780800000000000000
-      internalID: -8712338801956429557
+      spriteID: 151b64eebf2d1cea0800000000000000
+      internalID: -5854166061128699567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jounouchi1_1
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 687
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afa8013f3d309bb90800000000000000
+      internalID: -7225739918288319750
       vertices: []
       indices: 
       edges: []
@@ -138,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 2ee611dc66edecd47816180aa47bbc41
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -147,8 +172,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      "LF_\u897F9(2)_0": -8712338801956429557
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

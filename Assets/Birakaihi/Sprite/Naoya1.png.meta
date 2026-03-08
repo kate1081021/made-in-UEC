@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: caadf4a4d8f6bba4990f15bf8e878cad
+guid: b76e4bd7b0e65fe4fa9c66757ae58c4b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8712338801956429557
-    second: "LF_\u897F9(2)_0"
+      213: -6427689919673715897
+    second: Naoya1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "LF_\u897F9(2)_0"
+      name: Naoya1_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 53
         y: 0
-        width: 1920
-        height: 1080
+        width: 344
+        height: 933
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b01e882050e871780800000000000000
-      internalID: -8712338801956429557
+      spriteID: 7433d7bc2124cc6a0800000000000000
+      internalID: -6427689919673715897
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 2ee611dc66edecd47816180aa47bbc41
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      "LF_\u897F9(2)_0": -8712338801956429557
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

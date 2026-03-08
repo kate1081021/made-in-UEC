@@ -12,6 +12,7 @@ public class NT_switch : MiniGameBase
     [SerializeField] private float sounddistance;
     [SerializeField] private float soundborder;
     int i = 0;
+    public bool isCleared = false; // クリアフラグ
 
     public Stopwatch sw = new Stopwatch();
 
@@ -26,7 +27,7 @@ public class NT_switch : MiniGameBase
 
     void Update()
     {
-        if (Action.IsPressed())
+        if (Action.IsPressed() && !isCleared)
         {
             count=count+Time.timeScale;
             if (countText != null){

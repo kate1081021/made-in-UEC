@@ -54,13 +54,33 @@ namespace BK
         // Walkingアニメーションが終了したとき
         public void walkingEnded()
         {
-            if (success) { animator.SetBool("Success", true); }
+            if (success) { 
+                // 10%の確率で城之内
+                int rand = Random.Range(1, 11);
+                if (rand == 5)
+                {
+                    animator.SetBool("Jounouchi", true);
+                }
+                else
+                {
+                    animator.SetBool("Success", true); 
+                }
+            }
         }
 
         // Failureアニメーションが呼ばれる
         public void FailureAnimation()
         {
-            animator.SetBool("Failure", true);
+            // 10%の確率で城之内
+            int rand = Random.Range(1, 11);
+            if (rand == 5)
+            {
+                animator.SetBool("Naoya", true);
+            }
+            else
+            {
+                animator.SetBool("Failure", true);   
+            }
             animator.SetFloat("LayerSpeed", 0.0f);
             success = false;
         }
