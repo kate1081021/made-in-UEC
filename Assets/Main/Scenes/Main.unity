@@ -2388,7 +2388,7 @@ GameObject:
   - component: {fileID: 1200137185}
   - component: {fileID: 1200137184}
   m_Layer: 0
-  m_Name: MIU_speedup
+  m_Name: MIU_Speedup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2404,8 +2404,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 294204b36bcba094c96a578de479bc53, type: 3}
-  m_Resource: {fileID: 8300000, guid: 294204b36bcba094c96a578de479bc53, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 327aac6983a27974f9052a20ee33d77c, type: 3}
+  m_Resource: {fileID: 8300000, guid: 327aac6983a27974f9052a20ee33d77c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3838,8 +3838,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 24fde7fe6244625498efcbc2afcfc3ca, type: 3}
-  m_Resource: {fileID: 8300000, guid: 24fde7fe6244625498efcbc2afcfc3ca, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 91d9c90a817ee224f822613b6fe39d99, type: 3}
+  m_Resource: {fileID: 8300000, guid: 91d9c90a817ee224f822613b6fe39d99, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3951,7 +3951,7 @@ GameObject:
   - component: {fileID: 2118164459}
   - component: {fileID: 2118164458}
   m_Layer: 0
-  m_Name: MIU_Opening
+  m_Name: MIU_Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3967,8 +3967,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7a2c54e7c6461db40a3d8bdbc5296c3c, type: 3}
-  m_Resource: {fileID: 8300000, guid: 7a2c54e7c6461db40a3d8bdbc5296c3c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: cdc1e031a2763e747bafa14ee454b073, type: 3}
+  m_Resource: {fileID: 8300000, guid: cdc1e031a2763e747bafa14ee454b073, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
