@@ -259,10 +259,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   countText: {fileID: 360980739}
   count: 0
   sounddistance: 0
   soundborder: 0
+  isCleared: 0
 --- !u!1 &490139963
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,7 +372,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7d1478912a4f8d142b415290f7897b1f, type: 3}
   m_Resource: {fileID: 8300000, guid: 7d1478912a4f8d142b415290f7897b1f, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
@@ -1039,6 +1043,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   switch_script: {fileID: 0}
 --- !u!1 &1219022171
 GameObject:
@@ -1500,6 +1507,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   image: {fileID: 1383178553}
   switchComponent: {fileID: 8047941679037284637}
 --- !u!1 &1460042877
@@ -1592,6 +1602,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName:
+  - NT_stamp
+  SEFile:
+  - {fileID: 8300000, guid: a39c24b99b392d64fbd660ef42908fab, type: 3}
   stampImage: {fileID: 1460042879}
   stampEffect: {fileID: 1691700233}
   excellentSprite: {fileID: -8684568133342773075, guid: e5815cf39adf7bd42bf66556ebf9501a, type: 3}
@@ -1834,10 +1849,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   countText: {fileID: 0}
   count: 0
   sounddistance: 50
   soundborder: 1
+  isCleared: 0
 --- !u!4 &1498551554
 Transform:
   m_ObjectHideFlags: 0
@@ -2517,6 +2536,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   switch_script: {fileID: 8047941679037284637}
 --- !u!212 &2065299444
 SpriteRenderer:
@@ -2635,6 +2657,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   stamp_script: {fileID: 1460042881}
 --- !u!1001 &7186495840580904619
 PrefabInstance:
@@ -2777,10 +2802,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 8300000, guid: 7d1478912a4f8d142b415290f7897b1f, type: 3}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   countText: {fileID: 360980739}
   count: 0
   sounddistance: 0
   soundborder: 0
+  isCleared: 0
 --- !u!114 &8047941679037284638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2794,6 +2823,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   dropWater_prefab: {fileID: 4997541016232342021, guid: c8dae2cbd94212a498b6e19c5c3e1841, type: 3}
   dropWater_spawnPoint: {fileID: 160285647}
   switch_script: {fileID: 8047941679037284637}

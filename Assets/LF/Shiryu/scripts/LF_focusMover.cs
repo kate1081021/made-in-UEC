@@ -53,7 +53,8 @@ namespace LoupeFire
                     Debug.Log(abs.ToString());
                 } else
                 {
-                    audioSource.PlayOneShot(beep);
+                    SEPlay("LF_beep");
+                    //audioSource.PlayOneShot(beep);
                     SuccessOrFailure = -1;
                     Debug.Log("失敗！！！！ " + abs.ToString());
                     StartCoroutine(retry());

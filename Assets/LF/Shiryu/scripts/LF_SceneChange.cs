@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LF_SceneChange : MonoBehaviour
+public class LF_SceneChange : MiniGameBase
 {
     [Header("ゲーム用オブジェクト")]
     public GameObject loupe;
@@ -23,6 +23,8 @@ public class LF_SceneChange : MonoBehaviour
     [SerializeField] LF_handChange handChange;
     [SerializeField] LF_fire fireMove;
     [SerializeField] LF_match match_fired;
+    public override void OnGameStart()
+    { }
 
     public void StartClear(){
         throwDuration = 0.3f / Time.timeScale;
@@ -90,7 +92,8 @@ public class LF_SceneChange : MonoBehaviour
         }
 
         explpsion.transform.position = bomb.transform.position;
-        audioSource.PlayOneShot(bakuhatsu);
+        SEPlay("LF_explosion");
+        //audioSource.PlayOneShot(bakuhatsu);
         explpsion.SetActive(true);
         bomb.SetActive(false);
         MGManager.ClearGame();

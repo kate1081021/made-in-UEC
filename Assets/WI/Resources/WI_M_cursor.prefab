@@ -149,8 +149,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
-  cursorSpeed: 0.2
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
+  speed: 0.1
   cursorPosition: {x: 0, y: 0}
+  cursorSE: {fileID: 0}
 --- !u!50 &375148957124785915
 Rigidbody2D:
   serializedVersion: 5

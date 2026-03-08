@@ -12,7 +12,7 @@ namespace NT {
 
         public override void OnGameStart() {
             waterSpriteRenderer = GetComponent<SpriteRenderer>();
-            audioSource = GetComponent<AudioSource>();
+            //audioSource = GetComponent<AudioSource>();
         }
         public override void OnGameEnd() {}
 
@@ -21,7 +21,8 @@ namespace NT {
             if (transform.position.y <= finishPointY && frag == false && audioSource != null)
             {
                 frag = true;
-                audioSource.PlayOneShot(audioSource.clip);
+                SEPlay("NT_dropping");
+                //audioSource.PlayOneShot(audioSource.clip);
             }
             if (transform.position.y < finishPointY)
             {

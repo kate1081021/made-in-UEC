@@ -3582,7 +3582,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u305F\u3079\u308D!!"
+  m_text: "\u305F\u3079\u308D!!\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 33ad2538dd24bbc409a26d1b7fdbd13f, type: 2}
   m_sharedMaterial: {fileID: -8275376154291706823, guid: 33ad2538dd24bbc409a26d1b7fdbd13f, type: 2}

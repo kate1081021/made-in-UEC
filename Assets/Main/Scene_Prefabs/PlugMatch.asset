@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PlugMatch
   m_EditorClassIdentifier: 
   scene_name: PlugMatch
-  verb: "\u5DEE\u305B\uFF01"
+  verb: "\u3055\u305B\uFF01"
   timelimit: 4
   stopEarlyFinish: 1

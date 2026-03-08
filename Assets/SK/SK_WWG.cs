@@ -46,7 +46,6 @@ namespace SK
 
         public override void OnGameStart()
         {
-            MGManager.TestPlay(1);
             
             if (targetVideo != null)
             {
@@ -70,7 +69,8 @@ namespace SK
             GenerateFixedPattern();
 
             if (player != null) player.Initialize(this);
-            PlaySound(voiceStart);
+            SEPlay("SK_Voice");
+            //PlaySound(voiceStart);
         }
 
         public override void OnGameEnd()
@@ -152,7 +152,9 @@ namespace SK
             // 1. タイプ不一致 (LなのにRを押した)
             if (targetNote.noteType != inputType)
             {
-                PlaySound(sfxMiss);
+                //ミス時の効果音がなかったので、一度まとめてコメントアウトしています
+                //SEPlay("");
+                //PlaySound(sfxMiss);
                 player.FallDown();
                 return; 
             }
@@ -170,7 +172,9 @@ namespace SK
             else
             {
                 player.FallDown();
-                PlaySound(sfxMiss);
+                //ミス時の効果音がなかったので、一度まとめてコメントアウトしています
+                //SEPlay("");
+                //PlaySound(sfxMiss);
             }
         }
 
@@ -182,8 +186,8 @@ namespace SK
             
             currentMomentum += accuracy * 20f;
 
-            if (ratio <= 0.4f) PlaySound(sfxStepPerfect);
-            else PlaySound(sfxStepGood);
+            if (ratio <= 0.4f) SEPlay("SK_StepPerfect");//PlaySound(sfxStepPerfect);
+            else SEPlay("SK_StepGood");//PlaySound(sfxStepGood);
 
             if (currentStep == 5) // 最後
             {
@@ -191,7 +195,9 @@ namespace SK
                 {
                     // 成功
                     if (bgmSource != null) bgmSource.Stop();
-                    if (sfxJump != null) PlaySound(sfxJump);
+                    //ジャンプ時の効果音がなかったので、一度まとめてコメントアウトしています
+                    //SEPlay("");
+                    //if (sfxJump != null) PlaySound(sfxJump);
                     // ★クリア時にビデオ映像のみを停止
                     if (targetVideo != null)
                     {

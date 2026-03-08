@@ -106,7 +106,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName:
+  - WI_Close
+  SEFile:
+  - {fileID: 8300000, guid: 1569f9418bc944249b22bcd776fbc81b, type: 3}
   useAnimation: 1
+  destroySE: {fileID: 0}
 --- !u!210 &1305801412386576850
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -295,6 +301,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
 --- !u!61 &1430308316243081273
 BoxCollider2D:
   m_ObjectHideFlags: 0
