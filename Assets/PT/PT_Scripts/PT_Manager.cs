@@ -10,6 +10,7 @@ namespace PTgame
 {
     public class PT_Manager : MiniGameBase
     {
+        [SerializeField] private AudioClip[] se;
         [SerializeField] private List<GameObject> presents; //プレゼント個々制御
         [SerializeField] private List<PT_FallLeaves> leaves; //風用の葉群
         [SerializeField] private int present_count;
@@ -38,11 +39,60 @@ namespace PTgame
         [SerializeField] private GameObject pc_ui;
         [SerializeField] private GameObject et_ui;
 
+        // 書き換えてごめん
+        [Header("UI Animation Settings")]
+        [SerializeField] private GameObject successUI;
+        [SerializeField] private RectTransform successRect;
+        [SerializeField] private ParticleSystem successParticle;
 
+        [SerializeField] private GameObject failureUI;
+        [SerializeField] private RectTransform failureRect;
+        [SerializeField] private ParticleSystem failureParticle;
+
+        [SerializeField] private float animDuration = 0.5f; // アニメーションにかかる時間
+        [SerializeField] private float targetScale = 0.8f; // 最終的な大きさ（1.0だと等倍、0.5だと半分）
+
+        private RectTransform activeRect; // 現在アニメーション中のUI
+        private float animTimer = 0f;
+        private bool isAnimating = false;
+        [SerializeField] private float failureDelay = 1.0f; // 失敗してからUIが出るまでの待ち時間（秒）
+        private float failureDelayTimer = 0f;
+        private bool isWaitingForFailureUI = false; // 待ち時間中かどうかのフラグ
+
+        [Header("Audio Settings")]
+        [SerializeField] private AudioClip resultSE; // 成功・失敗共通のSE
+        private AudioSource audioSource;
+
+        // UIアニメーション用
+        private void StartUIAnimation(GameObject uiObj, RectTransform rect, ParticleSystem ps)
+        {
+            if (uiObj != null) uiObj.SetActive(true);
+
+            if (audioSource != null && resultSE != null)
+            {
+                audioSource.PlayOneShot(resultSE);
+            }
+
+            if (rect != null)
+            {
+                rect.localScale = Vector3.zero; // 最初は大きさ0
+                activeRect = rect;
+                animTimer = 0f;
+                isAnimating = true;
+            }
+            if (ps != null)
+            {
+                ps.Play(); // パーティクル再生
+            }
+        }
 
         public override void OnGameStart()
         {
-            MGManager.TestPlay(testlevel);
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
+
+            if (testlevel != 0)
+                MGManager.TestPlay(testlevel);
             MGManager.Load();
             BGMPlay(false);
             endless_difficult = 1.0f;
@@ -109,7 +159,11 @@ namespace PTgame
         {
             if (present_slope * present_slope < 1)
             {
-                MGManager.ClearGame(); //クリア
+                if (!isAnimating && (successUI == null || !successUI.activeSelf))
+                {
+                    StartUIAnimation(successUI, successRect, successParticle);
+                    MGManager.ClearGame();
+                }
             }
         }
 
@@ -119,8 +173,28 @@ namespace PTgame
             //Debug.Log("present_slope"+ present_slope +"delta" + (movex*0.01f));
             game_time = Time.timeScale * Time.deltaTime;
             action_time -= game_time;
+
+            if (isAnimating && activeRect != null)
+            {
+                animTimer += Time.unscaledDeltaTime;
+                float progress = animTimer / animDuration;
+                float easedProgress = Mathf.Sin(progress * Mathf.PI * 0.5f);
+
+                // Vector3.one ではなく、targetScale を使った目標サイズへ拡大させる
+                Vector3 finalScale = new Vector3(targetScale, targetScale, targetScale);
+                activeRect.localScale = Vector3.Lerp(Vector3.zero, finalScale, easedProgress);
+
+                if (progress >= 1.0f)
+                {
+                    activeRect.localScale = finalScale; // 最後にピタッと目標サイズに合わせる
+                    isAnimating = false;
+                }
+            }
+
             if (present_slope * present_slope < 1)
             {
+
+                pc.text = "現在のプレゼント数：" + present_count.ToString() + "個";
                 if (endless_mode)
                 {
                     endless_timer += game_time;
@@ -130,7 +204,6 @@ namespace PTgame
                         endless_apt += endless_apt_duration;
                         endless_difficult = 1f + present_count / 50f;
                     }
-                    pc.text = "現在のプレゼント数：" + present_count.ToString() + "個";
                     int minutes = (int)endless_timer / 60;
                     int seconds = (int)endless_timer % 60;
                     int milliseconds = (int)((endless_timer * 1000) % 1000);
@@ -154,8 +227,42 @@ namespace PTgame
             }
             else
             {
-                Debug.Log("Lose...");
-                fall = true;
+                if(!fall)
+                {
+                    Debug.Log("Lose...");
+                    fall = true;
+
+                    // すぐにアニメーションさせず、待ちモードに入る
+                    isWaitingForFailureUI = true;
+                    failureDelayTimer = 0f;
+                }
+
+                if (isWaitingForFailureUI)
+                {
+                    failureDelayTimer += Time.deltaTime;
+                    if (failureDelayTimer >= failureDelay)
+                    {
+                        // 指定時間経過したらUIアニメーション開始！
+                        StartUIAnimation(failureUI, failureRect, failureParticle);
+                        isWaitingForFailureUI = false;
+                    }
+                }
+
+                if (isAnimating && activeRect != null)
+                {
+                    animTimer += Time.unscaledDeltaTime;
+                    float progress = animTimer / animDuration;
+                    float easedProgress = Mathf.Sin(progress * Mathf.PI * 0.5f);
+                    Vector3 finalScale = new Vector3(targetScale, targetScale, targetScale);
+                    activeRect.localScale = Vector3.Lerp(Vector3.zero, finalScale, easedProgress);
+
+                    if (progress >= 1.0f)
+                    {
+                        activeRect.localScale = finalScale;
+                        isAnimating = false;
+                    }
+                }
+
                 change_animation(); //プレゼントの傾けるや左右移動のアニメーション関連
 
                 manage_obstacles(); //障害物の管理
