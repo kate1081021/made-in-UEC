@@ -44,10 +44,10 @@ namespace WI
             {
                 if (popupWindow == null)
                 {
-                    // ‚à‚¤ˆê“xCloseƒ{ƒ^ƒ“‚ğ‰Ÿ‚³‚¹‚éê‡
+                    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½xCloseï¿½{ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡
                     // buttonActivate();
                     
-                    // ƒ|ƒbƒvƒAƒbƒvíœ‚Æ“¯‚ÉÁ‚¦‚éê‡
+                    // ï¿½|ï¿½bï¿½vï¿½Aï¿½bï¿½vï¿½íœï¿½Æ“ï¿½ï¿½ï¿½ï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½ê‡
                     this.setInputClose();
                 }
             }
@@ -56,7 +56,8 @@ namespace WI
         public void setInputClose()
         {   
             if (isClosing) return;
-            soundPlay(audioSource, destroySE);
+            SEPlay("WI_Close");
+            //soundPlay(audioSource, destroySE);
             StartCoroutine(AnimateAndDestroy());
 
             if (useAnimation)

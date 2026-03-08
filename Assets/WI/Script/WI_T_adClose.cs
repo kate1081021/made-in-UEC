@@ -46,7 +46,7 @@ namespace WI
 
             SortingGroup renderer;
 
-            // À•Wpos‚É‚ ‚é‘S‚Ä‚ÌCollider2Dæ“¾
+            // ï¿½ï¿½ï¿½Wposï¿½É‚ï¿½ï¿½ï¿½Sï¿½Ä‚ï¿½Collider2Dï¿½æ“¾
             RaycastHit2D[] hits = Physics2D.RaycastAll(cursorPosition, Vector2.zero);
 
             int highestOrder = int.MinValue;
@@ -72,6 +72,7 @@ namespace WI
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            Debug.Log("true");
             if (cursorCollider != null && collision == cursorCollider)
             {
                 isCursorHovering = true;

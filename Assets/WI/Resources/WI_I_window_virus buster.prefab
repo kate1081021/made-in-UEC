@@ -192,6 +192,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
 --- !u!114 &3837228280199662648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,6 +208,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
 --- !u!114 &7134755163946570182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,7 +224,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName:
+  - WI_Close
+  SEFile:
+  - {fileID: 8300000, guid: 1569f9418bc944249b22bcd776fbc81b, type: 3}
   useAnimation: 0
+  destroySE: {fileID: 0}
 --- !u!1001 &4253808591474449608
 PrefabInstance:
   m_ObjectHideFlags: 0

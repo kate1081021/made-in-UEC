@@ -2486,6 +2486,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 8300000, guid: 2970671497209974eaef93cc8e1ffb16, type: 3}
+  isLoopBGM: 0
+  SEName:
+  - SK_Voice
+  - SK_StepPerfect
+  - SK_StepGood
+  SEFile:
+  - {fileID: 8300000, guid: b53f8c9dd11943741aa32e83e8a9e140, type: 3}
+  - {fileID: 8300000, guid: 93cf2528e74c74f418219e7acc6f57e1, type: 3}
+  - {fileID: 8300000, guid: a45644a1fd0be2b4288426adab6665ea, type: 3}
   targetVideo: {fileID: 1196574746}
   player: {fileID: 1010397841}
   spawnPoint: {fileID: 65295521}

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI; // UI‘€ì‚É•K—v
+using UnityEngine.UI; // UIï¿½ï¿½ï¿½ï¿½É•Kï¿½v
 
 namespace UT
 {
@@ -19,9 +19,9 @@ namespace UT
         [SerializeField] AudioClip die;
         [SerializeField] private float movespeed;
         private Rigidbody2D rb;
-        [Tooltip("”í’e‚Éó‚¯‚éƒ_ƒ[ƒW")]
+        [Tooltip("ï¿½ï¿½eï¿½ï¿½ï¿½Éó‚¯‚ï¿½_ï¿½ï¿½ï¿½[ï¿½W")]
         public int damage;
-        [Tooltip("–³“GŠÔ")]
+        [Tooltip("ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½ï¿½")]
         public float duration;
         bool Invincible = false;
         public float timelimit = 15;
@@ -40,9 +40,9 @@ namespace UT
         [SerializeField] Sprite S9;
         [SerializeField] Canvas canvas;
         [SerializeField] GameObject die_back;
-        [Tooltip("Å‘åHP")]
+        [Tooltip("ï¿½Å‘ï¿½HP")]
         public int maxHp = 68;
-        [Tooltip("Œ»İ‚ÌHP")]
+        [Tooltip("ï¿½ï¿½ï¿½İ‚ï¿½HP")]
         public int initialHp;
         private int currentHp;
         public GameObject generator;
@@ -53,7 +53,7 @@ namespace UT
         bool alive;
         public override void OnGameStart()
         {
-            MGManager.TestPlay(stage);
+            //MGManager.TestPlay(stage);
             MGManager.Load();
             BGMPlay();
             rb = GetComponent<Rigidbody2D>();
@@ -62,8 +62,8 @@ namespace UT
             die_back.gameObject.SetActive(false);
             gameObject.GetComponent<SpriteRenderer>().color = new Vector4(1, 0, 0, 1);
             currentHp = initialHp; 
-            HPbar.maxValue = maxHp; // ƒXƒ‰ƒCƒ_[‚ÌÅ‘å’l‚ğİ’è
-            HPbar.value = currentHp; // Œ»İ‚ÌHP‚ğ”½‰f
+            HPbar.maxValue = maxHp; // ï¿½Xï¿½ï¿½ï¿½Cï¿½_ï¿½[ï¿½ÌÅ‘ï¿½lï¿½ï¿½İ’ï¿½
+            HPbar.value = currentHp; // ï¿½ï¿½ï¿½İ‚ï¿½HPï¿½ğ”½‰f
             
             if(MGManager.stage <= 20) Instantiate(level1[Random.Range(0, level1.Count)]);
             else if(MGManager.stage <= 40) Instantiate(level2[Random.Range(0, level2.Count)]);
@@ -83,9 +83,9 @@ namespace UT
 
         public void DestroyAllWithTag(string tagName)
         {
-            // ƒ^ƒO‚Éˆê’v‚·‚é‘SƒIƒuƒWƒFƒNƒg‚ğæ“¾
+            // ï¿½^ï¿½Oï¿½Éˆï¿½vï¿½ï¿½ï¿½ï¿½Sï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½æ“¾
             GameObject[] objects = GameObject.FindGameObjectsWithTag(tagName);
-            // ‚·‚×‚Äíœ
+            // ï¿½ï¿½ï¿½×‚Äíœ
             foreach (GameObject obj in objects)
             {
                 if (obj != null)
@@ -137,7 +137,8 @@ namespace UT
                     {
                         mainSource = gameObject.AddComponent<AudioSource>();
                     }
-                    mainSource.PlayOneShot(die);
+                    SEPlay("UT_Die");
+                    //mainSource.PlayOneShot(die);
                     Debug.Log("failure");
                     canvas.gameObject.SetActive(false);
                     die_back.gameObject.SetActive(true);
@@ -151,7 +152,8 @@ namespace UT
                     {
                         mainSource = gameObject.AddComponent<AudioSource>();
                     }
-                    mainSource.PlayOneShot(hidan);
+                    SEPlay("UT_Hidan");
+                    //mainSource.PlayOneShot(hidan);
                     StartCoroutine(muteki());
                 }
             }

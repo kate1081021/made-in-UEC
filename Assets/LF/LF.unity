@@ -324,8 +324,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
   isLoopBGM: 0
-  SEName: []
-  SEFile: []
+  SEName:
+  - LF_beep
+  SEFile:
+  - {fileID: 8300000, guid: 3aecaaadfc3214c4ba7828b2ac14eadf, type: 3}
   parent: {fileID: 0}
   loupescript: {fileID: 0}
   flag: 0
@@ -1242,6 +1244,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854fb279ad95200438e089de0435c9ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName:
+  - LF_explosion
+  SEFile:
+  - {fileID: 8300000, guid: 0c26c746aeaf249418b34202d8b661fc, type: 3}
   loupe: {fileID: 773696203}
   match: {fileID: 653785788}
   backgroundImage: {fileID: 2042684682}

@@ -17,6 +17,7 @@ public class NT_switch : MiniGameBase
     public Stopwatch sw = new Stopwatch();
 
     public override void OnGameStart(){
+    BGMPlay(false);
     MGManager.Load();
     count = 0;
     audioSource = GetComponent<AudioSource>();
