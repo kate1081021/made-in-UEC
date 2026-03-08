@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3365348d1d5a20c4393380d085517a7b
+guid: 645f9482e38213146b52588594ea4252
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5235458627987336850
-    second: "LF_D\u68DF(1)_0"
+      213: 4439227800888872634
+    second: Jounouchi3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "LF_D\u68DF(1)_0"
+      name: Jounouchi3_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 0
-        width: 9248
-        height: 5204
+        width: 429
+        height: 925
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e619f82dd1ae757b0800000000000000
-      internalID: -5235458627987336850
+      spriteID: abe05053a2e4b9d30800000000000000
+      internalID: 4439227800888872634
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      "LF_D\u68DF(1)_0": -5235458627987336850
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
