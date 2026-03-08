@@ -85,7 +85,6 @@ namespace BK
         private IEnumerator MainCoroutine()
         {
             // ちょっと待つ
-            yield return new WaitForSeconds(2.0f);
             BGMPlay(applyToTimeScale: true);
             player_controller.startWalking();
 
