@@ -35,7 +35,7 @@ namespace PTgame
                 visual.localScale = new Vector3(-Mathf.Abs(s.x) * dir, s.y, s.z);
                 
                 // 犬巨大化
-                if (Random.Range(0f, 1f) > 0.05f)
+                if (Random.Range(0f, 1f) > 0.95f)
                 {
                     Vector3 p = this.transform.localPosition;
                     this.transform.localPosition = new Vector3(p.x, p.y + dog_big_height, p.z);
