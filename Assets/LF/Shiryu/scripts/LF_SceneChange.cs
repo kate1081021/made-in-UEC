@@ -93,5 +93,6 @@ public class LF_SceneChange : MonoBehaviour
         audioSource.PlayOneShot(bakuhatsu);
         explpsion.SetActive(true);
         bomb.SetActive(false);
+        MGManager.ClearGame();
     }
 }
