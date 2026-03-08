@@ -318,6 +318,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   duration: 0.5
   spawnCurve:
     serializedVersion: 2
@@ -435,6 +438,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   duration: 0.5
   spawnCurve:
     serializedVersion: 2
@@ -598,6 +604,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   duration: 0.5
   spawnCurve:
     serializedVersion: 2
@@ -801,6 +810,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   duration: 0.5
   spawnCurve:
     serializedVersion: 2
@@ -1131,6 +1143,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
 --- !u!212 &627691856
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1394,6 +1409,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName:
+  - WI_Shift
+  SEFile:
+  - {fileID: 8300000, guid: 6ae782b5473b44942a640e48c0389707, type: 3}
   shiftSE: {fileID: 8300000, guid: 6ae782b5473b44942a640e48c0389707, type: 3}
 --- !u!1 &958177689 stripped
 GameObject:
@@ -1413,6 +1433,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   duration: 0.5
   spawnCurve:
     serializedVersion: 2
@@ -1457,6 +1480,10 @@ PrefabInstance:
     - target: {fileID: 7134755163946570182, guid: 556dbe661af3ace478440753a98eb2ef, type: 3}
       propertyPath: destroySE
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134755163946570182, guid: 556dbe661af3ace478440753a98eb2ef, type: 3}
+      propertyPath: 'SEName.Array.data[0]'
+      value: WI_Close
       objectReference: {fileID: 0}
     - target: {fileID: 8578243292908733980, guid: 556dbe661af3ace478440753a98eb2ef, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1620,6 +1647,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 8300000, guid: bad0488ff7810e74eb0e44d63c9d7a27, type: 3}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   TestStage: 0
   allInstanciate: 0
   windowType:
@@ -1884,6 +1914,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
 --- !u!1001 &1517672517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2140,6 +2173,22 @@ PrefabInstance:
       propertyPath: destroySE
       value: 
       objectReference: {fileID: 8300000, guid: 1569f9418bc944249b22bcd776fbc81b, type: 3}
+    - target: {fileID: 8913529057346311362, guid: 4a711aa643afd4360a068f104bd7763d, type: 3}
+      propertyPath: SEFile.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8913529057346311362, guid: 4a711aa643afd4360a068f104bd7763d, type: 3}
+      propertyPath: SEName.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8913529057346311362, guid: 4a711aa643afd4360a068f104bd7763d, type: 3}
+      propertyPath: 'SEFile.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 1569f9418bc944249b22bcd776fbc81b, type: 3}
+    - target: {fileID: 8913529057346311362, guid: 4a711aa643afd4360a068f104bd7763d, type: 3}
+      propertyPath: 'SEName.Array.data[0]'
+      value: WI_Close
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3768364611150327260, guid: 4a711aa643afd4360a068f104bd7763d, type: 3}
@@ -2175,6 +2224,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   duration: 0.5
   spawnCurve:
     serializedVersion: 2
@@ -2361,6 +2413,14 @@ PrefabInstance:
       propertyPath: cursorSpeed
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 8780761393903069712, guid: dc939bf7481b9164881f11c0ef7900ea, type: 3}
+      propertyPath: SEFile.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780761393903069712, guid: dc939bf7481b9164881f11c0ef7900ea, type: 3}
+      propertyPath: SEName.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2458,6 +2518,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   duration: 0.5
   spawnCurve:
     serializedVersion: 2
@@ -2501,6 +2564,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   duration: 0.5
   spawnCurve:
     serializedVersion: 2

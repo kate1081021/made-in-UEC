@@ -71,7 +71,8 @@ namespace plugmatch
             MGManager.Load(); 
             
             isBubbleFixed = false;
-
+            BGMPlay(true);
+            /*
             if (bgmSource != null && bgmClip != null)
             {
                 bgmSource.clip = bgmClip;
@@ -80,6 +81,7 @@ namespace plugmatch
                 bgmSource.volume = bgmVolume; 
                 bgmSource.Play();
             }
+            */
 
             SetupRandomShapes(); 
 
@@ -152,7 +154,8 @@ namespace plugmatch
                     if (currentIndex >= outlets.Length) currentIndex = 0; 
                     isKeyPushed = true;
                     UpdatePlugPosition();
-                    PlaySE(moveSeClip); 
+                    SEPlay("PM_Move");
+                    //PlaySE(moveSeClip); 
                 }
                 else if (h < -0.5f && !isKeyPushed) 
                 {
@@ -160,7 +163,8 @@ namespace plugmatch
                     if (currentIndex < 0) currentIndex = outlets.Length - 1; 
                     isKeyPushed = true;
                     UpdatePlugPosition();
-                    PlaySE(moveSeClip); 
+                    SEPlay("PM_Move");
+                    //PlaySE(moveSeClip); 
                 }
                 else if (Mathf.Abs(h) < 0.1f) 
                 {
@@ -187,8 +191,8 @@ namespace plugmatch
                         MGManager.ClearGame();
                         currentState = GameState.Cleared;
                         plugObject.transform.localScale = originalScale * popScale;
-
-                        PlaySE(clearSeClip); 
+                        SEPlay("PM_Clear");
+                        //PlaySE(clearSeClip); 
 
                         if (applianceObject != null)
                         {
@@ -200,7 +204,8 @@ namespace plugmatch
                         targetPos = startPos;
                         currentState = GameState.Rejected;
                         
-                        PlaySE(missSeClip); 
+                        SEPlay("PM_Miss");
+                        //PlaySE(missSeClip); 
 
                         if (failurePanel != null)
                         {

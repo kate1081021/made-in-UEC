@@ -166,7 +166,8 @@ namespace YakinikuGameProject
         }
 
         private IEnumerator ClearSequence(string[] messages) {
-            if (audioSource && winSE) audioSource.PlayOneShot(winSE, resultVolume);
+            SEPlay("YK_Win");
+            //if (audioSource && winSE) audioSource.PlayOneShot(winSE, resultVolume);
             SetGaugeAlpha(1f); 
             yield return new WaitForSeconds(0.1f);
             StartCoroutine(SpawnBubblesSequence(messages));
@@ -185,7 +186,8 @@ namespace YakinikuGameProject
         }
 
         private IEnumerator FailSequence(string[] messages) {
-            if (audioSource && shockSE) audioSource.PlayOneShot(shockSE, resultVolume);
+            SEPlay("YK_Shock");
+            //if (audioSource && shockSE) audioSource.PlayOneShot(shockSE, resultVolume);
             SetGaugeAlpha(1f); SetGaugeColor(new Color(1f, 0.3f, 0.3f, 1f));
             if (shockOverlay != null) {
                 float el = 0f;
@@ -211,7 +213,9 @@ namespace YakinikuGameProject
                 }
                 nb.SetActive(true); activeBubbles.Add(nb);
                 StartCoroutine(PopUpAnimation(nb.transform, fX));
-                if (audioSource && speechSE) audioSource.PlayOneShot(speechSE, resultVolume);
+                //SEがないので、一度仮置きしております
+                //SEPlay("");
+                //if (audioSource && speechSE) audioSource.PlayOneShot(speechSE, resultVolume);
                 yield return new WaitForSeconds(0.15f);
             }
         }
@@ -238,7 +242,8 @@ namespace YakinikuGameProject
 
         private void HandleInput(float p) {
             bool ok = (p >= currentOkStart && p <= currentOkEnd);
-            if (audioSource && flipSE) audioSource.PlayOneShot(flipSE);
+            SEPlay("YK_Flip");
+            //if (audioSource && flipSE) audioSource.PlayOneShot(flipSE);
             if (flipCount == 0) {
                 if (!ok) { isPlaying = false; StopGrillingSound(); FlipMeat(p); StartCoroutine(FailSequence(p < currentOkStart ? msgTooEarly : msgTooLate)); }
                 else { FlipMeat(p); }
@@ -262,7 +267,9 @@ namespace YakinikuGameProject
                 float pr = t/0.25f; float sy = Mathf.Abs(Mathf.Cos(pr*Mathf.PI));
                 if (pr >= 0.5f && !sw) {
                     sw = true; meatImage.sprite = next; meatImage.color = Color.white;
-                    if (audioSource && landSE) audioSource.PlayOneShot(landSE);
+                    //素材がなかったので、一度仮置きしております
+                    //SEPlay("");
+                    //if (audioSource && landSE) audioSource.PlayOneShot(landSE);
                     if (flipCount == 1 && isPlaying) { isSideAUp = !isSideAUp; gaugeTimer = 0f; RandomizeSafeZone(); }
                 }
                 meatImage.transform.localScale = new Vector3(sw ? -sX : sX, sy, 1f); yield return null;
@@ -304,7 +311,8 @@ namespace YakinikuGameProject
             if (shockOverlay) shockOverlay.color = Color.clear;
             foreach (var b in activeBubbles) if (b) Destroy(b); activeBubbles.Clear();
             if (speechBubbleRoot) speechBubbleRoot.SetActive(false);
-            if (grillingAudioSource) grillingAudioSource.Play();
+            SEPlay("YK_Grill");
+            //if (grillingAudioSource) grillingAudioSource.Play();
             RandomizeSafeZone();
 
             if (blinkingCoroutine != null) StopCoroutine(blinkingCoroutine);

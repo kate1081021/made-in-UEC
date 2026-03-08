@@ -566,8 +566,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
   isLoopBGM: 0
-  SEName: []
-  SEFile: []
+  SEName:
+  - OB_Appear
+  - OB_Footstep
+  - OB_Scare
+  - OB_Surprise
+  SEFile:
+  - {fileID: 8300000, guid: 69909f12cc3eaca47aefe4503439cf2c, type: 3}
+  - {fileID: 8300000, guid: e6a1d62d35edf624988dba41b5f29bc8, type: 3}
+  - {fileID: 8300000, guid: 443717c7f4520ea489a48471e8082077, type: 3}
+  - {fileID: 8300000, guid: a8efd1340ebcb8047a3821219705e237, type: 3}
   backgroundRect: {fileID: 564784237}
   ghostRect: {fileID: 254923859}
   ghostImage: {fileID: 254923857}

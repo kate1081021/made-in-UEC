@@ -11,7 +11,7 @@ namespace LoupeFire
         [SerializeField] int Moving_Horizontally; //左右のどちらに動いているか，または動いていないか．
         [SerializeField] int Moving_Roundly; //円運動しているか．
         [SerializeField] float speed; //虫眼鏡の速さ
-        float circle_radius = 2.0f;
+        float circle_radius = 1.5f;
         Vector3 lastpos;
         int lastdir;
         float initialTime;  //円運動用
@@ -22,9 +22,9 @@ namespace LoupeFire
         public override void OnGameStart()
         {
             //MGManager.TestPlay(100);  //テストプレイ用なので，後で消す．
-            MGManager.Load(); 
+            
             howToMove = UnityEngine.Random.Range(0, 3);
-            //howToMove = 0;
+            //howToMove = 2;
             speed = 0.07f * Time.timeScale;
             lastdir = 1;
             switch (howToMove)
@@ -115,7 +115,7 @@ namespace LoupeFire
                 Vector2 pos = transform.position;
                 float rad = speed * Mathf.Rad2Deg * (Time.time - initialTime + lasttime) / circle_radius + Mathf.Rad2Deg * initialDeg ;
                 pos.x = Mathf.Cos(rad) * circle_radius;
-                pos.y = 2.6f + Mathf.Sin(rad) * circle_radius;
+                pos.y = 2.1f + Mathf.Sin(rad) * circle_radius;
                 transform.position = pos;
             }
             if (Action.WasPerformedThisFrame() && privateflag)

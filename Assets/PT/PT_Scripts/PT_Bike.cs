@@ -3,7 +3,7 @@ using PTgame;
 
 namespace PTgame
 {
-    public class PT_Bike : MonoBehaviour
+    public class PT_Bike : MiniGameBase
     {
         [Header("Bell Settings")]
         [SerializeField] private float bellDuration = 0.2f;
@@ -13,12 +13,14 @@ namespace PTgame
         [Header("Bell Effect")]
         [SerializeField] private GameObject bikePrefab; // ★追加
         [SerializeField] private Transform spawnPoint;  // ★追加（任意）
+        [SerializeField] private bool isse = true;
+        [SerializeField] private AudioClip se;
 
         private float bellTimer = 0f;
         private float basePower;
         private bool hasBelled = false;
 
-        void Awake()
+        public override void OnGameStart()
         {
             obstacle = GetComponent<PT_Obstacle>();
             if (obstacle != null)
@@ -42,6 +44,11 @@ namespace PTgame
                     obstacle.power = 0f;
                     hasBelled = false;
                     Destroy(gameObject, 1f);
+                }
+                if (isse)
+                {
+                    isse = false;
+                    SEPlay("b", se);
                 }
             }
         }

@@ -20,11 +20,21 @@ namespace LoupeFire
 
         public override void OnGameStart()
         {
+            MGManager.Load(); 
             parent = this.gameObject.transform.parent.gameObject;  //自分の親（ルーペ）を取得
             audioSource = GetComponent<AudioSource>();
             loupescript = parent.GetComponent<LF_loupeMover>();
             matchtransform = match.GetComponent<Transform>();
             flag = loupescript.flag;
+        }
+        public override void OnGameEnd()  //ゲームの終了時にClearGameを呼ぼうと企んだ残骸
+        {
+            Debug.Log("ここまでは呼ばれていますよ");
+            if (SuccessOrFailure == 1 && MGManager.IsClear != true)
+            {
+                MGManager.ClearGame();
+                Debug.Log("最後にクリア呼びました");
+            }
         }
         void Update()
         {
@@ -39,26 +49,19 @@ namespace LoupeFire
                 {
                     SuccessOrFailure = 1;
                     scenechange.StartClear();
-                    MGManager.ClearGame();
+                    //MGManager.ClearGame();
                     Debug.Log(abs.ToString());
                 } else
                 {
-                    audioSource.PlayOneShot(beep);
+                    SEPlay("LF_beep");
+                    //audioSource.PlayOneShot(beep);
                     SuccessOrFailure = -1;
                     Debug.Log("失敗！！！！ " + abs.ToString());
                     StartCoroutine(retry());
                 }
             }
         }
-        /*
-        public override void OnGameEnd()  //ゲームの終了時にClearGameを呼ぼうと企んだ残骸
-        {
-            if (SuccessOrFailure == 1)
-            {
-                MGManager.ClearGame();
-            }
-        }
-        */
+        
         IEnumerator retry()
         {
             yield return new WaitForSeconds(1f / Time.timeScale);  //１秒待つ

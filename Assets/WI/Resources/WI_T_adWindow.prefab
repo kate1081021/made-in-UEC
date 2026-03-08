@@ -103,6 +103,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
 --- !u!61 &2118184483439514971
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -282,7 +285,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName:
+  - WI_Close
+  SEFile:
+  - {fileID: 8300000, guid: 1569f9418bc944249b22bcd776fbc81b, type: 3}
   useAnimation: 1
+  destroySE: {fileID: 0}
 --- !u!210 &1305801412386576850
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -471,6 +480,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
 --- !u!61 &4051827862913938128
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -813,8 +825,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName:
+  - WI_Close
+  SEFile:
+  - {fileID: 8300000, guid: 1569f9418bc944249b22bcd776fbc81b, type: 3}
   parentCloseButton: {fileID: 790112611267392780}
   adWindow: {fileID: 1853909302742600491}
+  darkerColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!114 &8578701019376676218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -828,7 +846,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName:
+  - WI_Close
+  SEFile:
+  - {fileID: 8300000, guid: 1569f9418bc944249b22bcd776fbc81b, type: 3}
   useAnimation: 1
+  destroySE: {fileID: 0}
 --- !u!210 &6929022417793760395
 SortingGroup:
   m_ObjectHideFlags: 0

@@ -369,8 +369,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
   isLoopBGM: 0
-  SEName: []
-  SEFile: []
+  SEName:
+  - YK_Flip
+  - YK_Win
+  - YK_Shock
+  - YK_Grill
+  SEFile:
+  - {fileID: 8300000, guid: 06e8e79ae65dfc240acf8d243a67828d, type: 3}
+  - {fileID: 8300000, guid: 90f641794e170a840849350576b81386, type: 3}
+  - {fileID: 8300000, guid: c139fb7e97bc1fa4eb22f60119c7b032, type: 3}
+  - {fileID: 8300000, guid: 2c9f33ff9a0eecb43b0b3c88468b8313, type: 3}
   useTestStage: 0
   testStageNumber: 10
   gameRoot: {fileID: 1696126931}

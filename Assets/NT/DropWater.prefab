@@ -130,6 +130,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName:
+  - NT_dropping
+  SEFile:
+  - {fileID: 8300000, guid: 4f53c27643ebb2545991bbdef3ae8ef0, type: 3}
   frag: 0
   destroyPointY: -50
   finishPointY: -1.96

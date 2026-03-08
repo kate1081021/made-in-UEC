@@ -778,6 +778,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 8300000, guid: 1dd41fda8c7756b4c8bb525f13f3e3b2, type: 3}
+  isLoopBGM: 0
+  SEName:
+  - UT_Hidan
+  - UT_Die
+  SEFile:
+  - {fileID: 8300000, guid: 9f389e5844edc624f8237a19e77a1212, type: 3}
+  - {fileID: 8300000, guid: 36622b0579cd4f34abe3b4c69a1f6199, type: 3}
   stage: 1
   level1:
   - {fileID: 5481663878230809623, guid: 0b5b71a9d9af92549af13a52ed8612da, type: 3}
