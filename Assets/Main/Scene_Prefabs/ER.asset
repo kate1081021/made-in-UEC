@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene_name: ER
   verb: "\u9593\u9055\u3044\u3092\u63A2\u305B\uFF01"
-  timelimit: 5
+  timelimit: 10
   stopEarlyFinish: 0
