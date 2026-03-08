@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a64a31a3f28fe574082f849c8579dbdd, type: 3}
-  m_Name: PlugMatch
+  m_Name: EA
   m_EditorClassIdentifier: 
-  scene_name: PlugMatch
-  verb: "\u3055\u305B\uFF01"
-  timelimit: 4
-  stopEarlyFinish: 1
+  scene_name: EA
+  verb: "\u30C6\u30B9\u30C8"
+  timelimit: 7
+  stopEarlyFinish: 0

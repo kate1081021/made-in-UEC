@@ -72,7 +72,6 @@ namespace WI
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("true");
             if (cursorCollider != null && collision == cursorCollider)
             {
                 isCursorHovering = true;

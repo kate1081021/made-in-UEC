@@ -1650,8 +1650,8 @@ MonoBehaviour:
   isLoopBGM: 0
   SEName: []
   SEFile: []
-  TestStage: 1
-  allInstanciate: 1
+  TestStage: 0
+  allInstanciate: 0
   windowType:
   - {fileID: 1692362341}
   - {fileID: 1780887621}
