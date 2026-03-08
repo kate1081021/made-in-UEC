@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene_name: Birakaihi
   verb: "\u304B\u308F\u305B\uFF01"
-  timelimit: 7
-  stopEarlyFinish: 0
+  timelimit: 3
+  stopEarlyFinish: 1

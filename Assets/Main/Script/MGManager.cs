@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEditor.SearchService;
 
 public static class MGManager
 {
@@ -18,6 +19,9 @@ public static class MGManager
     
     /// 現在いるステージ(何ゲームクリアしたのかを管理)
     public static int stage { get; private set; } = 1;
+
+    /// ロードするシーン名
+    public static string scene;
 
     /// ゲームが何倍速で動いているのかを管理する
     public static float timeScale = 1.0f;
@@ -69,6 +73,12 @@ public static class MGManager
     }
 
     /// これより下の関数(メソッド)は呼び出さないでください。
+    
+    /// 同じシーンをロードし続ける
+    public static void stuckScene(string s)
+    {
+        scene = s;
+    }
     
     /// 次のステージに進む
     public static void nextStage()

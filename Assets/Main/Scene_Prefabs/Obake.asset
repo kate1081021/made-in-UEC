@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Obake
   m_EditorClassIdentifier: 
   scene_name: Obake
-  verb: "\u304A\u3069\u308D\u304B\u305B!"
+  verb: "\u304A\u3069\u308D\u304B\u305B\uFF01"
   timelimit: 6
+  stopEarlyFinish: 1

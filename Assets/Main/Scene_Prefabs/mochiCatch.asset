@@ -15,3 +15,4 @@ MonoBehaviour:
   scene_name: mochiCatch
   verb: "\u305F\u3079\u308D\uFF01"
   timelimit: 7
+  stopEarlyFinish: 0
