@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Yakiniku
   m_EditorClassIdentifier: 
   scene_name: Yakiniku
-  verb: "\u3046\u307E\u304F\u713C\u3051!"
+  verb: "\u3046\u307E\u304F\u713C\u3051\uFF01"
   timelimit: 7
-  stopEarlyFinish: 0
+  stopEarlyFinish: 1

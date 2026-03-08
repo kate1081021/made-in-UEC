@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene_name: SK
   verb: "\u767B\u308C\uFF01"
-  timelimit: 7
+  timelimit: 10
+  stopEarlyFinish: 1
