@@ -1,10 +1,14 @@
+using System;
 using TMPro;
 using UnityEngine;
 
 public class InputFieldScript : MonoBehaviour
 {
-    public TMP_InputField input;
     public GameObject TestPlayInput;
+    private TMP_InputField input;
+    public GameObject Stage;
+    private TMP_InputField input2;
+    public GameObject SceneName;
     int stage;
     void Update()
     {
@@ -15,9 +19,12 @@ public class InputFieldScript : MonoBehaviour
     }
     public void endInput()
     {
-        input = GetComponent<TMP_InputField>();
+        input = Stage.GetComponent<TMP_InputField>();
+        input2 = SceneName.GetComponent<TMP_InputField>();
         int result;
         int.TryParse(input.text,out result);
+        
+        // stage数のにゅりょく
         if (result == 0)
         {
             Debug.LogError("入力値を整数に変換できませんでした。入力できるのは1~100までの整数です。");
@@ -35,5 +42,10 @@ public class InputFieldScript : MonoBehaviour
                 MGManager.TestPlay(stage);
             }
         }
+
+        // シーン名
+        string scene = input2.text;
+        MGManager.stuckScene(scene);  // シーン名をストック
+
     }
 }

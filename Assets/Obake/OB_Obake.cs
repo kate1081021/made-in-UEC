@@ -227,7 +227,8 @@ namespace ObakeGameProject
             ghostImage.enabled = true;
 
             if (audioSource != null) audioSource.Stop();
-            if (audioSource != null && appearSE != null) audioSource.PlayOneShot(appearSE);
+            SEPlay("OB_Appear");
+            //if (audioSource != null && appearSE != null) audioSource.PlayOneShot(appearSE);
 
             StartCoroutine(GhostInitialSpawnRoutine());
 
@@ -319,7 +320,8 @@ namespace ObakeGameProject
 
             if (targetAreaRect != null) targetAreaRect.gameObject.SetActive(true);
 
-            if (audioSource != null && footstepSE != null) audioSource.PlayOneShot(footstepSE);
+            SEPlay("OB_Footstep");
+            //if (audioSource != null && footstepSE != null) audioSource.PlayOneShot(footstepSE);
 
             currentState = GameState.Scrolling;
             StartCoroutine(ScrollingEffectsRoutine());
@@ -378,7 +380,8 @@ namespace ObakeGameProject
             canInput = false; 
 
             if (audioSource != null) audioSource.Stop();
-            if (audioSource != null && scareSE != null) audioSource.PlayOneShot(scareSE);
+            SEPlay("OB_Scare");
+            //if (audioSource != null && scareSE != null) audioSource.PlayOneShot(scareSE);
 
             if (targetAreaRect != null) targetAreaRect.gameObject.SetActive(false);
             
@@ -406,7 +409,8 @@ namespace ObakeGameProject
             {
                 customerImage.sprite = surprisedCustomerSprite; 
 
-                if (audioSource != null && surpriseSE != null) audioSource.PlayOneShot(surpriseSE);
+                SEPlay("OB_Surprise");
+                //if (audioSource != null && surpriseSE != null) audioSource.PlayOneShot(surpriseSE);
 
                 MGManager.ClearGame(); 
             }

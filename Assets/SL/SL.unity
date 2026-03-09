@@ -165,6 +165,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   moveDistance: -1
 --- !u!212 &34595422
 SpriteRenderer:
@@ -506,6 +509,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   moveDistance: 1
 --- !u!212 &418929945
 SpriteRenderer:
@@ -705,6 +711,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   maxScale: 3
   minScale: 1
 --- !u!212 &1348797910
@@ -822,6 +831,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 8300000, guid: 862316b74e3b8b54da54a4aa1fbef855, type: 3}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   balloonDamage: 0
   balloonDamageMax: 20
   balloonReducingSpeed: 0.1
@@ -862,6 +874,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   sleepDogImage: {fileID: 1811890232}
   wakeDogImage: {fileID: -4843068751495726118, guid: 2367ddd8193e4034fbdcfb34b71fb42e, type: 3}
   backGround_Space: {fileID: 1887055201}
@@ -1118,6 +1133,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 8300000, guid: 862316b74e3b8b54da54a4aa1fbef855, type: 3}
+  isLoopBGM: 0
+  SEName:
+  - SL_Ibiki
+  - SL_Tsutsuku
+  - SL_Tsutsuku2
+  - SL_Break
+  - SL_Fanfare
+  - SL_Shine
+  SEFile:
+  - {fileID: 8300000, guid: 862316b74e3b8b54da54a4aa1fbef855, type: 3}
+  - {fileID: 8300000, guid: a4929518a25f2f047b5cee067a5a1509, type: 3}
+  - {fileID: 8300000, guid: 026bd09e0af5b7d46bd7ebbb670180a6, type: 3}
+  - {fileID: 8300000, guid: 455c56acc79f4a849b0d9bc440385645, type: 3}
+  - {fileID: 8300000, guid: feb465f36b88e754698dd8e2e4b0aa50, type: 3}
+  - {fileID: 8300000, guid: 880bb0138bb28ee43a12c0019c22a859, type: 3}
   SL_audioSource: {fileID: 2103181553}
   SL_BGM: {fileID: 8300000, guid: 862316b74e3b8b54da54a4aa1fbef855, type: 3}
   SL_AttackAudioClip: {fileID: 8300000, guid: a4929518a25f2f047b5cee067a5a1509, type: 3}

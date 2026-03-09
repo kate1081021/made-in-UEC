@@ -45,8 +45,8 @@ namespace WI
                 if (!isSound)
                 {
                     isSound = true;
-                    // SEPlay("shiftTab", false);
-                    soundPlay(audioSource, shiftSE);
+                    SEPlay("WI_Shift", false);
+                    //soundPlay(audioSource, shiftSE);
                 }
                 transform.position = Vector2.MoveTowards(
                 transform.position, 

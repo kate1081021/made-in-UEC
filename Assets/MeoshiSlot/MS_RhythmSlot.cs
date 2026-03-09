@@ -77,7 +77,7 @@ namespace MeoshiSlotGame_IK
                 Debug.Log($"【Debug】ステージ {debugStageIndex} の速度でテストプレイを開始します。");
                 MGManager.TestPlay(debugStageIndex);
             }
-
+            BGMPlay(true);
             MGManager.Load();
             SetupReelImages();
 
@@ -94,13 +94,13 @@ namespace MeoshiSlotGame_IK
                 isStopped[i] = false;
             }
 
+/*
             if (bgmSource != null)
             {
                 // ★修正：ループをOFFにする（1回だけ流れる）
                 bgmSource.loop = false;
-                bgmSource.Play();
             }
-
+*/
             if (winParticle != null)
             {
                 var main = winParticle.main;
@@ -110,11 +110,13 @@ namespace MeoshiSlotGame_IK
 
         public override void OnGameEnd()
         {
+            /*
             if (bgmSource != null)
             {
                 bgmSource.Stop();
                 bgmSource.pitch = 1.0f; 
             }
+            */
             StopAllCoroutines();
         }
 
@@ -146,7 +148,8 @@ namespace MeoshiSlotGame_IK
         {
             // 時間管理
             float currentScale = Time.timeScale;
-            if (bgmSource != null) bgmSource.pitch = currentScale;
+            
+            //if (bgmSource != null) bgmSource.pitch = currentScale;
 
             // ▼▼▼ ビート計算処理 ▼▼▼
             if (enableSymbolBeat)
@@ -179,6 +182,7 @@ namespace MeoshiSlotGame_IK
             }
 
             // リスタート（Rキーのみ）
+            /*
             if (isDebugMode && isClear)
             {
                 if (Input.GetKeyDown(KeyCode.R))
@@ -186,6 +190,7 @@ namespace MeoshiSlotGame_IK
                     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 }
             }
+            */
 
             // リールの計算
             float elapsedTime = Time.time - startTime;
@@ -264,7 +269,8 @@ namespace MeoshiSlotGame_IK
             // 既に3つ止まっていたら何もしない（音も鳴らさない）
             if (currentReelIndex >= 3) return; 
 
-           if (seSource != null && stopSE != null) seSource.PlayOneShot(stopSE);
+            SEPlay("MS_decide",true);
+           //if (seSource != null && stopSE != null) seSource.PlayOneShot(stopSE);
 
             // ▼▼▼ ここから裏側の計算処理 ▼▼▼
             isStopped[currentReelIndex] = true;
@@ -297,7 +303,8 @@ namespace MeoshiSlotGame_IK
             if (spriteNames[0] == spriteNames[1] && spriteNames[1] == spriteNames[2])
             {
                 isClear = true;
-                if (seSource != null && winSE != null) seSource.PlayOneShot(winSE);
+                SEPlay("MS_win",true);
+                //if (seSource != null && winSE != null) seSource.PlayOneShot(winSE);
                 
                 if (winParticle != null) winParticle.Play();
 
@@ -308,7 +315,8 @@ namespace MeoshiSlotGame_IK
             else
             {
                 Debug.Log("MISS! Restarting...");
-                if (seSource != null && failSE != null) seSource.PlayOneShot(failSE);
+                SEPlay("MS_fail",true);
+                //if (seSource != null && failSE != null) seSource.PlayOneShot(failSE);
                 
                 StartCoroutine(DelayRestart(0.5f));
             }

@@ -1,10 +1,11 @@
-using System;
 using PTgame;
+using System;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace PTgame
 {
-    public class PT_Wind : MonoBehaviour
+    public class PT_Wind : MiniGameBase
     {
         [SerializeField] private PT_Obstacle obstacle;
         [SerializeField] private float max_power;
@@ -13,10 +14,12 @@ namespace PTgame
         [SerializeField] private float time;
         [SerializeField] private Camera game_camera;
 
-        // パーティクル書き換え用の配列キャッシュ
-        private ParticleSystem.Particle[] particlesArray;
 
-        void Awake()
+        [SerializeField] private bool isse = true;
+        [SerializeField] private AudioClip se;
+
+
+        public override void OnGameStart()
         {
             if (game_camera == null) game_camera = Camera.main;
 
@@ -35,6 +38,12 @@ namespace PTgame
             float sinWave = (float)Math.Sin(time * Math.PI / max_time);
 
             obstacle.power = direction * max_power * sinWave;
+
+            if (isse)
+            {
+                isse = false;
+                SEPlay("w", se);
+            }
 
             if (time < 0)
             {

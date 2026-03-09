@@ -1270,7 +1270,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7951879157007c4e86a98f80c4232f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameBGM: {fileID: 0}
+  gameBGM: {fileID: 8300000, guid: 42aeb246332265e4ea3435d992d3ade4, type: 3}
+  isLoopBGM: 0
+  SEName:
+  - PM_Clear
+  - PM_Miss
+  - PM_Move
+  SEFile:
+  - {fileID: 8300000, guid: 290698ffd4827c64ba8cf263ada53582, type: 3}
+  - {fileID: 8300000, guid: 3c4a9324fce5d7e4ea84e8a6e84a4730, type: 3}
+  - {fileID: 8300000, guid: fca92dbecd5870948b690a891a42dee4, type: 3}
   plugObject: {fileID: 700261013}
   bubbleShapeImage: {fileID: 949634670}
   plugSprites:

@@ -12,6 +12,28 @@ namespace PTgame
         {
             direction = dir;
 
+            Transform visual = transform.Find("Bike1_visual");
+
+            if (visual != null)
+            {
+                // たまにbikeが曲芸する
+                if (Random.Range(0f, 1f) > 0.95f)
+                {
+                    visual.rotation = Quaternion.Euler(0f, 0f, -15f);
+                }
+
+                Vector3 s = visual.localScale;
+                if (Random.Range(0f,1f) > 0.05f)
+                {
+                    // dirが-1ならXスケールをマイナスにして反転させる
+                    visual.localScale = new Vector3(-Mathf.Abs(s.x) * dir, s.y, s.z);
+                }
+                else
+                {
+                    visual.localScale = new Vector3(Mathf.Abs(s.x) * dir, s.y, s.z);
+                }
+            }
+
             if (dir > 0)
                 destroyX = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)).x + 1f;
             else

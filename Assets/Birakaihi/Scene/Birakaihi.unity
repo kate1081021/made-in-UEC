@@ -224,21 +224,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 8300000, guid: e831161e411d3f74eb32af5dba7e425b, type: 3}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   EnemyLeft: {fileID: 1435223123}
   EnemyRight: {fileID: 1738557689}
   canvasTransform: {fileID: 1238382687}
   dataset_easy:
   - {fileID: 11400000, guid: 96a8eeb615d69c642b60025a314f503a, type: 2}
+  - {fileID: 11400000, guid: 89a85a5d478cd5541b1b55f40abea6e3, type: 2}
   dataset_normal:
   - {fileID: 11400000, guid: acd76fa3a2c2f2246ba3640c8b158efa, type: 2}
   - {fileID: 11400000, guid: 600058574b8069e4f9e2178537b2a0cd, type: 2}
   - {fileID: 11400000, guid: ee98b0ee7112fb84abbd1ee4365d228b, type: 2}
   - {fileID: 11400000, guid: 91843513652e73c41b2fe94bcd231017, type: 2}
-  dataset_difficult:
-  - {fileID: 11400000, guid: 7dc13b7945f1ffe4a9a0a062904d07fa, type: 2}
-  - {fileID: 11400000, guid: 38b50abfc4896084dac0651b3e13120b, type: 2}
-  - {fileID: 11400000, guid: 54139f6e04ee3614f96d2bae0709e666, type: 2}
-  - {fileID: 11400000, guid: bc834f7da5ff4f1448e1f0e73a7528c0, type: 2}
   dataset: []
   player: {fileID: 889079125}
   gameClear: 1
@@ -523,6 +522,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   animator: {fileID: 889079127}
   escape: 0
 --- !u!1 &954943740
@@ -1122,6 +1124,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   enemy: {fileID: 1435223123}
   player: {fileID: 889079125}
   gameManager: {fileID: 493606527}
@@ -1143,6 +1148,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   enemy: {fileID: 1738557689}
   player: {fileID: 889079125}
   gameManager: {fileID: 493606527}

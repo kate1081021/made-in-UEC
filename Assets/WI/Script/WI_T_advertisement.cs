@@ -45,8 +45,8 @@ namespace WI
         public void setInputClose()
         {
             if (isClosing) return;
-            // SEPlay("closeWindow", false);
-            soundPlay(audioSource, destroySE);
+            SEPlay("WI_Close", false);
+            //soundPlay(audioSource, destroySE);
             StartCoroutine(AnimateAndDestroy());
 
             if (useAnimation)

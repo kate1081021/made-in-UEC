@@ -323,6 +323,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName:
+  - LF_beep
+  SEFile:
+  - {fileID: 8300000, guid: 3aecaaadfc3214c4ba7828b2ac14eadf, type: 3}
   parent: {fileID: 0}
   loupescript: {fileID: 0}
   flag: 0
@@ -1158,7 +1163,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -5079223292451459607, guid: e6168669e23923d46a67e6ae01077ce6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1199,6 +1204,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   howToMove: 0
   Moving_Vertically: 0
   Moving_Horizontally: 0
@@ -1236,6 +1244,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854fb279ad95200438e089de0435c9ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName:
+  - LF_explosion
+  SEFile:
+  - {fileID: 8300000, guid: 0c26c746aeaf249418b34202d8b661fc, type: 3}
   loupe: {fileID: 773696203}
   match: {fileID: 653785788}
   backgroundImage: {fileID: 2042684682}
@@ -1557,6 +1571,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 8300000, guid: 5b7914bcf45c6034c8d9ab966be42db2, type: 3}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
 --- !u!4 &1562022263
 Transform:
   m_ObjectHideFlags: 0
@@ -1695,13 +1712,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -2433730644181734509, guid: 17db5ce1c8a2aaa4c915998d56029c89, type: 3}
+  m_SortingOrder: -2
+  m_Sprite: {fileID: -6724081435047004277, guid: c162444368b13ac42b2e7a079bef4b92, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 8, y: 5.33}
+  m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1717,7 +1734,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1735,6 +1752,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   sprites:
   - {fileID: -6724081435047004277, guid: c162444368b13ac42b2e7a079bef4b92, type: 3}
   - {fileID: -5235458627987336850, guid: 3365348d1d5a20c4393380d085517a7b, type: 3}

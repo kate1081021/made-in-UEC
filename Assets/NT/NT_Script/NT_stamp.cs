@@ -44,8 +44,9 @@ private IEnumerator StampRoutine(float count)
 
         yield return null;
     }
-    stampEffect.gameObject.SetActive(true);
-    stampAudioSource.Play();
+    //stampEffect.gameObject.SetActive(true);
+    //stampAudioSource.Play();
+    SEPlay("NT_stamp");
 
     // ★ 押した瞬間
     ChangeStampByCount(count);
@@ -77,7 +78,7 @@ private IEnumerator StampRoutine(float count)
 
         public override void OnGameStart()
         {
-            stampAudioSource = GetComponent<AudioSource>();
+            //stampAudioSource = GetComponent<AudioSource>();
             stampImage.GetComponent<RectTransform>().localPosition = new Vector2(0, 3000f);
             handImage.localPosition = new Vector3(0, 3000f, 0);
             stampEffect.gameObject.SetActive(false);

@@ -16,7 +16,7 @@ namespace NT
 
         public override void OnGameStart()
         {
-            MGManager.Load();
+            // MGManager.Load();
             switchComponent = GetComponent<NT_switch>(); // スクリプト取得
         }
 
@@ -29,6 +29,7 @@ namespace NT
             if (150 < count && count < 200 && sw.ElapsedMilliseconds > 2000)
             {
                 isCleared = true;
+                switchComponent.isCleared = true; // 追記
                 UnityEngine.Debug.Log("NT成功");
 
                 // スタンプを押す
@@ -36,8 +37,9 @@ namespace NT
                 {
                     stamp_script.PressStamp(count);
                 }
-                if (isCleared) return;
+                UnityEngine.Debug.Log("クリアフラグ: " + isCleared);
                 MGManager.ClearGame();
+                if (isCleared) return;
             }
         }
 
@@ -55,7 +57,8 @@ namespace NT
                 {
                     stamp_script.PressStamp(count);
                 }
-                if (isCleared) return;
+                // 不具合対策で削除
+                // if (isCleared) return;
                 MGManager.ClearGame();
             }
             else
