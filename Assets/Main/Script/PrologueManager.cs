@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 using System.Runtime.CompilerServices;
 using TMPro;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine.UIElements;
 
 public class PrologueManager : MonoBehaviour
