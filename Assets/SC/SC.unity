@@ -511,8 +511,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1290475472}
   - component: {fileID: 1290475471}
+  - component: {fileID: 1290475473}
   m_Layer: 0
-  m_Name: Triangle
+  m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -588,6 +589,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1290475473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290475470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37f0f2c3e3a184ebb86fca68dd6008d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
+  stickTrans: {fileID: 1502291488}
+  grabRange: 0.5
+  catchSprite: {fileID: 0}
 --- !u!1 &1339546445
 GameObject:
   m_ObjectHideFlags: 0
