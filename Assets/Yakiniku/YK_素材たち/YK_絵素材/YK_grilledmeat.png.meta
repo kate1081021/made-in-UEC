@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      YK_grilledmeat_0: -5913868328097134230
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
