@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Naoya2_0: 7821484521199269028
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
