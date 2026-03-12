@@ -15,6 +15,7 @@ namespace RS
 
         public override void OnGameStart()
         {
+            MGManager.Load();
             currentIndex = 0;
             SpawnClones();
             gameActive = true;
@@ -39,6 +40,7 @@ namespace RS
                 }
             }
         }
+
 
         void Update()
         {
