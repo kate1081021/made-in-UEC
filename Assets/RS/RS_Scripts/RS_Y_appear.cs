@@ -5,39 +5,41 @@ namespace RS
 {
     public class RS_Y_appear : MiniGameBase 
     {
-        [Header("フェード設定")]
         public float duration = 1.5f;
         public float waitTime = 0.5f;
+        public KeyCode targetKey = KeyCode.Alpha1; // これをSpawn側が読み取る
 
         private SpriteRenderer spriteRenderer;
 
-        public override void OnGameStart()
+        public void Setup()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
-
+            SetAlpha(0f);
             StartCoroutine(FadeSequence());
+        }
+
+        public float GetCurrentAlpha()
+        {
+            return spriteRenderer != null ? spriteRenderer.color.a : 0f;
         }
 
         private IEnumerator FadeSequence()
         {
             yield return StartCoroutine(Fade(0f, 1f));
-
             yield return new WaitForSeconds(waitTime);
-
             yield return StartCoroutine(Fade(1f, 0f));
         }
 
-        private IEnumerator Fade(float startAlpha, float endAlpha)
+        private IEnumerator Fade(float start, float end)
         {
             float elapsedTime = 0f;
             while (elapsedTime < duration)
             {
                 elapsedTime += Time.deltaTime;
-                float currentAlpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / duration);
-                SetAlpha(currentAlpha);
+                SetAlpha(Mathf.Lerp(start, end, elapsedTime / duration));
                 yield return null;
             }
-            SetAlpha(endAlpha);
+            SetAlpha(end);
         }
 
         private void SetAlpha(float alpha)
@@ -49,5 +51,7 @@ namespace RS
                 spriteRenderer.color = c;
             }
         }
+        
+        public override void OnGameStart() {}
     }
 }
