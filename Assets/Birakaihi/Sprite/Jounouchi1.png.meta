@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Jounouchi1_0: -5854166061128699567
+      Jounouchi1_1: -7225739918288319750
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
