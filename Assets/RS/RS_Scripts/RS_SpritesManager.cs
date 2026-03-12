@@ -12,10 +12,10 @@ namespace RS
         [SerializeField] private GameObject[] clear_characters;
         [SerializeField] private GameObject failed_background;
         [SerializeField] private GameObject[] failed_characters;
-        [SerializeField] private SpriteRenderer sr;
-        [SerializeField] private int rand;
-        [SerializeField] private float timer = 0;
-        [SerializeField] private float flash_time;
+        private SpriteRenderer sr;
+        private int rand;
+        private float timer = 0;
+        private float flash_time;
 
         void Awake()
         {
