@@ -1,7 +1,8 @@
 using UnityEngine;
 
-namespace boss_stage // ★仕様書ルール：ネームスペースで囲む
+namespace BOSS // ★仕様書ルール：ネームスペースで囲む
 {
+    // ★修正：MiniGameBase ではなく MonoBehaviour に変更しました
     public class BOSS_Obstacle : MonoBehaviour
     {
         [Header("落下の設定")]
