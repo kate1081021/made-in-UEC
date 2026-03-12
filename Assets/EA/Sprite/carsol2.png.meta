@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: d17372d2be1f8ee4088c83cbda237bd8
+guid: 4d7936e4b91ca9a4b9354c7b049bcdb7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4904544901280479700
-    second: OB_BG_0
+      213: 8045109240562366976
+    second: carsol2_0
+  - first:
+      213: -2047306613208585796
+    second: carsol2_1
+  - first:
+      213: -1287970724713987125
+    second: carsol2_2
+  - first:
+      213: -6896964868664842305
+    second: carsol2_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -24,7 +33,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -37,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,12 +55,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +122,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: OB_BG_0
+      name: carsol2_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 4320
-        height: 1080
+        x: 7
+        y: 55
+        width: 18
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +137,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4d9b6c13a91701440800000000000000
-      internalID: 4904544901280479700
+      spriteID: 00abeeeba38f5af60800000000000000
+      internalID: 8045109240562366976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: carsol2_1
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 55
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb9e46d7b718693e0800000000000000
+      internalID: -2047306613208585796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: carsol2_2
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 7
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc302582375302ee0800000000000000
+      internalID: -1287970724713987125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: carsol2_3
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 7
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb722ee5efe0940a0800000000000000
+      internalID: -6896964868664842305
       vertices: []
       indices: 
       edges: []
@@ -138,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +223,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      OB_BG_0: 4904544901280479700
+      carsol2_0: 8045109240562366976
+      carsol2_1: -2047306613208585796
+      carsol2_2: -1287970724713987125
+      carsol2_3: -6896964868664842305
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -301,6 +301,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -1747,7 +1760,72 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gradient_0: 620825655395414567
+      gradient_1: -6942954565210132980
+      gradient_10: 3019593915318391737
+      gradient_11: 5069745111112452863
+      gradient_12: -6639532264605409734
+      gradient_13: 5147424045819856793
+      gradient_14: -5907345789843894499
+      gradient_15: -1142038611935366379
+      gradient_16: -2689018019657817481
+      gradient_17: -1854735555750100328
+      gradient_18: -3276503407276874324
+      gradient_19: -4188560679974752160
+      gradient_2: 2926931861004289152
+      gradient_20: -9187639252533601392
+      gradient_21: 3809946816847801379
+      gradient_22: -4990990809108614483
+      gradient_23: 3815095587614098110
+      gradient_24: 3318623333167312016
+      gradient_25: 8585347021938204437
+      gradient_26: -2738486617140580338
+      gradient_27: -42591621623705391
+      gradient_28: -7959089115891910413
+      gradient_29: 2315015377990158809
+      gradient_3: 1099871631309853665
+      gradient_30: -7137780708124872622
+      gradient_31: 2670104372167675876
+      gradient_32: -8394225975446015549
+      gradient_33: 1487380128940525641
+      gradient_34: 657076764960220612
+      gradient_35: 4631890335757094355
+      gradient_36: -317997090629412673
+      gradient_37: -1042859923797357309
+      gradient_38: 317833038549852145
+      gradient_39: 4845346060097597545
+      gradient_4: 7919030421057304745
+      gradient_40: -7960421175067605556
+      gradient_41: -7237903618775297099
+      gradient_42: 8713260022024508333
+      gradient_43: -2760361253327295230
+      gradient_44: 2001986241492611896
+      gradient_45: -4558297624968237228
+      gradient_46: -4749046911653398674
+      gradient_47: -4569746260867306612
+      gradient_48: -7128645828502607595
+      gradient_49: -7538189633844863290
+      gradient_5: 1127254789862753035
+      gradient_50: 6702699397197009683
+      gradient_51: 6477988035317839649
+      gradient_52: 8151777614003050660
+      gradient_53: -5552555133878551448
+      gradient_54: -8574381662588486025
+      gradient_55: -1755964805872322521
+      gradient_56: -7053762658174027795
+      gradient_57: -7317114128895525089
+      gradient_58: -6700569825258010972
+      gradient_59: -864010258460198433
+      gradient_6: 5697423389105990940
+      gradient_60: 2379580812068961970
+      gradient_61: -8010228510663894217
+      gradient_62: 907354558354700001
+      gradient_63: 4338480650843976128
+      gradient_64: -3992837333734522869
+      gradient_7: 3275426159497020900
+      gradient_8: -5841101188230009448
+      gradient_9: -7054678239945794192
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
