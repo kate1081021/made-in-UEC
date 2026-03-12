@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      YK_burntmeat_0: 5740041834833750083
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
