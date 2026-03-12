@@ -50,6 +50,7 @@ namespace EA
         /// </summary>
         public GameObject cellPrefab;  // セルオブジェクトのプレファブ
         private GameObject[,] cells;  // セルをまとめて保持する
+        
 
         /// <summary>
         /// Carsol関連
