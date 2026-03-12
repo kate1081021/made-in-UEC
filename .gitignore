@@ -99,7 +99,7 @@ InitTestScene*.unity*
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 
 # フォントフォルダを無視
-/[Aa]ssets/TextMesh Pro
+/[Aa]ssets/TextMesh Pro/
 
 # setting.jsonを無視
-/.vscode
+/.vscode/
