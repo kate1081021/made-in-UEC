@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 5da07eb13d2b3b04b93b442cad4e406c
+guid: 113894d2066ddea44853ac7779636040
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5854166061128699567
-    second: Jounouchi1_0
+      213: -2524325167918998184
+    second: yuusya_game_0
   - first:
-      213: -7225739918288319750
-    second: Jounouchi1_1
+      213: 6825589482791063494
+    second: yuusya_game_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,19 +100,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -129,45 +116,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jounouchi1_0
+      name: yuusya_game_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 0
-        width: 426
-        height: 927
+        x: 33
+        y: 379
+        width: 25
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 151b64eebf2d1cea0800000000000000
-      internalID: -5854166061128699567
+      spriteID: 85d1c9c52abc7fcd0800000000000000
+      internalID: -2524325167918998184
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jounouchi1_1
+      name: yuusya_game_1
       rect:
         serializedVersion: 2
-        x: 441
-        y: 687
-        width: 6
-        height: 7
+        x: 30
+        y: 8
+        width: 275
+        height: 437
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: afa8013f3d309bb90800000000000000
-      internalID: -7225739918288319750
+      spriteID: 6cf4768987d59be50800000000000000
+      internalID: 6825589482791063494
       vertices: []
       indices: 
       edges: []
@@ -176,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0588af44ba673ed4899248121e6d7f46
     internalID: 0
     vertices: []
     indices: 
@@ -186,8 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Jounouchi1_0: -5854166061128699567
-      Jounouchi1_1: -7225739918288319750
+      yuusya_game_0: -2524325167918998184
+      yuusya_game_1: 6825589482791063494
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
