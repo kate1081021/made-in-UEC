@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 406812749}
   - component: {fileID: 406812748}
   - component: {fileID: 406812747}
+  - component: {fileID: 406812750}
   m_Layer: 0
   m_Name: carsol
   m_TagString: Untagged
@@ -223,6 +224,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &406812750
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406812746}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d9f89016950ab374c8ff0da00cad9b84, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &534328876
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,11 +320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be95fc931e4998c4298a673da0332391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameBGM: {fileID: 0}
-  isLoopBGM: 0
-  SEName: []
-  SEFile: []
-  cell: {fileID: 0}
   Head: {fileID: 4044558574394252294, guid: 124d561af8c65c446831fa30faaed700, type: 3}
   Tail: {fileID: 2390744303940870925, guid: f881f025693cf4645b2ebd17b8dbd5d4, type: 3}
 --- !u!4 &597931649
