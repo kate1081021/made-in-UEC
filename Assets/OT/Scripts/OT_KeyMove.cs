@@ -5,6 +5,7 @@ namespace OpenTreasure{
     {
         [SerializeField] int spinGoal;
         [SerializeField] OT_KeyAnim keyAnim;
+        [SerializeField] GameObject Arrow;
         float angle = 0f;
         float prevAngle = 0f;
         float rotationSum = 0f;
@@ -23,14 +24,17 @@ namespace OpenTreasure{
             keyAnim = GetComponent<OT_KeyAnim>();
             gameStarted = false;
             clearGame = false;
+            Arrow.SetActive(false);
             BGMPlay();
         }
-
+        public void OnArrow()
+        {
+            Arrow.SetActive(true);
+        }
         // Update is called once per frame
         void Update()
         {
             if (!gameStarted) { return; } // 開始演出など用
-
             Vector2 move = Move.ReadValue<Vector2>();
 
             if (move.magnitude < deadZone) { return; } // 入力が弱かったら終了
@@ -57,6 +61,7 @@ namespace OpenTreasure{
                 keyAnim.ClearAnimation();
                 Debug.Log("クリアしたわ");
                 clearGame = true;
+                Arrow.SetActive(false);
                 SEPlay("OT_Open");
             }
         }

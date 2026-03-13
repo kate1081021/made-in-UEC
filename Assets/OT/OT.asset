@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: OT
   m_EditorClassIdentifier: 
   scene_name: OT
-  verb: "\u30C6\u30B9\u30C8"
-  timelimit: 7
+  verb: "\u3042\u3051\u308D\uFF01"
+  timelimit: 5
   stopEarlyFinish: 0
