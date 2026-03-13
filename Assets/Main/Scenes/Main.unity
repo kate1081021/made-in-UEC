@@ -169,6 +169,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4ff20a3b418f1bc4bb4746a81f72c435, type: 2}
   - {fileID: 11400000, guid: e7464535d5857c148a4e64c2c0479c72, type: 2}
   - {fileID: 11400000, guid: a80b88e8285513646ba83318ff549028, type: 2}
+  - {fileID: 11400000, guid: e1cfa1d35d843c3439fab5c4006c74ec, type: 2}
   lives: {fileID: 790571177}
 --- !u!4 &128823214
 Transform:
@@ -3559,8 +3560,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 39, y: 33.166}
-  m_SizeDelta: {x: 1288.1681, y: 135.7855}
+  m_AnchoredPosition: {x: 27.763916, y: 33.166}
+  m_SizeDelta: {x: 1911.2609, y: 135.7855}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1805018523
 MonoBehaviour:
