@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace EA
 {
@@ -9,6 +12,7 @@ namespace EA
         /// Board関連
         /// </summary>
         private EA_BoardModel boardModel;  // 盤面のモデル
+        public EA_BoardView boardView;  // 盤面の見た目
 
         // 正解の盤面のデータ(4x4)
         public EA_BoardData[] targets4;
@@ -49,7 +53,10 @@ namespace EA
         /// Cell関連
         /// </summary>
         public GameObject cellPrefab;  // セルオブジェクトのプレファブ
-        private GameObject[,] cells;  // セルをまとめて保持する
+        private EA_Board cells;  // セルのデータをまとめて持っている(下記の二つ)
+
+        // private GameObject[,] currentCells;  // セルをまとめて保持する
+        // private GameObject[,] targetCells;  // 正解のセルをまとめて保持する
         
 
         /// <summary>
@@ -59,6 +66,7 @@ namespace EA
         public GameObject carsol;  // カーソルオブジェクト
         private int carsor_x = 0;
         private int carsor_y = 0;
+        private bool waitForNextTry = false;  // 一回間違えた場合、次に操作できるようになるまでラグが生じるようにする。
 
         /// <summary>
         /// UI関連
@@ -75,61 +83,58 @@ namespace EA
             // データセットの中から一つ抽出する
             bool[] data = ChooseData().data;
 
+            // 現在のセルの内容が変更されたとき
+            boardModel.OnCurrentCellChanged = (x, y, side) =>
+            {
+                // データの変更を見た目に反映する
+                cells.currentCells[y, x].GetComponent<EA_CellView>().Flip(side);
+            };
+
+            // 正解のセルの内容が変更されたとき
+            boardModel.OnTargetCellCreated = (x, y, side) =>
+            {
+                // データの変更を見た目に反映する
+                cells.targetCells[y, x].GetComponent<EA_CellView>().Flip(side);
+            };
+
+            // セルを生成する
+            int size = boardModel.boardLength;
+            cells = boardView.CreateBoard(size, cellPrefab);
+
             // 盤面を作成する
             boardModel.SetBoard(data);
 
-            // セルを生成する
-            int l = boardModel.boardLength;
-            cells = new GameObject[l, l];
-
-            for (int i = 0; i < l; i++)
-            {
-                for (int j = 0; j < l; j++)
-                {
-                    // currentBoard
-                    GameObject cell = Instantiate(cellPrefab);  // プレファブを生成する
-
-                    Transform transform = cell.GetComponent<Transform>();  
-                    transform.position = new Vector3(-6.5f + ((8 - l) / 2 + j), 3.5f - ((8 - l) / 2 + i), -1);
-
-                    EA_CellView cellView = cell.GetComponent<EA_CellView>();
-                    cellView.Flip(boardModel.GetCell(j, i));
-                    cells[i, j] = cell;
-
-                    // targetBoard
-                    GameObject cell2 = Instantiate(cellPrefab);  // プレファブを生成する
-                    Transform transform2 = cell2.GetComponent<Transform>();  
-                    transform2.position = new Vector3(3.25f + (((8 - l) / 2 + j) * 0.5f), -0.25f - (((8 - l) / 2 + i)) * 0.5f, -1);
-                    transform2.localScale = new Vector3(0.5f, 0.5f, 1);
-
-                    EA_CellView cellView2 = cell2.GetComponent<EA_CellView>();
-                    cellView2.Flip(boardModel.GetTargetCell(j, i));
-
-                }
-            }
-
             // カーソルを移動する
-            carsolView.CarsorMove(0, 0, l);
+            carsolView.CarsorMove(0, 0, size);
 
             // ミニゲームを開始する
             MGManager.Load();
 
         }
 
+
+        // デモプレイ(1回だけ呼ばれる)
+        private IEnumerator DemoPlay()
+        {
+            yield return null;
+        }
+
         // 上下左右キーが押されている
         protected override void OnMovePerformed(Vector2 value)
         {
+            // クリア時または硬直時は呼び出さない
+            if (MGManager.IsClear || waitForNextTry) { return; }
+
+            // スティック対応
             Vector2 val = convert_stick_to_dir(value);
 
             // x座標
             carsor_x = (carsor_x + (int)val.x) % boardModel.boardLength;
             if (carsor_x < 0) { carsor_x += boardModel.boardLength; }
-            Debug.Log(carsor_x);
 
             // y座標
             carsor_y = (carsor_y - (int)val.y) % boardModel.boardLength;
             if (carsor_y < 0) { carsor_y += boardModel.boardLength; }
-            Debug.Log(carsor_y);
 
             // カーソルを動かす
             carsolView.CarsorMove(carsor_x, carsor_y, boardModel.boardLength);
@@ -139,38 +144,40 @@ namespace EA
         // Enter/Spaceキーが押された
         protected override void OnActionStarted(float value)
         {
+            // 硬直がなければそのまま呼び出し
+            if (!waitForNextTry){ StartCoroutine(CheckCell()); }
+
+        }
+
+        // 判定のためのコルーチン
+        private IEnumerator CheckCell()
+        {
             // 盤面でひっくり返す処理を行う
             boardModel.Flip(carsor_x, carsor_y);
 
-            // 見た目の処理
-            for (int i = carsor_y - 1; i <= carsor_y + 1; i++)
+            // クリア判定を行う
+            if (boardModel.CheckBoard())
             {
-                // iがyの範囲からそれている場合
-                if (i < 0 || boardModel.boardLength <= i) { continue; }
+                // ゲームクリア
+                MGManager.ClearGame();
 
-                for (int j = carsor_x - 1; j <= carsor_x + 1; j++)
-                {
-                    // jがxの範囲からそれている場合
-                    if (j < 0 || boardModel.boardLength <= j) { continue; }
+                // クリア時の演出を呼び出す
+                uiManager.GameClear();
 
-                    // ひっくり返す
-                    bool side = boardModel.GetCell(j, i);
-                    cells[i, j].GetComponent<EA_CellView>().Flip(side);
-
-                }
             }
-        }
+            else
+            {
+                // 間違っていた場合は少し時間を空けてから盤面をもとに戻す
+                waitForNextTry = true;
+                yield return new WaitForSeconds(0.5f);
+                waitForNextTry = false;
+                boardModel.Flip(carsor_x, carsor_y);
 
-        // デモプレイ(1回だけ呼ばれる)
-        private IEnumerator DemoPlay()
-        {
-            yield return null;
-        }
+            }
 
-        // メインの部分
-        private IEnumerator MainCoroutine()
-        {
+            // なんでもない
             yield return null;
+
         }
 
     }
