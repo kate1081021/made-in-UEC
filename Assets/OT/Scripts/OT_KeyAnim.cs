@@ -31,7 +31,6 @@ public class OT_KeyAnim : MiniGameBase
             if (state.normalizedTime >= (double)1.0 && !keyMove.gameStarted)
             {
                 keyMove.gameStarted = true;
-                keyMove.OnArrow();
                 Debug.Log("終わりました！");
             }
         }

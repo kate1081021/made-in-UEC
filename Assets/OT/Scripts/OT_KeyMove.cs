@@ -24,12 +24,8 @@ namespace OpenTreasure{
             keyAnim = GetComponent<OT_KeyAnim>();
             gameStarted = false;
             clearGame = false;
-            Arrow.SetActive(false);
-            BGMPlay();
-        }
-        public void OnArrow()
-        {
             Arrow.SetActive(true);
+            BGMPlay();
         }
         // Update is called once per frame
         void Update()
