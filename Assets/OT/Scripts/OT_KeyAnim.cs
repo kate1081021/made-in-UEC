@@ -48,7 +48,7 @@ public class OT_KeyAnim : MiniGameBase
         IEnumerator PlaySound()
         {
             float time = 0f;
-            while (time <= 0.67)
+            while (time <= 0.33)
             {
                 yield return null;
                 time += Time.deltaTime;
