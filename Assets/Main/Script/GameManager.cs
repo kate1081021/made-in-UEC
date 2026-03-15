@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
         if ((MGManager.isMainCalled && ((5 < stage && stage <= 15 && stage % 5 == 1) || (stage > 15 && (stage - 15) % 10 == 1))) || (!MGManager.isMainCalled && stage > 5)) { speedup = true; }
 
         // アニメーション&シーン切り替え
-        loaded_minigame = debug_scene == -1 ? Random.Range(0, minigames.Count) : debug_scene;
+        loaded_minigame = debug_scene == -1 ? Random.Range(0, minigames.Count-1) : debug_scene;
         string scene = minigames[loaded_minigame].scene_name;  // ミニゲームの名前
         string verb = minigames[loaded_minigame].verb;  // ミニゲームの動詞
 
