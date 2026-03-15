@@ -62,6 +62,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/EA/EA.unity
     guid: 60d59e76bb4a5d84885b6516d28f83a2
+  - enabled: 1
+    path: Assets/BOSS/BOSS.unity
+    guid: ec6ab5f3997547c42afeb1fd91f6a035
+  - enabled: 1
+    path: Assets/GB/GB.unity
+    guid: d683e49bdf6612c43b14d8ed236a924b
+  - enabled: 1
+    path: Assets/OT/OT.unity
+    guid: 0705bd76d95e91c4aa4cc4cf34f62c8b
+  - enabled: 1
+    path: Assets/RS/RS.unity
+    guid: 83f9538330a80bf468f9074e42d3ed73
+  - enabled: 1
+    path: Assets/SC/SC.unity
+    guid: 9c131a7a819a3c14c924e86a126e9e48
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
