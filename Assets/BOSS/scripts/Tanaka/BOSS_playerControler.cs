@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BOSS
 {
-    public class BOSS_PlayerControler : MiniGameBase
+    public class BOSS_playerControler : MiniGameBase
     {
         Rigidbody2D BOSS_playerRb;
         SpriteRenderer BOSS_playerSprite;
