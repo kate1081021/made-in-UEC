@@ -51,7 +51,7 @@ namespace RS
 
             if (currentTarget == null) return;
 
-if (gameover=false)
+if (gameover==false)
 {
             if (Input.GetKeyDown(currentTarget.targetKey))
             {
@@ -70,7 +70,6 @@ if (gameover=false)
                     }
                 }
             }
-}
             else
             {
                 foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
@@ -85,6 +84,7 @@ if (gameover=false)
                     }
                 }
             }
+}
         }
     }
 }
