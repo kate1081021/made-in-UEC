@@ -555,7 +555,7 @@ GameObject:
   - component: {fileID: 1985192669}
   - component: {fileID: 1985192668}
   m_Layer: 0
-  m_Name: SnakeObstacleGenelator
+  m_Name: TanakaObstacleGenelator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
