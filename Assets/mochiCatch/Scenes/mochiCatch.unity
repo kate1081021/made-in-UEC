@@ -128,6 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 152416729}
+  - component: {fileID: 152416730}
   m_Layer: 0
   m_Name: Suggestion
   m_TagString: Untagged
@@ -151,6 +152,18 @@ Transform:
   - {fileID: 185960917}
   m_Father: {fileID: 1557925519}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &152416730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152416728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef24973a1aadc341a7bef718bced866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &180336367
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,8 +439,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u753B\u9762\u9577\u62BC\u3057\u3067\u3082\u3061\u3092\u98DF\u3079\u308B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9f71d83d69f320241b854e659d06629a, type: 2}
-  m_sharedMaterial: {fileID: 530897884301046023, guid: 9f71d83d69f320241b854e659d06629a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -514,7 +527,7 @@ GameObject:
   - component: {fileID: 226621926}
   - component: {fileID: 226621925}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: GameController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -533,20 +546,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
-  score: 0
-  time: 0
-  mother: {fileID: 1494938485}
-  girl: {fileID: 448014710}
-  girlanim: {fileID: 448014712}
-  girl_picture: {fileID: 448014708}
-  girl_bikkuri_picture: {fileID: 7025581345493443043, guid: 4317ca102f5c21543b14e808c031b54c, type: 3}
-  game_in_progress: 0
-  suggestion: {fileID: 152416728}
-  panelOfTitle: {fileID: 0}
-  panelOfGirl: {fileID: 2090051848}
-  Shouji: {fileID: 1038750741}
-  Shouji_anim: {fileID: 1038750744}
-  isResult: 0
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
+  girlView: {fileID: 448014710}
+  motherView: {fileID: 1494938485}
+  shojiView: {fileID: 1038750745}
+  uIManager: {fileID: 152416730}
 --- !u!4 &226621926
 Transform:
   m_ObjectHideFlags: 0
@@ -574,7 +580,6 @@ GameObject:
   - component: {fileID: 448014709}
   - component: {fileID: 448014708}
   - component: {fileID: 448014710}
-  - component: {fileID: 448014712}
   m_Layer: 5
   m_Name: Girl
   m_TagString: Untagged
@@ -593,8 +598,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2090051849}
+  m_Children: []
   m_Father: {fileID: 1557925519}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -649,39 +653,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 448014706}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66705fb314a1f6e47b5a88bac84633ad, type: 3}
+  m_Script: {fileID: 11500000, guid: d1f68ccb42a07a14898ca048ed89d501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eating: 0
-  waitSeconds:
-  - 0.25
-  - 0.25
-  - 0.9
-  status: normal
-  ateMochi: 0
-  maximum: 50
-  isCancel: 0
-  multiple: 0.1
-  mother: {fileID: 1494938485}
-  manager: {fileID: 226621925}
---- !u!114 &448014712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 448014706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7d08a3c185b8674094dd8262f591127, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  girl_anim:
+  girlAnimation:
   - {fileID: -1638957968680582245, guid: d09d6b76a4df4cd46a297ad044d2f864, type: 3}
   - {fileID: 1707820302081107953, guid: 1f49f3b1d3c5d5c4a9c210095add523e, type: 3}
   - {fileID: 1275249860902929078, guid: 2b1b9b90cf989104a844487b5e203997, type: 3}
   - {fileID: 6642683279519003509, guid: 7b61b88ccb6dbfc44a9ef100f2279daa, type: 3}
-  girl: {fileID: 448014706}
+  girlWin: {fileID: 0}
+  girlSurprised: {fileID: 7025581345493443043, guid: 4317ca102f5c21543b14e808c031b54c, type: 3}
 --- !u!1 &986956160
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,6 +825,7 @@ GameObject:
   - component: {fileID: 1038750743}
   - component: {fileID: 1038750742}
   - component: {fileID: 1038750744}
+  - component: {fileID: 1038750745}
   m_Layer: 5
   m_Name: Shoji_right
   m_TagString: Untagged
@@ -930,6 +912,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1038750745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038750740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c74818e3574975041b0d80bbfd630ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1494938481
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,7 +942,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1494938482
 RectTransform:
   m_ObjectHideFlags: 0
@@ -975,7 +969,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1494938481}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1015,19 +1009,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1494938481}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00daaea2fee463c4e8f78c77d6baa32d, type: 3}
+  m_Script: {fileID: 11500000, guid: d18aa84158a0cbf4f8fddd09b67ea797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mother: {fileID: 1494938481}
-  girl: {fileID: 448014706}
-  shoji_anim: {fileID: 1038750744}
-  isMotherSeeing: 0
-  maximum: 50
-  multiple: 0.1
-  waitTimeMultiple: 1.5
-  finish: 0
-  okannNormal: {fileID: 3839757243700692518, guid: 8de99f6e34d39844b8099b192038a533, type: 3}
-  okannAngry: {fileID: -5574307274060609617, guid: 814942953e9850841ae48714cc406fd4, type: 3}
+  motherNormal: {fileID: 3839757243700692518, guid: 8de99f6e34d39844b8099b192038a533, type: 3}
+  motherAngry: {fileID: -5574307274060609617, guid: 814942953e9850841ae48714cc406fd4, type: 3}
 --- !u!1 &1496450740
 GameObject:
   m_ObjectHideFlags: 0
@@ -1348,8 +1334,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u4F5C: 25\u76F4\u4E95\u300125\u7DD2\u65B9\u300125\u308A\u3085\u3046\u305B\u3044"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9f71d83d69f320241b854e659d06629a, type: 2}
-  m_sharedMaterial: {fileID: 530897884301046023, guid: 9f71d83d69f320241b854e659d06629a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1500,93 +1486,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2081673727}
   m_CullTransparentMesh: 1
---- !u!1 &2090051848
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2090051849}
-  - component: {fileID: 2090051852}
-  - component: {fileID: 2090051851}
-  - component: {fileID: 2090051853}
-  m_Layer: 5
-  m_Name: panel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &2090051849
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2090051848}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 448014707}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 3097.3, y: 1654}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2090051851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2090051848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Texture: {fileID: 0}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
---- !u!222 &2090051852
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2090051848}
-  m_CullTransparentMesh: 1
---- !u!114 &2090051853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2090051848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bca2f7cce495a344a19003a30dd40ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mochiCatch: {fileID: 448014710}
-  gameManager: {fileID: 226621925}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

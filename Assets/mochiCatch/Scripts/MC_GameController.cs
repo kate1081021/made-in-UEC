@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace catchMochi
 {
@@ -14,7 +16,7 @@ namespace catchMochi
         public MC_GirlView girlView;  // 女の子の見た目
         private string[] phases = {"normal", "catch", "draw", "eat"};  // ステータスの全通り
 
-        public float[] waitSeconds;
+        private float[] waitSeconds = {0.25f, 0.25f, 0.9f};
 
         /// <summary>
         /// Mother関連
@@ -37,26 +39,24 @@ namespace catchMochi
         /// </summary>
         
         // ゲームが進行状態にあるかどうか
-        public bool game_in_progress;
+        private bool game_in_progress;
 
         // ゲーム開始時からの経過時刻を記録
-        public float time;
+        private float time;
 
-        // public float time; // ゲーム開始からの経過時間
-        // public Mother mother;  // お母さんオブジェクトを参照
-        // public mochiCatch girl;  // 女の子を管理
-        // public Girl_Anim girlanim;
-        //public Image girl_picture;
-        // public Sprite girl_bikkuri_picture;
-        // public bool game_in_progress;
-        // public GameObject suggestion;
-        // public GameObject panelOfTitle;
-        // public GameObject panelOfGirl;
-        // public RectTransform Shouji;
-        // public Animator Shouji_anim;
-        // public bool isResult = false;
+        // スピードの補正値
+        private float multiplier = 0.1f;
 
-        // Update is called once per frame
+        // C#の古いバージョンでも動くようにListの初期化を修正
+        private List<float[]> patterns = new List<float[]> {
+            new float[] { 5.0f, 2.0f, 1.0f },  // [何もない時間, 揺れている時間, 開いている時間]
+            new float[] { 3.0f, 2.5f, 1.5f },
+            new float[] { 4.0f, 1.5f, 1.0f },
+            new float[] { 1.0f, 1.0f, 1.0f },
+            new float[] { 2.0f, 3.0f, 1.0f }
+        };
+
+        // 開始時
         public override void OnGameStart()
         {
             // Girlのモデルを呼び出す
@@ -75,26 +75,98 @@ namespace catchMochi
             game_in_progress = true;
             time = 0.0f;
 
-            // StartCoroutine(Title());
+            // uiを有効化
+            uIManager.GetEnabled(true);
+
+            // ランダムにお母さんが現れる
+            StartCoroutine(RandomMotherAppear());
+
             MGManager.Load();  // ゲームの開始を宣言する
         }
 
         private IEnumerator Title()
         {
             // パラメータリセット
-            // panelOfGirl.SetActive(true);
             // mother.gameObject.SetActive(true);
             // suggestion.SetActive(true);
             // mother.enabled = true;
             yield return null;
         }
 
+        // タイミングを調整
+        public IEnumerator RandomMotherAppear()
+        {
+            while (game_in_progress)
+            {
+
+                // 1. パターンをランダムに決定する
+                // Count は大文字、Random.Rangeの最大値は「含まれない」のでこれでOK
+                int pattern_idx = Random.Range(0, patterns.Count);
+                float speed = girlModel.eatingSpeed;
+                float[] times = patterns[pattern_idx];
+
+                // この辺の処遇を検討中
+                float factor = 0.5f*(1 - (float)Mathf.Exp(-multiplier*speed));
+
+                float idleTime = times[0] * Random.Range(0.8f, 1.2f) * (1 - factor) * 1.5f;
+                float shakeTime = times[1] * Random.Range(0.8f, 1.2f) * (1 - factor);
+                float openTime = times[2] * Random.Range(0.8f, 1.2f) * (1 - factor);
+
+                // 2. 何もない時間（待機）
+                yield return new WaitForSeconds(idleTime);
+
+                // 3. 障子がガタガタ揺れる
+                shojiView.Shaking(true);
+                yield return new WaitForSeconds(shakeTime);
+                
+                // 4. ここで分岐する(60%で全開、20%で半開、20%で何も起こらない)
+                int rand = Random.Range(0, 100);
+
+                // 全開
+                if (rand < 70)
+                {
+                    rand = Random.Range(0, 100);
+                    // 普通に出てくる
+                    if (rand < 75)
+                    {
+                        motherView.GetEnabled(true);
+                        shojiView.Open(true);
+                        yield return new WaitForSeconds(0.1f);
+                        motherModel.isMotherSeeing = true;
+                    }
+                    // 開くだけ
+                    else
+                    {
+                        motherView.GetEnabled(false);
+                        shojiView.Open(false);
+                        yield return new WaitForSeconds(0.1f);
+                        motherModel.isMotherSeeing = false;
+                    }
+                
+                    yield return new WaitForSeconds(openTime);
+                    if (!game_in_progress) { yield break; }
+                    shojiView.Open(false);
+                    motherModel.isMotherSeeing = false;
+
+                    // ふすまを閉めるときのSE
+                }
+                // 半開
+                else if (rand < 80)
+                {
+                    shojiView.OpenLittle();
+                    yield return new WaitForSeconds(0.2f);
+                }
+
+                // 揺れているというフラグを折る
+                shojiView.Shaking(false);
+            }
+        }
+
         // 毎フレーム呼び出し
         void Update()
         {
             // ユーザーガイドを消す
-            if (time > 3f) { // suggestion.SetActive(false); 
-            }
+            if (time > 3f) { uIManager.GetEnabled(false); }
             
             // ゲームクリア
             if (girlModel.ateMochi == 3) { MGManager.ClearGame(); }
@@ -177,7 +249,7 @@ namespace catchMochi
                 Debug.Log("eating");
                 girlModel.ChangeStatus("catch");
                 
-                for (int i = 0; i < 3; i++)
+                for (int i = 1; i < 4; i++)
                 {
                     girlModel.ChangeStatus(phases[i]);
 
@@ -188,7 +260,7 @@ namespace catchMochi
                     }
 
                     // 指定の時間だけ待つ。(ただし途中で遮られる可能性もある)
-                    yield return WaitPhase(girlModel.CaliculateEatingSpan(waitSeconds[i]));
+                    yield return WaitPhase(girlModel.CaliculateEatingSpan(waitSeconds[i-1]));
 
                     if (!Action.IsPressed())
                     {

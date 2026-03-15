@@ -6,7 +6,8 @@ namespace catchMochi
     public class MC_MotherView : MonoBehaviour
     {
         // スプライト
-        public Image image;
+        private Image image;
+        public Sprite motherNormal;
         public Sprite motherAngry;
 
         // 開始時
@@ -15,6 +16,18 @@ namespace catchMochi
             // コンポーネントを抽出
             image = GetComponent<Image>();
 
+        }
+
+        // お母さんを有効/無効化する
+        public void GetEnabled(bool value)
+        {
+            image.enabled = value;
+        }
+
+        // お母さん正常
+        public void GetNormal()
+        {
+            image.sprite = motherNormal;
         }
 
         // お母さん激怒
