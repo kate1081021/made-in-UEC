@@ -2636,8 +2636,16 @@ MonoBehaviour:
   boardView: {fileID: 45154684}
   targets4:
   - {fileID: 11400000, guid: 22232f1ec9ff85842b8600662cb3d1d7, type: 2}
-  targets6: []
-  targets8: []
+  - {fileID: 11400000, guid: 5fa0d4ee3785e3642844203edfc0a003, type: 2}
+  - {fileID: 11400000, guid: e4cb890e7d51898499946a73c5b7df8d, type: 2}
+  targets6:
+  - {fileID: 11400000, guid: cd8e61badbb8b8a40b87c9c6f9fb68e4, type: 2}
+  - {fileID: 11400000, guid: 4caca7f1cec9e344c883a6a4061bf194, type: 2}
+  - {fileID: 11400000, guid: b937035b23ebf7447b663ec7563e3b11, type: 2}
+  targets8:
+  - {fileID: 11400000, guid: d9ac872c052dbe64095a8d66229d3bdf, type: 2}
+  - {fileID: 11400000, guid: c87221bbda799aa4a9881d81e3ec30b7, type: 2}
+  - {fileID: 11400000, guid: 68dced2f683fca4428b581a02e14dff4, type: 2}
   cellPrefab: {fileID: 5348018511997804282, guid: c4588566c6f78ef4ca9537eb88aba65f, type: 3}
   carsolView: {fileID: 406812747}
   carsol: {fileID: 406812746}
