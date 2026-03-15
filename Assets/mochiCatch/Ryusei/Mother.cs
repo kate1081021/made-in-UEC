@@ -43,13 +43,13 @@ namespace catchMochi
 
         public IEnumerator RandomMotherAppear()
         {
-            while (gameManager.game_in_progress)
+            while (true)  // game_in_progress
             {
 
                 // 1. パターンをランダムに決定する
                 // Count は大文字、Random.Rangeの最大値は「含まれない」のでこれでOK
                 int pattern_idx = Random.Range(0, patterns.Count);
-                mochi = girl.GetComponent<mochiCatch>().ateMochi;
+                // mochi = girl.GetComponent<mochiCatch>().ateMochi;
                 speedUp = Mathf.Max(mochi, maximum);
                 float[] times = patterns[pattern_idx];
                 float factor = 0.5f*(1 - (float)Mathf.Exp(-multiple*speedUp));
