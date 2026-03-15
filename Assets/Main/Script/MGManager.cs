@@ -1,8 +1,11 @@
 using UnityEngine;
 using System;
+using UnityEditor.SearchService;
 
 public static class MGManager
 {
+    // 現在シーン内に存在するMiniGameBaseを継承したオブジェクトのリスト
+    public static System.Collections.Generic.List<MiniGameBase> ActiveMiniGames = new();
     /// <summary> 
     /// ミニゲームのロードを確認する
     /// </summary>
@@ -10,15 +13,27 @@ public static class MGManager
 
     /// <summary> 運営が現在のクリア状況を確認するためのプロパティ </summary>
     public static bool IsClear { get; private set; } = false;
+
+    /// <summary> 今はデバッグ中かのプロパティ 公開前にfalseにする </summary>
+    public static bool isDebugMode { get; private set; } = true;
     
     /// 現在いるステージ(何ゲームクリアしたのかを管理)
     public static int stage { get; private set; } = 1;
+
+    /// ロードするシーン名
+    public static string scene;
 
     /// ゲームが何倍速で動いているのかを管理する
     public static float timeScale = 1.0f;
 
     // 音の倍速
     public static float pitchScale = 1.0f;
+
+    // 終了フラグ（これを各ミニゲームが書き換えるのではなく、管理側で制御する）
+    public static bool isAllGameEndProcessed = false;
+
+    // テストプレイの判断
+    public static bool isMainCalled = false;
 
     // --- 部員が自由に使える便利関数 ---
     /// <summary>
@@ -47,12 +62,23 @@ public static class MGManager
     /// <summary>
     public static void TestPlay(int s)
     {   
-        timeScale = Stage2TimeScale(s);
-        Time.timeScale = timeScale;
-        Debug.Log($"<color=green>【System】ステージ{s}での速度が再現されます。(timeScale={timeScale}) </color>");
+        if (!isMainCalled)
+        {
+            timeScale = Stage2TimeScale(s);
+            Time.timeScale = timeScale;
+            stage = s;
+            Debug.Log($"<color=green>【System】ステージ{s}での速度が再現されます。(timeScale={timeScale}) </color>");
+            isDebugMode = false;
+        }
     }
 
     /// これより下の関数(メソッド)は呼び出さないでください。
+    
+    /// 同じシーンをロードし続ける
+    public static void stuckScene(string s)
+    {
+        scene = s;
+    }
     
     /// 次のステージに進む
     public static void nextStage()
@@ -71,6 +97,7 @@ public static class MGManager
     {
         isMinigameLoaded = false;
         IsClear = false;
+        isAllGameEndProcessed = false; // フラグもリセット
     }
 
     // ステージ数を入力したら、それに対応するtimeScaleを返す

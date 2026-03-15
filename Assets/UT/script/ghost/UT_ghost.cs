@@ -6,18 +6,38 @@ namespace UT
 {
     public class UT_ghost : MiniGameBase
     {
+        public UT_playermove pm;
         public GameObject ghostlight;
         public GameObject pole;
         public GameObject ghost;
-        public Vector3 lightpos1;
-        public Vector3 lightpos2;
-        public Vector3 lightpos3;
-        public float rotatespeed;
-        public float swingspeed;
-        public float swingwidth;
-        public float ghostspeed;
-        public float duration;
-        public float ghostvectorrange;
+        public GameObject enemy;
+        [SerializeField]
+        [Tooltip("左下のライトの場所")]
+        Vector3 lightpos1;
+        [SerializeField]
+        [Tooltip("右のライトの場所")]
+        Vector3 lightpos2;
+        [SerializeField]
+        [Tooltip("上のライトの場所")]
+        Vector3 lightpos3;
+        [SerializeField]
+        [Tooltip("左と右のライトの回転速度")]
+        float rotatespeed;
+        [SerializeField]
+        [Tooltip("上のライトの揺れる速度")]
+        float swingspeed;
+        [SerializeField]
+        [Tooltip("上のライトの揺れる幅")]
+        float swingwidth;
+        [SerializeField]
+        [Tooltip("弾の速度")]
+        float ghostspeed;
+        [SerializeField]
+        [Tooltip("弾の間隔")]
+        float duration;
+        [SerializeField]
+        [Tooltip("弾の角度の幅")]
+        float ghostvectorrange;
         GameObject light1;
         GameObject light2;
         GameObject light3;
@@ -28,6 +48,10 @@ namespace UT
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
         {
+            pm = GameObject.Find("Player").GetComponent<UT_playermove>();
+            pm.generator = gameObject;
+            pm.timelimit = 15f;
+            Instantiate(enemy, Vector3.zero, Quaternion.identity);
             light1 = Instantiate(ghostlight, lightpos1, Quaternion.Euler(0, 0, 0));
             light2 = Instantiate(ghostlight, lightpos2, Quaternion.Euler(0, 0, -60));
             light3 = Instantiate(ghostlight, lightpos3, Quaternion.Euler(0, 0, 90));
@@ -43,7 +67,7 @@ namespace UT
             lightangle += Time.deltaTime * Time.timeScale;
             light1.transform.rotation *= Quaternion.Euler(0, 0, Time.deltaTime*Time.timeScale * rotatespeed);
             light2.transform.rotation *= Quaternion.Euler(0, 0, -Time.deltaTime * Time.timeScale * rotatespeed);
-            light3.transform.rotation = Quaternion.Euler(0, 0, 90+ swingwidth * Mathf.Sin(lightangle * swingspeed));
+            light3.transform.rotation = Quaternion.Euler(0, 0, 90+ swingwidth * Mathf.Sin(lightangle * swingspeed * Time.timeScale));
         }
 
         IEnumerator generatemanage()
@@ -58,16 +82,17 @@ namespace UT
         {
             float offset = Random.value * 20 - 10;
             GameObject ghostobj = Instantiate(ghost, new Vector3(offset, 5.5f, 0), Quaternion.identity);
-            float theta = Mathf.Atan(7.5f/offset) + (Random.value-0.5f)*ghostvectorrange * Mathf.Deg2Rad;
+            float theta = Mathf.Atan(6.5f/offset) + (Random.value-0.5f)*ghostvectorrange * Mathf.Deg2Rad;
             if (offset > 0)
             {
                 theta += Mathf.PI;
             }
-            while (true)
+            while (ghostobj.transform.position.y > -7)
             {
                 ghostobj.transform.Translate(ghostspeed * Time.timeScale * Time.deltaTime * new Vector3(Mathf.Cos(theta), Mathf.Sin(theta), 0));
                 yield return null;
             }
+            Destroy(ghostobj);
         }
     }
 }

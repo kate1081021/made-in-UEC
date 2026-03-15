@@ -6,14 +6,11 @@ namespace LoupeFire
     {
         public override void OnGameStart()
         {
-            MGManager.Load();
+            BGMPlay(true);
         }
         void Update()
         {
-            if (Action.WasPerformedThisFrame())
-            {
-                MGManager.ClearGame();
-            }
+
         }
     }
 }

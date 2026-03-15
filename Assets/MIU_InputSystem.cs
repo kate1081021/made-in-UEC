@@ -118,6 +118,24 @@ public partial class @MIU_InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Trigger_left"",
+                    ""type"": ""Button"",
+                    ""id"": ""73011802-defd-41d7-909d-be94a39d8828"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Trigger_right"",
+                    ""type"": ""Button"",
+                    ""id"": ""01a7c6f7-f830-480e-9164-e22a60beceff"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -233,6 +251,28 @@ public partial class @MIU_InputSystem: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""6e574e6d-0b03-4d4b-95f3-0f246eb7c959"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec323528-e61e-4d23-830f-e51e8ec1c2db"",
+                    ""path"": ""<Gamepad>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""99bd8d9b-7d55-499b-a702-699d9f755994"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
@@ -246,6 +286,17 @@ public partial class @MIU_InputSystem: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""5ecc284d-aca2-4121-a343-e5061904320a"",
                     ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b2ed8381-b77a-4d3d-8c13-f98567131c4d"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -285,6 +336,83 @@ public partial class @MIU_InputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Trigger"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""cea16a63-b8a1-45e5-8b1d-63e6d727b2e7"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Trigger"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""74579e3f-0488-479c-a866-58b4ff322b57"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Trigger"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""ee14985a-92c4-42e0-b794-6a19f3e19ff7"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Trigger"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2b1bfbd-4b38-4615-958d-5308dc28c21d"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Trigger_left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""645d03b7-697a-4625-9eb2-20d53e1fadb0"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Trigger_left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c253f56-eee3-4dc7-af7f-7b23ee875084"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Trigger_right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1711fa9c-bb35-417f-850d-dc4b6d4a04e6"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Trigger_right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -296,6 +424,8 @@ public partial class @MIU_InputSystem: IInputActionCollection2, IDisposable
         m_MIU_Move = m_MIU.FindAction("Move", throwIfNotFound: true);
         m_MIU_Action = m_MIU.FindAction("Action", throwIfNotFound: true);
         m_MIU_Trigger = m_MIU.FindAction("Trigger", throwIfNotFound: true);
+        m_MIU_Trigger_left = m_MIU.FindAction("Trigger_left", throwIfNotFound: true);
+        m_MIU_Trigger_right = m_MIU.FindAction("Trigger_right", throwIfNotFound: true);
     }
 
     ~@MIU_InputSystem()
@@ -379,6 +509,8 @@ public partial class @MIU_InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_MIU_Move;
     private readonly InputAction m_MIU_Action;
     private readonly InputAction m_MIU_Trigger;
+    private readonly InputAction m_MIU_Trigger_left;
+    private readonly InputAction m_MIU_Trigger_right;
     /// <summary>
     /// Provides access to input actions defined in input action map "MIU".
     /// </summary>
@@ -402,6 +534,14 @@ public partial class @MIU_InputSystem: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "MIU/Trigger".
         /// </summary>
         public InputAction @Trigger => m_Wrapper.m_MIU_Trigger;
+        /// <summary>
+        /// Provides access to the underlying input action "MIU/Trigger_left".
+        /// </summary>
+        public InputAction @Trigger_left => m_Wrapper.m_MIU_Trigger_left;
+        /// <summary>
+        /// Provides access to the underlying input action "MIU/Trigger_right".
+        /// </summary>
+        public InputAction @Trigger_right => m_Wrapper.m_MIU_Trigger_right;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -437,6 +577,12 @@ public partial class @MIU_InputSystem: IInputActionCollection2, IDisposable
             @Trigger.started += instance.OnTrigger;
             @Trigger.performed += instance.OnTrigger;
             @Trigger.canceled += instance.OnTrigger;
+            @Trigger_left.started += instance.OnTrigger_left;
+            @Trigger_left.performed += instance.OnTrigger_left;
+            @Trigger_left.canceled += instance.OnTrigger_left;
+            @Trigger_right.started += instance.OnTrigger_right;
+            @Trigger_right.performed += instance.OnTrigger_right;
+            @Trigger_right.canceled += instance.OnTrigger_right;
         }
 
         /// <summary>
@@ -457,6 +603,12 @@ public partial class @MIU_InputSystem: IInputActionCollection2, IDisposable
             @Trigger.started -= instance.OnTrigger;
             @Trigger.performed -= instance.OnTrigger;
             @Trigger.canceled -= instance.OnTrigger;
+            @Trigger_left.started -= instance.OnTrigger_left;
+            @Trigger_left.performed -= instance.OnTrigger_left;
+            @Trigger_left.canceled -= instance.OnTrigger_left;
+            @Trigger_right.started -= instance.OnTrigger_right;
+            @Trigger_right.performed -= instance.OnTrigger_right;
+            @Trigger_right.canceled -= instance.OnTrigger_right;
         }
 
         /// <summary>
@@ -518,5 +670,19 @@ public partial class @MIU_InputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTrigger(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Trigger_left" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTrigger_left(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Trigger_right" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTrigger_right(InputAction.CallbackContext context);
     }
 }

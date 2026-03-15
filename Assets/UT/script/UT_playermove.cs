@@ -1,37 +1,161 @@
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI; // UI����ɕK�v
 
 namespace UT
 {
 
     public class UT_playermove : MiniGameBase
     {
+        public int stage;
+        public List<GameObject> level1;
+        public List<GameObject> level2;
+        public List<GameObject> level3;
+        private AudioSource mainSource;
+        [SerializeField]AudioClip hidan;
+        [SerializeField] AudioClip die;
         [SerializeField] private float movespeed;
         private Rigidbody2D rb;
-        private Vector2 moveInput;
-        public int HP;
+        [Tooltip("��e���Ɏ󂯂�_���[�W")]
         public int damage;
+        [Tooltip("���G����")]
         public float duration;
         bool Invincible = false;
+        public float timelimit = 15;
+
+        [SerializeField] Image I0;
+        [SerializeField] Image I1;
+        [SerializeField] Sprite S0;
+        [SerializeField] Sprite S1;
+        [SerializeField] Sprite S2;
+        [SerializeField] Sprite S3;
+        [SerializeField] Sprite S4;
+        [SerializeField] Sprite S5;
+        [SerializeField] Sprite S6;
+        [SerializeField] Sprite S7;
+        [SerializeField] Sprite S8;
+        [SerializeField] Sprite S9;
+        [SerializeField] Canvas canvas;
+        [SerializeField] GameObject die_back;
+        [Tooltip("�ő�HP")]
+        public int maxHp = 68;
+        [Tooltip("���݂�HP")]
+        public int initialHp;
+        private int currentHp;
+        public GameObject generator;
+        public Slider HPbar;
+        public Sprite heart;
+        public Sprite broken_heart;
+        public GameObject heart_piece;
+        bool alive;
         public override void OnGameStart()
         {
+            //MGManager.TestPlay(stage);
             MGManager.Load();
+            BGMPlay();
             rb = GetComponent<Rigidbody2D>();
+            alive = true;
+            canvas.gameObject.SetActive(true);
+            die_back.gameObject.SetActive(false);
+            gameObject.GetComponent<SpriteRenderer>().color = new Vector4(1, 0, 0, 1);
+            currentHp = initialHp; 
+            HPbar.maxValue = maxHp; // �X���C�_�[�̍ő�l��ݒ�
+            HPbar.value = currentHp; // ���݂�HP�𔽉f
+            
+            if(MGManager.stage <= 20) Instantiate(level1[Random.Range(0, level1.Count)]);
+            else if(MGManager.stage <= 40) Instantiate(level2[Random.Range(0, level2.Count)]);
+            else Instantiate(level3[Random.Range(0, level3.Count)]);
+            StartCoroutine(wait());
+        }
+        public override void OnGameEnd() 
+        {
+            Destroy(generator);
+            DestroyAllWithTag("bullet");
+            gameObject.GetComponent<SpriteRenderer>().sprite = heart;
+            if (currentHp > 0)
+            {
+                MGManager.ClearGame();
+            }
+        }
+
+        public void DestroyAllWithTag(string tagName)
+        {
+            // �^�O�Ɉ�v����S�I�u�W�F�N�g���擾
+            GameObject[] objects = GameObject.FindGameObjectsWithTag(tagName);
+            // ���ׂč폜
+            foreach (GameObject obj in objects)
+            {
+                if (obj != null)
+                {
+                    Destroy(obj);
+                }
+            }
+        }
+
+        IEnumerator wait()
+        {
+            yield return new WaitForSeconds(timelimit / Time.timeScale);
+            OnGameEnd();
         }
         void FixedUpdate()
         {
-            Vector2 pos = Move.ReadValue<Vector2>() * movespeed * Time.timeScale * Time.fixedDeltaTime;
-            rb.MovePosition(rb.position + pos);
+            float slow = Action.IsPressed() ? 0.5f : 1f;
+            Vector2 pos = Move.ReadValue<Vector2>() * movespeed * Time.timeScale * Time.fixedDeltaTime * slow;
+            if(alive)rb.MovePosition(rb.position + pos);
         }
+
         private void OnTriggerStay2D(Collider2D collision)
         {
-            if (collision.CompareTag("bullet") && !Invincible)
+            if (collision.CompareTag("bullet") && !Invincible && alive)
             {
-                HP -= damage;
-                Debug.Log("HP = " + HP);
-                StartCoroutine(muteki());
-                if (HP <= 0) Debug.Log("failure");
+                currentHp -= damage;
+                if (currentHp < 0) currentHp = 0;
+                HPbar.value = currentHp;
+                I0.sprite = (currentHp % 10 == 0) ? S0 :
+                            (currentHp % 10 == 1) ? S1 :
+                            (currentHp % 10 == 2) ? S2 :
+                            (currentHp % 10 == 3) ? S3 :
+                            (currentHp % 10 == 4) ? S4 :
+                            (currentHp % 10 == 5) ? S5 :
+                            (currentHp % 10 == 6) ? S6 :
+                            (currentHp % 10 == 7) ? S7 :
+                            (currentHp % 10 == 8) ? S8 : S9;
+                I1.sprite = (currentHp / 10 == 0) ? S0 :
+                            (currentHp / 10 == 1) ? S1 :
+                            (currentHp / 10 == 2) ? S2 :
+                            (currentHp / 10 == 3) ? S3 :
+                            (currentHp / 10 == 4) ? S4 :
+                            (currentHp / 10 == 5) ? S5 : S6;
+
+                Debug.Log("HP = " + currentHp);
+                if (currentHp <= 0)
+                {
+                    if (mainSource == null)
+                    {
+                        mainSource = gameObject.AddComponent<AudioSource>();
+                    }
+                    SEPlay("UT_Die");
+                    //mainSource.PlayOneShot(die);
+                    Debug.Log("failure");
+                    canvas.gameObject.SetActive(false);
+                    die_back.gameObject.SetActive(true);
+                    alive = false;
+                    gameObject.GetComponent<SpriteRenderer>().sprite = broken_heart;
+                    StartCoroutine(heart_break());
+                }
+                else
+                {
+                    if (mainSource == null)
+                    {
+                        mainSource = gameObject.AddComponent<AudioSource>();
+                    }
+                    SEPlay("UT_Hidan");
+                    //mainSource.PlayOneShot(hidan);
+                    StartCoroutine(muteki());
+                }
             }
         }
         IEnumerator muteki()
@@ -40,11 +164,50 @@ namespace UT
             for (int i = 0; i < 4; i++)
             {
                 gameObject.GetComponent<SpriteRenderer>().color = new Vector4(1, 0, 0, 0.3f);
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(duration / (8* Time.timeScale));
                 gameObject.GetComponent<SpriteRenderer>().color = new Vector4(1, 0, 0, 1);
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(duration / (8 * Time.timeScale));
             }
             Invincible = false;
+        }
+
+        [SerializeField] float g;
+        [SerializeField] Vector3 v1;
+        [SerializeField] Vector3 v2;
+        [SerializeField] Vector3 v3;
+        [SerializeField] Vector3 v4;
+        
+
+        IEnumerator heart_break()
+        {
+            yield return new WaitForSeconds(1f);
+            gameObject.GetComponent<SpriteRenderer>().color = new Vector4(1, 0, 0, 0);
+            GameObject piece1 = Instantiate(heart_piece, gameObject.transform.position, Quaternion.identity);
+            GameObject piece2 = Instantiate(heart_piece, gameObject.transform.position, Quaternion.identity);
+            GameObject piece3 = Instantiate(heart_piece, gameObject.transform.position, Quaternion.identity);
+            GameObject piece4 = Instantiate(heart_piece, gameObject.transform.position, Quaternion.identity);
+            float downV = 0;
+            while (true)
+            {
+                downV -= g * Time.deltaTime * Time.timeScale;
+                piece1.transform.position += (v1 + new Vector3(0, downV, 0)) * Time.deltaTime * Time.timeScale;
+                piece1.transform.rotation *= Quaternion.Euler(0, 0, 540 * Time.deltaTime * Time.timeScale);
+                piece2.transform.position += (v2 + new Vector3(0, downV, 0)) * Time.deltaTime * Time.timeScale;
+                piece2.transform.rotation *= Quaternion.Euler(0, 0, 700 * Time.deltaTime * Time.timeScale);
+                piece3.transform.position += (v3 + new Vector3(0, downV, 0)) * Time.deltaTime * Time.timeScale;
+                piece3.transform.rotation *= Quaternion.Euler(0, 0, 900 * Time.deltaTime * Time.timeScale);
+                piece4.transform.position += (v4 + new Vector3(0, downV, 0)) * Time.deltaTime * Time.timeScale;
+                piece4.transform.rotation *= Quaternion.Euler(0, 0, 1140 * Time.deltaTime * Time.timeScale);
+                if (piece1.transform.position.y < -5 && piece2.transform.position.y < -5 && piece3.transform.position.y < -5 && piece4.transform.position.y < -5)
+                {
+                    Destroy(piece1);
+                    Destroy(piece2);
+                    Destroy(piece3);
+                    Destroy(piece4);
+                    break;
+                }
+                yield return null;
+            }
         }
     }
 }

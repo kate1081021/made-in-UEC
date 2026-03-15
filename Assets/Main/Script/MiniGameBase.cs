@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,8 +17,11 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     [Header("--- 運営設定エリア ---")]
     [Tooltip("このゲームで流したいBGM。未設定ならデフォルトBGMが流れます")]
     [SerializeField] private AudioClip gameBGM;
-    [SerializeField] private Dictionary<string, AudioClip> soundEffects;
-    private static AudioSource mainSource;
+    [SerializeField] private bool isLoopBGM = false;
+    [SerializeField] private List<string> SEName;
+    [SerializeField] private List<AudioClip> SEFile;
+    private Dictionary<string, AudioClip> soundEffects = new Dictionary<string, AudioClip>();
+    private AudioSource mainSource;
 
     
     /// <summary> 運営がBGMを取得するためのプロパティ </summary>
@@ -29,6 +34,10 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     protected Vector2 moveValue;
     protected float triggerValue;
     protected float actionValue;
+    protected InputAction Trigger_left;
+    protected InputAction Trigger_right;
+    protected float triggerleftValue;
+    protected float triggerrightValue;
 
     // --- Unity標準機能の制限 ---
 
@@ -41,8 +50,17 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
         InputSystems = new MIU_InputSystem();
         InputSystems.Enable();
         Move = InputSystems.FindAction("Move");  // WASD
-        Trigger = InputSystems.FindAction("Trigger");  // Enter
+        Trigger = InputSystems.FindAction("Trigger");  // q/e
+        Trigger_left = InputSystems.FindAction("Trigger_left");  // q
+        Trigger_right = InputSystems.FindAction("Trigger_right");  // e
         Action = InputSystems.FindAction("Action");  // Space
+
+        if(SEName.Count != 0){
+            for (int i = 0; i < SEName.Count; i++)
+            {
+                soundEffects.Add(SEName[i],SEFile[i]);
+            }
+        }
 
         Move.performed += OnMove;
         Move.canceled += OnMove;
@@ -53,16 +71,20 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
         Action.started += OnAction;
         Action.performed += OnAction;
         Action.canceled += OnAction;
+        Trigger_left.started += OnTriggerLeft;
+        Trigger_left.performed += OnTriggerLeft;
+        Trigger_left.canceled += OnTriggerLeft;
+        Trigger_right.started += OnTriggerRight;
+        Trigger_right.performed += OnTriggerRight;
+        Trigger_right.canceled += OnTriggerRight;
 
         OnGameStart();
-        if (gameBGM != null) { BGMPlay(); }
-        
     }
 
     public void OnMove(InputAction.CallbackContext ctx)
     {
         moveValue = ctx.ReadValue<Vector2>();
-        
+
         if (ctx.started)   {OnMoveStarted(moveValue);}
         if (ctx.performed) {OnMovePerformed(moveValue);}
         if (ctx.canceled)  {OnMoveCanceled(moveValue);}
@@ -71,7 +93,7 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     public void OnTrigger(InputAction.CallbackContext ctx)
     {
         triggerValue = ctx.ReadValue<float>();
-        
+
         if (ctx.started)   {OnTriggerStarted(triggerValue);}
         if (ctx.performed) {OnTriggerPerformed(triggerValue);}
         if (ctx.canceled)  {OnTriggerCanceled(triggerValue);}
@@ -80,17 +102,54 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     public void OnAction(InputAction.CallbackContext ctx)
     {
         actionValue = ctx.ReadValue<float>();
-        
+
         if (ctx.started)   {OnActionStarted(actionValue);}
         if (ctx.performed) {OnActionPerformed(actionValue);}
         if (ctx.canceled)  {OnActionCanceled(actionValue);}
+    }
 
+    public void OnTriggerLeft(InputAction.CallbackContext ctx)
+    {
+        triggerleftValue = ctx.ReadValue<float>();
+
+        if (ctx.started)   {OnTriggerLeftStarted(triggerleftValue);}
+        if (ctx.performed) {OnTriggerLeftPerformed(triggerleftValue);}
+        if (ctx.canceled)  {OnTriggerLeftCanceled(triggerleftValue);}
+
+    }
+
+    public void OnTriggerRight(InputAction.CallbackContext ctx)
+    {
+        triggerrightValue = ctx.ReadValue<float>();
+
+        if (ctx.started)   {OnTriggerRightStarted(triggerrightValue);}
+        if (ctx.performed) {OnTriggerRightPerformed(triggerrightValue);}
+        if (ctx.canceled)  {OnTriggerRightCanceled(triggerrightValue);}
     }
     /*
     このStartについては他に上書きすべきメソッドがない場合エラーを履いちゃうからコメントアウトした
     */
 
     // 便利関数一覧 使いたいときにぜひ使ってね
+    public Vector2 convert_stick_to_dir(Vector2 val)
+    {
+        float mag = val.magnitude;
+        Vector2 ans = new Vector2(0,0);
+        if (mag < 0.5) { return ans; }
+        float theta = Mathf.Atan2(val.y,val.x) * Mathf.Rad2Deg;
+        if (-45 < theta && theta <= 45)
+        {
+            ans = new Vector2(1,0);
+        } else if (45 < theta && theta <= 135)
+        {
+            ans = new Vector2(0,1);
+        } else if (-135 < theta && theta <= -45)
+        {
+            ans = new Vector2(0,-1);
+        } else
+        { ans = new Vector2(-1,0); } //左に-180と180の境目があってめんどくさい
+        return ans;
+    }
 
     protected virtual void OnMoveStarted(Vector2 value) {}
     protected virtual void OnMovePerformed(Vector2 value) {}
@@ -101,6 +160,12 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     protected virtual void OnActionStarted(float value) {}
     protected virtual void OnActionPerformed(float value) {}
     protected virtual void OnActionCanceled(float value) {}
+    protected virtual void OnTriggerLeftStarted(float value) {}
+    protected virtual void OnTriggerLeftPerformed(float value) {}
+    protected virtual void OnTriggerLeftCanceled(float value) {}
+    protected virtual void OnTriggerRightStarted(float value) {}
+    protected virtual void OnTriggerRightPerformed(float value) {}
+    protected virtual void OnTriggerRightCanceled(float value) {}
 
 
     // --- 部員が必ず実装（オーバーライド）する関数 ---
@@ -120,6 +185,8 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     // 「メモリ解放」を忘れがちなので、ベース側でケアします
     protected virtual void OnDestroy()
     {
+
+        MGManager.ActiveMiniGames.Remove(this);
         if (Move != null)
         {
             Move.performed -= OnMove;
@@ -138,12 +205,24 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
             Action.performed -= OnAction;
             Action.canceled -= OnAction;
         }
+        if (Trigger_left != null)
+        {
+            Trigger_left.started -= OnTriggerLeft;
+            Trigger_left.performed -= OnTriggerLeft;
+            Trigger_left.canceled -= OnTriggerLeft;
+        }
+        if (Trigger_right != null)
+        {
+            Trigger_right.started -= OnTriggerRight;
+            Trigger_right.performed -= OnTriggerRight;
+            Trigger_right.canceled -= OnTriggerRight;
+        }
         if (InputSystems != null)
         {
             InputSystems.Disable();
             InputSystems.Dispose();
         }
-        OnGameEnd();
+        Debug.Log("OnGameEnd");
     }
     /// <summary>
     /// ゲーム終了時に、このプレハブ内から出ている全ての音を止めます。
@@ -151,7 +230,13 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     /// </summary>
     public void BGMPlay(bool applyToTimeScale = false)
     {
+        // mainSourceがnullなら追加する
+        if (mainSource == null)
+        {
+            mainSource = gameObject.AddComponent<AudioSource>();
+        }
         mainSource.clip = gameBGM;
+
         if (applyToTimeScale)
         {
             mainSource.pitch = MGManager.timeScale;
@@ -160,11 +245,18 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
         {
             mainSource.pitch = MGManager.pitchScale;
         }
+        if (isLoopBGM) { mainSource.loop = true; }
         mainSource.Play();
     }
 
     public void SEPlay(string id, bool applyToTimeScale = false)
     {
+        // mainSourceがnullなら追加する
+        if (mainSource == null)
+        {
+            mainSource = gameObject.AddComponent<AudioSource>();
+        }
+
         if (applyToTimeScale)
         {
             mainSource.pitch = MGManager.timeScale;
@@ -174,6 +266,28 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
             mainSource.pitch = MGManager.pitchScale;
         }
         mainSource.PlayOneShot(soundEffects[id]);
+    }
+    // 二重実行防止用のフラグ
+    private bool isEndProcessed = false;
+
+    protected virtual void OnEnable()
+    {
+        // リストに自分を追加
+        if (!MGManager.ActiveMiniGames.Contains(this))
+        {
+            MGManager.ActiveMiniGames.Add(this);
+        }
+    }
+
+
+
+    // 運営側から一斉に呼ばれる終了関数
+    public void ExecuteGameEnd()
+    {
+        if (isEndProcessed) return; // 既に実行済みならスルー
+
+        OnGameEnd(); // 部員が書いた終了処理（判定更新など）を実行
+        isEndProcessed = true;
     }
 }
 

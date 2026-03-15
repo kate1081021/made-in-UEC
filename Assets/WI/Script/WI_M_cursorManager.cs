@@ -5,17 +5,20 @@ namespace WI
 
     public class WI_M_cursorManager : MiniGameBase
     {
-        private BoxCollider2D cursorCollider;
-
-        [SerializeField] private float cursorSpeed;
+        [SerializeField] private float speed = 0.1f;
         [SerializeField] private Vector2 cursorPosition;
-        
+
+        private float cursorSpeed = 0.1f;
+        private bool slow = false;
         private Vector2 inputDirection;
         private Vector3 viewPosition;
+
+        // SE
+        private AudioSource audioSource;
+        [SerializeField] private AudioClip cursorSE;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnGameStart()
         {
-            cursorCollider = this.GetComponent<BoxCollider2D>();
             inputDirection = new Vector2(0f, 0f);
             cursorPosition = transform.position;
             viewPosition = Camera.main.WorldToViewportPoint(cursorPosition);
@@ -26,25 +29,64 @@ namespace WI
         // Update is called once per frame
         void FixedUpdate()
         {
+            if ((audioSource = this.GetComponent<AudioSource>()) == null)
+            {
+                audioSource = this.gameObject.AddComponent<AudioSource>();
+            }
+
+            if (Action.WasPerformedThisFrame())
+            {
+                // SEPlay("click", false);
+                soundPlay(audioSource, cursorSE);
+            }
+
             inputDirection = Move.ReadValue<Vector2>();
-            
+
+            if (slow)
+            {
+                cursorSpeed = 0.05f;
+            }
+            else
+            {
+                cursorSpeed = this.speed * MGManager.timeScale;
+            }
+            // Debug.Log(cursorSpeed);
+
             cursorPosition = new Vector2(transform.position.x + inputDirection.x * cursorSpeed,
                                          transform.position.y + inputDirection.y * cursorSpeed);
-            
+
             viewPosition = Camera.main.WorldToViewportPoint(cursorPosition);
             
-            viewPosition.x = Mathf.Clamp(viewPosition.x, 0.02f, 0.98f);
-            viewPosition.y = Mathf.Clamp(viewPosition.y, 0.02f, 0.98f);
+            viewPosition.x = Mathf.Clamp(viewPosition.x, 0.02f, 1.02f);
+            viewPosition.y = Mathf.Clamp(viewPosition.y, -0.035f, 0.965f);
             
             cursorPosition = Camera.main.ViewportToWorldPoint(viewPosition);
             transform.position = new Vector2(cursorPosition.x, cursorPosition.y);
             
         }
 
-        //public BoxCollider2D getCollider()
-        //{
-        //    return this.cursorCollider;
-        //}
+        // L/R“ü—ÍŽž0.5f‚ÉŒ¸‘¬
+        protected override void OnTriggerPerformed(float value)
+        {
+            slow = true;
+        }
+        protected override void OnTriggerCanceled(float value)
+        {
+            slow = false;
+        }
+
+        public void setSpeed(float s)
+        {
+            this.speed = s;
+        }
+        private void soundPlay(AudioSource audioSource, AudioClip audioClip)
+        {
+            if (audioSource != null && audioClip != null)
+            {
+                audioSource.clip = audioClip;
+                audioSource.PlayOneShot(audioClip);
+            }
+        }
     }
 }
 
