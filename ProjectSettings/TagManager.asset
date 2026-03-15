@@ -8,6 +8,7 @@ TagManager:
   - window
   - closeButton
   - Ground
+  - Obstacle
   layers:
   - Default
   - TransparentFX

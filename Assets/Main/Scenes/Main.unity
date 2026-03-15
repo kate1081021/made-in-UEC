@@ -170,6 +170,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e7464535d5857c148a4e64c2c0479c72, type: 2}
   - {fileID: 11400000, guid: a80b88e8285513646ba83318ff549028, type: 2}
   - {fileID: 11400000, guid: e1cfa1d35d843c3439fab5c4006c74ec, type: 2}
+  - {fileID: 11400000, guid: 3bc1a8bc5bcf4024c82835d13914c5e3, type: 2}
+  - {fileID: 11400000, guid: d4af66975b026db4999ba924f806d4b0, type: 2}
+  - {fileID: 11400000, guid: 4158aa24184d86a4e8b0bfe56ddaf037, type: 2}
+  - {fileID: 11400000, guid: 07638a0d794c0f8478431faf907b4973, type: 2}
   lives: {fileID: 790571177}
 --- !u!4 &128823214
 Transform:
