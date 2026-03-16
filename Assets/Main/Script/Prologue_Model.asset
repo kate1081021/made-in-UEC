@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 532201a6922b08e4b8540e6869ee76df, type: 3}
+  m_Name: Prologue_Model
+  m_EditorClassIdentifier: 
+  context:
+  - background: first
+    enables: []
+    disables: []
+    text: "Action\u3067\u9032\u307F\u3001Trigger_left\u3067\u30B9\u30AD\u30C3\u30D7\u3057\u307E\u3059\r"
+  - background: 
+    enables:
+    - TestImage
+    disables: []
+    text: "\u30D7\u30ED\u30ED\u30FC\u30B0\u306E\n\u30C6\u30B9\u30C8\n\u3067\u3059"
+  - background: second
+    enables: []
+    disables:
+    - TestImage
+    text: "\u3053\u306E\u6587\u7AE0\u3092\u9032\u3081\u308B\u3068\u30CE\u30FC\u30DE\u30EB\u30E2\u30FC\u30C9\u304C\u59CB\u307E\u308A\u307E\u3059"
+  back:
+  - key: first
+    sprite: {fileID: 0}
+  - key: second
+    sprite: {fileID: 0}
