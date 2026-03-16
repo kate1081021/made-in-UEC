@@ -11,9 +11,10 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI targetText;  // 動詞を表示するテキスト
     public TextMeshProUGUI counter;  // ステージ数をカウントするもの
     public TextMeshProUGUI timer;  // ミニゲーム中のタイマー表示
+    public Image timerSprite; // ミニゲームのタイマーの画像
     public RectTransform zoomGroup;  // それ以外のUIをまとめた親オブジェクト(ヒエラルキーのObjects下に入っているすべてのオブジェクトが対象)
     public List<Image> Lives;
-    
+    public Sprite[] timerSources;
     [SerializeField] private float first_duration = 1.0f;    // 最初のテキストがフェードインするアニメーションの時間
     [SerializeField] private float second_duration = 1.0f;    // 次に他のオブジェクトが拡大するアニメーションの時間
 
@@ -38,6 +39,7 @@ public class UIManager : MonoBehaviour
         targetText = target.GetComponent<TextMeshProUGUI>();
         targetText.alpha = 0;
         timer.alpha = 0;
+        timerSprite.color = new Color(255,255,255,0);
         targetText.transform.localScale = Vector3.one * 1.2f; // 最初から1.2倍
 
         // 演出開始
@@ -56,6 +58,7 @@ public class UIManager : MonoBehaviour
 
         // タイマーの表示
         timer.alpha = 0;
+        timerSprite.color = new Color(255,255,255,0);
 
     }
     public void UIReset()
@@ -67,6 +70,7 @@ public class UIManager : MonoBehaviour
         // 文字の非表示
         targetText.alpha = 0;
         timer.alpha = 0;
+        timerSprite.color = new Color(255,255,255,0);
 
         // オブジェクトの表示
     }
@@ -136,7 +140,16 @@ public class UIManager : MonoBehaviour
     public void UITimer(int sec)
     {
         timer.alpha = 1;
+        timerSprite.color = new Color(255,255,255,255);
         timer.text = $"{sec}";
+        if (sec < 4)
+        {
+            timerSprite.sprite = timerSources[1];
+        }
+        else
+        {
+            timerSprite.sprite = timerSources[0];
+        }
     }
 
 }
