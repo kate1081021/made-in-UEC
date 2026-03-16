@@ -7,6 +7,8 @@ using UnityEditor.SceneManagement;
 using System.Data.Common;
 using TMPro;
 using Unity.VisualScripting;
+using System.Runtime.CompilerServices;
+using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,6 +30,7 @@ public class GameManager : MonoBehaviour
     private int lifeRemain = 4;
     private int loaded_minigame = 0;  // ロードされているゲームの番号
     private int debug_scene = -1;  // デバッグでロード中のシーンの番号
+    private List<int> minigameQueue = new List<int>();
 
 
     public static GameManager Instance;
@@ -70,8 +73,40 @@ public class GameManager : MonoBehaviour
         lifeRemain = 4;
         LifeReset lr = lives.gameObject.GetComponent<LifeReset>();
         lr.lifeReset();
+
+        if (TitleManager.isNormalMode) // ノーマルモード用の初期化
+        {
+            SettingNormal();
+        }
+
         // ゲーム進行コルーチン呼び出し
         StartCoroutine(MainCoroutine());
+    }
+
+    void SettingNormal()
+    {
+        List<int> number = new List<int>();
+        for (int i = 0; i < minigames.Count-1; i++)
+        {
+            number.Add(i);
+        }
+        for (int i = 0; i < minigames.Count-1; i++)
+        {
+            int rand = Random.Range(0,number.Count);
+            minigameQueue.Add(number[rand]);
+            number.RemoveAt(rand);
+        }
+        minigameQueue.Add(minigames.Count-1); // ボスステージは最後に追加
+        
+        /* デバッグ用
+        string debug = "";
+        for (int i = 0; i < minigameQueue.Count; i++)
+        {
+            debug = debug + minigameQueue[i].ToString();
+            debug = debug + ",";
+        }
+        Debug.Log(debug);
+        */
     }
 
     /* テストプレイ時の加速用 */
@@ -130,10 +165,17 @@ public class GameManager : MonoBehaviour
         if ((MGManager.isMainCalled && ((5 < stage && stage <= 15 && stage % 5 == 1) || (stage > 15 && (stage - 15) % 10 == 1))) || (!MGManager.isMainCalled && stage > 5)) { speedup = true; }
 
         // アニメーション&シーン切り替え
-        loaded_minigame = debug_scene == -1 ? Random.Range(0, minigames.Count-1) : debug_scene;
+        if (TitleManager.isNormalMode) // ノーマルモード
+        {
+            loaded_minigame = minigameQueue[0];
+            minigameQueue.RemoveAt(0);
+        }
+        else
+        {
+            loaded_minigame = debug_scene == -1 ? Random.Range(0, minigames.Count-1) : debug_scene;
+        }
         string scene = minigames[loaded_minigame].scene_name;  // ミニゲームの名前
         string verb = minigames[loaded_minigame].verb;  // ミニゲームの動詞
-
         // 裏でシーンの読み込みを開始する（まだ切り替えない）
         asyncLoad = SceneManager.LoadSceneAsync(scene);
         asyncLoad.allowSceneActivation = false; // 読み込み完了しても勝手に切り替わらないようにする
