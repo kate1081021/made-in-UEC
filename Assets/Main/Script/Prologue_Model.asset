@@ -14,13 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   context:
   - background: first
+    enables: []
+    disables: []
     text: "Action\u3067\u9032\u307F\u3001Trigger_left\u3067\u30B9\u30AD\u30C3\u30D7\u3057\u307E\u3059\r"
   - background: 
+    enables:
+    - TestImage
+    disables: []
     text: "\u30D7\u30ED\u30ED\u30FC\u30B0\u306E\n\u30C6\u30B9\u30C8\n\u3067\u3059"
   - background: second
+    enables: []
+    disables:
+    - TestImage
     text: "\u3053\u306E\u6587\u7AE0\u3092\u9032\u3081\u308B\u3068\u30CE\u30FC\u30DE\u30EB\u30E2\u30FC\u30C9\u304C\u59CB\u307E\u308A\u307E\u3059"
   back:
   - key: first
-    images: {fileID: 1275249860902929078, guid: 2b1b9b90cf989104a844487b5e203997, type: 3}
+    sprite: {fileID: 0}
   - key: second
-    images: {fileID: 7025581345493443043, guid: 4317ca102f5c21543b14e808c031b54c, type: 3}
+    sprite: {fileID: 0}

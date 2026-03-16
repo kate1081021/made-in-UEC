@@ -29,8 +29,11 @@ public class PrologueManager : MonoBehaviour
         Action.started += choiced;
         index = 0;
 
+        view.Initialize();
+
+        view.EnableObject(model.context[index].enables);
         view.ShowText(model.context[index].text);
-        view.ShowBackground(model.back.Find(e => e.key == model.context[index].background).images);
+        view.ShowBackground(model.back.Find(e => e.key == model.context[index].background).sprite);
     }
     void skip(InputAction.CallbackContext ctx)
     {
@@ -45,11 +48,14 @@ public class PrologueManager : MonoBehaviour
             SceneManager.LoadScene("Main");
         }
 
+        view.DisableObject(model.context[index].disables);
         view.ShowText(model.context[index].text);
+        view.EnableObject(model.context[index].enables);
+
 
         if (model.context[index].background != "")
         {
-            view.ShowBackground(model.back.Find(e => e.key == model.context[index].background).images);
+            view.ShowBackground(model.back.Find(e => e.key == model.context[index].background).sprite);
         }
     }
 
