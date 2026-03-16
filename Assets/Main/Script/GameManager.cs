@@ -154,10 +154,16 @@ public class GameManager : MonoBehaviour
         double TotalPlayTime = 0.0f;
         double FirstPlayTime = 0.0f;
 
+        if (TitleManager.isNormalMode && minigameQueue.Count == 0)
+        {
+            Time.timeScale = 1.0f; // ボスステージでは速度をリセット
+        }
+        else
+        {
         // タイムスケールを変更
         MGManager.applyNewTimeScale();
         Time.timeScale = MGManager.timeScale;
-
+        }
         // スピードアップ
         bool speedup = false;
         int stage = MGManager.stage;
@@ -167,17 +173,24 @@ public class GameManager : MonoBehaviour
         // アニメーション&シーン切り替え
         if (TitleManager.isNormalMode) // ノーマルモード
         {
+            if (minigameQueue.Count != 0)
+            {
             loaded_minigame = minigameQueue[0];
             minigameQueue.RemoveAt(0);
+            } else { loaded_minigame = -1; }
         }
         else
         {
             loaded_minigame = debug_scene == -1 ? Random.Range(0, minigames.Count-1) : debug_scene;
         }
-        string scene = minigames[loaded_minigame].scene_name;  // ミニゲームの名前
-        string verb = minigames[loaded_minigame].verb;  // ミニゲームの動詞
-        // 裏でシーンの読み込みを開始する（まだ切り替えない）
-        asyncLoad = SceneManager.LoadSceneAsync(scene);
+        string scene = ""; string verb = "";
+        if (loaded_minigame != -1)
+        {
+            scene = minigames[loaded_minigame].scene_name;  // ミニゲームの名前
+            verb = minigames[loaded_minigame].verb;  // ミニゲームの動詞
+            // 裏でシーンの読み込みを開始する（まだ切り替えない）
+            asyncLoad = SceneManager.LoadSceneAsync(scene);
+        }
         asyncLoad.allowSceneActivation = false; // 読み込み完了しても勝手に切り替わらないようにする
 
         // 最初のステージの時は少し待つ
@@ -220,11 +233,24 @@ public class GameManager : MonoBehaviour
         MGManager.Finished();
         if (lifeRemain == 0)
         {
-            // GameOver();
+            GameOver();
             yield break;
         }
-        // スピードアップ
-        if (speedup)
+        if (loaded_minigame == -1)
+        {
+            GameClear();
+            yield break;
+        }
+        // スピードアップ と、ボス判定
+        if (minigameQueue.Count == 0)
+        {
+            PlayNext(Speedup, 1.0f);
+            FirstPlayTime += Speedup.clip.length;
+            TotalPlayTime += Speedup.clip.length;
+            PitchScale = 1.0f;
+            BGM_start_2.pitch = PitchScale;
+        }
+        else if (speedup)
         {
             if (MGManager.isMainCalled){
             PlayNext(Speedup, 1.0f);
@@ -358,6 +384,14 @@ public class GameManager : MonoBehaviour
 
     }
 
+    void GameOver()
+    {
+        Debug.Log($"<color=green> ゲームオーバー…(GameOver()より呼ばれています) </color>");
+    }
+    void GameClear()
+    {
+        Debug.Log($"<color=green> ゲームクリア！(GameClear()より呼ばれています) </color>");
+    }
 
     // Update is called once per frame
     void Update()
