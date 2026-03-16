@@ -181,9 +181,11 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("エンドレスの抽選");
             loaded_minigame = debug_scene == -1 ? Random.Range(0, minigames.Count-1) : debug_scene;
         }
         string scene = ""; string verb = "";
+        Debug.Log(loaded_minigame);
         if (loaded_minigame != -1)
         {
             scene = minigames[loaded_minigame].scene_name;  // ミニゲームの名前
@@ -242,7 +244,7 @@ public class GameManager : MonoBehaviour
             yield break;
         }
         // スピードアップ と、ボス判定
-        if (minigameQueue.Count == 0)
+        if (TitleManager.isNormalMode && minigameQueue.Count == 0)
         {
             PlayNext(Speedup, 1.0f);
             FirstPlayTime += Speedup.clip.length;
@@ -303,7 +305,7 @@ public class GameManager : MonoBehaviour
         // 最後にSuccessとFailureのPitchを変える
         Success.pitch = PitchScale;
         Failure.pitch = PitchScale;
-
+        Debug.Log("ここまで元気");
         // デバッグ後初回の終わり
         MGManager.isMainCalled = true;
 
