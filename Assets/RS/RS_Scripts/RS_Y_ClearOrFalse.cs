@@ -70,7 +70,6 @@ if (gameover==false)
                     }
                 }
             }
-}
             else
             {
                 foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
@@ -85,6 +84,7 @@ if (gameover==false)
                     }
                 }
             }
+}
         }
     }
 }
