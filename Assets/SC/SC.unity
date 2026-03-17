@@ -871,6 +871,13 @@ MonoBehaviour:
   isLoopBGM: 0
   SEName: []
   SEFile: []
+  stickDatas:
+  - sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+    ratio: 1
+  - sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
+    ratio: 1
+  - sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+    ratio: 1
 --- !u!1 &1660685141
 GameObject:
   m_ObjectHideFlags: 0
