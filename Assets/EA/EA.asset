@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EA
   m_EditorClassIdentifier: 
   scene_name: EA
-  verb: "\u30C6\u30B9\u30C8"
+  verb: "\u898B\u672C\u306B\u5408\u308F\u305B\u308D\uFF01"
   timelimit: 7
   stopEarlyFinish: 0
