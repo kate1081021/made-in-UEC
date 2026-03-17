@@ -8,6 +8,7 @@ public class OT_KeyAnim : MiniGameBase
 {
     [SerializeField] List<Sprite> Key_picture;
     [SerializeField] Animator anim;
+    [SerializeField] ParticleSystem winParticle;
     OT_KeyMove keyMove;
     Image thisPicture;
     RectTransform pos;
@@ -55,6 +56,8 @@ public class OT_KeyAnim : MiniGameBase
             }
             Debug.Log("now");
             SEPlay("OT_Clear");
+            var par = winParticle;
+            par.Play();
         }
     }
 }
