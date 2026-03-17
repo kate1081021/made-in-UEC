@@ -1,22 +1,21 @@
 using UnityEngine;
 
-namespace BOSS // ★仕様書ルール：ネームスペースで囲む
+namespace BOSS
 {
-    // ★修正：MiniGameBase ではなく MonoBehaviour に変更しました
     public class BOSS_ObstacleManager : MonoBehaviour
     {
         [Header("障害物の設定")]
-        public GameObject obstaclePrefab; 
-        public Sprite[] obstacleSprites;  
+        public GameObject obstaclePrefab; // 降らせる障害物（BOSS_Obstacle）のプレハブ
+        public Sprite[] obstacleSprites;  // ランダムに選ばれる画像のリスト
 
         [Header("出現ルールの設定")]
-        public float spawnInterval = 1.0f; 
-        public float minX = -8f;           
-        public float maxX = 8f;            
-        public float spawnY = 6f;          
+        public float spawnInterval = 1.0f; // 何秒ごとに落とすか
+        public float minX = -8f;           // 出現するX座標の左端
+        public float maxX = 8f;            // 出現するX座標の右端
+        public float spawnY = 6f;          // 出現するY座標（画面の一番上）
 
         private float timer = 0f;
-        private bool isSpawning = false; // ★最初は停止状態にしておく
+        private bool isSpawning = false;
 
         // ★全体マネージャーの OnGameStart() から呼んでもらう関数
         public void StartSpawning()
@@ -29,8 +28,7 @@ namespace BOSS // ★仕様書ルール：ネームスペースで囲む
         {
             if (!isSpawning) return;
 
-            // Time.deltaTime は自動的に timeScale の影響を受けるため、
-            // ゲームスピードが上がると生成間隔（スポーン）も自動で速くなります。
+            // Time.deltaTime は自動的に timeScale の影響を受けます
             timer += Time.deltaTime;
             if (timer >= spawnInterval)
             {
@@ -67,7 +65,7 @@ namespace BOSS // ★仕様書ルール：ネームスペースで囲む
             }
         }
 
-        // ★全体マネージャーからクリア時・ゲームオーバー時に呼んでもらう関数
+        // ★全体マネージャーからクリア時などに呼んでもらう関数
         public void StopSpawning()
         {
             isSpawning = false; 
