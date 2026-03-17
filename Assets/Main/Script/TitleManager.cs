@@ -11,6 +11,7 @@ using System.ComponentModel;
 
 public class TitleManager : MonoBehaviour
 {
+    public static bool isNormalMode = false;
     private int choice = 0;
     private string mode = "Title";
     private bool isSetting = false;
@@ -36,9 +37,29 @@ public class TitleManager : MonoBehaviour
         Option.SetActive(false);
         cursorUpdate();
     }
+    private Vector2 convert_stick_to_dir(Vector2 val)
+    {
+        float mag = val.magnitude;
+        Vector2 ans = new Vector2(0,0);
+        if (mag < 0.5) { return ans; }
+        float theta = Mathf.Atan2(val.y,val.x) * Mathf.Rad2Deg;
+        if (-45 < theta && theta <= 45)
+        {
+            ans = new Vector2(1,0);
+        } else if (45 < theta && theta <= 135)
+        {
+            ans = new Vector2(0,1);
+        } else if (-135 < theta && theta <= -45)
+        {
+            ans = new Vector2(0,-1);
+        } else
+        { ans = new Vector2(-1,0); } //左に-180と180の境目があってめんどくさい
+        return ans;
+    }
     void moving(InputAction.CallbackContext ctx)
     {
         Vector2 direction = ctx.ReadValue<Vector2>();
+        convert_stick_to_dir(direction);
         switch (mode) {
             case "Title":
             if (direction == new Vector2(-1.0f,0))
@@ -118,10 +139,12 @@ public class TitleManager : MonoBehaviour
 
                 case 1:
                 SceneManager.LoadScene("Prologue");
+                isNormalMode = true;
                 break;
 
                 case 2:
                 SceneManager.LoadScene("Main");
+                isNormalMode = false;
                 break;
 
                 case 3:
