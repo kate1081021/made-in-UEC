@@ -51,7 +51,7 @@ namespace RS
 
             if (currentTarget == null) return;
 
-if (gameover=false)
+if (gameover==false)
 {
             if (Input.GetKeyDown(currentTarget.targetKey))
             {
