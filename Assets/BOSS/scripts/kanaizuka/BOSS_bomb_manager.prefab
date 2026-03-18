@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7512635796989137920
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2038737673565440202}
+  - component: {fileID: 4493255156878026717}
+  m_Layer: 0
+  m_Name: BOSS_bomb_manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2038737673565440202
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7512635796989137920}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.34141895, y: 0.6355392, z: 0.028442306}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4493255156878026717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7512635796989137920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff9f0a94d0e63a4498b6dc619b8caf01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generate_duration: 7
+  generate_x_pos: 7
+  generate_y_pos: -4
+  throwing_duration: 0.5
+  max_target_x: 5
+  min_target_x: -5
+  max_target_y: 5
+  min_target_y: 2
+  bomb_prefab: {fileID: 8298798877524502542, guid: 2167c0352664113479dcd2dd4f86c3ae, type: 3}
+  taeget_prefab: {fileID: 6232303829187568863, guid: bc60ec6c824543f499632b05b099b8ac, type: 3}
+  rubble_1_prefab: {fileID: 5187367657913055002, guid: 972fc5a70e81da642897e58ab7871eff, type: 3}
+  rubble_2_prefab: {fileID: 2587933992151743701, guid: d0841ea8a3df01d4e93acaa8fb22056c, type: 3}
+  rubble_3_prefab: {fileID: 3516017680578585458, guid: 54a673fd7b8794049ad69324ee84ba4c, type: 3}
+  rubble_4_prefab: {fileID: 6526761802973281739, guid: f4f5bc3030375c54baf80087a3e3e0c3, type: 3}
+  rubble_5_prefab: {fileID: 6526761802973281739, guid: 26af7476ba0b01c46be786bd597c93ac, type: 3}
+  rubble_6_prefab: {fileID: 6526761802973281739, guid: ca08a0605c4f3304f87a385c006721f4, type: 3}
