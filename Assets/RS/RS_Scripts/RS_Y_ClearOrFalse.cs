@@ -56,12 +56,11 @@ namespace RS
 
             if (currentTarget == null) return;
 
-if (gameover==false)
-{
-            if (Input.GetKeyDown(currentTarget.targetKey))
+            if (gameover==false)
             {
-                if (currentTarget.GetCurrentAlpha() > 0.5f)
+                if (Input.GetKeyDown(currentTarget.targetKey))
                 {
+<<<<<<< HEAD
                     Debug.Log($"正解！左から {currentIndex + 1} 番目を消しました");
                     Destroy(currentTarget.gameObject);
                     if (audioSource != null && successSound != null)
@@ -69,22 +68,28 @@ if (gameover==false)
                         audioSource.PlayOneShot(successSound);
                     }
                     currentIndex++; // 次へ
-
-                    if (currentIndex >= count)
+=======
+                    if (currentTarget.GetCurrentAlpha() > 0.5f)
                     {
-                        Debug.Log("ゲームクリア！");
-                        spm.is_clear = true;
-                        spm.is_spelled = true;
-                        MGManager.ClearGame();
+                        Debug.Log($"正解！左から {currentIndex + 1} 番目を消しました");
+                        Destroy(currentTarget.gameObject);
+                        currentIndex++;
+>>>>>>> d47e1a8a659dbec316d8ab49de565547ea4c6b4e
+
+                        if (currentIndex >= count)
+                        {
+                            Debug.Log("ゲームクリア！");
+                            spm.is_clear = true;
+                            spm.is_spelled = true;
+                            MGManager.ClearGame();
+                        }
                     }
                 }
-            }
-            else
-            {
-                foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
+                else
                 {
-                    if (Input.GetKeyDown(key) && key != currentTarget.targetKey)
+                    foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
                     {
+<<<<<<< HEAD
                         Debug.Log("不正解！ゲームオーバー！");
                         spm.is_clear = false;
                         spm.is_spelled = true;
@@ -94,10 +99,26 @@ if (gameover==false)
                             audioSource.PlayOneShot(failSound);
                         }
                         break;
+=======
+                        if (Input.GetKeyDown(key) && key != currentTarget.targetKey)
+                        {
+                            Debug.Log("不正解！ゲームオーバー！");
+                            spm.is_clear = false;
+                            spm.is_spelled = true;
+                            gameover = true;
+                            foreach (var script in spawnedScripts)
+                            {
+                                if (script != null)
+                                {
+                                    script.HideImmediately(); 
+                                }
+                            }
+                            break;
+                        }
+>>>>>>> d47e1a8a659dbec316d8ab49de565547ea4c6b4e
                     }
                 }
             }
-}
         }
     }
 }
