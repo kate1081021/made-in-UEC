@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7a9efadb9fe8a7043ae0d94f9c22f096
+guid: a2cdeae2e61da994eba758869268f95e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7558273174613869634
-    second: "\u9ED2_0"
+      213: 761100573506273824
+    second: knife_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u9ED2_0"
+      name: knife_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 960
-        height: 720
+        x: 4
+        y: 26
+        width: 56
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2444938286164e860800000000000000
-      internalID: 7558273174613869634
+      spriteID: 022003a60f8ff8a00800000000000000
+      internalID: 761100573506273824
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      "\u9ED2_0": 7558273174613869634
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
