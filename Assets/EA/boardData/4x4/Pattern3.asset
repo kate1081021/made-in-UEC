@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a64a31a3f28fe574082f849c8579dbdd, type: 3}
-  m_Name: EA
+  m_Script: {fileID: 11500000, guid: 5415ad77fe48fd44b815bad1e8fc05d8, type: 3}
+  m_Name: Pattern3
   m_EditorClassIdentifier: 
-  scene_name: EA
-  verb: "\u898B\u672C\u306B\u5408\u308F\u305B\u308D\uFF01"
-  timelimit: 7
-  stopEarlyFinish: 0
+  data: 01010101010000000100000001010101
