@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7a9efadb9fe8a7043ae0d94f9c22f096
+guid: 5af9256cac35873499f223d9209d750e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7558273174613869634
-    second: "\u9ED2_0"
+      213: 5541253663642590004
+    second: cookie_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u9ED2_0"
+      name: cookie_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 960
-        height: 720
+        x: 2
+        y: 2
+        width: 62
+        height: 62
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 2, w: 2}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2444938286164e860800000000000000
-      internalID: 7558273174613869634
+      spriteID: 43b9fb729dc76ec40800000000000000
+      internalID: 5541253663642590004
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: dd3a77c29eca2524d870127416b14ea1
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\u9ED2_0": 7558273174613869634
+      cookie_0: 5541253663642590004
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
