@@ -60,7 +60,6 @@ namespace RS
             {
                 if (Input.GetKeyDown(currentTarget.targetKey))
                 {
-<<<<<<< HEAD
                     Debug.Log($"正解！左から {currentIndex + 1} 番目を消しました");
                     Destroy(currentTarget.gameObject);
                     if (audioSource != null && successSound != null)
@@ -68,13 +67,6 @@ namespace RS
                         audioSource.PlayOneShot(successSound);
                     }
                     currentIndex++; // 次へ
-=======
-                    if (currentTarget.GetCurrentAlpha() > 0.5f)
-                    {
-                        Debug.Log($"正解！左から {currentIndex + 1} 番目を消しました");
-                        Destroy(currentTarget.gameObject);
-                        currentIndex++;
->>>>>>> d47e1a8a659dbec316d8ab49de565547ea4c6b4e
 
                         if (currentIndex >= count)
                         {
@@ -83,29 +75,22 @@ namespace RS
                             spm.is_spelled = true;
                             MGManager.ClearGame();
                         }
-                    }
+                    
                 }
                 else
                 {
                     foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
                     {
-<<<<<<< HEAD
-                        Debug.Log("不正解！ゲームオーバー！");
-                        spm.is_clear = false;
-                        spm.is_spelled = true;
-                        gameover = true;
-                        if (audioSource != null && failSound != null)
-                        {
-                            audioSource.PlayOneShot(failSound);
-                        }
-                        break;
-=======
                         if (Input.GetKeyDown(key) && key != currentTarget.targetKey)
                         {
                             Debug.Log("不正解！ゲームオーバー！");
                             spm.is_clear = false;
                             spm.is_spelled = true;
                             gameover = true;
+                            if (audioSource != null && failSound != null)
+                            {
+                                audioSource.PlayOneShot(failSound);
+                            }
                             foreach (var script in spawnedScripts)
                             {
                                 if (script != null)
@@ -115,7 +100,6 @@ namespace RS
                             }
                             break;
                         }
->>>>>>> d47e1a8a659dbec316d8ab49de565547ea4c6b4e
                     }
                 }
             }
