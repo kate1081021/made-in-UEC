@@ -11,10 +11,12 @@ namespace RS
         private List<RS_Y_appear> spawnedScripts = new List<RS_Y_appear>();
         private int currentIndex = 0;
         private bool gameActive = false;
+        private bool gameover = false;
         public RS_SpritesManager spm;
 
         public override void OnGameStart()
         {
+            MGManager.Load();
             currentIndex = 0;
             SpawnClones();
             gameActive = true;
@@ -40,6 +42,7 @@ namespace RS
             }
         }
 
+
         void Update()
         {
             if (!gameActive || currentIndex >= spawnedScripts.Count) return;
@@ -48,6 +51,8 @@ namespace RS
 
             if (currentTarget == null) return;
 
+if (gameover==false)
+{
             if (Input.GetKeyDown(currentTarget.targetKey))
             {
                 if (currentTarget.GetCurrentAlpha() > 0.5f)
@@ -65,6 +70,21 @@ namespace RS
                     }
                 }
             }
+            else
+            {
+                foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
+                {
+                    if (Input.GetKeyDown(key) && key != currentTarget.targetKey)
+                    {
+                        Debug.Log("不正解！ゲームオーバー！");
+                        spm.is_clear = false;
+                        spm.is_spelled = true;
+                        gameover = true;
+                        break;
+                    }
+                }
+            }
+}
         }
     }
 }
