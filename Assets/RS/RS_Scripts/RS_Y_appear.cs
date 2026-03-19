@@ -51,6 +51,12 @@ namespace RS
                 spriteRenderer.color = c;
             }
         }
+
+        public void HideImmediately()
+        {
+            StopAllCoroutines();
+            SetAlpha(0f);
+        }
         
         public override void OnGameStart() {}
     }
