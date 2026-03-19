@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 527117f25bd25d24a8d12f51c4761373
+guid: 7ac0dc163f345d449b27becfdc7d9b68
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1543559761745949958
-    second: GB_glassbottleBin_0
+      213: -239895951371559709
+    second: SC_Cloud_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -97,7 +97,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GB_glassbottleBin_0
+      name: SC_Cloud_0
       rect:
         serializedVersion: 2
-        x: 287
-        y: 317
-        width: 1333
-        height: 1352
+        x: 40
+        y: 13
+        width: 193
+        height: 122
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6053478dc63db6510800000000000000
-      internalID: 1543559761745949958
+      spriteID: 3ec917b37e7bbacf0800000000000000
+      internalID: -239895951371559709
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      GB_glassbottleBin_0: 1543559761745949958
+      SC_Cloud_0: -239895951371559709
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

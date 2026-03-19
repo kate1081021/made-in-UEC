@@ -77,6 +77,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SC/SC.unity
     guid: 9c131a7a819a3c14c924e86a126e9e48
+  - enabled: 1
+    path: Assets/Yakiniku/Yakiniku.unity
+    guid: 666057f1c62d64c4781daca1189d80ae
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

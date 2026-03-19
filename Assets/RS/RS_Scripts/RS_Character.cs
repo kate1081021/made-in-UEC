@@ -14,20 +14,29 @@ namespace RS
         void Awake()
         {
             if (spelled_time <= 0)
-                spelled_time = 0.5f;
+                spelled_time = 1f;
             mat = sr.material;
             if (t2 != null)
                 mat.SetTexture("_Texture2D", t2);
+            if (start_position == spelled_position)
+            {
+                spelled_position = start_position + 2f;
+            }
         }
 
         void Update()
         {
             timer += Time.deltaTime * Time.timeScale;
+            if (timer < spelled_time / 2)
+            {
+                Vector3 tp = transform.position;
+                transform.position = new Vector3(tp.x, start_position * (spelled_time - 2 * timer) / spelled_time + spelled_position * 2 * timer / spelled_time, tp.z);
+            }
             if (timer < spelled_time)
             {
                 //mat.SetFloat("_Float", timer / spelled_time);
             }
-            else if (timer < spelled_time*2)
+            else if (timer < spelled_time * 2)
             {
                 mat.SetFloat("_Float", (timer - spelled_time) / spelled_time);
             }

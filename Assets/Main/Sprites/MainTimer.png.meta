@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 527117f25bd25d24a8d12f51c4761373
+guid: 66ebad0d6f1181f489f07644b13893a0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1543559761745949958
-    second: GB_glassbottleBin_0
+      213: 476651415897931552
+    second: MainTimer_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -97,7 +97,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GB_glassbottleBin_0
+      name: MainTimer_0
       rect:
         serializedVersion: 2
-        x: 287
-        y: 317
-        width: 1333
-        height: 1352
+        x: 0
+        y: 0
+        width: 994
+        height: 1266
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6053478dc63db6510800000000000000
-      internalID: 1543559761745949958
+      spriteID: 02f7846ffe76d9600800000000000000
+      internalID: 476651415897931552
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      GB_glassbottleBin_0: 1543559761745949958
+      MainTimer_0: 476651415897931552
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
