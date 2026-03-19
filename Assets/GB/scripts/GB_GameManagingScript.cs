@@ -12,6 +12,12 @@ namespace garbage
             {"plasticbottles", 2},
             {"burnables", 3},
         };
+        public Dictionary<string, int> trashPositions = new Dictionary<string, int>(){
+            {"glassbottles", 0},
+            {"cans", 1},
+            {"plasticbottles", 2},
+            {"burnables", 3},
+        };
         [SerializeField] GameObject glassbottleBin, canBin, plasticbottleBin, burnableBin;
         [SerializeField] GameObject Arrow;
         [SerializeField] GB_ArrowMover ArrowScript;
@@ -50,7 +56,14 @@ namespace garbage
         }
         public override void OnGameEnd()
         {
-            
+            foreach (var key in positions.Keys)
+            {
+                if (positions[key] != trashPositions[key])
+                {
+                    return;
+                }
+            }
+            MGManager.ClearGame();
         }
         void Update()
         {

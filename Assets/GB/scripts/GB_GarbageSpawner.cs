@@ -41,11 +41,17 @@ namespace garbage
             {
                 d = Random.Range(0, 4);
             }
+            CreateOne(burnable, a, "burnables");
+            CreateOne(can, b, "cans");
+            CreateOne(glassbottle, c, "glassbottles");
+            CreateOne(plasticbottle, d, "plasticbottles");
+        }
+        void CreateOne(GameObject prefab, int lane, string type)
+        {
+            GameObject g = Instantiate(prefab, new Vector2(-6f + 4 * lane, 3.3f), Quaternion.identity);
 
-            Instantiate(burnable, new Vector2(-6f + 4 * a, 3.3f), Quaternion.identity);
-            Instantiate(can, new Vector2(-6f + 4 * b, 3.3f), Quaternion.identity);
-            Instantiate(glassbottle, new Vector2(-6f + 4 * c, 3.3f), Quaternion.identity);
-            Instantiate(plasticbottle, new Vector2(-6f + 4 * d, 3.3f), Quaternion.identity);
+            var mover = g.GetComponent<GB_GarbageMover>();
+            mover.Init(lane, type);
         }
     }
 }
