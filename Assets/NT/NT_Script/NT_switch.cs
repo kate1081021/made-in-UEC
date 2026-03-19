@@ -20,7 +20,7 @@ public class NT_switch : MiniGameBase
     BGMPlay(false);
     MGManager.Load();
     count = 0;
-    audioSource = GetComponent<AudioSource>();
+    //audioSource = GetComponent<AudioSource>();
     sw.Start();
     }
 
@@ -36,9 +36,10 @@ public class NT_switch : MiniGameBase
             }
             sw.Restart();
         }
-        if (audioSource != null && count >= soundborder + i*sounddistance)
+        if (count >= soundborder + i*sounddistance)
         {
-            audioSource.Play();
+            SEPlay("NT_DropWater");
+            //audioSource.Play();
             i++;
         }
     }
