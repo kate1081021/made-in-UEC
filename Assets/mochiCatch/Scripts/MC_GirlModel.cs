@@ -1,6 +1,4 @@
 using System;
-using UnityEditor.PackageManager;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace catchMochi
