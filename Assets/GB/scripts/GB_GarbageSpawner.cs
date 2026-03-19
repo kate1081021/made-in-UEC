@@ -1,10 +1,19 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace garbage
 {
     public class GB_GarbageSpawner : MiniGameBase
     {
         [SerializeField] GameObject burnable, can, glassbottle, plasticbottle;
+        public Dictionary<string, int> currentTrash = new Dictionary<string, int>()
+        {
+            {"burnables", 0},
+            {"cans", 0},
+            {"glassbottles", 0},
+            {"plasticbottles", 0},
+        };
         int num = -10;
 
         public override void OnGameStart()
@@ -24,34 +33,24 @@ namespace garbage
 
         void CreateGarbage()
         {
-            int a = Random.Range(0, 4);
-            int b = Random.Range(0, 4);
-            int c = Random.Range(0, 4);
-            int d = Random.Range(0, 4);
-
-            while (a == b)
+            List<int> values = new List<int>() { 0, 1, 2, 3 };
+            for (int i = 0; i < values.Count; i++)
             {
-                b = Random.Range(0, 4);
-            }
-            while (c == a || c == b)
-            {
-                c = Random.Range(0, 4);
-            }
-            while (d == a || d == b || d == c)
-            {
-                d = Random.Range(0, 4);
-            }
-            CreateOne(burnable, a, "burnables");
-            CreateOne(can, b, "cans");
-            CreateOne(glassbottle, c, "glassbottles");
-            CreateOne(plasticbottle, d, "plasticbottles");
+                int rand = Random.Range(0, values.Count);
+                int temp = values[i];
+                values[i] = values[rand];
+                values[rand] = temp;
         }
-        void CreateOne(GameObject prefab, int lane, string type)
+        int index = 0;
+        foreach (var key in currentTrash.Keys.ToList())
         {
-            GameObject g = Instantiate(prefab, new Vector2(-6f + 4 * lane, 3.3f), Quaternion.identity);
-
-            var mover = g.GetComponent<GB_GarbageMover>();
-            mover.Init(lane, type);
+            currentTrash[key] = values[index];
+            index++;
+        }
+        Instantiate(burnable, new Vector2(-6f + 4 * currentTrash["burnables"], 3.3f), Quaternion.identity);
+        Instantiate(can, new Vector2(-6f + 4 * currentTrash["cans"], 3.3f), Quaternion.identity);
+        Instantiate(glassbottle, new Vector2(-6f + 4 * currentTrash["glassbottles"], 3.3f), Quaternion.identity);
+        Instantiate(plasticbottle, new Vector2(-6f + 4 * currentTrash["plasticbottles"], 3.3f), Quaternion.identity);
         }
     }
 }
