@@ -60,3 +60,9 @@ MonoBehaviour:
   playerTarget: {fileID: 0}
   fallingObstacleManagerPrefab: {fileID: 8057876159063580181, guid: cc509c4dd0297724c928d326ca53054f, type: 3}
   ghostPrefab: {fileID: 6973304386628713025, guid: 11f57186e69541e489ebd026e30709d5, type: 3}
+  bombPrefab: {fileID: 7512635796989137920, guid: 72bb3cf2b111fda47994fa7cf055a129, type: 3}
+  baloonPrefab: {fileID: 412334233225753963, guid: f5b197cc0bfbda0438ee079c0f53df26, type: 3}
+  boomerangPrefab: {fileID: 1499228484478294357, guid: e2e974865984624409ea97afd3bfc549, type: 3}
+  boomerangSpawnInterval: 1.5
+  snakePrefab: {fileID: 1499228484478294357, guid: 48204a94384f6b5409109b76c6cab049, type: 3}
+  snakeSpawnInterval: 2
