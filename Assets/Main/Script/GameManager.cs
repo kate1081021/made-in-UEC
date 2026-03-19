@@ -121,6 +121,7 @@ public class GameManager : MonoBehaviour
                 PitchScale *= 1.059463094f;  // 各音階の比率
             }
             BGM_start_2.pitch = PitchScale;
+            MGManager.pitchScale = PitchScale;
         }
     }
 
