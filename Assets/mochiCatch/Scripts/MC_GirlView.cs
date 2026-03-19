@@ -44,7 +44,10 @@ namespace catchMochi
         }
 
         // 勝利時
-        
+        public void Win()
+        {
+            image.sprite = girlWin;
+        }
         // 敗北時
         public void Surprised()
         {

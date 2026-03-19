@@ -14,6 +14,11 @@ namespace catchMochi
         /// </summary>
         private MC_GirlModel girlModel;  // 女の子のモデル
         public MC_GirlView girlView;  // 女の子の見た目
+
+        /// <summary>
+        /// Mochi関連
+        /// </summary>
+        public MC_MochiView mochiView; // 餅の見た目
         private string[] phases = {"normal", "catch", "draw", "eat"};  // ステータスの全通り
 
         private float[] waitSeconds = {0.25f, 0.25f, 0.9f};
@@ -117,6 +122,7 @@ namespace catchMochi
 
                 // 3. 障子がガタガタ揺れる
                 shojiView.Shaking(true);
+                SEPlay("MC_GataGata");
                 yield return new WaitForSeconds(shakeTime);
                 
                 // 4. ここで分岐する(60%で全開、20%で半開、20%で何も起こらない)
@@ -125,6 +131,7 @@ namespace catchMochi
                 // 全開
                 if (rand < 70)
                 {
+                    SEPlay("MC_Open");
                     rand = Random.Range(0, 100);
                     // 普通に出てくる
                     if (rand < 75)
@@ -153,6 +160,7 @@ namespace catchMochi
                 // 半開
                 else if (rand < 80)
                 {
+                    SEPlay("MC_FakeOpen");
                     shojiView.OpenLittle();
                     yield return new WaitForSeconds(0.2f);
                 }
@@ -169,7 +177,12 @@ namespace catchMochi
             if (time > 3f) { uIManager.GetEnabled(false); }
             
             // ゲームクリア
-            if (girlModel.ateMochi == 3) { MGManager.ClearGame(); }
+            if (girlModel.ateMochi == 3)
+            {
+                girlView.Win();
+                MGManager.ClearGame();
+                StopCoroutine(startEating());
+            }
             
             // GameOver
             if (motherModel.isMotherSeeing && girlModel.status == "eat" && game_in_progress)
@@ -179,9 +192,10 @@ namespace catchMochi
                 game_in_progress = false;
 
                 // 演出
+                SEPlay("MC_Found");
                 motherView.GetAngry();
-                girlView.Surprised(); 
-
+                girlView.Surprised();
+                StopCoroutine(startEating());
                 // StartCoroutine(end());
 
             }
@@ -198,7 +212,7 @@ namespace catchMochi
         // Enter/Spaceが押されたとき
         protected override void OnActionStarted(float value)
         {
-            if (!girlModel.eating) // 食事を始める
+            if (!girlModel.eating && girlModel.ateMochi < 3 && game_in_progress) // 食事を始める
             {
                 girlModel.StartEating();
                 Debug.Log("食事開始");
@@ -209,11 +223,11 @@ namespace catchMochi
         // Enter/Spaceがはなされたとき
         protected override void OnActionCanceled(float value)
         {
-            if (girlModel.eating)
+            if (girlModel.eating && game_in_progress)
             {
                 // 食べている状態を解除する
                 girlModel.CancelEating();
-                
+                mochiView.ShowMochi(girlModel.ateMochi);
                 // isCancel = true;
 
                 // デバッグ
@@ -256,6 +270,8 @@ namespace catchMochi
                     // statusが"eat"であるとき、食べるSEを鳴らす
                     if (girlModel.status == "eat" && !motherModel.isMotherSeeing)
                     {
+                        mochiView.HideMochi(girlModel.ateMochi);
+                        SEPlay("MC_Eat");
                         // SePlayer.Instance.Play("食べ物をパクッ");
                     }
 
@@ -266,7 +282,7 @@ namespace catchMochi
                     {
                         // statusが"eat"である場合、ateMochiを一つ追加
                         if (girlModel.status == "eat" && !motherModel.isMotherSeeing) { girlModel.ateMochi++; }
-                        girlModel.CancelEating();  
+                        if (game_in_progress){ girlModel.CancelEating(); }
                         // isCancel = false;
                         yield break;
                     }
