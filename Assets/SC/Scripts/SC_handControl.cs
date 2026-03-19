@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 
 namespace SC
@@ -7,10 +8,13 @@ namespace SC
     {
         public Transform stickTrans;
         public float grabRange = 0.5f;
+        public bool isOneShot = true;
         public Sprite catchSprite;
+        public GameObject thumb;
         public SC_stickControl stickControl; // 棒のスクリプト
 
         private SpriteRenderer spriteRenderer;
+        private bool isAction = false;
 
         public override void OnGameStart()
         {
@@ -22,6 +26,8 @@ namespace SC
 
         void Update() 
         {
+            if (isOneShot && isAction) return;
+
             if (Action.WasPerformedThisFrame())
             {
                 Vector2 handPos = stickTrans.InverseTransformPoint(this.transform.position);
@@ -30,11 +36,8 @@ namespace SC
                 {
                     if (spriteRenderer != null && catchSprite != null)
                     {
+                        if (thumb != null) { Destroy(thumb); }
                         spriteRenderer.sprite = catchSprite;
-                    }
-                    if (spriteRenderer != null)
-                    {
-                        spriteRenderer.color = Color.red;
                     }
                     if (stickControl != null) // 成功した場合に棒を止める
                     {
@@ -44,6 +47,8 @@ namespace SC
                     Debug.Log("catch");
                 }
                 else { Debug.Log("Not catch"); }
+
+                isAction = true;
             }
         }
     }
