@@ -2,13 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
-using UnityEditor.SceneManagement;
-using System.Data.Common;
-using TMPro;
-using Unity.VisualScripting;
-using System.Runtime.CompilerServices;
-using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour
 {
