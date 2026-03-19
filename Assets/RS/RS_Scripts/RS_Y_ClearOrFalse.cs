@@ -5,6 +5,10 @@ namespace RS
 {
     public class RS_Spawn : MiniGameBase
     {
+        public AudioClip successSound;
+        public AudioClip failSound;
+        AudioSource audioSource;
+
         public GameObject[] prefabs;
         [Range(1, 5)] public int count = 3;
 
@@ -20,6 +24,7 @@ namespace RS
             currentIndex = 0;
             SpawnClones();
             gameActive = true;
+            audioSource = GetComponent<AudioSource>();
         }
 
         private void SpawnClones()
@@ -59,6 +64,10 @@ if (gameover==false)
                 {
                     Debug.Log($"正解！左から {currentIndex + 1} 番目を消しました");
                     Destroy(currentTarget.gameObject);
+                    if (audioSource != null && successSound != null)
+                    {
+                        audioSource.PlayOneShot(successSound);
+                    }
                     currentIndex++; // 次へ
 
                     if (currentIndex >= count)
@@ -80,6 +89,10 @@ if (gameover==false)
                         spm.is_clear = false;
                         spm.is_spelled = true;
                         gameover = true;
+                        if (audioSource != null && failSound != null)
+                        {
+                            audioSource.PlayOneShot(failSound);
+                        }
                         break;
                     }
                 }
