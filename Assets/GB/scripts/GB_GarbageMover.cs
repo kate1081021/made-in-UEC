@@ -20,7 +20,7 @@ namespace garbage
             managingscript = manager.GetComponent<GB_GameManagingScript>();
             sr = GetComponent<SpriteRenderer>();
             initialtime = Time.time;
-            if (MGManager.stage >= 30){ blinking = true; }
+            if (MGManager.stage > 30){ blinking = true; }
         }
 
         void Update()

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: GB
   m_EditorClassIdentifier: 
   scene_name: GB
-  verb: "\u30C6\u30B9\u30C8"
+  verb: "\u4ED5\u5206\u3051\u308D\uFF01"
   timelimit: 7
   stopEarlyFinish: 0
