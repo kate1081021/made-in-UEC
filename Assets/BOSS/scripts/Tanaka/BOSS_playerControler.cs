@@ -8,6 +8,11 @@ namespace BOSS
     {
         Rigidbody2D BOSS_playerRb;
         SpriteRenderer BOSS_playerSprite;
+        Animator BOSS_playerAnim;
+        [Header("ジャンプ無敵設定")]
+        [SerializeField] public float BOSS_jumpInvincibleTime = 1.0f; // ジャンプ無敵の継続時間
+        [SerializeField] public float BOSS_jumpCoolTime = 2.0f;       // 次に飛べるまでの待ち時間
+        private bool BOSS_isJumpCooldown = false;
 
         [Header("プレイヤー設定")]
         [SerializeField] public int BOSS_playerLife = 3;
@@ -26,6 +31,7 @@ namespace BOSS
             MGManager.Load();
             BOSS_playerRb = GetComponent<Rigidbody2D>();
             BOSS_playerSprite = GetComponent<SpriteRenderer>();
+            BOSS_playerAnim = GetComponent<Animator>();
 
             // 画面端の計算
             BOSS_screenLimit = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
@@ -37,10 +43,43 @@ namespace BOSS
 
         void Update()
         {
+            // 移動処理（既存のやつ）
             BOSS_playerRb.linearVelocity = BOSS_playerSpeed * Move.ReadValue<Vector2>();
             BOSS_ClampPosition();
+
+            // ✨ ジャンプ入力の判定！
+            // 「Actionボタンが押された」かつ「無敵中じゃない」かつ「クールタイム中じゃない」ときだけ実行
+            if (Action.WasPressedThisFrame() && !BOSS_isInvincible && !BOSS_isJumpCooldown) 
+            {
+                Debug.Log("ジャンプ無敵");
+                StartCoroutine(BOSS_JumpInvincibleWithCooldown());
+            }
         }
 
+        // --- 無敵とクールタイムをセットで管理するコルーチン ---
+        IEnumerator BOSS_JumpInvincibleWithCooldown()
+        {
+            // 1. 無敵スタート ＆ アニメ切り替え！
+            BOSS_isInvincible = true;
+            BOSS_playerAnim.SetBool("isJumping", true); // アニメON！
+            
+            // ✨ 点滅させないから、Sprite.enabledをいじるループは不要！
+            // 指定した無敵時間の分だけ、ただ待機するよ。
+            yield return new WaitForSeconds(BOSS_jumpInvincibleTime);
+
+            // 2. 無敵終了 ＆ アニメを戻す！
+            BOSS_playerSprite.enabled = true; // 念のため表示を確実にする
+            BOSS_isInvincible = false;
+            BOSS_playerAnim.SetBool("isJumping", false); // アニメOFF！
+
+            // 3. クールタイム開始！
+            BOSS_isJumpCooldown = true;
+            yield return new WaitForSeconds(BOSS_jumpCoolTime);
+
+            // 4. クールタイム終了！
+            BOSS_isJumpCooldown = false;
+        }
+        
         // --- 当たり判定 ---
         private void OnTriggerEnter2D(Collider2D BOSS_collision)
         {
@@ -69,7 +108,22 @@ namespace BOSS
                 StartCoroutine(BOSS_InvincibleRoutine());
             }
         }
+        IEnumerator BOSS_JumpInvincibleRoutine()
+        {
+            BOSS_isInvincible = true;
+            float BOSS_elapsedTime = 0;
+            float BOSS_jumpInvincibleTime = 1.0f; // 1秒固定！
 
+            while (BOSS_elapsedTime < BOSS_jumpInvincibleTime)
+            {
+                BOSS_playerSprite.enabled = !BOSS_playerSprite.enabled;
+                yield return new WaitForSeconds(BOSS_blinkInterval);
+                BOSS_elapsedTime += BOSS_blinkInterval;
+            }
+
+            BOSS_playerSprite.enabled = true;
+            BOSS_isInvincible = false;
+        }
         // --- 無敵と点滅を制御するコルーチン ---
         IEnumerator BOSS_InvincibleRoutine()
         {
