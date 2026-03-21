@@ -179,8 +179,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -4526377661232022887, guid: 59561300e2ae901448fda69b4004e545, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 4017801608266557195, guid: dbd42cbf82c897f45a1ac63c5bae4457, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -235,8 +235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2329ebdfdf6ae4993ff5c1984307a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameBGM: {fileID: 0}
-  isLoopBGM: 0
+  gameBGM: {fileID: 8300000, guid: 4293fa0acd85df3419976b8d7a056fbf, type: 3}
+  isLoopBGM: 1
   SEName: []
   SEFile: []
   glassbottleBin: {fileID: 1099513584}
@@ -321,8 +321,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 1543559761745949958, guid: 527117f25bd25d24a8d12f51c4761373, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 3315503612392280894, guid: f275163e870913e459d504a86b5d90b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -408,8 +408,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -990815235910686339, guid: 8edb3f79d7557b14a8ced0e8b5559d80, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: -7701697825929060266, guid: ee4847c8ae27a3b4a910f022e645dc82, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -738,8 +738,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -4503994167411392140, guid: f0b661a92c63983408213365704bd8fd, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 4511791182138546018, guid: 22d84876eac833e42aaf02f22f8ab90b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
