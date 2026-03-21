@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 085ebe0a7204c7441a49d1f9cc0141a4
+guid: 806186024beae554f9bc018b642b0e51
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8984252520666078372
-    second: upper magic circle_0
+      213: -6593458750517237676
+    second: RS_button_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: upper magic circle_0
+      name: RS_button_0
       rect:
         serializedVersion: 2
-        x: 40
-        y: 440
-        width: 945
-        height: 328
+        x: 24
+        y: 50
+        width: 252
+        height: 199
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c536a4ddee5815380800000000000000
-      internalID: -8984252520666078372
+      spriteID: 458aa3633345f74a0800000000000000
+      internalID: -6593458750517237676
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      upper magic circle_0: -8984252520666078372
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

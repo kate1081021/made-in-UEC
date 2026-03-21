@@ -1,19 +1,20 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 namespace RS
 {
-    public class RS_Y_appear : MiniGameBase 
+    public class RS_Y_appear : MiniGameBase
     {
         public float duration = 1.5f;
         public float waitTime = 0.5f;
         public KeyCode targetKey = KeyCode.Alpha1; // これをSpawn側が読み取る
 
-        private SpriteRenderer spriteRenderer;
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private TextMeshPro textMeshPro;
 
         public void Setup()
         {
-            spriteRenderer = GetComponent<SpriteRenderer>();
             SetAlpha(0f);
             StartCoroutine(FadeSequence());
         }
@@ -50,6 +51,12 @@ namespace RS
                 c.a = alpha;
                 spriteRenderer.color = c;
             }
+            if (textMeshPro != null)
+            {
+                Color c = textMeshPro.color;
+                c.a = alpha;
+                textMeshPro.color = c;
+            }
         }
 
         public void HideImmediately()
@@ -57,7 +64,7 @@ namespace RS
             StopAllCoroutines();
             SetAlpha(0f);
         }
-        
-        public override void OnGameStart() {}
+
+        public override void OnGameStart() { }
     }
 }
