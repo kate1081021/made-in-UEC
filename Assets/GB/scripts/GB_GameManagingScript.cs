@@ -16,6 +16,10 @@ namespace garbage
         [SerializeField] GameObject Arrow;
         [SerializeField] GB_ArrowMover ArrowScript;
         [SerializeField] int arrowpos;
+        [SerializeField] GameObject spawnpoint;  //GB_garbageSpawnPoint関係
+        GB_GarbageSpawner spawner;    //ここも
+        public bool judge;
+        public int SuccessOrFailure = 0;
         public void MoveByPositionkey(string targetkey)    //keyによってゴミ箱の位置を動かす関数
         {
             GameObject target = glassbottleBin;
@@ -41,8 +45,11 @@ namespace garbage
         public override void OnGameStart()
         {
             MGManager.Load();
+            //MGManager.TestPlay(31);    //テストプレイ用，必要なければすぐに消す
+            BGMPlay(true);
             ArrowScript = Arrow.GetComponent<GB_ArrowMover>();
             arrowpos = ArrowScript.mypos;
+            spawner = spawnpoint.GetComponent<GB_GarbageSpawner>();
             MoveByPositionkey("glassbottles");
             MoveByPositionkey("cans");
             MoveByPositionkey("plasticbottles");
@@ -50,15 +57,7 @@ namespace garbage
         }
         public override void OnGameEnd()
         {
-            var spawner = FindObjectOfType<GB_GarbageSpawner>();
-            foreach (var key in positions.Keys)
-            {
-                if (positions[key] != spawner.currentTrash[key])
-                {
-                    return;
-                }
-            }
-            MGManager.ClearGame();
+
         }
         void Update()
         {
@@ -69,6 +68,30 @@ namespace garbage
                 string firstkey = positions.First(x => x.Value == first).Key, secondkey = positions.First(x => x.Value == second).Key;
                 positions[firstkey] = second; positions[secondkey] = first;
                 MoveByPositionkey(firstkey); MoveByPositionkey(secondkey);
+            }
+            if (judge)
+            {
+                judge = false;
+                bool flag = false;
+                foreach (var key in positions.Keys)
+                {
+                    if (spawner.currentTrash[key] == -1)
+                    {
+                        continue;
+                    }
+                    if (positions[key] != spawner.currentTrash[key])
+                    {
+                        flag = true;
+                    }
+                }
+                if (!flag)
+                {
+                    SuccessOrFailure = 1;
+                    MGManager.ClearGame();
+                } else
+                {
+                    SuccessOrFailure = -1;
+                }
             }
         } 
     }
