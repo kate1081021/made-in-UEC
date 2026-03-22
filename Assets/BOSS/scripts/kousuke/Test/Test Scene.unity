@@ -410,17 +410,161 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: bombPrefab
+      value: 
+      objectReference: {fileID: 7512635796989137920, guid: 72bb3cf2b111fda47994fa7cf055a129, type: 3}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
       propertyPath: playerTarget
       value: 
       objectReference: {fileID: 1261639711}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: bombManagerPrefab
+      value: 
+      objectReference: {fileID: 7512635796989137920, guid: 72bb3cf2b111fda47994fa7cf055a129, type: 3}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: snakeSpawnInterval
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: boomerangSpawnInterval
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
       propertyPath: fallingObstacleManager
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
       propertyPath: fallingObstacleManagerPrefab
       value: 
       objectReference: {fileID: 8057876159063580181, guid: cc509c4dd0297724c928d326ca53054f, type: 3}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[1].isActivate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[2].isActivate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[3].isActivate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[4].isActivate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[5].isActivate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[6].isActivate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[7].isActivate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[8].isActivate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[9].isActivate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[0].triggerTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[1].triggerTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[2].triggerTime
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[3].triggerTime
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[4].triggerTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[5].triggerTime
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[6].triggerTime
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[7].triggerTime
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[8].triggerTime
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[9].triggerTime
+      value: 38
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[0].obstacleType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[10].triggerTime
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[1].obstacleType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[2].obstacleType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[3].obstacleType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[4].obstacleType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[5].obstacleType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[6].obstacleType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[7].obstacleType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[8].obstacleType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[9].obstacleType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342201841914530760, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[10].obstacleType
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
