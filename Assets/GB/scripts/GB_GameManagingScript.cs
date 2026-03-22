@@ -50,7 +50,15 @@ namespace garbage
         }
         public override void OnGameEnd()
         {
-            
+            var spawner = FindObjectOfType<GB_GarbageSpawner>();
+            foreach (var key in positions.Keys)
+            {
+                if (positions[key] != spawner.currentTrash[key])
+                {
+                    return;
+                }
+            }
+            MGManager.ClearGame();
         }
         void Update()
         {

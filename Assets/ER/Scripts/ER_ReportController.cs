@@ -10,11 +10,13 @@ namespace ER
 
 		private Animator submitAnimation;
 		[HideInInspector] public bool canSubmit = false;
+		private bool canSubmitFlag = false;
 		public override void OnGameStart()
 		{
 			submitAnimation = GetComponent<Animator>();
 			submitAnimation.SetBool("IsSubmitted", false);
 			canSubmit = false;
+			canSubmitFlag = false;
 		}
 
 		void Update()
@@ -46,9 +48,21 @@ namespace ER
 			}
 		}
 
-		protected override void OnMoveStarted(Vector2 value)
+		protected override void OnMoveCanceled(Vector2 value)
 		{
-			if (value.y > 0.9f && canSubmit)
+			if (transform.position.y >= maxPosY)
+			{
+				canSubmitFlag = true;
+			}
+			else
+			{
+				canSubmitFlag = false;
+			}
+		}
+
+		protected override void OnMovePerformed(Vector2 value)
+		{
+			if (value.y > 0.9f && canSubmitFlag)
 			{
 				ER_GameManager.Instance.isSubmitted = true;
 			}

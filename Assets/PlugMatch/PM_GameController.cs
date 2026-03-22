@@ -71,7 +71,8 @@ namespace plugmatch
             MGManager.Load(); 
             
             isBubbleFixed = false;
-            BGMPlay(true);
+            BGMPlay();
+            Debug.Log(MGManager.pitchScale);
             /*
             if (bgmSource != null && bgmClip != null)
             {
