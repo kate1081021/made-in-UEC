@@ -1,24 +1,58 @@
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class BOSS_MapMoveManager : MiniGameBase
+namespace BOSS
 {
-    public float BOSS_MapSpeed;
-    Rigidbody2D BOSSMaprigidbody2D;
-    Transform BOSSTransform;
-    public override void OnGameStart()
+    public class BOSS_MapMoveManager : MiniGameBase
     {
-        BOSSMaprigidbody2D = this.GetComponent<Rigidbody2D>();
-        BOSSTransform = this.GetComponent<Transform>();
-    }
+        [SerializeField] private BOSS_goalManager goalManager;
+        
+        [Header("マップオブジェクト")]
+        [SerializeField] private GameObject loopingMap; // 今動いてるループ用マップ
+        [SerializeField] private GameObject goalMap;    // 画面外に待機してるゴール用マップ
 
-    void Update()
-    {
-        BOSSMaprigidbody2D.linearVelocityY = BOSS_MapSpeed;
-        if (BOSSTransform.transform.position.y < -100)
+        public float BOSS_MapSpeed;
+        Rigidbody2D BOSSMaprigidbody2D;
+        Transform BOSSTransform;
+        private bool isGoalTime = false;
+
+        public override void OnGameStart()
         {
-            BOSSTransform.transform.position = new Vector3(BOSSTransform.transform.position.x, 100, BOSSTransform.transform.position.z);
+            BOSSMaprigidbody2D = this.GetComponent<Rigidbody2D>();
+            BOSSTransform = this.GetComponent<Transform>();
+            
+            // 念のため最初はゴールマップを非表示にしておく
+            if(goalMap != null) goalMap.SetActive(false);
+        }
+
+        void Update()
+        {
+            if (!isGoalTime)
+            {
+                BOSSMaprigidbody2D.linearVelocityY = BOSS_MapSpeed;
+
+                if (BOSSTransform.position.y < -100)
+                {
+                    BOSSTransform.position = new Vector3(BOSSTransform.position.x, 100, BOSSTransform.position.z);
+                }
+            }
+        }
+
+        public void MoveToFinalGoal()
+        {
+            isGoalTime = true;
+            BOSSMaprigidbody2D.linearVelocityY = 0; // 動きを止める
+            if (loopingMap != null) loopingMap.SetActive(false); // 元のマップを消去
+            
+            if (goalMap != null)
+            {
+                goalMap.SetActive(true); // ゴールマップ召喚
+                // 画面の真ん中（Vector3.zeroなど）に配置
+                goalMap.transform.position = new Vector3(0, 0, 0); 
+            }
+
+            // ちょっと余韻を作ってからリザルト出したいなら、
+            // ここで少し待ってからCompleteGoalSequenceを呼ぶのもアリ
+            goalManager.CompleteGoalSequence();
         }
     }
 }
