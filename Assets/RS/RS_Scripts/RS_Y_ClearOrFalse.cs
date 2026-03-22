@@ -6,21 +6,18 @@ namespace RS
 {
     public class RS_Spawn : MiniGameBase
     {
+        [SerializeField] private AudioClip[] se;
         public AudioClip successSound;
         public AudioClip failSound;
         AudioSource audioSource;
 
         public GameObject[] prefabs;
         [Range(1, 6)] public int count = 3;
-        
+
         private void gameoption()
         {
             int stage = MGManager.stage;
-            if (stage <= 5)
-            {
-                count = 2;
-            }
-            else if (stage <= 10)
+            if (stage <= 10)
             {
                 count = 3;
             }
@@ -28,9 +25,9 @@ namespace RS
             {
                 count = 5;
             }
-            else if (stage <= 30)
+            else
             {
-                count = 6;
+                count = 7;
             }
         }
 
@@ -48,6 +45,7 @@ namespace RS
         public override void OnGameStart()
         {
             MGManager.Load();
+            BGMPlay(false);
             currentIndex = 0;
             gameoption();
             SpawnClones();
@@ -128,10 +126,7 @@ namespace RS
                 {
                     Debug.Log($"正解！左から {currentIndex + 1} 番目を消しました");
                     Destroy(currentTarget.gameObject);
-                    if (audioSource != null && successSound != null)
-                    {
-                        audioSource.PlayOneShot(successSound);
-                    }
+                    SEPlay("c", se[0]);
                     currentIndex++; // 次へ
 
                     if (currentIndex >= count)
@@ -148,10 +143,7 @@ namespace RS
                     spm.is_clear = false;
                     spm.is_spelled = true;
                     gameover = true;
-                    if (audioSource != null && failSound != null)
-                    {
-                        audioSource.PlayOneShot(failSound);
-                    }
+                    SEPlay("f", se[1]);
                     foreach (var script in spawnedScripts)
                     {
                         if (script != null)

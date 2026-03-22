@@ -6,6 +6,7 @@ namespace RS
 {
     public class RS_Y_appear : MiniGameBase
     {
+        public float startTime = 1.0f;
         public float duration = 1.5f;
         public float waitTime = 0.5f;
         public int aciton_type;
@@ -26,6 +27,7 @@ namespace RS
 
         private IEnumerator FadeSequence()
         {
+            yield return new WaitForSeconds(startTime);
             yield return StartCoroutine(Fade(0f, 1f));
             yield return new WaitForSeconds(waitTime);
             yield return StartCoroutine(Fade(1f, 0f));
@@ -37,7 +39,7 @@ namespace RS
             while (elapsedTime < duration)
             {
                 elapsedTime += Time.deltaTime;
-                SetAlpha(Mathf.Lerp(start, end, elapsedTime / duration));
+                SetAlpha(Mathf.Lerp(start, end, elapsedTime / duration * elapsedTime / duration));
                 yield return null;
             }
             SetAlpha(end);

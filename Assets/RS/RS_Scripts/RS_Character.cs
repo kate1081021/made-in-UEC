@@ -35,6 +35,8 @@ namespace RS
             if (timer < spelled_time)
             {
                 //mat.SetFloat("_Float", timer / spelled_time);
+                Vector3 tp = transform.position;
+                transform.position = new Vector3(tp.x, spelled_position, tp.z);
             }
             else if (timer < spelled_time * 2)
             {
