@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3cfb7645f8af3f24abec362afd75c49f
+guid: 806186024beae554f9bc018b642b0e51
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8041445168008940828
-    second: otaku_girl_fashion_0
+      213: -6593458750517237676
+    second: RS_button_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: otaku_girl_fashion_0
+      name: RS_button_0
       rect:
         serializedVersion: 2
-        x: 36
-        y: 11
-        width: 242
-        height: 384
+        x: 24
+        y: 50
+        width: 252
+        height: 199
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c1d44ff56c3f89f60800000000000000
-      internalID: 8041445168008940828
+      spriteID: 458aa3633345f74a0800000000000000
+      internalID: -6593458750517237676
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      otaku_girl_fashion_0: 8041445168008940828
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
