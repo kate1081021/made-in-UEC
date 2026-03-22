@@ -59,5 +59,18 @@ namespace SC
                 rb.simulated = false;
             }
         }
+
+        public void BounceStick()
+        {
+            if (rb != null)
+            {
+                float bounceForceY = 5f;
+                float bounceForceX = Random.Range(-3f, 3f);
+                rb.linearVelocity = new Vector2(bounceForceX, bounceForceY);
+
+                float torqueForce = Random.Range(-150f, 150f); 
+                rb.AddTorque(torqueForce);
+            }
+        }
     }
 }

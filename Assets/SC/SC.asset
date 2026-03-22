@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SC
   m_EditorClassIdentifier: 
   scene_name: SC
-  verb: "\u30C6\u30B9\u30C8"
-  timelimit: 7
+  verb: "\u63B4\u3081\uFF01"
+  timelimit: 4
   stopEarlyFinish: 0

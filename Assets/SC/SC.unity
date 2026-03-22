@@ -751,12 +751,16 @@ MonoBehaviour:
   SEName:
   - fall
   - catch
+  - success
+  - fail
   SEFile:
   - {fileID: 8300000, guid: eca1ceaac8c79d943922b830ff4f7b47, type: 3}
   - {fileID: 8300000, guid: 7d6bf1fd827275c49bb5867ded78cdf2, type: 3}
+  - {fileID: 8300000, guid: 13c20bc260ed5064bad7db93d57c57e6, type: 3}
+  - {fileID: 8300000, guid: 5bf9056a92411b34d94d00f3900193da, type: 3}
   stickTrans: {fileID: 1502291488}
   grabRange: 50
-  isOneShot: 0
+  isOneShot: 1
   catchSprite: {fileID: 4656125009646255954, guid: ef433b6432ddf471aaffc0e7ae1d7515, type: 3}
   thumb: {fileID: 23626024}
   stickControl: {fileID: 1502291490}
@@ -968,7 +972,7 @@ MonoBehaviour:
   stickDatas:
   - sprite: {fileID: 4726147562184808205, guid: 19a5a44b0c40f674c9c7220c6efda639, type: 3}
     ratio: 1
-    grabRange: 30
+    grabRange: 20
   - sprite: {fileID: -1199363164609846539, guid: 5934899eacaf5a54f84c9974401f4fab, type: 3}
     ratio: 1
     grabRange: 50
