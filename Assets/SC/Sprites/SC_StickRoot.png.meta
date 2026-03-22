@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7ac0dc163f345d449b27becfdc7d9b68
+guid: 4121d7234b84e33438d6df8da5236436
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -239895951371559709
-    second: SC_Cloud_0
+      213: -8447145966316802835
+    second: SC_StickRoot_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SC_Cloud_0
+      name: SC_StickRoot_0
       rect:
         serializedVersion: 2
-        x: 338
-        y: 478
-        width: 4522
-        height: 1872
+        x: 1002
+        y: 366
+        width: 1394
+        height: 7362
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3ec917b37e7bbacf0800000000000000
-      internalID: -239895951371559709
+      spriteID: dec20df9f75b5ca80800000000000000
+      internalID: -8447145966316802835
       vertices: []
       indices: 
       edges: []

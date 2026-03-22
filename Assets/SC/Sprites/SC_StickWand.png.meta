@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7ac0dc163f345d449b27becfdc7d9b68
+guid: aadce6f99630239418c40fe7c09dd61e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -239895951371559709
-    second: SC_Cloud_0
+      213: -5015355285009810881
+    second: SC_StickWand_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SC_Cloud_0
+      name: SC_StickWand_0
       rect:
         serializedVersion: 2
-        x: 338
-        y: 478
-        width: 4522
-        height: 1872
+        x: 1300
+        y: 1028
+        width: 1370
+        height: 9908
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3ec917b37e7bbacf0800000000000000
-      internalID: -239895951371559709
+      spriteID: f3abc96d0f0e56ab0800000000000000
+      internalID: -5015355285009810881
       vertices: []
       indices: 
       edges: []

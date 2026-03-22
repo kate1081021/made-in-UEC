@@ -545,11 +545,11 @@ MonoBehaviour:
   cloudPrefab: {fileID: 2481386659350764145, guid: 32d6b55c870ecd249b0127ff0fca6a4e, type: 3}
   cloudAmount: 30
   minSpeed: 0.3
-  maxSpeed: 6
+  maxSpeed: 10
   minX: -14
   maxX: 20
-  minY: 1.5
-  maxY: 12
+  minY: 2
+  maxY: 16
   minAlpha: 0.4
   maxAlpha: 1
 --- !u!4 &374615455
@@ -746,13 +746,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37f0f2c3e3a184ebb86fca68dd6008d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameBGM: {fileID: 0}
+  gameBGM: {fileID: 8300000, guid: 162b97769c5ab5b409b15c8128f222c7, type: 3}
   isLoopBGM: 0
-  SEName: []
-  SEFile: []
+  SEName:
+  - fall
+  - catch
+  SEFile:
+  - {fileID: 8300000, guid: eca1ceaac8c79d943922b830ff4f7b47, type: 3}
+  - {fileID: 8300000, guid: 7d6bf1fd827275c49bb5867ded78cdf2, type: 3}
   stickTrans: {fileID: 1502291488}
-  grabRange: 0.64
-  isOneShot: 1
+  grabRange: 50
+  isOneShot: 0
   catchSprite: {fileID: 4656125009646255954, guid: ef433b6432ddf471aaffc0e7ae1d7515, type: 3}
   thumb: {fileID: 23626024}
   stickControl: {fileID: 1502291490}
@@ -911,9 +915,9 @@ Transform:
   m_GameObject: {fileID: 1502291486}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 20, z: 0}
-  m_LocalScale: {x: 1, y: 5, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 3, y: 22, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -932,7 +936,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -960,13 +964,23 @@ MonoBehaviour:
   isLoopBGM: 0
   SEName: []
   SEFile: []
+  handController: {fileID: 1290475473}
   stickDatas:
-  - sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  - sprite: {fileID: 4726147562184808205, guid: 19a5a44b0c40f674c9c7220c6efda639, type: 3}
     ratio: 1
-  - sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
+    grabRange: 30
+  - sprite: {fileID: -1199363164609846539, guid: 5934899eacaf5a54f84c9974401f4fab, type: 3}
     ratio: 1
-  - sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+    grabRange: 50
+  - sprite: {fileID: -8447145966316802835, guid: 4121d7234b84e33438d6df8da5236436, type: 3}
     ratio: 1
+    grabRange: 40
+  - sprite: {fileID: -4706973720385173810, guid: 189b62038878b8744866a69ee74abcdc, type: 3}
+    ratio: 1
+    grabRange: 55
+  - sprite: {fileID: -5015355285009810881, guid: aadce6f99630239418c40fe7c09dd61e, type: 3}
+    ratio: 1
+    grabRange: 50
 --- !u!1 &1660685141
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,6 +19,8 @@ namespace SC
         public override void OnGameStart()
         {
             MGManager.Load();
+            BGMPlay();
+            SEPlay("fall");
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
@@ -44,6 +46,7 @@ namespace SC
                         stickControl.StopStick();
                     }
                     MGManager.ClearGame();
+                    SEPlay("catch");
                     Debug.Log("catch");
                 }
                 else { Debug.Log("Not catch"); }

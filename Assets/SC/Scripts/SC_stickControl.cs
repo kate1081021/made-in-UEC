@@ -10,10 +10,15 @@ namespace SC
         {
             public Sprite sprite;
             public int ratio = 1;
+            public float grabRange = 50f;
         }
 
         private Rigidbody2D rb;
-        private SpriteRenderer spriteRenderer;      
+        private SpriteRenderer spriteRenderer;
+
+        [Header("オブジェクト類")]
+        public SC_handControl handController;
+
         [Header("Stick Data")]  
         [SerializeField] private StickData[] stickDatas;
 
@@ -39,6 +44,7 @@ namespace SC
                 if (randomValue < nowRatio)
                 {
                     spriteRenderer.sprite = stickDatas[i].sprite;
+                    handController.grabRange = stickDatas[i].grabRange;
                     break;
                 }
             }
