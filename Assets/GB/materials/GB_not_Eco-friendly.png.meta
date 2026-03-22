@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 62eea7bc9ae66a140afb92d31a30fbac
+guid: c5ca63d610e230546beafb334f21933f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6489456766570796704
-    second: GB_roundArrow_0
+      213: 455603317225388343
+    second: GB_not_Eco-friendly_0
+  - first:
+      213: -1144164522459311131
+    second: GB_not_Eco-friendly_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +103,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GB_roundArrow_0
+      name: GB_not_Eco-friendly_0
       rect:
         serializedVersion: 2
-        x: 56
-        y: 373
-        width: 1944
-        height: 1171
+        x: 652
+        y: 324
+        width: 636
+        height: 273
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 069ea431471d0f5a0800000000000000
-      internalID: -6489456766570796704
+      spriteID: 73975b99dc0a25600800000000000000
+      internalID: 455603317225388343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GB_not_Eco-friendly_1
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 0
+        width: 1870
+        height: 252
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e3553acd6c1f10f0800000000000000
+      internalID: -1144164522459311131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GB_not_Eco-friendly_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1889
+        height: 596
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48c2ac788f4286c439d08a27e770efc4
+      internalID: -10944003
       vertices: []
       indices: 
       edges: []
@@ -125,7 +172,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a5f52528dc817374cac20b1c482a23e3
     internalID: 0
     vertices: []
     indices: 
@@ -134,7 +181,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GB_not_Eco-friendly_2: -10944003
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

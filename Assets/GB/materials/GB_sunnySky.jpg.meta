@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 62eea7bc9ae66a140afb92d31a30fbac
+guid: 63175fd5afdeff74c8c7d53e285b9d4f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6489456766570796704
-    second: GB_roundArrow_0
+      213: -4071208971953742004
+    second: GB_sunnySky_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GB_roundArrow_0
+      name: GB_sunnySky_0
       rect:
         serializedVersion: 2
-        x: 56
-        y: 373
-        width: 1944
-        height: 1171
+        x: 0
+        y: 0
+        width: 4624
+        height: 2604
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 069ea431471d0f5a0800000000000000
-      internalID: -6489456766570796704
+      spriteID: c4f505c92092087c0800000000000000
+      internalID: -4071208971953742004
       vertices: []
       indices: 
       edges: []
@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GB_sunnySky_0: -4071208971953742004
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

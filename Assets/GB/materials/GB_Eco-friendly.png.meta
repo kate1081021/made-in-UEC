@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 62eea7bc9ae66a140afb92d31a30fbac
+guid: a7cdf04cf58f3a64e8248541a8a6debd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6489456766570796704
-    second: GB_roundArrow_0
+      213: 4096062475033611118
+    second: GB_Eco-friendly_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GB_roundArrow_0
+      name: GB_Eco-friendly_0
       rect:
         serializedVersion: 2
-        x: 56
-        y: 373
-        width: 1944
-        height: 1171
+        x: 2
+        y: 133
+        width: 1874
+        height: 310
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 069ea431471d0f5a0800000000000000
-      internalID: -6489456766570796704
+      spriteID: e6b8f228e1328d830800000000000000
+      internalID: 4096062475033611118
       vertices: []
       indices: 
       edges: []

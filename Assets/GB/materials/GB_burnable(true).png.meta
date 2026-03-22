@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 62eea7bc9ae66a140afb92d31a30fbac
+guid: 41e8cb6edef9bc5439145d29895203f6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6489456766570796704
-    second: GB_roundArrow_0
+      213: 8036779850572116547
+    second: GB_burnable(true)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GB_roundArrow_0
+      name: GB_burnable(true)_0
       rect:
         serializedVersion: 2
-        x: 56
-        y: 373
-        width: 1944
-        height: 1171
+        x: 0
+        y: 0
+        width: 1312
+        height: 1243
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 069ea431471d0f5a0800000000000000
-      internalID: -6489456766570796704
+      spriteID: 3423e5381b0688f60800000000000000
+      internalID: 8036779850572116547
       vertices: []
       indices: 
       edges: []
@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GB_burnable(true)_0: 8036779850572116547
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

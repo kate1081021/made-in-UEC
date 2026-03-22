@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 62eea7bc9ae66a140afb92d31a30fbac
+guid: a73374129a8dc7946a23dc142ad587c9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6489456766570796704
-    second: GB_roundArrow_0
+      213: -305720308019693268
+    second: GB_plasticbottle(true)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GB_roundArrow_0
+      name: GB_plasticbottle(true)_0
       rect:
         serializedVersion: 2
-        x: 56
-        y: 373
-        width: 1944
-        height: 1171
+        x: 0
+        y: 0
+        width: 362
+        height: 1192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 069ea431471d0f5a0800000000000000
-      internalID: -6489456766570796704
+      spriteID: c29fcd7effcd1cbf0800000000000000
+      internalID: -305720308019693268
       vertices: []
       indices: 
       edges: []
@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GB_plasticbottle(true)_0: -305720308019693268
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
