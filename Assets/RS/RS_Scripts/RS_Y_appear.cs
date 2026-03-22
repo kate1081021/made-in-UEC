@@ -16,6 +16,9 @@ namespace RS
 
         public void Setup()
         {
+            startTime/=Time.timeScale;
+            duration/=Time.timeScale;
+            waitTime/=Time.timeScale;
             SetAlpha(0f);
             StartCoroutine(FadeSequence());
         }
