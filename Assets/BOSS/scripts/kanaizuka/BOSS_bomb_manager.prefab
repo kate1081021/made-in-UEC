@@ -57,4 +57,4 @@ MonoBehaviour:
   min_target_y: 2
   bomb_prefab: {fileID: 8298798877524502542, guid: 2167c0352664113479dcd2dd4f86c3ae, type: 3}
   taeget_prefab: {fileID: 6232303829187568863, guid: bc60ec6c824543f499632b05b099b8ac, type: 3}
-  rubble_prefab: {fileID: 0}
+  rubble_prefab: {fileID: 5187367657913055002, guid: 972fc5a70e81da642897e58ab7871eff, type: 3}
