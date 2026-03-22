@@ -47,6 +47,8 @@ MonoBehaviour:
   obstaclePrefab: {fileID: 5659768287263382816, guid: 7c1beefd822aca24fbcc35765261548b, type: 3}
   obstacleSprites:
   - {fileID: 7028616704906629411, guid: 80b62149855a39a4eafebde311b27c78, type: 3}
+  - {fileID: 2684548955827070867, guid: 5e5f42b7d975b3d45996db04b11a0446, type: 3}
+  - {fileID: -5913868328097134230, guid: 8bf28651d96040646b90ca39ac83a263, type: 3}
   spawnInterval: 1
   minX: -8
   maxX: 8

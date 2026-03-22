@@ -7,10 +7,11 @@ namespace BOSS
     {
         FallingObjects, 
         GhostBlindness, 
-        BombThrow, 
+        // BombThrow は削除しました
         Boomerang, 
         Baloon, 
         Snake, 
+        Wind, 
     }
 
     [System.Serializable]
@@ -22,44 +23,43 @@ namespace BOSS
         [HideInInspector] public bool hasTriggered = false; 
     }
 
-    public class BOSS_ObstacleDirector : MonoBehaviour
+    public class BOSS_ObstacleDirector : MiniGameBase
     {
-        [Header("ステージ進行（タイムライン）設定")]
+        [Header("ステージ進行設定")]
         public List<StageEvent> stageEvents = new List<StageEvent>();
-
-        [Header("ターゲット情報（空欄なら自動検索）")]
         public Transform playerTarget;
 
-        [Header("【1】継続型のプレハブ（ON/OFF切り替え）")]
+        [Header("【1】継続型のプレハブ")]
         public GameObject fallingObstacleManagerPrefab;
+        public GameObject windControllerPrefab; 
 
-        [Header("【2】単発・生成型のプレハブ（ポンと出すだけ）")]
+        [Header("【2】単発型のプレハブ")]
         public GameObject ghostPrefab;
-        public GameObject bombPrefab; 
+        // 爆弾のプレハブ枠は削除しました
         public GameObject baloonPrefab; 
 
-        [Header("【3】ブーメラン設定（ディレクター内蔵型）")]
+        [Header("【3】ブーメラン設定")]
         public GameObject boomerangPrefab; 
-        [Tooltip("何秒に1個落とすか")]
         public float boomerangSpawnInterval = 2.0f; 
 
-        [Header("【4】ヘビ（蛇行）設定（ディレクター内蔵型）")]
+        [Header("【4】ヘビ設定")]
         public GameObject snakePrefab; 
-        [Tooltip("何秒に1個落とすか")]
         public float snakeSpawnInterval = 2.0f; 
 
         private BOSS_ObstacleManager spawnedFallingManager;
+        private BOSS_WindController spawnedWindController; 
+
         private float elapsedTime = 0f;
         private bool isTimelineRunning = false;
-
         private bool isBoomerangActive = false;
         private float boomerangTimer = 0f;
-
         private bool isSnakeActive = false;
         private float snakeTimer = 0f;
 
-        void Start()
+        public override void OnGameStart()
         {
+            MGManager.Load();
+
             if (playerTarget == null)
             {
                 GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
@@ -68,8 +68,13 @@ namespace BOSS
 
             if (fallingObstacleManagerPrefab != null)
             {
-                GameObject managerObj = Instantiate(fallingObstacleManagerPrefab, Vector3.zero, Quaternion.identity);
-                spawnedFallingManager = managerObj.GetComponent<BOSS_ObstacleManager>();
+                spawnedFallingManager = Instantiate(fallingObstacleManagerPrefab, Vector3.zero, Quaternion.identity).GetComponent<BOSS_ObstacleManager>();
+            }
+            
+            if (windControllerPrefab != null)
+            {
+                spawnedWindController = Instantiate(windControllerPrefab, Vector3.zero, Quaternion.identity).GetComponent<BOSS_WindController>();
+                spawnedWindController.Init(); 
             }
 
             StartTimeline();
@@ -93,21 +98,13 @@ namespace BOSS
             if (isBoomerangActive)
             {
                 boomerangTimer += Time.deltaTime;
-                if (boomerangTimer >= boomerangSpawnInterval)
-                {
-                    SpawnBoomerang();
-                    boomerangTimer = 0f;
-                }
+                if (boomerangTimer >= boomerangSpawnInterval) { SpawnBoomerang(); boomerangTimer = 0f; }
             }
 
             if (isSnakeActive)
             {
                 snakeTimer += Time.deltaTime;
-                if (snakeTimer >= snakeSpawnInterval)
-                {
-                    SpawnSnake();
-                    snakeTimer = 0f;
-                }
+                if (snakeTimer >= snakeSpawnInterval) { SpawnSnake(); snakeTimer = 0f; }
             }
         }
 
@@ -118,19 +115,13 @@ namespace BOSS
         {
             switch (type)
             {
-                case ObstacleType.FallingObjects: StartFallingObjects(); break;
+                case ObstacleType.FallingObjects: if(spawnedFallingManager) spawnedFallingManager.StartSpawning(); break;
                 case ObstacleType.GhostBlindness: SpawnGhost(); break;
-                case ObstacleType.BombThrow:
-                    if (bombPrefab != null) Instantiate(bombPrefab, Vector3.zero, Quaternion.identity);
-                    break;
-                case ObstacleType.Boomerang: StartBoomerang(); break;
-                
-                // ★修正箇所：ど真ん中（Vector3.zero）に出すのをやめ、プレハブの保存位置を使います！
-                case ObstacleType.Baloon: 
-                    if (baloonPrefab != null) Instantiate(baloonPrefab, baloonPrefab.transform.position, baloonPrefab.transform.rotation);
-                    break;
-
-                case ObstacleType.Snake: StartSnake(); break; 
+                // 爆弾の処理は削除しました
+                case ObstacleType.Boomerang: isBoomerangActive = true; boomerangTimer = boomerangSpawnInterval; break;
+                case ObstacleType.Baloon: if (baloonPrefab) Instantiate(baloonPrefab, baloonPrefab.transform.position, baloonPrefab.transform.rotation); break;
+                case ObstacleType.Snake: isSnakeActive = true; snakeTimer = snakeSpawnInterval; break; 
+                case ObstacleType.Wind: if(spawnedWindController) spawnedWindController.StartWind(playerTarget); break;
             }
         }
 
@@ -138,27 +129,12 @@ namespace BOSS
         {
             switch (type)
             {
-                case ObstacleType.FallingObjects: StopFallingObjects(); break;
-                case ObstacleType.Boomerang: StopBoomerang(); break; 
-                case ObstacleType.Snake: StopSnake(); break; 
+                case ObstacleType.FallingObjects: if(spawnedFallingManager) spawnedFallingManager.StopSpawning(); break;
+                case ObstacleType.Boomerang: isBoomerangActive = false; break; 
+                case ObstacleType.Snake: isSnakeActive = false; break; 
+                case ObstacleType.Wind: if(spawnedWindController) spawnedWindController.StopWind(); break;
             }
         }
-
-        public void StopAllObstacles()
-        {
-            StopFallingObjects();
-            StopBoomerang();
-            StopSnake(); 
-        }
-
-        private void StartFallingObjects() { if (spawnedFallingManager != null) spawnedFallingManager.StartSpawning(); }
-        private void StopFallingObjects() { if (spawnedFallingManager != null) spawnedFallingManager.StopSpawning(); }
-
-        private void StartBoomerang() { isBoomerangActive = true; boomerangTimer = boomerangSpawnInterval; }
-        private void StopBoomerang() { isBoomerangActive = false; }
-
-        private void StartSnake() { isSnakeActive = true; snakeTimer = snakeSpawnInterval; }
-        private void StopSnake() { isSnakeActive = false; }
 
         private void SpawnSnake()
         {
@@ -166,8 +142,7 @@ namespace BOSS
             {
                 float topY = Camera.main.ViewportToWorldPoint(new Vector2(0, 1)).y;
                 float randomX = Random.Range(-6.0f, 6.0f); 
-                Vector3 spawnPos = new Vector3(randomX, topY + 2.0f, 0);
-                Instantiate(snakePrefab, spawnPos, Quaternion.identity);
+                Instantiate(snakePrefab, new Vector3(randomX, topY + 2.0f, 0), Quaternion.identity);
             }
         }
 
@@ -177,8 +152,7 @@ namespace BOSS
             {
                 float topY = Camera.main.ViewportToWorldPoint(new Vector2(0, 1)).y;
                 float randomX = Random.Range(-7.0f, 7.0f); 
-                Vector3 spawnPos = new Vector3(randomX, topY + 2.0f, 0);
-                Instantiate(boomerangPrefab, spawnPos, Quaternion.identity);
+                Instantiate(boomerangPrefab, new Vector3(randomX, topY + 2.0f, 0), Quaternion.identity);
             }
         }
 
