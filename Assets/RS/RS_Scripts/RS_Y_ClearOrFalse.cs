@@ -11,7 +11,29 @@ namespace RS
         AudioSource audioSource;
 
         public GameObject[] prefabs;
-        [Range(1, 5)] public int count = 3;
+        [Range(1, 6)] public int count = 3;
+        
+        private void gameoption()
+        {
+            int stage = MGManager.stage;
+            if (stage <= 5)
+            {
+                count = 2;
+            }
+            else if (stage <= 10)
+            {
+                count = 3;
+            }
+            else if (stage <= 20)
+            {
+                count = 5;
+            }
+            else if (stage <= 30)
+            {
+                count = 6;
+            }
+        }
+
 
         private List<RS_Y_appear> spawnedScripts = new List<RS_Y_appear>();
         private int currentIndex = 0;
@@ -27,6 +49,7 @@ namespace RS
         {
             MGManager.Load();
             currentIndex = 0;
+            gameoption();
             SpawnClones();
             gameActive = true;
             audioSource = GetComponent<AudioSource>();
