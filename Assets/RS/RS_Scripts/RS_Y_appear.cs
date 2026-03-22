@@ -8,7 +8,7 @@ namespace RS
     {
         public float duration = 1.5f;
         public float waitTime = 0.5f;
-        public KeyCode targetKey = KeyCode.Alpha1; // これをSpawn側が読み取る
+        public int aciton_type;
 
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private TextMeshPro textMeshPro;

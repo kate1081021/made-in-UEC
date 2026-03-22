@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 namespace RS
 {
@@ -18,6 +19,10 @@ namespace RS
         private bool gameover = false;
         public RS_SpritesManager spm;
 
+        [SerializeField]
+        private InputActionReference arrow;
+        private bool active_arrow = true;
+
         public override void OnGameStart()
         {
             MGManager.Load();
@@ -34,7 +39,7 @@ namespace RS
             {
                 float x = (i * 2.0f) - (count - 1.0f);
                 Vector3 spawnPos = new Vector3(x, 0, -2);
-                
+
                 GameObject randomPrefab = prefabs[Random.Range(0, prefabs.Length)];
                 GameObject clone = Instantiate(randomPrefab, spawnPos, Quaternion.identity);
 
@@ -50,15 +55,53 @@ namespace RS
 
         void Update()
         {
+            // Vector2 v = arrow.action.ReadValue<Vector2>();
+            // Debug.Log(v.x);
+        }
+
+        private void OnEnable()
+        {
+            arrow.action.Enable();
+        }
+
+        private void OnDisable()
+        {
+            arrow.action.Disable();
+        }
+
+        protected override void OnMovePerformed(Vector2 value)
+        {
+            Vector2 dir = convert_stick_to_dir(value);
+            //Debug.Log("呼ばれた！ " + value.x + " " + dir.x);
+            if (active_arrow && (dir.x + dir.y == 1 || dir.x + dir.y == -1))
+            {
+                //Debug.Log("判定 ");
+                active_arrow = false;
+
+                if (dir.x == -1) Judge(1); // 左
+                else if (dir.y == -1) Judge(2); // 下
+                else if (dir.x == 1) Judge(3); // 右
+                else if (dir.y == 1) Judge(4); // 上
+            }
+        }
+
+        protected override void OnMoveCanceled(Vector2 value)
+        {
+            active_arrow = true;
+        }
+
+        private void Judge(int number)
+        {
+            //Debug.Log("jubge start!");
             if (!gameActive || currentIndex >= spawnedScripts.Count) return;
 
             RS_Y_appear currentTarget = spawnedScripts[currentIndex];
 
             if (currentTarget == null) return;
 
-            if (gameover==false)
+            if (!gameover)
             {
-                if (Input.GetKeyDown(currentTarget.targetKey))
+                if (number == currentTarget.aciton_type)
                 {
                     Debug.Log($"正解！左から {currentIndex + 1} 番目を消しました");
                     Destroy(currentTarget.gameObject);
@@ -68,37 +111,29 @@ namespace RS
                     }
                     currentIndex++; // 次へ
 
-                        if (currentIndex >= count)
-                        {
-                            Debug.Log("ゲームクリア！");
-                            spm.is_clear = true;
-                            spm.is_spelled = true;
-                            MGManager.ClearGame();
-                        }
-                    
+                    if (currentIndex >= count)
+                    {
+                        Debug.Log("ゲームクリア！");
+                        spm.is_clear = true;
+                        spm.is_spelled = true;
+                        MGManager.ClearGame();
+                    }
                 }
                 else
                 {
-                    foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
+                    Debug.Log("不正解！ゲームオーバー！");
+                    spm.is_clear = false;
+                    spm.is_spelled = true;
+                    gameover = true;
+                    if (audioSource != null && failSound != null)
                     {
-                        if (Input.GetKeyDown(key) && key != currentTarget.targetKey)
+                        audioSource.PlayOneShot(failSound);
+                    }
+                    foreach (var script in spawnedScripts)
+                    {
+                        if (script != null)
                         {
-                            Debug.Log("不正解！ゲームオーバー！");
-                            spm.is_clear = false;
-                            spm.is_spelled = true;
-                            gameover = true;
-                            if (audioSource != null && failSound != null)
-                            {
-                                audioSource.PlayOneShot(failSound);
-                            }
-                            foreach (var script in spawnedScripts)
-                            {
-                                if (script != null)
-                                {
-                                    script.HideImmediately(); 
-                                }
-                            }
-                            break;
+                            script.HideImmediately();
                         }
                     }
                 }
