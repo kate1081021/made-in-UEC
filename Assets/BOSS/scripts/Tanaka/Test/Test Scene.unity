@@ -357,76 +357,71 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
---- !u!1 &1801249475
-GameObject:
+--- !u!1001 &7707062923368130184
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1801249477}
-  - component: {fileID: 1801249476}
-  m_Layer: 0
-  m_Name: ObstacleDirector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1801249476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1801249475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4562c40ad6d81d5439bc11384c0ef06d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameBGM: {fileID: 0}
-  isLoopBGM: 0
-  SEName: []
-  SEFile: []
-  stageEvents:
-  - triggerTime: 0
-    obstacleType: 0
-    isActivate: 1
-    hasTriggered: 0
-  - triggerTime: 5
-    obstacleType: 0
-    isActivate: 0
-    hasTriggered: 0
-  playerTarget: {fileID: 1261639711}
-  fallingObstacleManagerPrefab: {fileID: 6560053587542479601, guid: e2968e6288718ce4c8d95427d7ede5ed, type: 3}
-  windControllerPrefab: {fileID: 3206320292153243614, guid: a7ceb609759d8d84d850a0057697d99e, type: 3}
-  ghostPrefab: {fileID: 8843140015650764768, guid: 2e5b6cd8da55a8546b70b737b8cbc132, type: 3}
-  baloonPrefab: {fileID: 412334233225753963, guid: f5b197cc0bfbda0438ee079c0f53df26, type: 3}
-  boomerangPrefab: {fileID: 1499228484478294357, guid: e2e974865984624409ea97afd3bfc549, type: 3}
-  boomerangSpawnInterval: 1
-  snakePrefab: {fileID: 1499228484478294357, guid: 48204a94384f6b5409109b76c6cab049, type: 3}
-  snakeSpawnInterval: 1
---- !u!4 &1801249477
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1801249475}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.2725286, y: -0.43423977, z: -9.996979}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2460148636500578892, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.2725286
+      objectReference: {fileID: 0}
+    - target: {fileID: 2460148636500578892, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.43423977
+      objectReference: {fileID: 0}
+    - target: {fileID: 2460148636500578892, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.996979
+      objectReference: {fileID: 0}
+    - target: {fileID: 2460148636500578892, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2460148636500578892, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2460148636500578892, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2460148636500578892, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2460148636500578892, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2460148636500578892, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2460148636500578892, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112407373462132772, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: playerTarget
+      value: 
+      objectReference: {fileID: 1261639711}
+    - target: {fileID: 7564011099653861096, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: m_Name
+      value: ObstacleDirector
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 726166653}
   - {fileID: 1261639711}
-  - {fileID: 1801249477}
+  - {fileID: 7707062923368130184}
