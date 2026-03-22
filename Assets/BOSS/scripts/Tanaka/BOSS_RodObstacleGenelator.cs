@@ -37,9 +37,10 @@ namespace BOSS
             if (BOSS_ObstaclePrefab == null) return;
 
             Vector3 BOSS_SpawnPos = new Vector3(0, 6 + 1.0f, 0);
+            Quaternion BOSS_Rotation = Quaternion.Euler(0, 0, 90);
 
             // 3. プレハブのクローンを生成（Instantiate）
-            Instantiate(BOSS_ObstaclePrefab, BOSS_SpawnPos, Quaternion.identity);
+            Instantiate(BOSS_ObstaclePrefab, BOSS_SpawnPos, BOSS_Rotation);
         }
     }
 }

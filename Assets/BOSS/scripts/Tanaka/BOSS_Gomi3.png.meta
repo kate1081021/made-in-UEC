@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7a9efadb9fe8a7043ae0d94f9c22f096
+guid: 521af9336cb4d154d952d4c57d28b049
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7558273174613869634
-    second: "\u9ED2_0"
+      213: -4509382791215942014
+    second: BOSS_Gomi3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u9ED2_0"
+      name: BOSS_Gomi3_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 960
-        height: 720
+        width: 1003
+        height: 1375
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2444938286164e860800000000000000
-      internalID: 7558273174613869634
+      spriteID: 286705d3e347b61c0800000000000000
+      internalID: -4509382791215942014
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      "\u9ED2_0": 7558273174613869634
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
