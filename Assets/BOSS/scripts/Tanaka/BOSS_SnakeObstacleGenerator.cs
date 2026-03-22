@@ -15,9 +15,7 @@ namespace BOSS
         private Vector2 BOSS_ScreenLimit;       // 画面端を覚える用
 
         public override void OnGameStart()
-        {
-            MGManager.Load();
-            
+        {   
             // 画面の右上（1,1）の座標を取得して、出現範囲を決める
             BOSS_ScreenLimit = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
         }

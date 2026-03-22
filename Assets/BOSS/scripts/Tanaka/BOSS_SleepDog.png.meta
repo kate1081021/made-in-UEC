@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a73b33b159e5e8a41a2bca2a2589dae0
+guid: a8fd4cf4dd960494fad6a8e2810b1d88
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1241062712933689207
-    second: mochi_Dodai_0
+      213: -7150348210334720573
+    second: BOSS_SleepDog_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mochi_Dodai_0
+      name: BOSS_SleepDog_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 331
-        height: 104
+        x: 535
+        y: 205
+        width: 977
+        height: 649
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 777256446f3293110800000000000000
-      internalID: 1241062712933689207
+      spriteID: 3cd16a6df2cd4cc90800000000000000
+      internalID: -7150348210334720573
       vertices: []
       indices: 
       edges: []
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mochi_Dodai_0: 1241062712933689207
+      BOSS_SleepDog_0: -7150348210334720573
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
