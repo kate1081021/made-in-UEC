@@ -68,7 +68,7 @@ namespace UT
             if(MGManager.stage <= 20) Instantiate(level1[Random.Range(0, level1.Count)]);
             else if(MGManager.stage <= 40) Instantiate(level2[Random.Range(0, level2.Count)]);
             else Instantiate(level3[Random.Range(0, level3.Count)]);
-            StartCoroutine(wait());
+            //StartCoroutine(wait());
         }
         public override void OnGameEnd() 
         {
@@ -95,11 +95,13 @@ namespace UT
             }
         }
 
+        /*
         IEnumerator wait()
         {
             yield return new WaitForSeconds(timelimit / Time.timeScale);
             OnGameEnd();
         }
+        */
         void FixedUpdate()
         {
             float slow = Action.IsPressed() ? 0.5f : 1f;

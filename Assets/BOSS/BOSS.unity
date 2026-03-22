@@ -554,6 +554,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1985192669}
   - component: {fileID: 1985192668}
+  - component: {fileID: 1985192670}
+  - component: {fileID: 1985192671}
   m_Layer: 0
   m_Name: TanakaObstacleGenelator
   m_TagString: Untagged
@@ -568,7 +570,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985192667}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd33c2917ddd8b543b66ee7861bbe1f8, type: 3}
   m_Name: 
@@ -594,6 +596,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1985192670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985192667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b336f8a23a24eb4eab9d9f4670fccc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BOSS_obstaclePrefab: {fileID: 1499228484478294357, guid: e2e974865984624409ea97afd3bfc549, type: 3}
+  BOSS_spawnInterval: 1.5
+--- !u!114 &1985192671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985192667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6aa62d026478c42bc1c098df3d8ec1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BOSS_baloonPrefab: {fileID: 412334233225753963, guid: f5b197cc0bfbda0438ee079c0f53df26, type: 3}
+  BOSS_spawnInterval: 5
 --- !u!1 &2094987024
 GameObject:
   m_ObjectHideFlags: 0
