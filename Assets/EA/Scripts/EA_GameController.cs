@@ -71,6 +71,11 @@ namespace EA
         /// </summary>
         public EA_UIManager uiManager;  // UIManager
 
+        /// <summary>
+        /// 勝利演出
+        /// </summary>
+        public EA_RisajuView rView;
+
 
         // ゲーム開始時に呼ばれる
         public override void OnGameStart()
@@ -158,6 +163,9 @@ namespace EA
             {
                 // ゲームクリア
                 MGManager.ClearGame();
+
+                // りさじゅう呼び出し
+                StartCoroutine(rView.Animation());
 
                 // クリア時の演出を呼び出す
                 uiManager.GameClear();
