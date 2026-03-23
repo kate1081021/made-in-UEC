@@ -9,14 +9,15 @@ TagManager:
   - closeButton
   - Ground
   - Obstacle
+  - Map
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
+  - BackGround
   - 
   - 
   - 
