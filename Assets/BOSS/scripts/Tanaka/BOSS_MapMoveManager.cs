@@ -30,9 +30,9 @@ namespace BOSS
             {
                 BOSSMaprigidbody2D.linearVelocityY = BOSS_MapSpeed;
 
-                if (BOSSTransform.position.y < -100)
+                if (BOSSTransform.position.y < -18.5f)
                 {
-                    BOSSTransform.position = new Vector3(BOSSTransform.position.x, 100, BOSSTransform.position.z);
+                    BOSSTransform.position = new Vector3(BOSSTransform.position.x, 8.5f, BOSSTransform.position.z);
                 }
             }
         }
