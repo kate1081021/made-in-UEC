@@ -147,8 +147,11 @@ namespace EA
         // Enter/Spaceキーが押された
         protected override void OnActionStarted(float value)
         {
+            // クリア時または硬直時は呼び出さない
+            if (MGManager.IsClear || waitForNextTry) { return; }
+
             // 硬直がなければそのまま呼び出し
-            if (!waitForNextTry){ StartCoroutine(CheckCell()); }
+            StartCoroutine(CheckCell());
 
         }
 
