@@ -18,9 +18,10 @@ namespace BOSS
         [SerializeField] public int BOSS_playerLife = 3;
         public int BOSS_playerSpeed = 5;
 
-        [Header("無敵設定バイブス")]
+        [Header("無敵設定")]
         [SerializeField] public float BOSS_invincibleTime = 2.0f; // 無敵が続く秒数
         [SerializeField] public float BOSS_blinkInterval = 0.1f;  // 点滅する速さ
+        [SerializeField] public float BOSS_jumpBlinkInterval = 0.1f;  //ジャンプ時の点滅速度
         private bool BOSS_isInvincible = false;                  // 今、無敵中かどうかのフラグ
         private Vector2 BOSS_screenLimit;
         private Vector2 BOSS_playerHalfSize;
@@ -59,11 +60,18 @@ namespace BOSS
         {
             // 1. 無敵スタート ＆ アニメ切り替え！
             BOSS_isInvincible = true;
+            float BOSS_elapsedTime = 0;
             BOSS_playerAnim.SetBool("isJumping", true); // アニメON！
            
-            // ✨ 点滅させないから、Sprite.enabledをいじるループは不要！
-            // 指定した無敵時間の分だけ、ただ待機するよ。
-            yield return new WaitForSeconds(BOSS_jumpInvincibleTime);
+            while (BOSS_elapsedTime < BOSS_invincibleTime)
+            {
+                // スプライトを表示・非表示させて点滅させる
+                BOSS_playerSprite.enabled = !BOSS_playerSprite.enabled;
+                yield return new WaitForSeconds(BOSS_jumpBlinkInterval);
+                BOSS_elapsedTime += BOSS_blinkInterval;
+            }
+            // 最後は必ず表示されるようにして、無敵終了
+            BOSS_playerSprite.enabled = true;
 
             // 2. 無敵終了 ＆ アニメを戻す！
             BOSS_playerSprite.enabled = true; // 念のため表示を確実にする
