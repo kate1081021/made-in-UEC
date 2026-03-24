@@ -4,7 +4,7 @@ using TMPro;
 
 namespace RS
 {
-    public class RS_Y_appear : MiniGameBase
+    public class RS_appear : MiniGameBase
     {
         public float startTime = 1.0f;
         public float duration = 1.5f;

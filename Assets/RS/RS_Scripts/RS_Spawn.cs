@@ -16,6 +16,7 @@ namespace RS
         [SerializeField] private SpriteRenderer sr;
         public GameObject[] prefabs;
         [Range(1, 6)] public int count = 3;
+        private Vector2 action_perform;
 
         private void gameoption()
         {
@@ -35,7 +36,7 @@ namespace RS
         }
 
 
-        private List<RS_Y_appear> spawnedScripts = new List<RS_Y_appear>();
+        private List<RS_appear> spawnedScripts = new List<RS_appear>();
         private int currentIndex = 0;
         private bool gameActive = false;
         private bool gameover = false;
@@ -66,7 +67,7 @@ namespace RS
                 GameObject randomPrefab = prefabs[Random.Range(0, prefabs.Length)];
                 GameObject clone = Instantiate(randomPrefab, spawnPos, Quaternion.identity);
 
-                var script = clone.GetComponent<RS_Y_appear>();
+                var script = clone.GetComponent<RS_appear>();
                 if (script != null)
                 {
                     script.Setup();
@@ -112,12 +113,12 @@ namespace RS
         protected override void OnMovePerformed(Vector2 value)
         {
             Vector2 dir = convert_stick_to_dir(value);
-            //Debug.Log("呼ばれた！ " + value.x + " " + dir.x);
-            if (active_arrow && (dir.x + dir.y == 1 || dir.x + dir.y == -1))
+            //Debug.Log("呼ばれた！ x " + dir.x + " y " + dir.y + " x " + action_perform.x + " y " + action_perform.y);
+            if ((action_perform != dir || active_arrow) && (dir.x + dir.y == 1 || dir.x + dir.y == -1))
             {
                 //Debug.Log("判定 ");
                 active_arrow = false;
-
+                action_perform = dir;
                 if (dir.x == -1) Judge(1); // 左
                 else if (dir.y == -1) Judge(2); // 下
                 else if (dir.x == 1) Judge(3); // 右
@@ -135,7 +136,7 @@ namespace RS
             //Debug.Log("jubge start!");
             if (!gameActive || currentIndex >= spawnedScripts.Count) return;
 
-            RS_Y_appear currentTarget = spawnedScripts[currentIndex];
+            RS_appear currentTarget = spawnedScripts[currentIndex];
 
             if (currentTarget == null) return;
 
@@ -155,6 +156,7 @@ namespace RS
                         spm.is_spelled = true;
                         time_board.SetActive(false);
                         time_0.SetActive(false);
+                        //SEPlay("c_sound", se[2]);
                         MGManager.ClearGame();
                     }
                 }
@@ -175,6 +177,7 @@ namespace RS
                 time_0.SetActive(false);
                 gameover = true;
                 SEPlay("f", se[1]);
+                //SEPlay("f_sound", se[3]);
                 foreach (var script in spawnedScripts)
                 {
                     if (script != null)
