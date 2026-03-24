@@ -52,7 +52,7 @@ namespace BOSS
 
             // ちょっと余韻を作ってからリザルト出したいなら、
             // ここで少し待ってからCompleteGoalSequenceを呼ぶのもアリ
-            goalManager.CompleteGoalSequence();
+            //goalManager.CompleteGoalSequence();
         }
     }
 }

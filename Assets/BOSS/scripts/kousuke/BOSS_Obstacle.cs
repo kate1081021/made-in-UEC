@@ -8,17 +8,31 @@ namespace BOSS
         public float baseFallSpeed = 5f; // 基本の落ちるスピード
         public float destroyY = -7f;     // このY座標を下回ったら消す
 
-        // ★生成時に ObstacleManager から呼ばれる
+        [Header("見た目の設定（ランダム画像）")]
+        public Sprite[] randomSprites;   // ★追加：画像を複数入れられる「リスト」の枠
+
+        // 生成時に ObstacleManager から呼ばれる
         public void Init()
         {
-            // （今回は特に速度の事前計算が不要になったので空っぽでOKです。
-            // もし今後「出現時のエフェクト」などを追加したくなったらここに書けます！）
+            // ★追加：画像リストに中身がセットされていれば、ランダムに1枚選ぶ！
+            if (randomSprites != null && randomSprites.Length > 0)
+            {
+                // 自分にくっついている SpriteRenderer（画像表示パーツ）を取得
+                SpriteRenderer sr = GetComponent<SpriteRenderer>();
+                if (sr != null)
+                {
+                    // 0番目 ～ リストの最後の番号 の中からサイコロを振る
+                    int randomIndex = Random.Range(0, randomSprites.Length);
+                    
+                    // 選ばれた画像をセットする！
+                    sr.sprite = randomSprites[randomIndex];
+                }
+            }
         }
 
         void Update()
         {
-            // ★修正：Time.deltaTime に変更！
-            // 倍速にする必要がなく、一時停止（ポーズ）にも自動で対応してくれる最強の書き方です。
+            // 落下処理
             transform.position += Vector3.down * baseFallSpeed * Time.deltaTime;
 
             if (transform.position.y < destroyY)
@@ -33,7 +47,6 @@ namespace BOSS
             if (collision.CompareTag("Player"))
             {
                 Debug.Log("プレイヤーに障害物がヒットしました！");
-                
                 // TODO: ライフ管理担当者のダメージ処理関数を後で追記する
             }
         }
