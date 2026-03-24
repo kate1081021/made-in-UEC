@@ -1,5 +1,5 @@
-using System.Collections; // コルーチンを使うためにこれが必要だよ！
-using Unity.VisualScripting;
+// 164行目あたりに強制終了用関数を読んでいる部分があります。書き換えはそこをお願いします。
+using System.Collections;
 using UnityEngine;
 
 namespace BOSS
@@ -9,6 +9,7 @@ namespace BOSS
         Rigidbody2D BOSS_playerRb;
         SpriteRenderer BOSS_playerSprite;
         Animator BOSS_playerAnim;
+        public bool BOSS_isGameOver = false; // ゲームオーバー演出中かどうかのフラグ
         [Header("ジャンプ無敵設定")]
         [SerializeField] public float BOSS_jumpInvincibleTime = 1.0f; // ジャンプ無敵の継続時間
         [SerializeField] public float BOSS_jumpCoolTime = 2.0f;       // 次に飛べるまでの待ち時間
@@ -18,9 +19,10 @@ namespace BOSS
         [SerializeField] public int BOSS_playerLife = 3;
         public int BOSS_playerSpeed = 5;
 
-        [Header("無敵設定バイブス")]
+        [Header("無敵設定")]
         [SerializeField] public float BOSS_invincibleTime = 2.0f; // 無敵が続く秒数
         [SerializeField] public float BOSS_blinkInterval = 0.1f;  // 点滅する速さ
+        [SerializeField] public float BOSS_jumpBlinkInterval = 0.1f;  //ジャンプ時の点滅速度
         private bool BOSS_isInvincible = false;                  // 今、無敵中かどうかのフラグ
         private Vector2 BOSS_screenLimit;
         private Vector2 BOSS_playerHalfSize;
@@ -41,15 +43,15 @@ namespace BOSS
 
         void Update()
         {
-            // 移動処理（既存のやつ）
+            // 移動処理
             BOSS_playerRb.linearVelocity = BOSS_playerSpeed * Move.ReadValue<Vector2>();
-            BOSS_ClampPosition();
-
-            // ✨ ジャンプ入力の判定！
-            // 「Actionボタンが押された」かつ「無敵中じゃない」かつ「クールタイム中じゃない」ときだけ実行
-            if (Action.WasPressedThisFrame() && !BOSS_isInvincible && !BOSS_isJumpCooldown)
+            if (!BOSS_isGameOver)
             {
-                Debug.Log("ジャンプ無敵");
+                BOSS_ClampPosition();
+            }
+
+            if (Action.WasPressedThisFrame() && !BOSS_isInvincible && !BOSS_isJumpCooldown && !BOSS_isGameOver)
+            {
                 StartCoroutine(BOSS_JumpInvincibleWithCooldown());
             }
         }
@@ -59,22 +61,29 @@ namespace BOSS
         {
             // 1. 無敵スタート ＆ アニメ切り替え！
             BOSS_isInvincible = true;
-            BOSS_playerAnim.SetBool("isJumping", true); // アニメON！
+            float BOSS_elapsedTime = 0;
+            BOSS_playerAnim.SetBool("isJumping", true); // アニメーションON
            
-            // ✨ 点滅させないから、Sprite.enabledをいじるループは不要！
-            // 指定した無敵時間の分だけ、ただ待機するよ。
-            yield return new WaitForSeconds(BOSS_jumpInvincibleTime);
+            while (BOSS_elapsedTime < BOSS_invincibleTime)
+            {
+                // スプライトを表示・非表示させて点滅させる
+                BOSS_playerSprite.enabled = !BOSS_playerSprite.enabled;
+                yield return new WaitForSeconds(BOSS_jumpBlinkInterval);
+                BOSS_elapsedTime += BOSS_blinkInterval;
+            }
+            // 最後は必ず表示されるようにして、無敵終了
+            BOSS_playerSprite.enabled = true;
 
-            // 2. 無敵終了 ＆ アニメを戻す！
+            // 2. 無敵終了 ＆ アニメを戻す
             BOSS_playerSprite.enabled = true; // 念のため表示を確実にする
             BOSS_isInvincible = false;
-            BOSS_playerAnim.SetBool("isJumping", false); // アニメOFF！
+            BOSS_playerAnim.SetBool("isJumping", false); // アニメーションOFF
 
-            // 3. クールタイム開始！
+            // 3. クールタイム開始
             BOSS_isJumpCooldown = true;
             yield return new WaitForSeconds(BOSS_jumpCoolTime);
 
-            // 4. クールタイム終了！
+            // 4. クールタイム終了
             BOSS_isJumpCooldown = false;
         }
         // --- 当たり判定 ---
@@ -89,25 +98,72 @@ namespace BOSS
         }
         void BOSS_ApplyDamage()
         {
-            // ライフを減らす
             BOSS_playerLife--;
             Debug.Log("残りライフ: " + BOSS_playerLife);
+
             if (BOSS_playerLife <= 0)
             {
-                Debug.Log("ゲームオーバー");
-                // ここにゲームオーバーの処理。
+                Debug.Log("ゲームオーバー演出開始！");
+                // ✨ ゲームオーバー用のコルーチンをスタート！
+                StartCoroutine(BOSS_GameOverSequence());
             }
             else
             {
-                // 無敵＆点滅スタート
                 StartCoroutine(BOSS_InvincibleRoutine());
             }
+        }
+        // --- ゲームオーバー演出のコルーチン ---
+        IEnumerator BOSS_GameOverSequence()
+        {
+            // 1. フラグON ＆ 他のシステムを停止
+            BOSS_isGameOver = true;
+            var allSystems = FindObjectsByType<MiniGameBase>(FindObjectsSortMode.None);
+            foreach (var system in allSystems)
+            {
+                if (system != this) system.enabled = false;
+            }
+
+            // 2. 物理を止める
+            Rigidbody2D[] allRbs = FindObjectsByType<Rigidbody2D>(FindObjectsSortMode.None);
+            foreach (var rb in allRbs)
+            {
+                rb.linearVelocity = Vector2.zero;
+                if (rb.gameObject != this.gameObject) rb.simulated = false;
+            }
+
+            // 3. 画面上の「Obstacle」タグが付いたプレハブを全部消す
+            GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+            foreach (GameObject obj in obstacles)
+            {
+                Destroy(obj); // 画面から消去
+            }
+
+            // 4. ゲームオーバーアニメーション ＆ 物理オフ
+            BOSS_playerAnim.SetBool("Gameover", true);
+            BOSS_playerRb.simulated = false;
+
+            // 5. 画面下へ落下
+            float fallSpeed = 5.0f;
+            while (transform.position.y > -BOSS_screenLimit.y - 3.0f)
+            {
+                transform.position += Vector3.up * -fallSpeed * Time.deltaTime;
+                yield return null;
+            }
+
+            // 6. 完了
+            BOSS_FinalGameOverTrigger();
+        }
+        void BOSS_FinalGameOverTrigger()
+        {
+            Debug.Log("運営側のゲームオーバー処理");
+            // ☆☆☆下記の関数は適宜コメントアウトを外し、変更してください☆☆☆
+            // MGManager.GameOver();
         }
         IEnumerator BOSS_JumpInvincibleRoutine()
         {
             BOSS_isInvincible = true;
             float BOSS_elapsedTime = 0;
-            float BOSS_jumpInvincibleTime = 1.0f; // 1秒固定！
+            float BOSS_jumpInvincibleTime = 1.0f; // 1秒固定
             while (BOSS_elapsedTime < BOSS_jumpInvincibleTime)
             {
                 BOSS_playerSprite.enabled = !BOSS_playerSprite.enabled;

@@ -1534,6 +1534,7 @@ MonoBehaviour:
   BOSS_playerSpeed: 5
   BOSS_invincibleTime: 2
   BOSS_blinkInterval: 0.1
+  BOSS_jumpBlinkInterval: 0.1
 --- !u!212 &2094987026
 SpriteRenderer:
   m_ObjectHideFlags: 0
