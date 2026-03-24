@@ -14,7 +14,7 @@ namespace RS
         void Awake()
         {
             if (spelled_time <= 0)
-                spelled_time = 1f;
+                spelled_time = 0.75f;
             mat = sr.material;
             if (t2 != null)
                 mat.SetTexture("_Texture2D", t2);

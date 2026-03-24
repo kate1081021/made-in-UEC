@@ -25,7 +25,7 @@ namespace RS
                 sr[i] = start_background[i].GetComponent<SpriteRenderer>();
             
             if (flash_time <= 0)
-                flash_time = 1f;
+                flash_time = 0.75f;
         }
 
         void Update()
