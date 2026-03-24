@@ -8,19 +8,18 @@ namespace BOSS
         public float baseFallSpeed = 5f; // 基本の落ちるスピード
         public float destroyY = -7f;     // このY座標を下回ったら消す
 
-        private float currentFallSpeed;
-
         // ★生成時に ObstacleManager から呼ばれる
         public void Init()
         {
-            // 仕様書ルール：timeScale を掛けて初期化
-            currentFallSpeed = baseFallSpeed * Time.timeScale;
+            // （今回は特に速度の事前計算が不要になったので空っぽでOKです。
+            // もし今後「出現時のエフェクト」などを追加したくなったらここに書けます！）
         }
 
         void Update()
         {
-            // Time.unscaledDeltaTime を使い、timeScaleの二重掛けを防ぎつつ移動
-            transform.position += Vector3.down * currentFallSpeed * Time.unscaledDeltaTime;
+            // ★修正：Time.deltaTime に変更！
+            // 倍速にする必要がなく、一時停止（ポーズ）にも自動で対応してくれる最強の書き方です。
+            transform.position += Vector3.down * baseFallSpeed * Time.deltaTime;
 
             if (transform.position.y < destroyY)
             {

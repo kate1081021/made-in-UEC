@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8057876159063580181
+--- !u!1 &6560053587542479601
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 147084630968884332}
-  - component: {fileID: 4173333174543661879}
+  - component: {fileID: 6575790679249979754}
+  - component: {fileID: 8536510371032672849}
   m_Layer: 0
   m_Name: ObstacleManager
   m_TagString: Untagged
@@ -17,36 +17,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &147084630968884332
+--- !u!4 &6575790679249979754
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8057876159063580181}
+  m_GameObject: {fileID: 6560053587542479601}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 7.2725286, y: -0.43423977, z: -9.996979}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4173333174543661879
+--- !u!114 &8536510371032672849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8057876159063580181}
+  m_GameObject: {fileID: 6560053587542479601}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52f5da1b3d070e64487c42826342513c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePrefab: {fileID: 5659768287263382816, guid: 7c1beefd822aca24fbcc35765261548b, type: 3}
+  obstaclePrefab: {fileID: 2428551691009027440, guid: 841c95d9f053ad242890f884a20ee2c9, type: 3}
   obstacleSprites:
   - {fileID: 7028616704906629411, guid: 80b62149855a39a4eafebde311b27c78, type: 3}
+  - {fileID: -5913868328097134230, guid: 8bf28651d96040646b90ca39ac83a263, type: 3}
+  - {fileID: 2684548955827070867, guid: 5e5f42b7d975b3d45996db04b11a0446, type: 3}
   spawnInterval: 1
   minX: -8
   maxX: 8
