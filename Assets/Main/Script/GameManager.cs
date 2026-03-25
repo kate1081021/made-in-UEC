@@ -344,7 +344,9 @@ public class GameManager : MonoBehaviour
         while (elapsed < timelimit) {
             // カウントダウン
             if (last > (timelimit - elapsed)) { uiManager.UITimer(last); last--; }
-            if (!stopEarlyFinish && MGManager.IsClear && (timelimit - elapsed) > (bombtime + waitUntilClearTime))
+
+            // 早めにゲームをクリアしたとき or 強制終了時
+            if ((!stopEarlyFinish && MGManager.IsClear && (timelimit - elapsed) > (bombtime + waitUntilClearTime)) || MGManager.isFinishedForcibly)
             // 早めに切り上げてる待ち時間中に爆弾が現れないように
             {
                 Debug.Log("早めに切り上げ");
