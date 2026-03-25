@@ -282,8 +282,8 @@ public class GameManager : MonoBehaviour
             {
                 // stage数更新
                 uiManager.updateStage();
+                StartCoroutine(uiManager.RhythmAnimation(120)); // 仮置きしている現状のBPM
                 isStageUpdated = true;
-                
             }
             // アニメーション
             if (currentTime >= StartTime + TotalPlayTime - 1.1f && !isAnimationPlaying)
