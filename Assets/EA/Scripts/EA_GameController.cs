@@ -80,6 +80,10 @@ namespace EA
         // ゲーム開始時に呼ばれる
         public override void OnGameStart()
         {
+            // BGM再生
+            BGMPlay();
+            Debug.Log(MGManager.pitchScale);
+
             // 盤面のモデルを作成する
             boardModel = new EA_BoardModel();
 
@@ -150,6 +154,9 @@ namespace EA
             // クリア時または硬直時は呼び出さない
             if (MGManager.IsClear || waitForNextTry) { return; }
 
+            // SE
+            SEPlay("card_open");
+
             // 硬直がなければそのまま呼び出し
             StartCoroutine(CheckCell());
 
@@ -167,6 +174,9 @@ namespace EA
                 // ゲームクリア
                 MGManager.ClearGame();
 
+                // SE
+                SEPlay("clear");
+
                 // りさじゅう呼び出し
                 StartCoroutine(rView.Animation());
 
@@ -177,8 +187,10 @@ namespace EA
             else
             {
                 // 間違っていた場合は少し時間を空けてから盤面をもとに戻す
+                SEPlay("fail");  // SE
                 waitForNextTry = true;
                 yield return new WaitForSeconds(0.5f);
+                SEPlay("card_close");  // SE
                 waitForNextTry = false;
                 boardModel.Flip(carsor_x, carsor_y);
 
