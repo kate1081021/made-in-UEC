@@ -87,9 +87,9 @@ public class UIManager : MonoBehaviour
     public IEnumerator RhythmAnimation(float BPM)
     {
         for (int i = 0; i < 8; i++) {
-            yield return new WaitForSeconds(60f/(BPM <= 0 ? BPM : 120));
             if (i == 0) { UIanimator.SetTrigger("StartBeat");}
             else { UIanimator.SetTrigger("Beat"); }
+            yield return new WaitForSeconds(60f/(BPM <= 0 ? BPM : 120));
         }
         UIanimator.SetTrigger("Finish");
     }
