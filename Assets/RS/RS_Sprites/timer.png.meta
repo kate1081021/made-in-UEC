@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 37a9f914a4f37214e9d792cb533d99fc
+guid: e04b895424639ad41ac636eae2f14381
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7256124449049607439
-    second: RS_summon_clear_3_0
+      213: -7754988575891523622
+    second: timer_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RS_summon_clear_3_0
+      name: timer_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 36
-        width: 1280
-        height: 817
+        y: 0
+        width: 370
+        height: 441
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1f20f5812411d4b90800000000000000
-      internalID: -7256124449049607439
+      spriteID: ad7f5c85afeb06490800000000000000
+      internalID: -7754988575891523622
       vertices: []
       indices: 
       edges: []
