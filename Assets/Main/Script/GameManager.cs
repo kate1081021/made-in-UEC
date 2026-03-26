@@ -198,7 +198,6 @@ public class GameManager : MonoBehaviour
         // アニメーションが再生されたか
         bool isStageUpdated = false;  // stage数が更新されたら
         bool isAnimationPlaying = false;  // メインのアニメーションが表示されたら
-
         // 勝利状況の確認(Stage2以降)
         if (MGManager.stage > 1 && MGManager.isMainCalled) {
             if (MGManager.IsClear)
@@ -263,7 +262,6 @@ public class GameManager : MonoBehaviour
                 BGM_start_2.pitch = PitchScale;
             }
         }
-        
         // 曲を再生し始める
         if (MGManager.stage == 1) {
             PlayImmidiate(BGM_start_1, PitchScale);
@@ -282,8 +280,8 @@ public class GameManager : MonoBehaviour
             {
                 // stage数更新
                 uiManager.updateStage();
+                StartCoroutine(uiManager.RhythmAnimation(120)); // 仮置きしている現状のBPM
                 isStageUpdated = true;
-                
             }
             // アニメーション
             if (currentTime >= StartTime + TotalPlayTime - 1.1f && !isAnimationPlaying)
@@ -295,11 +293,9 @@ public class GameManager : MonoBehaviour
             }
             yield return null;
         }
-
         // 最後にSuccessとFailureのPitchを変える
         Success.pitch = PitchScale;
         Failure.pitch = PitchScale;
-        Debug.Log("ここまで元気");
         // デバッグ後初回の終わり
         MGManager.isMainCalled = true;
 
@@ -308,7 +304,6 @@ public class GameManager : MonoBehaviour
         {
             yield return null;
         }
-
         // ついにシーンを切り替える
         asyncLoad.allowSceneActivation = true;
         
@@ -385,10 +380,14 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         Debug.Log($"<color=green> ゲームオーバー…(GameOver()より呼ばれています) </color>");
+        SceneManager.LoadScene("Title");
     }
     void GameClear()
     {
         Debug.Log($"<color=green> ゲームクリア！(GameClear()より呼ばれています) </color>");
+        SceneManager.MoveGameObjectToScene(this.gameObject, SceneManager.GetActiveScene());
+        SceneManager.MoveGameObjectToScene(uiManager.gameObject, SceneManager.GetActiveScene());
+        SceneManager.LoadScene("EndCredits");
     }
 
     // Update is called once per frame
