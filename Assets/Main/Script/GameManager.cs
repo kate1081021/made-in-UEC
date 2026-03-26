@@ -129,6 +129,7 @@ public class GameManager : MonoBehaviour
     // BGMを即座に再生する
     private void PlayImmidiate(AudioSource audio, float scale)
     {
+        Debug.Log("D-1");
         audio.Play();
         nextPlayTime = AudioSettings.dspTime + audio.clip.length / scale;
     }
@@ -136,6 +137,7 @@ public class GameManager : MonoBehaviour
     // BGM再生を予約する
     private void PlayNext(AudioSource audio, float scale)
     {
+        Debug.Log("D-2");
         audio.PlayScheduled(nextPlayTime);
         nextPlayTime += audio.clip.length / scale;
     }
@@ -198,7 +200,7 @@ public class GameManager : MonoBehaviour
         // アニメーションが再生されたか
         bool isStageUpdated = false;  // stage数が更新されたら
         bool isAnimationPlaying = false;  // メインのアニメーションが表示されたら
-
+        Debug.Log("a");
         // 勝利状況の確認(Stage2以降)
         if (MGManager.stage > 1 && MGManager.isMainCalled) {
             if (MGManager.IsClear)
@@ -224,6 +226,7 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+        Debug.Log("B");
 
         // クリア判定をリセット
         MGManager.Finished();
@@ -263,7 +266,7 @@ public class GameManager : MonoBehaviour
                 BGM_start_2.pitch = PitchScale;
             }
         }
-        
+        Debug.Log("C");
         // 曲を再生し始める
         if (MGManager.stage == 1) {
             PlayImmidiate(BGM_start_1, PitchScale);
@@ -272,6 +275,7 @@ public class GameManager : MonoBehaviour
             PlayNext(BGM_start_2, PitchScale);
             TotalPlayTime += BGM_start_2.clip.length / PitchScale;
         } 
+        Debug.Log("D");
 
         // 曲の再生終了とアニメーションの終了を同期させる
         while (BGM_start_1.isPlaying || BGM_start_2.isPlaying)  // ここの1.1(s)は現在のアニメーションが再生し終わるまでにかかる時間
@@ -294,8 +298,9 @@ public class GameManager : MonoBehaviour
 
             }
             yield return null;
+            Debug.Log("loop");
         }
-
+        Debug.Log("E");
         // 最後にSuccessとFailureのPitchを変える
         Success.pitch = PitchScale;
         Failure.pitch = PitchScale;
@@ -308,7 +313,7 @@ public class GameManager : MonoBehaviour
         {
             yield return null;
         }
-
+        Debug.Log("F");
         // ついにシーンを切り替える
         asyncLoad.allowSceneActivation = true;
         
