@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7ac0dc163f345d449b27becfdc7d9b68
+guid: 19a5a44b0c40f674c9c7220c6efda639
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -239895951371559709
-    second: SC_Cloud_0
+      213: 4726147562184808205
+    second: SC_StickBanana_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SC_Cloud_0
+      name: SC_StickBanana_0
       rect:
         serializedVersion: 2
-        x: 338
-        y: 478
-        width: 4522
-        height: 1872
+        x: 1276
+        y: 2086
+        width: 1298
+        height: 5110
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3ec917b37e7bbacf0800000000000000
-      internalID: -239895951371559709
+      spriteID: d079a18ea26a69140800000000000000
+      internalID: 4726147562184808205
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SC_Cloud_0: -239895951371559709
+      SC_StickBanana_0: 4726147562184808205
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
