@@ -385,10 +385,12 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         Debug.Log($"<color=green> ゲームオーバー…(GameOver()より呼ばれています) </color>");
+        SceneManager.LoadScene("Title");
     }
     void GameClear()
     {
         Debug.Log($"<color=green> ゲームクリア！(GameClear()より呼ばれています) </color>");
+        SceneManager.LoadScene("EndCredits");
     }
 
     // Update is called once per frame
