@@ -31,7 +31,7 @@ namespace SC
         {
             if (isOneShot && isAction) return;
 
-            if (Action.WasPerformedThisFrame())
+            if (Action.WasPerformedThisFrame() && !isFailed)
             {
                 //判定に関わらず手を閉じる
                 if (spriteRenderer != null && catchSprite != null)
