@@ -33,6 +33,9 @@ public static class MGManager
     // テストプレイの判断
     public static bool isMainCalled = false;
 
+    // 強制終了されたかどうか
+    public static bool isFinishedForcibly = false;
+
     // --- 部員が自由に使える便利関数 ---
     /// <summary>
     /// ゲームが開始した直後にこれを呼んでください。
@@ -52,6 +55,14 @@ public static class MGManager
     {
         IsClear = true;
         Debug.Log($"<color=green>【System】Clearフラグが立ちました！ </color>");
+    }
+    
+    /// <summary>
+    /// 失敗時に早めに切り上げ
+    /// </summary>
+    public static void FinishGame()
+    {
+        isFinishedForcibly = true;
     }
 
     /// <summary>
@@ -94,6 +105,7 @@ public static class MGManager
     public static void Finished()
     {
         isMinigameLoaded = false;
+        isFinishedForcibly = false;
         IsClear = false;
         isAllGameEndProcessed = false; // フラグもリセット
     }

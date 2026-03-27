@@ -10,10 +10,15 @@ namespace SC
         {
             public Sprite sprite;
             public int ratio = 1;
+            public float grabRange = 50f;
         }
 
         private Rigidbody2D rb;
-        private SpriteRenderer spriteRenderer;      
+        private SpriteRenderer spriteRenderer;
+
+        [Header("オブジェクト類")]
+        public SC_handControl handController;
+
         [Header("Stick Data")]  
         [SerializeField] private StickData[] stickDatas;
 
@@ -39,6 +44,7 @@ namespace SC
                 if (randomValue < nowRatio)
                 {
                     spriteRenderer.sprite = stickDatas[i].sprite;
+                    handController.grabRange = stickDatas[i].grabRange;
                     break;
                 }
             }
@@ -51,6 +57,19 @@ namespace SC
             if (rb != null)
             {
                 rb.simulated = false;
+            }
+        }
+
+        public void BounceStick()
+        {
+            if (rb != null)
+            {
+                float bounceForceY = 5f;
+                float bounceForceX = Random.Range(-3f, 3f);
+                rb.linearVelocity = new Vector2(bounceForceX, bounceForceY);
+
+                float torqueForce = Random.Range(-150f, 150f); 
+                rb.AddTorque(torqueForce);
             }
         }
     }
