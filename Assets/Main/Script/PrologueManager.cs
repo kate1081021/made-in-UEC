@@ -1,29 +1,15 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
-using System;
-using System.Runtime.InteropServices;
 using UnityEngine.SceneManagement;
-using UnityEngine.AI;
-using System.Runtime.CompilerServices;
-using TMPro;
-using UnityEditor.Rendering.LookDev;
-using UnityEngine.UIElements;
 
 public class PrologueManager : MonoBehaviour
 {
-    private int choice = 0;
-    private string mode = "Title";
     private MIU_InputSystem InputSystems;
     private InputAction Trigger_left;
     private InputAction Action;
-    [SerializeField] GameObject textbox;
-    [SerializeField] TMP_Text text;
-    List<string> context = new List<string>();
     private int index = 0;
-    
-    
+    [SerializeField] Prologue_Model model;
+    [SerializeField] Prologue_View view;
     void Start()
     {
         InputSystems = new MIU_InputSystem();
@@ -32,11 +18,13 @@ public class PrologueManager : MonoBehaviour
         Action = InputSystems.FindAction("Action");  // Space
         Trigger_left.started += skip;
         Action.started += choiced;
-        context.Add("Actionで進み、Trigger_leftでスキップします");
-        context.Add("プロローグのテストです");
-        context.Add("この文章を進めるとMainが始まります");
         index = 0;
-        text.text = context[index];
+
+        view.Initialize();
+
+        view.EnableObject(model.context[index].enables);
+        view.ShowText(model.context[index].text);
+        view.ShowBackground(model.back.Find(e => e.key == model.context[index].background).sprite);
     }
     void skip(InputAction.CallbackContext ctx)
     {
@@ -46,11 +34,20 @@ public class PrologueManager : MonoBehaviour
     void choiced(InputAction.CallbackContext ctx)
     {
         index++;
-        if (index > context.Count - 1)
+        if (index > model.context.Count - 1)
         {
             SceneManager.LoadScene("Main");
         }
-        text.text = context[index];
+
+        view.DisableObject(model.context[index].disables);
+        view.ShowText(model.context[index].text);
+        view.EnableObject(model.context[index].enables);
+
+
+        if (model.context[index].background != "")
+        {
+            view.ShowBackground(model.back.Find(e => e.key == model.context[index].background).sprite);
+        }
     }
 
     // Update is called once per frame
