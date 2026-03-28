@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      manager_scavenge_0: 8352875153745644780
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

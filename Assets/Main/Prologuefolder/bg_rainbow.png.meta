@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bg_rainbow_0: -1754622258923557601
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
