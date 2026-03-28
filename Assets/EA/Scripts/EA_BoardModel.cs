@@ -17,6 +17,12 @@ namespace EA
         // 盤面の一辺の長さ
         public int boardLength;
 
+        // 現在のセルの内容が変化したとき
+        public Action <int, int, bool> OnCurrentCellChanged;
+
+        // 正解となるセルが生成されたとき
+        public Action <int, int, bool> OnTargetCellCreated;
+
         /// メソッド ///
         
         // 盤面を準備する
@@ -32,7 +38,11 @@ namespace EA
                 {
                     // データをセットする
                     currentBoard[i, j] = data[i * boardLength + j];
+                    OnCurrentCellChanged?.Invoke(j, i, data[i * boardLength + j]);
+
                     targetBoard[i, j] = data[i * boardLength + j];
+                    OnTargetCellCreated?.Invoke(j, i, data[i * boardLength + j]);
+
                 }
             }
 
@@ -48,17 +58,12 @@ namespace EA
         {
             return currentBoard[y, x];
         }
-
-        // 座標を指定されたら現状の盤面の裏表を返す
-        public bool GetTargetCell(int x, int y)
-        {
-            return targetBoard[y, x];
-        }
         
         // 座標を指定し、そのマスの表裏を反転させる
         public void FlipOne(int x, int y)
         {
             currentBoard[y, x] = !currentBoard[y, x];
+            OnCurrentCellChanged?.Invoke(x, y, currentBoard[y, x]);
         }
 
         // ある座標を中心として、そこから3x3のマス目を反転させる。

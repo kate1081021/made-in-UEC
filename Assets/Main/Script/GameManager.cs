@@ -2,13 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
-using UnityEditor.SceneManagement;
-using System.Data.Common;
-using TMPro;
-using Unity.VisualScripting;
-using System.Runtime.CompilerServices;
-using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour
 {
@@ -128,6 +121,7 @@ public class GameManager : MonoBehaviour
                 PitchScale *= 1.059463094f;  // 各音階の比率
             }
             BGM_start_2.pitch = PitchScale;
+            MGManager.pitchScale = PitchScale;
         }
     }
 
@@ -204,7 +198,6 @@ public class GameManager : MonoBehaviour
         // アニメーションが再生されたか
         bool isStageUpdated = false;  // stage数が更新されたら
         bool isAnimationPlaying = false;  // メインのアニメーションが表示されたら
-
         // 勝利状況の確認(Stage2以降)
         if (MGManager.stage > 1 && MGManager.isMainCalled) {
             if (MGManager.IsClear)
@@ -269,7 +262,6 @@ public class GameManager : MonoBehaviour
                 BGM_start_2.pitch = PitchScale;
             }
         }
-        
         // 曲を再生し始める
         if (MGManager.stage == 1) {
             PlayImmidiate(BGM_start_1, PitchScale);
@@ -288,8 +280,8 @@ public class GameManager : MonoBehaviour
             {
                 // stage数更新
                 uiManager.updateStage();
+                StartCoroutine(uiManager.RhythmAnimation(120)); // 仮置きしている現状のBPM
                 isStageUpdated = true;
-                
             }
             // アニメーション
             if (currentTime >= StartTime + TotalPlayTime - 1.1f && !isAnimationPlaying)
@@ -301,11 +293,9 @@ public class GameManager : MonoBehaviour
             }
             yield return null;
         }
-
         // 最後にSuccessとFailureのPitchを変える
         Success.pitch = PitchScale;
         Failure.pitch = PitchScale;
-        Debug.Log("ここまで元気");
         // デバッグ後初回の終わり
         MGManager.isMainCalled = true;
 
@@ -314,7 +304,6 @@ public class GameManager : MonoBehaviour
         {
             yield return null;
         }
-
         // ついにシーンを切り替える
         asyncLoad.allowSceneActivation = true;
         
@@ -350,7 +339,9 @@ public class GameManager : MonoBehaviour
         while (elapsed < timelimit) {
             // カウントダウン
             if (last > (timelimit - elapsed)) { uiManager.UITimer(last); last--; }
-            if (!stopEarlyFinish && MGManager.IsClear && (timelimit - elapsed) > (bombtime + waitUntilClearTime))
+
+            // 早めにゲームをクリアしたとき or 強制終了時
+            if ((!stopEarlyFinish && MGManager.IsClear && (timelimit - elapsed) > (bombtime + waitUntilClearTime)) || MGManager.isFinishedForcibly)
             // 早めに切り上げてる待ち時間中に爆弾が現れないように
             {
                 Debug.Log("早めに切り上げ");
@@ -389,10 +380,14 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         Debug.Log($"<color=green> ゲームオーバー…(GameOver()より呼ばれています) </color>");
+        SceneManager.LoadScene("Title");
     }
     void GameClear()
     {
         Debug.Log($"<color=green> ゲームクリア！(GameClear()より呼ばれています) </color>");
+        SceneManager.MoveGameObjectToScene(this.gameObject, SceneManager.GetActiveScene());
+        SceneManager.MoveGameObjectToScene(uiManager.gameObject, SceneManager.GetActiveScene());
+        SceneManager.LoadScene("EndCredits");
     }
 
     // Update is called once per frame

@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     public RectTransform zoomGroup;  // それ以外のUIをまとめた親オブジェクト(ヒエラルキーのObjects下に入っているすべてのオブジェクトが対象)
     public List<Image> Lives;
     public Image[] timerSources;
+    public Animator UIanimator; // リズムに合わせて動くやつのアニメーション
     [SerializeField] private float first_duration = 1.0f;    // 最初のテキストがフェードインするアニメーションの時間
     [SerializeField] private float second_duration = 1.0f;    // 次に他のオブジェクトが拡大するアニメーションの時間
 
@@ -80,6 +81,17 @@ public class UIManager : MonoBehaviour
     {
         // ステージ数を更新
         counter.text = $"{MGManager.stage}";
+    }
+
+    // リズムに合わせて動くやつ
+    public IEnumerator RhythmAnimation(float BPM)
+    {
+        for (int i = 0; i < 8; i++) {
+            if (i == 0) { UIanimator.SetTrigger("StartBeat");}
+            else { UIanimator.SetTrigger("Beat"); }
+            yield return new WaitForSeconds(60f/(BPM <= 0 ? BPM : 120));
+        }
+        UIanimator.SetTrigger("Finish");
     }
 
     // メインのアニメーションを表示

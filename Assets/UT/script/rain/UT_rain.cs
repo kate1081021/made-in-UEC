@@ -16,43 +16,43 @@ namespace UT
         GameObject player;
         public GameObject enemy;
         [SerializeField]
-        [Tooltip("‰J—±‚Ì‘¬“x")]
+        [Tooltip("ï¿½Jï¿½ï¿½ï¿½Ì‘ï¿½ï¿½x")]
         float rainspeed;
         [SerializeField]
-        [Tooltip("”µ1‚ÌoŒ»ŽžŠÔ")]
+        [Tooltip("ï¿½ï¿½1ï¿½Ìoï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
         float p1t;
         [SerializeField]
-        [Tooltip("”µ1‚Ì‘¬“x")]
+        [Tooltip("ï¿½ï¿½1ï¿½Ì‘ï¿½ï¿½x")]
         float p1s;
         [SerializeField]
-        [Tooltip("”µ2‚ÌoŒ»ŽžŠÔ")]
+        [Tooltip("ï¿½ï¿½2ï¿½Ìoï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
         float p2t;
         [SerializeField]
-        [Tooltip("”µ2‚Ì‘¬“x")]
+        [Tooltip("ï¿½ï¿½2ï¿½Ì‘ï¿½ï¿½x")]
         float p2s;
         [SerializeField]
-        [Tooltip("1‰ñ–Ú‚Ì•—‚Ì•Ï‚í‚èŽn‚ß")]
+        [Tooltip("1ï¿½ï¿½Ú‚Ì•ï¿½ï¿½Ì•Ï‚ï¿½ï¿½nï¿½ï¿½")]
         float w1s;
         [SerializeField]
-        [Tooltip("1‰ñ–Ú‚Ì•—‚Ì•Ï‚í‚èI‚í‚è")]
+        [Tooltip("1ï¿½ï¿½Ú‚Ì•ï¿½ï¿½Ì•Ï‚ï¿½ï¿½Iï¿½ï¿½ï¿½")]
         float w1e;
         [SerializeField]
-        [Tooltip("2‰ñ–Ú‚Ì•—‚Ì•Ï‚í‚èŽn‚ß")]
+        [Tooltip("2ï¿½ï¿½Ú‚Ì•ï¿½ï¿½Ì•Ï‚ï¿½ï¿½nï¿½ï¿½")]
         float w2s;
         [SerializeField]
-        [Tooltip("2‰ñ–Ú‚Ì•—‚Ì•Ï‚í‚èI‚í‚è")]
+        [Tooltip("2ï¿½ï¿½Ú‚Ì•ï¿½ï¿½Ì•Ï‚ï¿½ï¿½Iï¿½ï¿½ï¿½")]
         float w2e;
         [SerializeField]
-        [Tooltip("2‰ñ–Ú‚Ì•—‚Ì•Ï‚í‚èŽn‚ß")]
+        [Tooltip("2ï¿½ï¿½Ú‚Ì•ï¿½ï¿½Ì•Ï‚ï¿½ï¿½nï¿½ï¿½")]
         float w3s;
         [SerializeField]
-        [Tooltip("2‰ñ–Ú‚Ì•—‚Ì•Ï‚í‚èI‚í‚è")]
+        [Tooltip("2ï¿½ï¿½Ú‚Ì•ï¿½ï¿½Ì•Ï‚ï¿½ï¿½Iï¿½ï¿½ï¿½")]
         float w3e;
         [SerializeField]
-        [Tooltip("2‰ñ–Ú‚Ì•—‚Ì•Ï‚í‚èŽn‚ß")]
+        [Tooltip("2ï¿½ï¿½Ú‚Ì•ï¿½ï¿½Ì•Ï‚ï¿½ï¿½nï¿½ï¿½")]
         float w4s;
         [SerializeField]
-        [Tooltip("2‰ñ–Ú‚Ì•—‚Ì•Ï‚í‚èI‚í‚è")]
+        [Tooltip("2ï¿½ï¿½Ú‚Ì•ï¿½ï¿½Ì•Ï‚ï¿½ï¿½Iï¿½ï¿½ï¿½")]
         float w4e;
         float theta = 0;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -111,11 +111,11 @@ namespace UT
             while (true)
             {
                 Vector3 a = new Vector3(player.transform.position.x - pigeonobj.transform.position.x, player.transform.position.y - pigeonobj.transform.position.y, 0);
-                if (a.magnitude > 7) v *= 0.995f * Time.timeScale;
+                if (a.magnitude > 7) v *= 0.995f; //* Time.timeScale;
                 if (a.x > 0) pigeonobj.transform.rotation = Quaternion.Euler(0, 180, 0);
                 else pigeonobj.transform.rotation = Quaternion.identity;
-                    v += Time.deltaTime * a * Time.timeScale;
-                pigeonobj.transform.position +=Time.deltaTime * speed * v * Time.timeScale;
+                    v += Time.deltaTime * a; //* Time.timeScale;
+                pigeonobj.transform.position +=Time.deltaTime * speed * v;//*Time.timeScale;
                 yield return null;
             }
         }

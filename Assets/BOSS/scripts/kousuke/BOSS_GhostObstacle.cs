@@ -13,41 +13,43 @@ namespace BOSS
         public float ghostLifeTime = 5f;       
 
         [Header("お化けのフェード（透明度）設定")]
-        public float fadeInSpeed = 2f;         // ★追加：出現時に濃くなるスピード
-        public float fadeOutSpeed = 2f;        // ★追加：消失時に薄くなるスピード
+        public float fadeInSpeed = 2f;         
+        public float fadeOutSpeed = 2f;        
+
+        [Header("周回（軌道）の設定")]
+        public float orbitRadius = 2.5f;       
+        public float orbitSpeed = 2.0f;        
 
         private float currentShrinkSpeed;
         private float currentExpandSpeed;      
-        private float currentFadeInSpeed;      // ★追加
-        private float currentFadeOutSpeed;     // ★追加
-        private float currentAlpha = 0f;       // ★追加：現在の透明度（0＝透明、1＝不透明）
+        private float currentFadeInSpeed;      
+        private float currentFadeOutSpeed;     
+        private float currentOrbitSpeed;       
+        private float currentAngle = 0f;       
+        private float currentAlpha = 0f;       
 
         private bool isGhostActive = false;
         private bool isFadingOut = false;      
         private float timer = 0f;
 
         private Transform followTarget;
-        private SpriteRenderer[] allSprites;   // ★追加：お化けの画像パーツ一覧
+        private SpriteRenderer[] allSprites;   
 
         public void Init(Transform target = null)
         {
-            // timeScaleの計算
             currentShrinkSpeed = shrinkSpeed * Time.timeScale;
             currentExpandSpeed = expandSpeed * Time.timeScale; 
             currentFadeInSpeed = fadeInSpeed * Time.timeScale;
             currentFadeOutSpeed = fadeOutSpeed * Time.timeScale;
+            currentOrbitSpeed = orbitSpeed * Time.timeScale;
 
             followTarget = target; 
             
-            if (followTarget != null)
-            {
-                transform.position = followTarget.position;
-            }
+            // 出現した時はランダムな角度（位置）からスタートする
+            currentAngle = Random.Range(0f, Mathf.PI * 2f);
 
-            // ★追加：プレハブに含まれるすべての画像（SpriteRenderer）を取得
             allSprites = GetComponentsInChildren<SpriteRenderer>();
             
-            // ★追加：最初は完全に透明（Alpha = 0）にしておく
             currentAlpha = 0f;
             SetGhostAlpha(currentAlpha);
 
@@ -66,19 +68,31 @@ namespace BOSS
         {
             if (!isGhostActive) return;
 
+            // ターゲットの周りをグルグル回る処理
             if (followTarget != null)
             {
-                transform.position = followTarget.position;
+                currentAngle += currentOrbitSpeed * Time.unscaledDeltaTime;
+
+                float x = followTarget.position.x + Mathf.Cos(currentAngle) * orbitRadius;
+                float y = followTarget.position.y + Mathf.Sin(currentAngle) * orbitRadius;
+
+                // お化け自体の位置を更新
+                transform.position = new Vector3(x, y, transform.position.z);
+
+                // 視界を奪う「黒い穴」はターゲットの真上に固定
+                if (darknessObject != null)
+                {
+                    darknessObject.transform.position = new Vector3(followTarget.position.x, followTarget.position.y, darknessObject.transform.position.z);
+                }
             }
 
             // ① 視界が狭まる＆お化けがフワッと現れる処理
             if (!isFadingOut)
             {
-                // ★追加：お化けの画像を徐々に濃くする（フェードイン）
                 if (currentAlpha < 1f)
                 {
                     currentAlpha += currentFadeInSpeed * Time.unscaledDeltaTime;
-                    if (currentAlpha > 1f) currentAlpha = 1f; // 1（完全な不透明）でストップ
+                    if (currentAlpha > 1f) currentAlpha = 1f; 
                     SetGhostAlpha(currentAlpha);
                 }
 
@@ -101,11 +115,10 @@ namespace BOSS
             // ② 視界が徐々に晴れる＆お化けがフワッと消える処理
             else
             {
-                // ★追加：お化けの画像を徐々に薄くする（フェードアウト）
                 if (currentAlpha > 0f)
                 {
                     currentAlpha -= currentFadeOutSpeed * Time.unscaledDeltaTime;
-                    if (currentAlpha < 0f) currentAlpha = 0f; // 0（完全な透明）でストップ
+                    if (currentAlpha < 0f) currentAlpha = 0f; 
                     SetGhostAlpha(currentAlpha);
                 }
 
@@ -125,20 +138,17 @@ namespace BOSS
             }
         }
 
-        // ★追加：お化けの画像の透明度（Alpha）を変更する専用の関数
         private void SetGhostAlpha(float alpha)
         {
             if (allSprites == null) return;
 
             foreach (var sr in allSprites)
             {
-                // 視界を狭くするための「黒い穴の画像」はフェードさせない（大きさで表現するため）
                 if (darknessObject != null && sr.gameObject == darknessObject)
                 {
-                    continue; // darknessObjectならスキップして次へ
+                    continue; 
                 }
 
-                // 画像の色（RGBA）を取得して、A（透明度）だけを書き換える
                 Color color = sr.color;
                 color.a = alpha;
                 sr.color = color;
