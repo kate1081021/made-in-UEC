@@ -103,10 +103,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseFallSpeed: 5
   destroyY: -7
-  randomSprites:
-  - {fileID: 7028616704906629411, guid: 80b62149855a39a4eafebde311b27c78, type: 3}
-  - {fileID: -5913868328097134230, guid: 8bf28651d96040646b90ca39ac83a263, type: 3}
-  - {fileID: 2684548955827070867, guid: 5e5f42b7d975b3d45996db04b11a0446, type: 3}
+  rotationSpeed: 90
+  randomRotationDirection: 1
+  obstacleVisuals:
+  - obstacleSprite: {fileID: 503099678794697293, guid: 838787c6fe9fcb540b173731e30a856f, type: 3}
+    customScale: 0.5
+  - obstacleSprite: {fileID: 8158947221206466285, guid: 838787c6fe9fcb540b173731e30a856f, type: 3}
+    customScale: 0.5
+  - obstacleSprite: {fileID: -6773781289770685678, guid: 838787c6fe9fcb540b173731e30a856f, type: 3}
+    customScale: 0.5
+  - obstacleSprite: {fileID: -6023584363536068767, guid: 838787c6fe9fcb540b173731e30a856f, type: 3}
+    customScale: 0.5
+  - obstacleSprite: {fileID: -5913868328097134230, guid: 8bf28651d96040646b90ca39ac83a263, type: 3}
+    customScale: 0.5
+  - obstacleSprite: {fileID: -1667583943385514053, guid: ed6d5f182cb9cea47990d64393a8eb92, type: 3}
+    customScale: 0.5
+  - obstacleSprite: {fileID: 2684548955827070867, guid: 5e5f42b7d975b3d45996db04b11a0446, type: 3}
+    customScale: 3
 --- !u!58 &-4872466624978786923
 CircleCollider2D:
   m_ObjectHideFlags: 0

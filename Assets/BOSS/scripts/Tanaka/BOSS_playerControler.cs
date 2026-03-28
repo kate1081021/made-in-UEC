@@ -9,9 +9,13 @@ namespace BOSS
         SpriteRenderer BOSS_playerSprite;
         Animator BOSS_playerAnim;
         public bool BOSS_isGameOver = false; // ゲームオーバー演出中かどうかのフラグ
+        
+        // ★追加：演出が終わるまで動けないようにするフラグ（最初は false）
+        public bool BOSS_canMove = false; 
+
         [Header("ジャンプ無敵設定")]
-        [SerializeField] public float BOSS_jumpInvincibleTime = 1.0f; // ジャンプ無敵の継続時間
-        [SerializeField] public float BOSS_jumpCoolTime = 2.0f;       // 次に飛べるまでの待ち時間
+        [SerializeField] public float BOSS_jumpInvincibleTime = 1.0f; 
+        [SerializeField] public float BOSS_jumpCoolTime = 2.0f;       
         private bool BOSS_isJumpCooldown = false;
 
         [Header("プレイヤー設定")]
@@ -19,12 +23,13 @@ namespace BOSS
         public int BOSS_playerSpeed = 5;
 
         [Header("無敵設定")]
-        [SerializeField] public float BOSS_invincibleTime = 2.0f; // 無敵が続く秒数
-        [SerializeField] public float BOSS_blinkInterval = 0.1f;  // 点滅する速さ
-        [SerializeField] public float BOSS_jumpBlinkInterval = 0.1f;  //ジャンプ時の点滅速度
-        private bool BOSS_isInvincible = false;                  // 今、無敵中かどうかのフラグ
+        [SerializeField] public float BOSS_invincibleTime = 2.0f; 
+        [SerializeField] public float BOSS_blinkInterval = 0.1f;  
+        [SerializeField] public float BOSS_jumpBlinkInterval = 0.1f;  
+        private bool BOSS_isInvincible = false;                  
         private Vector2 BOSS_screenLimit;
         private Vector2 BOSS_playerHalfSize;
+
         public override void OnGameStart()
         {
             MGManager.Load();
@@ -42,6 +47,9 @@ namespace BOSS
 
         void Update()
         {
+            // ★追加：演出が終わる（BOSS_canMoveがtrueになる）までは、ここで処理を止める！
+            if (!BOSS_canMove) return;
+
             // 移動処理
             BOSS_playerRb.linearVelocity = BOSS_playerSpeed * Move.ReadValue<Vector2>();
             if (!BOSS_isGameOver)
@@ -62,7 +70,7 @@ namespace BOSS
             BOSS_isInvincible = true;
             float BOSS_elapsedTime = 0;
             BOSS_playerAnim.SetBool("isJumping", true); // アニメーションON
-           
+            
             while (BOSS_elapsedTime < BOSS_invincibleTime)
             {
                 // スプライトを表示・非表示させて点滅させる
@@ -85,16 +93,16 @@ namespace BOSS
             // 4. クールタイム終了
             BOSS_isJumpCooldown = false;
         }
+
         // --- 当たり判定 ---
         private void OnTriggerEnter2D(Collider2D BOSS_collision)
         {
-            // 無敵中じゃなくて、当たった相手が「Obstacle」タグを持ってたらダメージ
-            // ※障害物のPrefabのTagを「Obstacle」に設定すること
             if (!BOSS_isInvincible && BOSS_collision.CompareTag("Obstacle"))
             {
                 BOSS_ApplyDamage();
             }
         }
+
         void BOSS_ApplyDamage()
         {
             BOSS_playerLife--;
@@ -103,7 +111,6 @@ namespace BOSS
             if (BOSS_playerLife <= 0)
             {
                 Debug.Log("ゲームオーバー演出開始！");
-                // ✨ ゲームオーバー用のコルーチンをスタート！
                 StartCoroutine(BOSS_GameOverSequence());
             }
             else
@@ -111,6 +118,7 @@ namespace BOSS
                 StartCoroutine(BOSS_InvincibleRoutine());
             }
         }
+
         // --- ゲームオーバー演出のコルーチン ---
         IEnumerator BOSS_GameOverSequence()
         {
@@ -152,11 +160,13 @@ namespace BOSS
             // 6. 完了
             BOSS_FinalGameOverTrigger();
         }
+
         void BOSS_FinalGameOverTrigger()
         {
             Debug.Log("運営側のゲームオーバー処理");
             MGManager.FinishGame();
         }
+
         IEnumerator BOSS_JumpInvincibleRoutine()
         {
             BOSS_isInvincible = true;
@@ -171,32 +181,27 @@ namespace BOSS
             BOSS_playerSprite.enabled = true;
             BOSS_isInvincible = false;
         }
+
         // --- 無敵と点滅を制御するコルーチン ---
         IEnumerator BOSS_InvincibleRoutine()
         {
             BOSS_isInvincible = true;
             float BOSS_elapsedTime = 0;
-            // 無敵時間が終わるまでループ
             while (BOSS_elapsedTime < BOSS_invincibleTime)
             {
-                // スプライトを表示・非表示させて点滅させる
                 BOSS_playerSprite.enabled = !BOSS_playerSprite.enabled;
-                // 指定した秒数だけ待つ
                 yield return new WaitForSeconds(BOSS_blinkInterval);
                 BOSS_elapsedTime += BOSS_blinkInterval;
             }
-            // 最後は必ず表示されるようにして、無敵終了
             BOSS_playerSprite.enabled = true;
             BOSS_isInvincible = false;
         }
+
         void BOSS_ClampPosition()
         {
             Vector3 BOSS_pos = transform.position;
-
-            // X軸を -6.0f から 6.0f の間に制限
             BOSS_pos.x = Mathf.Clamp(BOSS_pos.x, -6.0f, 6.0f);
             BOSS_pos.y = Mathf.Clamp(BOSS_pos.y, -BOSS_screenLimit.y + BOSS_playerHalfSize.y, BOSS_screenLimit.y - BOSS_playerHalfSize.y);
-
             transform.position = BOSS_pos;
         }
     }
