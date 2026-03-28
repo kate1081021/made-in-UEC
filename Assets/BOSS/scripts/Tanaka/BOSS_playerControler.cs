@@ -1,4 +1,3 @@
-// 164行目あたりに強制終了用関数を読んでいる部分があります。書き換えはそこをお願いします。
 using System.Collections;
 using UnityEngine;
 
@@ -156,8 +155,7 @@ namespace BOSS
         void BOSS_FinalGameOverTrigger()
         {
             Debug.Log("運営側のゲームオーバー処理");
-            // ☆☆☆下記の関数は適宜コメントアウトを外し、変更してください☆☆☆
-            // MGManager.GameOver();
+            MGManager.FinishGame();
         }
         IEnumerator BOSS_JumpInvincibleRoutine()
         {
