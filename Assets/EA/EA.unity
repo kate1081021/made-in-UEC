@@ -494,7 +494,7 @@ Transform:
   m_GameObject: {fileID: 883225411}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.48289505, y: -0.40160495, z: -0.94752955}
+  m_LocalPosition: {x: -1.47, y: -0.40160495, z: -0.94752955}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -681,7 +681,7 @@ Transform:
   m_GameObject: {fileID: 1117495533}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.48289505, y: 0.40160495, z: -2.0524704}
+  m_LocalPosition: {x: 0.48289505, y: 0.40160495, z: -5}
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2850,10 +2850,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c19ec119f2a8af438ddf32050ec9995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameBGM: {fileID: 0}
-  isLoopBGM: 0
-  SEName: []
-  SEFile: []
+  gameBGM: {fileID: 8300000, guid: dc009a3b509217346aa0874e20eab07d, type: 3}
+  isLoopBGM: 1
+  SEName:
+  - card_open
+  - card_close
+  - clear
+  - fail
+  SEFile:
+  - {fileID: 8300000, guid: 361cf8a2a9ba55e468516ae7126e474d, type: 3}
+  - {fileID: 8300000, guid: e756ee73e17cdfe49810161fc264d05d, type: 3}
+  - {fileID: 8300000, guid: ce54cc0adcc4d8d4eb639376f7da6dd3, type: 3}
+  - {fileID: 8300000, guid: c45470cb97f22f64bb039f04c5b42b4f, type: 3}
   boardView: {fileID: 45154684}
   targets4:
   - {fileID: 11400000, guid: 22232f1ec9ff85842b8600662cb3d1d7, type: 2}

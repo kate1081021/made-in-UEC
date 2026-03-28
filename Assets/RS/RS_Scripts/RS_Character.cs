@@ -14,7 +14,7 @@ namespace RS
         void Awake()
         {
             if (spelled_time <= 0)
-                spelled_time = 1f;
+                spelled_time = 0.75f;
             mat = sr.material;
             if (t2 != null)
                 mat.SetTexture("_Texture2D", t2);
@@ -32,14 +32,11 @@ namespace RS
                 Vector3 tp = transform.position;
                 transform.position = new Vector3(tp.x, start_position * (spelled_time - 2 * timer) / spelled_time + spelled_position * 2 * timer / spelled_time, tp.z);
             }
-            else
-            {
-                Vector3 tp = transform.position;
-                transform.position = new Vector3(tp.x, spelled_position, tp.z);
-            }
-            if (timer < spelled_time)
+            else if (timer < spelled_time)
             {
                 //mat.SetFloat("_Float", timer / spelled_time);
+                Vector3 tp = transform.position;
+                transform.position = new Vector3(tp.x, spelled_position, tp.z);
             }
             else if (timer < spelled_time * 2)
             {
