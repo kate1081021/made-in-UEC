@@ -2707,11 +2707,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 8300000, guid: 7d1478912a4f8d142b415290f7897b1f, type: 3}
   isLoopBGM: 0
-  SEName: []
-  SEFile: []
+  SEName:
+  - NT_DropWater
+  SEFile:
+  - {fileID: 8300000, guid: 4f53c27643ebb2545991bbdef3ae8ef0, type: 3}
   countText: {fileID: 360980739}
   count: 0
-  sounddistance: 0
+  sounddistance: 5
   soundborder: 0
   isCleared: 0
 --- !u!114 &8047941679037284638

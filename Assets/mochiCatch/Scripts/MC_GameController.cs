@@ -64,6 +64,9 @@ namespace catchMochi
         // 開始時
         public override void OnGameStart()
         {
+            // BGMを再生
+            BGMPlay();
+            
             // Girlのモデルを呼び出す
             girlModel = new MC_GirlModel();
 

@@ -620,7 +620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8435c1041c519da4585295bd2bc6d1d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameBGM: {fileID: 0}
+  gameBGM: {fileID: 8300000, guid: 92fc2227d594b8648981b7acf6fcaa6b, type: 3}
   isLoopBGM: 0
   SEName:
   - MC_GataGata
