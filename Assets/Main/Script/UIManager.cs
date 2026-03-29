@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
-using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
@@ -12,13 +11,18 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI counter;  // ステージ数をカウントするもの
     public TextMeshProUGUI timer;  // ミニゲーム中のタイマー表示
     public RectTransform zoomGroup;  // それ以外のUIをまとめた親オブジェクト(ヒエラルキーのObjects下に入っているすべてのオブジェクトが対象)
+    public GameObject Cont_Stick;
+    public GameObject Cont_PikoPiko;
+    public GameObject Cont_Trigger;
+    public GameObject Cont_Aim;
     public List<Image> Lives;
     public Image[] timerSources;
     public Animator UIanimator; // リズムに合わせて動くやつのアニメーション
     public bool isZoomed = false; // ズームが終わったかどうかのフラグ
     [SerializeField] private float first_duration = 1.0f;    // 最初のテキストがフェードインするアニメーションの時間
     [SerializeField] private float second_duration = 1.0f;    // 次に他のオブジェクトが拡大するアニメーションの時間
-
+    [SerializeField] private float cont_fadein_duration = 0.5f;
+    [SerializeField] private float cont_show_duration = 0.5f;
     public static UIManager Instance;
 
     void Awake()
@@ -33,7 +37,63 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject); // 二つ目以降は即座に消す
         }
     }
-    
+    public void controllerAnimation(string type)
+    {
+        GameObject target;
+        switch (type)
+        {
+            case "ピコピコ":
+            target = Cont_PikoPiko;
+            break;
+            case "トリガー":
+            target = Cont_Trigger;
+            break;
+            case "スティック":
+            target = Cont_Stick;
+            break;
+            case "エイム":
+            target = Cont_Aim;
+            break;
+            default :
+            target = Cont_PikoPiko;
+            break;
+        }
+        StartCoroutine(PlayContAnim(target));
+    }
+    IEnumerator PlayContAnim(GameObject target)
+    {
+        Debug.Log("called");
+        RectTransform rt = target.GetComponent<RectTransform>();
+        rt.localScale = Vector3.one * 0.65f;
+        float elapsed = 0f;
+        while (elapsed < cont_fadein_duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / cont_fadein_duration;
+            
+            // イージング（滑らかにする設定）
+            float curve = Mathf.SmoothStep(-680, -100, t);
+            rt.anchoredPosition = new Vector2(rt.anchoredPosition.x,curve);
+            yield return null;
+        }
+        Debug.Log("waitinging");
+        yield return new WaitForSeconds(cont_show_duration);
+        Debug.Log("waited");
+        elapsed = 0f;
+        while (elapsed < cont_fadein_duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / cont_fadein_duration;
+            
+            // イージング（滑らかにする設定）
+            float curve = Mathf.SmoothStep(-100, 460, t);
+            rt.anchoredPosition = new Vector2(rt.anchoredPosition.x,curve);
+            yield return null;
+        }
+        rt.anchoredPosition = new Vector2(rt.anchoredPosition.x,-680);
+        rt.localScale = Vector3.one * 0.0001f; // ゼロだとバグる可能性があるとか
+        Debug.Log("finished");
+    }
     public void PlayAnimation(string scene, string verb)
     {
         // 初期状態：テキストを消しておく

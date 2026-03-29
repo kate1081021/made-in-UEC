@@ -15,3 +15,5 @@ MonoBehaviour:
   scene_name: NT
   verb: "\u6EF4\u5B9A\u3057\u308D\uFF01"
   timelimit: 7
+  stopEarlyFinish: 0
+  type: "\u30D4\u30B3\u30D4\u30B3"
