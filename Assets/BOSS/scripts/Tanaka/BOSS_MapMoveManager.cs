@@ -5,7 +5,7 @@ namespace BOSS
     public class BOSS_MapMoveManager : MiniGameBase
     {
         [SerializeField] private BOSS_goalManager goalManager;
-        
+
         [Header("マップオブジェクト")]
         [SerializeField] private GameObject loopingMap; // 今動いてるループ用マップ
         [SerializeField] private GameObject goalMap;    // 画面外に待機してるゴール用マップ
@@ -19,9 +19,9 @@ namespace BOSS
         {
             BOSSMaprigidbody2D = this.GetComponent<Rigidbody2D>();
             BOSSTransform = this.GetComponent<Transform>();
-            
+
             // 念のため最初はゴールマップを非表示にしておく
-            if(goalMap != null) goalMap.SetActive(false);
+            if (goalMap != null) goalMap.SetActive(false);
         }
 
         void Update()
@@ -42,12 +42,12 @@ namespace BOSS
             isGoalTime = true;
             BOSSMaprigidbody2D.linearVelocityY = 0; // 動きを止める
             if (loopingMap != null) loopingMap.SetActive(false); // 元のマップを消去
-            
+
             if (goalMap != null)
             {
                 goalMap.SetActive(true); // ゴールマップ召喚
                 // 画面の真ん中（Vector3.zeroなど）に配置
-                goalMap.transform.position = new Vector3(0, 0, 0); 
+                goalMap.transform.position = new Vector3(0, 0, 0);
             }
 
             // ちょっと余韻を作ってからリザルト出したいなら、
