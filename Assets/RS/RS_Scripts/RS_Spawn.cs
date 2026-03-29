@@ -146,7 +146,7 @@ namespace RS
                 {
                     Debug.Log($"正解！左から {currentIndex + 1} 番目を消しました");
                     Destroy(currentTarget.gameObject);
-                    SEPlay("c", se[0]);
+                    SEPlay("c");
                     currentIndex++; // 次へ
 
                     if (currentIndex >= count)
@@ -176,7 +176,7 @@ namespace RS
                 time_board.SetActive(false);
                 time_0.SetActive(false);
                 gameover = true;
-                SEPlay("f", se[1]);
+                SEPlay("f");
                 //SEPlay("f_sound", se[3]);
                 foreach (var script in spawnedScripts)
                 {
