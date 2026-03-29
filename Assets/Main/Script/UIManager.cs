@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     public List<Image> Lives;
     public Image[] timerSources;
     public Animator UIanimator; // リズムに合わせて動くやつのアニメーション
+    public bool isZoomed = false; // ズームが終わったかどうかのフラグ
     [SerializeField] private float first_duration = 1.0f;    // 最初のテキストがフェードインするアニメーションの時間
     [SerializeField] private float second_duration = 1.0f;    // 次に他のオブジェクトが拡大するアニメーションの時間
 
@@ -115,6 +116,7 @@ public class UIManager : MonoBehaviour
     // メインのアニメーションを表示
     IEnumerator PlayUIAnimation(string verb)
     {
+        isZoomed = false;
         float elapsed = 0f;
 
         // 元の拡大率を保持
@@ -164,6 +166,7 @@ public class UIManager : MonoBehaviour
         // 2.5 値を確定させる
         targetText.alpha = 1;
         if (zoomGroup != null) zoomGroup.localScale = groupEndScale;
+        isZoomed = true;
 
     }
 

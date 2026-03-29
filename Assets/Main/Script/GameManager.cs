@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator TestPlayCoroutine()
     {
-
+        Debug.Log("called");
         yield return null;
         while (MGManager.isDebugMode){
             yield return null;
@@ -71,6 +71,9 @@ public class GameManager : MonoBehaviour
         {
             SettingNormal();
         }
+        MGManager.initialize();
+        PitchScale = 1.0f;
+        Time.timeScale = 1.0f;
 
         // ゲーム進行コルーチン呼び出し
         StartCoroutine(MainCoroutine());
@@ -78,6 +81,7 @@ public class GameManager : MonoBehaviour
 
     void SettingNormal()
     {
+        Debug.Log("NORMAL MODE");
         List<int> number = new List<int>();
         for (int i = 0; i < minigames.Count-1; i++)
         {
@@ -231,11 +235,19 @@ public class GameManager : MonoBehaviour
         MGManager.Finished();
         if (lifeRemain == 0)
         {
+            while (Success.isPlaying || Failure.isPlaying)
+            {
+                yield return null;
+            }
             GameOver();
             yield break;
         }
         if (loaded_minigame == -1)
         {
+            while (Success.isPlaying || Failure.isPlaying)
+            {
+                yield return null;
+            }
             GameClear();
             yield break;
         }
@@ -318,7 +330,7 @@ public class GameManager : MonoBehaviour
         MGManager.isMainCalled = true;
 
         // 3. ロードが90%（準備完了）まで待機
-        while (asyncLoad.progress < 0.9f)
+        while (asyncLoad.progress < 0.9f || !uiManager.isZoomed)
         {
             yield return null;
         }
@@ -398,7 +410,9 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         Debug.Log($"<color=green> ゲームオーバー…(GameOver()より呼ばれています) </color>");
-        SceneManager.LoadScene("Title");
+        SceneManager.MoveGameObjectToScene(this.gameObject, SceneManager.GetActiveScene());
+        SceneManager.MoveGameObjectToScene(uiManager.gameObject, SceneManager.GetActiveScene());
+        SceneManager.LoadScene("GameOver");
     }
     void GameClear()
     {
