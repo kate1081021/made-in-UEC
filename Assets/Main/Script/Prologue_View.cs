@@ -40,7 +40,6 @@ public class Prologue_View : MonoBehaviour
         {
             Transform child = objectParent.GetChild(i);
             if (i == 0) { child.gameObject.SetActive(true); } // background
-            else { child.gameObject.SetActive(false); } // それ以外のオブジェクト
         }
     }
 }
