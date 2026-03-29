@@ -27,6 +27,9 @@ public static class MGManager
     // 音の倍速
     public static float pitchScale = 1.0f;
 
+    // 音の音量
+    public static float sound_volume = 1.0f;
+
     // 終了フラグ（これを各ミニゲームが書き換えるのではなく、管理側で制御する）
     public static bool isAllGameEndProcessed = false;
 

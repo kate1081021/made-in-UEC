@@ -61,6 +61,9 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
                 soundEffects.Add(SEName[i],SEFile[i]);
             }
         }
+        mainSource = gameObject.AddComponent<AudioSource>();
+        Debug.Log($"BGM Volume: {MGManager.sound_volume}");
+        ApplyVolume(MGManager.sound_volume);
 
         Move.performed += OnMove;
         Move.canceled += OnMove;
@@ -230,11 +233,6 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     /// </summary>
     public void BGMPlay(bool applyToTimeScale = false)
     {
-        // mainSourceがnullなら追加する
-        if (mainSource == null)
-        {
-            mainSource = gameObject.AddComponent<AudioSource>();
-        }
         mainSource.clip = gameBGM;
 
         if (applyToTimeScale)
@@ -251,12 +249,6 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
 
     public void SEPlay(string id, bool applyToTimeScale = false)
     {
-        // mainSourceがnullなら追加する
-        if (mainSource == null)
-        {
-            mainSource = gameObject.AddComponent<AudioSource>();
-        }
-
         if (applyToTimeScale)
         {
             mainSource.pitch = MGManager.timeScale;
@@ -267,6 +259,13 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
         }
         mainSource.PlayOneShot(soundEffects[id]);
     }
+
+    // 音量の設定を適応する
+    public void ApplyVolume(float value)
+    {
+        mainSource.volume = value;
+    }
+
     // 二重実行防止用のフラグ
     private bool isEndProcessed = false;
 
