@@ -68,7 +68,7 @@ public class UIManager : MonoBehaviour
         float elapsed = 0f;
         while (elapsed < cont_fadein_duration)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime * MGManager.pitchScale;
             float t = elapsed / cont_fadein_duration;
             
             // イージング（滑らかにする設定）
@@ -77,12 +77,12 @@ public class UIManager : MonoBehaviour
             yield return null;
         }
         Debug.Log("waitinging");
-        yield return new WaitForSeconds(cont_show_duration);
+        yield return new WaitForSecondsRealtime(cont_show_duration/MGManager.pitchScale);
         Debug.Log("waited");
         elapsed = 0f;
         while (elapsed < cont_fadein_duration)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime * MGManager.pitchScale;
             float t = elapsed / cont_fadein_duration;
             
             // イージング（滑らかにする設定）
@@ -145,20 +145,23 @@ public class UIManager : MonoBehaviour
     }
     public void WinAnimation()
     {
+        UIanimator.speed = MGManager.pitchScale;
         UIanimator.SetTrigger("Win"); 
     }
     public void LoseAnimation()
     {
+        UIanimator.speed = MGManager.pitchScale;
         UIanimator.SetTrigger("Lose"); 
     }
 
     public void GameStartAnimation()
     {
+        UIanimator.speed = MGManager.pitchScale;
         UIanimator.SetTrigger("GameStart");
     }
     public void SpeedUpAnimation()
     {
-        UIanimator.speed /= Time.timeScale;
+        UIanimator.speed = 1.0f;
         UIanimator.SetTrigger("SpeedUp");
     }
 
@@ -168,7 +171,8 @@ public class UIManager : MonoBehaviour
         UIanimator.speed = Time.timeScale;
         for (int i = 0; i < 2; i++) {
             UIanimator.SetTrigger("Beat");
-            yield return new WaitForSeconds((60f*2f)/(BPM <= 0 ? BPM : 120));
+            yield return new WaitForSecondsRealtime((60f*2f)/((BPM <= 0 ? BPM : 120)*MGManager.pitchScale));
+            // yield return new WaitForSeconds((60f*2f)/(BPM <= 0 ? BPM : 120));
         }
         UIanimator.SetTrigger("Finish");
     }
@@ -190,7 +194,7 @@ public class UIManager : MonoBehaviour
         // 1. テキストをフェードイン
         while (elapsed < first_duration)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime * MGManager.pitchScale;
             float t = elapsed / first_duration;
             
             // イージング（滑らかにする設定）
@@ -208,7 +212,7 @@ public class UIManager : MonoBehaviour
         // 2. それ以外のUIをズームイン（拡大）
         while (elapsed < second_duration)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime * MGManager.pitchScale;
             float t = elapsed / second_duration;
             
             // イージング（滑らかにする設定）
