@@ -66,7 +66,7 @@ namespace PTgame
             if (collision.gameObject.CompareTag("Ground") && isse)
             {
                 isse = false;
-                SEPlay("p", se);
+                SEPlay("p");
             }
         }
     }

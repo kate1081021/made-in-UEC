@@ -42,7 +42,7 @@ namespace PTgame
             if (isse)
             {
                 isse = false;
-                SEPlay("w", se);
+                SEPlay("wind");
             }
 
             if (time < 0)

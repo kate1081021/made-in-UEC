@@ -113,8 +113,8 @@ public class TitleManager : MiniGameBase
             switch (choice)
             {
                 case 0:
-                mode = "Credit";
-                Credit.SetActive(true);
+                SceneManager.LoadScene("EndCredits");
+                /// Credit.SetActive(true);
                 break;
 
                 case 1:
