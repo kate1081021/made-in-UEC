@@ -44,6 +44,13 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // BGMの音量を調整
+        BGM_start_1.volume = MGManager.sound_volume;
+        BGM_start_2.volume = MGManager.sound_volume;
+        Success.volume = MGManager.sound_volume;
+        Failure.volume = MGManager.sound_volume;
+        Speedup.volume = MGManager.sound_volume;
+
         // デバッグ用の中間コルーチン isDebugModeを折れば、通常通りのゲームが始まる
         StartCoroutine(TestPlayCoroutine());
     }

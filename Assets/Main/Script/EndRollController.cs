@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI; // LayoutRebuilder‚ğg—p‚·‚é‚½‚ß‚É•K{
+using UnityEngine.UI; // LayoutRebuilderï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½é‚½ï¿½ß‚É•Kï¿½{
 using UnityEngine.SceneManagement;
 
 public class EndRollController : MiniGameBase
@@ -7,28 +7,29 @@ public class EndRollController : MiniGameBase
     [Header("Scroll Settings")]
     [SerializeField] private float scrollSpeed = 100f;
     [SerializeField] private RectTransform contentRect;
-    [SerializeField] private float accelerationSmoothness = 10f; // ŠŠ‚ç‚©‚³
+    [SerializeField] private float accelerationSmoothness = 10f; // ï¿½ï¿½ï¿½ç‚©ï¿½ï¿½
 
-    private bool isScrolling = false; // Start‘O‚Í“®‚©‚³‚È‚¢
+    private bool isScrolling = false; // Startï¿½Oï¿½Í“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½
     public float upSpeed = 7f;
 
-    private float targetSpeedMultiplier = 1f; // –Ú•W”{—¦
-    private float currentSpeedMultiplier = 1f; // Œ»İ‚Ì”{—¦
-    private float contentHeight; // ƒŒƒCƒAƒEƒgŒvZŒã‚Ì³‚µ‚¢‚‚³‚ğ•Û
+    private float targetSpeedMultiplier = 1f; // ï¿½Ú•Wï¿½{ï¿½ï¿½
+    private float currentSpeedMultiplier = 1f; // ï¿½ï¿½ï¿½İ‚Ì”{ï¿½ï¿½
+    private float contentHeight; // ï¿½ï¿½ï¿½Cï¿½Aï¿½Eï¿½gï¿½vï¿½Zï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ûï¿½
 
     public override void OnGameStart()
     {
+        BGMPlay();
         if (contentRect == null) contentRect = GetComponent<RectTransform>();
 
-        // 1. ƒŒƒCƒAƒEƒg‚Ì‹­§ÄŒvZiâ‘Î‚ÉÁ‚³‚È‚¢‚±‚Æj
+        // 1. ï¿½ï¿½ï¿½Cï¿½Aï¿½Eï¿½gï¿½Ì‹ï¿½ï¿½ï¿½ï¿½ÄŒvï¿½Zï¿½iï¿½ï¿½Î‚Éï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½Æj
         Canvas.ForceUpdateCanvases();
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentRect);
 
-        // ³‚µ‚¢‚‚³‚ğæ“¾‚µ‚ÄƒLƒƒƒbƒVƒ…‚·‚é
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ÄƒLï¿½ï¿½ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         contentHeight = contentRect.sizeDelta.y;
 
-        // 2. ŠJnˆÊ’u‚Ì‰Šú‰»
-        // ƒRƒ“ƒeƒ“ƒc‚Ìã’[‚ª‰æ–Ê‚Ì‰º’[‚É—ˆ‚éˆÊ’u‚©‚çƒXƒ^[ƒg‚³‚¹‚é
+        // 2. ï¿½Jï¿½nï¿½Ê’uï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½
+        // ï¿½Rï¿½ï¿½ï¿½eï¿½ï¿½ï¿½cï¿½Ìï¿½[ï¿½ï¿½ï¿½ï¿½Ê‚Ì‰ï¿½ï¿½[ï¿½É—ï¿½ï¿½ï¿½Ê’uï¿½ï¿½ï¿½ï¿½Xï¿½^ï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         contentRect.anchoredPosition = new Vector2(0, -Screen.height);
 
         currentSpeedMultiplier = 1f;
@@ -38,13 +39,13 @@ public class EndRollController : MiniGameBase
 
     protected override void OnActionStarted(float value)
     {
-        // “ü—Í‚ª‚ ‚Á‚½‚ç‰Á‘¬”{—¦‚ğƒZƒbƒg
+        // ï¿½ï¿½ï¿½Í‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½{ï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½bï¿½g
         targetSpeedMultiplier = upSpeed;
     }
 
     protected override void OnActionCanceled(float value)
     {
-        // —£‚µ‚½‚ç“™”{‚É–ß‚·
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç“™ï¿½{ï¿½É–ß‚ï¿½
         targetSpeedMultiplier = 1f;
     }
 
@@ -52,13 +53,13 @@ public class EndRollController : MiniGameBase
     {
         if (!isScrolling) return;
 
-        // ‘¬“x”{—¦‚ğŠŠ‚ç‚©‚É•Ï‰»‚³‚¹‚éi‘f°‚ç‚µ‚¢À‘•‚Å‚·j
+        // ï¿½ï¿½ï¿½xï¿½{ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç‚©ï¿½É•Ï‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½fï¿½ï¿½ï¿½ç‚µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½j
         currentSpeedMultiplier = Mathf.Lerp(currentSpeedMultiplier, targetSpeedMultiplier, Time.deltaTime * accelerationSmoothness);
 
-        // ˆÚ“®ˆ—
+        // ï¿½Ú“ï¿½ï¿½ï¿½ï¿½ï¿½
         contentRect.anchoredPosition += Vector2.up * (scrollSpeed * currentSpeedMultiplier * Time.deltaTime);
 
-        // 3. I—¹”»’èFƒRƒ“ƒeƒ“ƒc‚ÌuÅŒã”öv‚ª‰æ–Êã’[‚ğŠ®‘S‚É”²‚¯‚½‚ç
+        // 3. ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Fï¿½Rï¿½ï¿½ï¿½eï¿½ï¿½ï¿½cï¿½Ìuï¿½ÅŒï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½Êï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Sï¿½É”ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (contentRect.anchoredPosition.y > contentHeight + Screen.height)
         {
             isScrolling = false;
@@ -68,8 +69,8 @@ public class EndRollController : MiniGameBase
 
     private void OnEndRollComplete()
     {
-        Debug.Log("ƒGƒ“ƒhƒ[ƒ‹I—¹");
-        // ‚±‚±‚ÉƒV[ƒ“‘JˆÚ‚È‚Ç‚ğ‹Lq
+        Debug.Log("ï¿½Gï¿½ï¿½ï¿½hï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Iï¿½ï¿½");
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ÉƒVï¿½[ï¿½ï¿½ï¿½Jï¿½Ú‚È‚Ç‚ï¿½ï¿½Lï¿½q
         SceneManager.LoadSceneAsync("Title");
     }
 }
