@@ -64,28 +64,44 @@ namespace BOSS
         }
 
         // --- 無敵とクールタイムをセットで管理するコルーチン ---
+        // --- ジャンプ演出（拡大・縮小）とクールタイムのコルーチン ---
         IEnumerator BOSS_JumpInvincibleWithCooldown()
         {
-            // 1. 無敵スタート ＆ アニメ切り替え！
+            // 1. 無敵スタート ＆ 元のサイズを記憶
             BOSS_isInvincible = true;
+            Vector3 originalScale = transform.localScale; // 元の大きさを保存
             float BOSS_elapsedTime = 0;
+            
             SEPlay("BOSS_JumpSE", false);
             BOSS_playerAnim.SetBool("isJumping", true); // アニメーションON
-            
+
+            // 拡大率の調整（1.5なら最大1.5倍まで大きくなるよ！）
+            float maxScaleBonus = 0.5f; 
+
             while (BOSS_elapsedTime < BOSS_invincibleTime)
             {
-                // スプライトを表示・非表示させて点滅させる
-                BOSS_playerSprite.enabled = !BOSS_playerSprite.enabled;
-                yield return new WaitForSeconds(BOSS_jumpBlinkInterval);
-                BOSS_elapsedTime += BOSS_blinkInterval;
+                BOSS_elapsedTime += Time.deltaTime; // 1フレームごとに進める
+                
+                // 進行度を 0.0 ～ 1.0 で計算
+                float progress = BOSS_elapsedTime / BOSS_invincibleTime;
+                
+                // サイン波を使って 0 → 1 → 0 のカーブを作る
+                // Mathf.Sin(0)は0、Mathf.Sin(π)は0、真ん中のMathf.Sin(π/2)が1になるよ
+                float curve = Mathf.Sin(progress * Mathf.PI);
+
+                // 現在の大きさを計算して適用
+                float currentScale = 1.0f + (curve * maxScaleBonus);
+                transform.localScale = originalScale * currentScale;
+
+                yield return null; // 1フレーム待機（これで超スムーズに動く！）
             }
-            // 最後は必ず表示されるようにして、無敵終了
-            BOSS_playerSprite.enabled = true;
+
+            // 最後にサイズをきっちり元に戻す
+            transform.localScale = originalScale;
 
             // 2. 無敵終了 ＆ アニメを戻す
-            BOSS_playerSprite.enabled = true; // 念のため表示を確実にする
             BOSS_isInvincible = false;
-            BOSS_playerAnim.SetBool("isJumping", false); // アニメーションOFF
+            BOSS_playerAnim.SetBool("isJumping", false);
 
             // 3. クールタイム開始
             BOSS_isJumpCooldown = true;
