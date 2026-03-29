@@ -9,8 +9,7 @@ namespace BOSS
     {
         public Sprite playerSprite;      // 画像
         public float customScale = 1.0f; // この画像専用の大きさ（倍率）
-        // ★追加：この画像専用の位置ズレ調整（X:左右, Y:上下, Z:前後）
-        public Vector3 positionOffset = Vector3.zero; 
+        public Vector3 positionOffset = Vector3.zero; // この画像専用の位置ズレ調整
     }
 
     public class BOSS_StartSequence : MiniGameBase
@@ -20,19 +19,19 @@ namespace BOSS
         public Animator playerAnimator;               
         public SpriteRenderer playerSpriteRenderer;   
         
-        [Header("画像・スケール・位置の設定（すべて別々に調整可能）")]
+        [Header("画像・スケール・位置の設定")]
         public PlayerVisual sequenceStandVisual; // 【1】演出中の立ち画像
         public PlayerVisual readyJumpVisual;     // 【2】しゃがみ（構え）の画像
         public PlayerVisual jumpVisual;          // 【3】飛んでいる最中の画像
         public PlayerVisual gameStartVisual;     // 【4】ゲーム本編開始時の立ち画像
         
         [Header("位置のセッティング")]
-        public Vector3 readyPosition;         
+        public Vector3 readyPosition;        
         
         [Header("スピード・時間設定")]
-        public float jumpSpeed = 15f;         
-        public float standTime = 0.5f;        
-        public float crouchTime = 0.5f;       
+        public float jumpSpeed = 15f;        
+        public float standTime = 0.5f;       
+        public float crouchTime = 0.5f;      
 
         [Header("UI・背景設定")]
         public GameObject startBackground;    
@@ -42,20 +41,23 @@ namespace BOSS
         [Header("ゲーム本編のシステム")]
         public MonoBehaviour[] systemsToStartLate; 
 
+        // ★追加：全体へ「ゲームが本当に始まったか」を知らせる合図
+        public static bool isGamePlaying = false; 
+
         public override void OnGameStart()
         {
+            isGamePlaying = false; // ★追加：最初は「まだ始まってない」にしておく
+
             MGManager.Load();
             StartCoroutine(PlayStartSequence());
         }
 
-        // ★修正：基本の位置（basePos）を基準にして、画像ごとのズレ（positionOffset）を足す！
         private void SetPlayerVisual(PlayerVisual visual, Vector3 basePos)
         {
             if (playerSpriteRenderer != null && visual.playerSprite != null)
             {
                 playerSpriteRenderer.sprite = visual.playerSprite;
                 playerController.transform.localScale = new Vector3(visual.customScale, visual.customScale, 1f);
-                // 基本位置 ＋ 画像ごとの微調整位置
                 playerController.transform.position = basePos + visual.positionOffset;
             }
         }
@@ -73,7 +75,6 @@ namespace BOSS
 
             if (startBackground != null) startBackground.SetActive(true);
             
-            // 最初は定位置にセット
             playerController.transform.position = readyPosition;
 
             foreach (var system in systemsToStartLate)
@@ -105,7 +106,6 @@ namespace BOSS
             SetPlayerVisual(jumpVisual, readyPosition);
 
             float timer = 0f;
-            // ジャンプ中は、「定位置＋ズレ」の場所から上に向かって動かす
             Vector3 currentJumpPos = readyPosition + jumpVisual.positionOffset;
             
             while (timer < 1.0f)
@@ -125,11 +125,20 @@ namespace BOSS
             if (startBackground != null) startBackground.SetActive(false);
 
             // --------------------------------------------------
-            // ★【4】ゲーム本編開始時の立ち姿をセットし、Animatorオン
+            // 【4】ゲーム本編開始時の立ち姿をセットし、Animatorオン
             // --------------------------------------------------
             SetPlayerVisual(gameStartVisual, readyPosition);
             if (playerAnimator != null) playerAnimator.enabled = true;
 
+            // ==================================================
+            // ★暗転中に、タイマーなどのシステムをオンにする！（姿を見せる）
+            // ==================================================
+            foreach (var system in systemsToStartLate)
+            {
+                if (system != null) system.enabled = true;
+            }
+
+            // タイマーが出た状態で、0.5秒間「真っ暗な画面」をキープする
             yield return new WaitForSeconds(0.5f);
 
             // --------------------------------------------------
@@ -140,10 +149,10 @@ namespace BOSS
             
             playerController.BOSS_canMove = true;
 
-            foreach (var system in systemsToStartLate)
-            {
-                if (system != null) system.enabled = true;
-            }
+            // ==================================================
+            // ★追加：明転が完全に終わったここで「スタート！」の合図を出す！
+            // ==================================================
+            isGamePlaying = true; 
         }
 
         IEnumerator FadeScreen(float startAlpha, float endAlpha)

@@ -11,7 +11,8 @@ namespace BOSS
         Baloon, 
         Snake, 
         Wind, 
-        Rod // ★追加：棒の障害物をリストに追加！
+        Rod,        // ★復活：Rodを残す！
+        NewObstacle // ★追加：新しい障害物も追加！
     }
 
     [System.Serializable]
@@ -32,7 +33,8 @@ namespace BOSS
         [Header("【1】継続型のプレハブ")]
         public GameObject fallingObstacleManagerPrefab;
         public GameObject windControllerPrefab; 
-        public GameObject rodObstacleManagerPrefab; // ★追加：Rodのジェネレーターを入れる枠
+        public GameObject rodObstacleManagerPrefab; // ★復活：Rodの枠を元に戻しました！
+        public GameObject newObstacleSpawnerPrefab; // ★追加：新しい障害物の枠も共存！
 
         [Header("【2】単発型のプレハブ")]
         public GameObject ghostPrefab;
@@ -49,7 +51,8 @@ namespace BOSS
         // === 生成したマネージャーの保管場所 ===
         private BOSS_ObstacleManager spawnedFallingManager;
         private BOSS_WindController spawnedWindController; 
-        private BOSS_RodObstacleGenelator spawnedRodManager; // ★追加：生成したRodマネージャー
+        private BOSS_RodObstacleGenelator spawnedRodManager; // ★復活：Rodの保管箱
+        private BOSS_ObstacleSpawner spawnedNewSpawner;      // ★追加：新しい障害物の保管箱
 
         private float elapsedTime = 0f;
         private bool isTimelineRunning = false;
@@ -78,10 +81,17 @@ namespace BOSS
                 spawnedWindController = Instantiate(windControllerPrefab, Vector3.zero, Quaternion.identity).GetComponent<BOSS_WindController>();
                 spawnedWindController.Init(); 
             }
-            // ★追加：Rodマネージャーも事前に生成しておく
+            
+            // ★復活：Rodマネージャーを生成
             if (rodObstacleManagerPrefab != null)
             {
                 spawnedRodManager = Instantiate(rodObstacleManagerPrefab, Vector3.zero, Quaternion.identity).GetComponent<BOSS_RodObstacleGenelator>();
+            }
+            
+            // ★追加：新しい障害物スポーナーも生成
+            if (newObstacleSpawnerPrefab != null)
+            {
+                spawnedNewSpawner = Instantiate(newObstacleSpawnerPrefab, Vector3.zero, Quaternion.identity).GetComponent<BOSS_ObstacleSpawner>();
             }
 
             StartTimeline();
@@ -89,6 +99,9 @@ namespace BOSS
 
         void Update()
         {
+            // ★追加：演出中はタイムラインを完全にストップ
+            if (!BOSS_StartSequence.isGamePlaying) return;
+
             if (!isTimelineRunning) return;
 
             elapsedTime += Time.deltaTime;
@@ -128,7 +141,10 @@ namespace BOSS
                 case ObstacleType.Baloon: if (baloonPrefab) Instantiate(baloonPrefab, baloonPrefab.transform.position, baloonPrefab.transform.rotation); break;
                 case ObstacleType.Snake: isSnakeActive = true; snakeTimer = snakeSpawnInterval; break; 
                 case ObstacleType.Wind: if(spawnedWindController) spawnedWindController.StartWind(playerTarget); break;
-                case ObstacleType.Rod: if(spawnedRodManager) spawnedRodManager.StartSpawning(); break; // ★追加：ONにする
+                
+                // ★復活＆追加：それぞれ個別にONにするよう修正！
+                case ObstacleType.Rod: if(spawnedRodManager) spawnedRodManager.StartSpawning(); break; 
+                case ObstacleType.NewObstacle: if(spawnedNewSpawner) spawnedNewSpawner.StartSpawning(); break; 
             }
         }
 
@@ -140,7 +156,10 @@ namespace BOSS
                 case ObstacleType.Boomerang: isBoomerangActive = false; break; 
                 case ObstacleType.Snake: isSnakeActive = false; break; 
                 case ObstacleType.Wind: if(spawnedWindController) spawnedWindController.StopWind(); break;
-                case ObstacleType.Rod: if(spawnedRodManager) spawnedRodManager.StopSpawning(); break; // ★追加：OFFにする
+                
+                // ★復活＆追加：それぞれ個別にOFFにするよう修正！
+                case ObstacleType.Rod: if(spawnedRodManager) spawnedRodManager.StopSpawning(); break; 
+                case ObstacleType.NewObstacle: if(spawnedNewSpawner) spawnedNewSpawner.StopSpawning(); break; 
             }
         }
 

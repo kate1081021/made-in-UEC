@@ -119,54 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &39420283
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 39420285}
-  - component: {fileID: 39420284}
-  m_Layer: 0
-  m_Name: Underobstaclegenelator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &39420284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 39420283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddf7e45ced2ab1a4ebc4839b2851bdb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obstaclePrefab: {fileID: 2356521272529714142, guid: b7eae3ebb241eef4b9434ba0c1458823, type: 3}
-  minSpawnInterval: 10
-  maxSpawnInterval: 10
-  spawnXRange: 7
---- !u!4 &39420285
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 39420283}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.02, y: -5, z: 0}
-  m_LocalScale: {x: 2.7, y: 2.3, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &45664722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1295,8 +1247,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3112407373462132772, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
       propertyPath: stageEvents.Array.size
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 3112407373462132772, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: newObstacleSpawnerPrefab
+      value: 
+      objectReference: {fileID: 758080835338217038, guid: 27bae5b1439985f42a123a8c37591a3c, type: 3}
     - target: {fileID: 3112407373462132772, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
       propertyPath: rodObstacleManagerPrefab
       value: 
@@ -1316,6 +1272,10 @@ PrefabInstance:
     - target: {fileID: 3112407373462132772, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
       propertyPath: stageEvents.Array.data[8].isActivate
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112407373462132772, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[9].isActivate
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3112407373462132772, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
       propertyPath: stageEvents.Array.data[0].triggerTime
@@ -1351,7 +1311,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3112407373462132772, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
       propertyPath: stageEvents.Array.data[8].triggerTime
-      value: 25
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112407373462132772, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[9].triggerTime
+      value: 59
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112407373462132772, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[10].triggerTime
+      value: 59
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112407373462132772, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[11].triggerTime
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3112407373462132772, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
       propertyPath: stageEvents.Array.data[1].obstacleType
@@ -1379,7 +1351,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3112407373462132772, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
       propertyPath: stageEvents.Array.data[8].obstacleType
-      value: 6
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112407373462132772, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[9].obstacleType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112407373462132772, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[10].obstacleType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112407373462132772, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
+      propertyPath: stageEvents.Array.data[11].obstacleType
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7564011099653861096, guid: b578a70fc7807db4b952b1ddf6029376, type: 3}
       propertyPath: m_Name
@@ -1879,9 +1863,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1208030654}
-  - {fileID: 1775551384}
   - {fileID: 1240364042}
   - {fileID: 45664723}
+  - {fileID: 1775551384}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2038,6 +2022,8 @@ MonoBehaviour:
   systemsToStartLate:
   - {fileID: 816839343}
   - {fileID: 2138107252}
+  - {fileID: 45664724}
+  - {fileID: 1240364043}
 --- !u!4 &1772462901
 Transform:
   m_ObjectHideFlags: 0
@@ -2453,7 +2439,6 @@ SceneRoots:
   - {fileID: 587406894}
   - {fileID: 1126363396}
   - {fileID: 1772462901}
-  - {fileID: 39420285}
   - {fileID: 1121343013}
   - {fileID: 310501267}
   - {fileID: 1076683161}
