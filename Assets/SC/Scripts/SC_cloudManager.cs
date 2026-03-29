@@ -19,6 +19,23 @@ namespace SC{
 
         public override void OnGameStart()
         {
+            int stage = MGManager.stage;
+            if (stage >= 30)
+            {
+                minY -= 4;
+                maxY += 4;
+                cloudAmount += 30;
+            }
+            else if (stage >= 20)
+            {
+                minY -= 2;
+                cloudAmount += 10;
+            }
+            else if (stage >= 10)
+            {
+                minY -= 1;
+            }
+
             for (int i = 0; i < cloudAmount; i++)
             {
                 SpawnCloud();

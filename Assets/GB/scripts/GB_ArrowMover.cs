@@ -24,6 +24,7 @@ namespace garbage
                 if (mypos > 0)
                 {
                     transform.position = new Vector2(-4f + 4 * --mypos, -3.3f);
+                    SEPlay("move");
                 }
             }
             if (input.x == 1f && !rightflag)
@@ -32,6 +33,7 @@ namespace garbage
                 if (mypos < 2)
                 {
                     transform.position = new Vector2(-4f + 4 * ++mypos, -3.3f);
+                    SEPlay("move");
                 }
             }
             if (leftflag && input.x != -1f){leftflag = false;}; if (rightflag && input.x != 1f){rightflag = false;};
