@@ -10,6 +10,8 @@ TagManager:
   - Ground
   - Obstacle
   - Map
+  - panel
+  - life
   layers:
   - Default
   - TransparentFX
