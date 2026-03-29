@@ -231,7 +231,6 @@ MonoBehaviour:
   isLoopBGM: 0
   SEName: []
   SEFile: []
-  mapMoveManager: {fileID: 1287462199}
   goal_duration: 18
   clear: {fileID: 972093671}
 --- !u!4 &816839344
@@ -1071,6 +1070,54 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &1354564727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1354564729}
+  - component: {fileID: 1354564728}
+  m_Layer: 0
+  m_Name: BOSS_BGMManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1354564728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354564727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b0777432ff0829439ef35b80811dd09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameBGM: {fileID: 8300000, guid: f4fd72d322764794e96e62648cb9a90d, type: 3}
+  isLoopBGM: 1
+  SEName: []
+  SEFile: []
+--- !u!4 &1354564729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354564727}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.84604883, y: -1.5038763, z: -2.537342}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1493376733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1393,6 +1440,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b336f8a23a24eb4eab9d9f4670fccc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   BOSS_obstaclePrefab: {fileID: 1499228484478294357, guid: e2e974865984624409ea97afd3bfc549, type: 3}
   BOSS_spawnInterval: 1.5
 --- !u!114 &1985192672
@@ -1468,6 +1519,7 @@ MonoBehaviour:
   isLoopBGM: 0
   SEName: []
   SEFile: []
+  BOSS_isGameOver: 0
   BOSS_jumpInvincibleTime: 1
   BOSS_jumpCoolTime: 1.5
   BOSS_playerLife: 3
@@ -1655,3 +1707,4 @@ SceneRoots:
   - {fileID: 1493376735}
   - {fileID: 1575084385}
   - {fileID: 587406894}
+  - {fileID: 1354564729}

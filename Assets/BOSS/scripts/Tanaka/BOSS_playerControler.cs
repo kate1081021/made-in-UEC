@@ -61,6 +61,7 @@ namespace BOSS
             // 1. 無敵スタート ＆ アニメ切り替え！
             BOSS_isInvincible = true;
             float BOSS_elapsedTime = 0;
+            SEPlay("BOSS_JumpSE", false);
             BOSS_playerAnim.SetBool("isJumping", true); // アニメーションON
            
             while (BOSS_elapsedTime < BOSS_invincibleTime)
@@ -92,6 +93,7 @@ namespace BOSS
             // ※障害物のPrefabのTagを「Obstacle」に設定すること
             if (!BOSS_isInvincible && BOSS_collision.CompareTag("Obstacle"))
             {
+                SEPlay("BOSS_DamageSE", false);
                 BOSS_ApplyDamage();
             }
         }
