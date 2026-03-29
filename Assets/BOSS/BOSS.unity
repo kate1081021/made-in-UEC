@@ -637,8 +637,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
   isLoopBGM: 0
-  SEName: []
-  SEFile: []
+  SEName:
+  - BOSS_GoalSE
+  SEFile:
+  - {fileID: 8300000, guid: 2f31471c59737a440946a10996dfedf0, type: 3}
   goal_duration: 60
   clear: {fileID: 1089688726}
   clear_yamada: {fileID: 554967992}

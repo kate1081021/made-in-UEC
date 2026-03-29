@@ -61,6 +61,7 @@ namespace BOSS{
                 mov.clear_camera();
             }
 
+            SEPlay("BOSS_GoalSE",false);
             yield return new WaitForSeconds(4f);
 
             MGManager.ClearGame();

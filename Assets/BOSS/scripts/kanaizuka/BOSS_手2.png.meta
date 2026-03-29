@@ -359,7 +359,17 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "BOSS_\u624B2_0": 2171446889544785793
+      "BOSS_\u624B2_1": -3605710004440068753
+      "BOSS_\u624B2_2": -513060935716987289
+      "BOSS_\u624B2_3": -5326655766900094630
+      "BOSS_\u624B2_4": 1740384601397500526
+      "BOSS_\u624B2_5": 4963015395914248143
+      "BOSS_\u624B2_6": 7148010284950123914
+      "BOSS_\u624B2_7": -1226465709807491299
+      "BOSS_\u624B2_8": -7045419440682236840
+      "BOSS_\u624B2_9": -3373454993288568729
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
