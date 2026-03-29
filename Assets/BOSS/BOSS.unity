@@ -119,6 +119,54 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &310501266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 310501267}
+  - component: {fileID: 310501268}
+  m_Layer: 0
+  m_Name: BOSS_BGMManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &310501267
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310501266}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.84604883, y: -1.5038763, z: -2.537342}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &310501268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310501266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b0777432ff0829439ef35b80811dd09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameBGM: {fileID: 8300000, guid: f4fd72d322764794e96e62648cb9a90d, type: 3}
+  isLoopBGM: 1
+  SEName: []
+  SEFile: []
 --- !u!1 &587406891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1779,8 +1827,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
   isLoopBGM: 0
-  SEName: []
-  SEFile: []
+  SEName:
+  - BOSS_DamageSE
+  - BOSS_JumpSE
+  SEFile:
+  - {fileID: 8300000, guid: 22eb1ea9f751d034cb80e90193fd9d98, type: 3}
+  - {fileID: 8300000, guid: 67d3d41118ec4b34a89ab5d1555d056b, type: 3}
   BOSS_isGameOver: 0
   BOSS_canMove: 0
   BOSS_jumpInvincibleTime: 1
@@ -1983,3 +2035,4 @@ SceneRoots:
   - {fileID: 1126363396}
   - {fileID: 1772462901}
   - {fileID: 1121343013}
+  - {fileID: 310501267}
