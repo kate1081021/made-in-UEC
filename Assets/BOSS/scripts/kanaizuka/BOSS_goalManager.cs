@@ -35,7 +35,27 @@ namespace BOSS{
                 }
             }
 
+<<<<<<< Updated upstream
             clear.SetActive(true);
+=======
+            yield return new WaitForSeconds(1f); //暗転中
+
+            clear.SetActive(true); //クリア演出を有効化
+
+            yield return new WaitForSeconds(0.6f);
+            panel.SetActive(false); //panelを無効化
+            goal_object.SetActive(true);
+            clear_yamada.SetActive(true);
+
+            if(Camera.main.TryGetComponent<BOSS_clear_camera>(out var mov)){
+                mov.clear_camera();
+            }
+
+            SEPlay("BOSS_GoalSE",false);
+            yield return new WaitForSeconds(4f);
+
+            MGManager.ClearGame();
+>>>>>>> Stashed changes
         }
     }
 }
