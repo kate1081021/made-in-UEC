@@ -165,6 +165,12 @@ public class UIManager : MonoBehaviour
         UIanimator.SetTrigger("SpeedUp");
     }
 
+    public void BossAnimation()
+    {
+        UIanimator.speed = 1.0f;
+        UIanimator.SetTrigger("Boss");
+    }
+
     // リズムに合わせて動くやつ
     public IEnumerator RhythmAnimation(float BPM)
     {
