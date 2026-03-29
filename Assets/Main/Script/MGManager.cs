@@ -13,7 +13,7 @@ public static class MGManager
     public static bool IsClear { get; private set; } = false;
 
     /// <summary> 今はデバッグ中かのプロパティ 公開前にfalseにする </summary>
-    public static bool isDebugMode { get; private set; } = true;
+    public static bool isDebugMode { get; private set; } = false;
     
     /// 現在いるステージ(何ゲームクリアしたのかを管理)
     public static int stage { get; private set; } = 1;
@@ -82,7 +82,15 @@ public static class MGManager
     }
 
     /// これより下の関数(メソッド)は呼び出さないでください。
-    
+
+    /// ステージの初期化
+    public static void initialize()
+    {
+        stage = 1;
+        timeScale = 1.0f;
+        pitchScale = 1.0f;
+    }
+
     /// 同じシーンをロードし続ける
     public static void stuckScene(string s)
     {
