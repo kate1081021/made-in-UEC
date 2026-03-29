@@ -10,6 +10,7 @@ namespace BK
         // パラメーター
         public int escape = 0;  // よけていないときは0、右によけたら1、左によけたら-1をそれぞれ持つ
         private bool success = true;  // ミニゲーム成功or失敗
+        private Vector2 previous_val;  // 最後の入力を入れる
 
         // ゲーム開始時に呼ばれる
         public override void OnGameStart()
@@ -18,7 +19,7 @@ namespace BK
         }
 
         // 方向キーが押されたとき
-        protected override void OnMoveStarted(Vector2 value)
+        protected override void OnMovePerformed(Vector2 value)
         {
             // すでによけている場合はすぐに戻す
             if (escape != 0) { return; }
@@ -26,17 +27,26 @@ namespace BK
             // ゲームがすでに終わっている場合は戻る
             if (MGManager.IsClear) { return; }
 
+            Vector2 val = convert_stick_to_dir(value);
+            if (val == previous_val) { return; }
+            previous_val = val;
+
             // 左によけた時
-            if (value.x < -0.5f) {
+            if (val.x < -0.5f) {
                 animator.SetTrigger("isLeftKeyPressed");
                 escape = -1;
             
             // 右によけた時
-            } else if (value.x > 0.5f) {
+            } else if (val.x > 0.5f) {
                 animator.SetTrigger("isRightKeyPressed");
                 escape = 1;
             }
 
+        }
+
+        protected override void OnMoveCanceled(Vector2 value)
+        {
+            previous_val = convert_stick_to_dir(value);
         }
 
         // エスケープアニメーションが終了したとき

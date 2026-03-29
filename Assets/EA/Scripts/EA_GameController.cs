@@ -65,6 +65,7 @@ namespace EA
         private int carsor_x = 0;
         private int carsor_y = 0;
         private bool waitForNextTry = false;  // 一回間違えた場合、次に操作できるようになるまでラグが生じるようにする。
+        private Vector2 previous_val;  // 最後に受け取ったカーソル入力
 
         /// <summary>
         /// UI関連
@@ -119,14 +120,7 @@ namespace EA
 
         }
 
-
-        // デモプレイ(1回だけ呼ばれる)
-        private IEnumerator DemoPlay()
-        {
-            yield return null;
-        }
-
-        // 上下左右キーが押されている
+        // カーソル操作
         protected override void OnMovePerformed(Vector2 value)
         {
             // クリア時または硬直時は呼び出さない
@@ -134,6 +128,8 @@ namespace EA
 
             // スティック対応
             Vector2 val = convert_stick_to_dir(value);
+            if (val == previous_val) { return; }
+            previous_val = val;
 
             // x座標
             carsor_x = (carsor_x + (int)val.x) % boardModel.boardLength;
@@ -146,6 +142,17 @@ namespace EA
             // カーソルを動かす
             carsolView.CarsorMove(carsor_x, carsor_y, boardModel.boardLength);
 
+        }
+
+        protected override void OnMoveCanceled(Vector2 value)
+        {
+            previous_val = convert_stick_to_dir(value);
+        }
+
+        // デモプレイ(1回だけ呼ばれる)
+        private IEnumerator DemoPlay()
+        {
+            yield return null;
         }
 
         // Enter/Spaceキーが押された

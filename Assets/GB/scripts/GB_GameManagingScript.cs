@@ -52,7 +52,7 @@ namespace garbage
         {
             MGManager.Load();
             //MGManager.TestPlay(31);    //テストプレイ用，必要なければすぐに消す
-            BGMPlay(true);
+            BGMPlay();
             ArrowScript = Arrow.GetComponent<GB_ArrowMover>();
             arrowpos = ArrowScript.mypos;
             spawner = spawnpoint.GetComponent<GB_GarbageSpawner>();

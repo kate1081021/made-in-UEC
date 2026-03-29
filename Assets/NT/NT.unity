@@ -2713,7 +2713,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4f53c27643ebb2545991bbdef3ae8ef0, type: 3}
   countText: {fileID: 360980739}
   count: 0
-  sounddistance: 5
+  sounddistance: 25
   soundborder: 0
   isCleared: 0
 --- !u!114 &8047941679037284638
