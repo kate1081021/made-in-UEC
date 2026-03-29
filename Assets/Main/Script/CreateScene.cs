@@ -7,5 +7,6 @@ public class CreateScene : ScriptableObject
     public string verb;  // ゲームを表す動詞
     public float timelimit;  // ミニゲームの制限時間(1.0xを基準とする)
     public bool stopEarlyFinish = false; // 早期クリア時の切り上げを止めるオプション(通常時はfalse)
+    public string type; // ミニゲームの操作タイプ (ピコピコ/スティック/トリガー)
     
 }

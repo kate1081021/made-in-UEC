@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -151,6 +152,7 @@ public class GameManager : MonoBehaviour
         // BGMの総プレイ時間
         double TotalPlayTime = 0.0f;
         double FirstPlayTime = 0.0f;
+        string controllType = "";
 
         if (TitleManager.isNormalMode && minigameQueue.Count == 0)
         {
@@ -189,6 +191,7 @@ public class GameManager : MonoBehaviour
         {
             scene = minigames[loaded_minigame].scene_name;  // ミニゲームの名前
             verb = minigames[loaded_minigame].verb;  // ミニゲームの動詞
+            controllType = minigames[loaded_minigame].type;
             // 裏でシーンの読み込みを開始する（まだ切り替えない）
             asyncLoad = SceneManager.LoadSceneAsync(scene);
         }
@@ -203,6 +206,7 @@ public class GameManager : MonoBehaviour
         // アニメーションが再生されたか
         bool isStageUpdated = false;  // stage数が更新されたら
         bool isAnimationPlaying = false;  // メインのアニメーションが表示されたら
+        bool isControllerAnimated = false; // Controllerのアニメが出てきたら
         // 勝利状況の確認(Stage2以降)
         if (MGManager.stage > 1 && MGManager.isMainCalled) {
             if (MGManager.IsClear)
@@ -311,7 +315,16 @@ public class GameManager : MonoBehaviour
                 // stage数更新
                 uiManager.updateStage();
                 StartCoroutine(uiManager.RhythmAnimation(120)); // 仮置きしている現状のBPM
+                //独自で分けます
+                if (MGManager.stage != 1)
+                { uiManager.controllerAnimation(controllType); }
                 isStageUpdated = true;
+            }
+            // アニメーション
+            if (MGManager.stage == 1 && currentTime >= StartTime + TotalPlayTime - 2.2f && !isControllerAnimated)
+            {
+                uiManager.controllerAnimation(controllType);
+                isControllerAnimated = true;
             }
             // アニメーション
             if (currentTime >= StartTime + TotalPlayTime - 1.1f && !isAnimationPlaying)
