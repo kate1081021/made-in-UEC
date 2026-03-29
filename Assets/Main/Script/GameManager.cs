@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator TestPlayCoroutine()
     {
-
+        Debug.Log("called");
         yield return null;
         while (MGManager.isDebugMode){
             yield return null;
@@ -71,6 +71,9 @@ public class GameManager : MonoBehaviour
         {
             SettingNormal();
         }
+        MGManager.initialize();
+        PitchScale = 1.0f;
+        Time.timeScale = 1.0f;
 
         // ゲーム進行コルーチン呼び出し
         StartCoroutine(MainCoroutine());
@@ -78,6 +81,7 @@ public class GameManager : MonoBehaviour
 
     void SettingNormal()
     {
+        Debug.Log("NORMAL MODE");
         List<int> number = new List<int>();
         for (int i = 0; i < minigames.Count-1; i++)
         {
@@ -151,6 +155,7 @@ public class GameManager : MonoBehaviour
         if (TitleManager.isNormalMode && minigameQueue.Count == 0)
         {
             Time.timeScale = 1.0f; // ボスステージでは速度をリセット
+            MGManager.timeScale = 1.0f; // 関数を挟まず代入
         }
         else
         {
@@ -204,6 +209,7 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("ミニゲームクリア!!");
                 PlayImmidiate(Success, PitchScale);
+                uiManager.WinAnimation();
                 FirstPlayTime += Success.clip.length / PitchScale;
                 TotalPlayTime += Success.clip.length / PitchScale;
             } 
@@ -211,6 +217,7 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("ミニゲーム失敗");
                 PlayImmidiate(Failure, PitchScale);
+                uiManager.LoseAnimation();
                 FirstPlayTime += Failure.clip.length / PitchScale;
                 TotalPlayTime += Failure.clip.length / PitchScale;
                 Transform target = lives.GetChild(lifeRemain-1);
@@ -228,11 +235,19 @@ public class GameManager : MonoBehaviour
         MGManager.Finished();
         if (lifeRemain == 0)
         {
+            while (Success.isPlaying || Failure.isPlaying)
+            {
+                yield return null;
+            }
             GameOver();
             yield break;
         }
         if (loaded_minigame == -1)
         {
+            while (Success.isPlaying || Failure.isPlaying)
+            {
+                yield return null;
+            }
             GameClear();
             yield break;
         }
@@ -252,6 +267,7 @@ public class GameManager : MonoBehaviour
             FirstPlayTime += Speedup.clip.length;
             TotalPlayTime += Speedup.clip.length;
             PitchScale *= 1.059463094f;  // 各音階の比率
+            MGManager.pitchScale = PitchScale;
             BGM_start_2.pitch = PitchScale;
             }
             else // テストプレイでステージをいじった後は効果音だけ鳴らすように
@@ -266,10 +282,24 @@ public class GameManager : MonoBehaviour
         if (MGManager.stage == 1) {
             PlayImmidiate(BGM_start_1, PitchScale);
             TotalPlayTime += BGM_start_1.clip.length;
+            uiManager.GameStartAnimation();
         } else {
             PlayNext(BGM_start_2, PitchScale);
             TotalPlayTime += BGM_start_2.clip.length / PitchScale;
-        } 
+        }
+
+        if (speedup) // スピードアップのアニメーション用
+        {
+            while (Success.isPlaying || Failure.isPlaying)
+            {
+                yield return null;
+            }
+            uiManager.SpeedUpAnimation();
+            while (Speedup.isPlaying)
+            {
+                yield return null;
+            }
+        }
 
         // 曲の再生終了とアニメーションの終了を同期させる
         while (BGM_start_1.isPlaying || BGM_start_2.isPlaying)  // ここの1.1(s)は現在のアニメーションが再生し終わるまでにかかる時間
@@ -300,7 +330,7 @@ public class GameManager : MonoBehaviour
         MGManager.isMainCalled = true;
 
         // 3. ロードが90%（準備完了）まで待機
-        while (asyncLoad.progress < 0.9f)
+        while (asyncLoad.progress < 0.9f || !uiManager.isZoomed)
         {
             yield return null;
         }
@@ -380,7 +410,9 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         Debug.Log($"<color=green> ゲームオーバー…(GameOver()より呼ばれています) </color>");
-        SceneManager.LoadScene("Title");
+        SceneManager.MoveGameObjectToScene(this.gameObject, SceneManager.GetActiveScene());
+        SceneManager.MoveGameObjectToScene(uiManager.gameObject, SceneManager.GetActiveScene());
+        SceneManager.LoadScene("GameOver");
     }
     void GameClear()
     {

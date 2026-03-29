@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     public List<Image> Lives;
     public Image[] timerSources;
     public Animator UIanimator; // リズムに合わせて動くやつのアニメーション
+    public bool isZoomed = false; // ズームが終わったかどうかのフラグ
     [SerializeField] private float first_duration = 1.0f;    // 最初のテキストがフェードインするアニメーションの時間
     [SerializeField] private float second_duration = 1.0f;    // 次に他のオブジェクトが拡大するアニメーションの時間
 
@@ -82,14 +83,32 @@ public class UIManager : MonoBehaviour
         // ステージ数を更新
         counter.text = $"{MGManager.stage}";
     }
+    public void WinAnimation()
+    {
+        UIanimator.SetTrigger("Win"); 
+    }
+    public void LoseAnimation()
+    {
+        UIanimator.SetTrigger("Lose"); 
+    }
+
+    public void GameStartAnimation()
+    {
+        UIanimator.SetTrigger("GameStart");
+    }
+    public void SpeedUpAnimation()
+    {
+        UIanimator.speed /= Time.timeScale;
+        UIanimator.SetTrigger("SpeedUp");
+    }
 
     // リズムに合わせて動くやつ
     public IEnumerator RhythmAnimation(float BPM)
     {
-        for (int i = 0; i < 8; i++) {
-            if (i == 0) { UIanimator.SetTrigger("StartBeat");}
-            else { UIanimator.SetTrigger("Beat"); }
-            yield return new WaitForSeconds(60f/(BPM <= 0 ? BPM : 120));
+        UIanimator.speed = Time.timeScale;
+        for (int i = 0; i < 2; i++) {
+            UIanimator.SetTrigger("Beat");
+            yield return new WaitForSeconds((60f*2f)/(BPM <= 0 ? BPM : 120));
         }
         UIanimator.SetTrigger("Finish");
     }
@@ -97,6 +116,7 @@ public class UIManager : MonoBehaviour
     // メインのアニメーションを表示
     IEnumerator PlayUIAnimation(string verb)
     {
+        isZoomed = false;
         float elapsed = 0f;
 
         // 元の拡大率を保持
@@ -146,6 +166,7 @@ public class UIManager : MonoBehaviour
         // 2.5 値を確定させる
         targetText.alpha = 1;
         if (zoomGroup != null) zoomGroup.localScale = groupEndScale;
+        isZoomed = true;
 
     }
 

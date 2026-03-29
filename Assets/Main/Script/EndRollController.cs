@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI; // LayoutRebuilderを使用するために必須
+using UnityEngine.SceneManagement;
 
 public class EndRollController : MiniGameBase
 {
@@ -9,7 +10,7 @@ public class EndRollController : MiniGameBase
     [SerializeField] private float accelerationSmoothness = 10f; // 滑らかさ
 
     private bool isScrolling = false; // Start前は動かさない
-    public float upSpeed = 3f;
+    public float upSpeed = 7f;
 
     private float targetSpeedMultiplier = 1f; // 目標倍率
     private float currentSpeedMultiplier = 1f; // 現在の倍率
@@ -69,5 +70,6 @@ public class EndRollController : MiniGameBase
     {
         Debug.Log("エンドロール終了");
         // ここにシーン遷移などを記述
+        SceneManager.LoadSceneAsync("Title");
     }
 }
