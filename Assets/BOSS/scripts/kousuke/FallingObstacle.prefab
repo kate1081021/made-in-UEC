@@ -118,8 +118,6 @@ MonoBehaviour:
     customScale: 0.5
   - obstacleSprite: {fileID: -1667583943385514053, guid: ed6d5f182cb9cea47990d64393a8eb92, type: 3}
     customScale: 0.5
-  - obstacleSprite: {fileID: 2684548955827070867, guid: 5e5f42b7d975b3d45996db04b11a0446, type: 3}
-    customScale: 3
 --- !u!58 &-4872466624978786923
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -105,7 +105,7 @@ MonoBehaviour:
   isLoopBGM: 0
   SEName: []
   SEFile: []
-  BOSS_fallSpeed: 3
+  BOSS_fallSpeed: 5
   BOSS_waveAmplitude: 2
   BOSS_waveFrequency: 3
 --- !u!58 &-8755884735380891312

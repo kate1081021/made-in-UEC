@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BOSS_ObstaclePrefab: {fileID: 2912575928268287213, guid: f31102469e2426040b47facb44f9f57f, type: 3}
-  BOSS_SpawnInterval: 5
+  BOSS_SpawnInterval: 8

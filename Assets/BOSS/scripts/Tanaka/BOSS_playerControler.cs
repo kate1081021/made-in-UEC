@@ -78,12 +78,12 @@ namespace BOSS
             // 拡大率の調整（1.5なら最大1.5倍まで大きくなるよ！）
             float maxScaleBonus = 0.5f; 
 
-            while (BOSS_elapsedTime < BOSS_invincibleTime)
+            while (BOSS_elapsedTime < BOSS_jumpInvincibleTime)
             {
                 BOSS_elapsedTime += Time.deltaTime; // 1フレームごとに進める
                 
                 // 進行度を 0.0 ～ 1.0 で計算
-                float progress = BOSS_elapsedTime / BOSS_invincibleTime;
+                float progress = BOSS_elapsedTime / BOSS_jumpInvincibleTime;
                 
                 // サイン波を使って 0 → 1 → 0 のカーブを作る
                 // Mathf.Sin(0)は0、Mathf.Sin(π)は0、真ん中のMathf.Sin(π/2)が1になるよ
