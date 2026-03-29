@@ -161,7 +161,7 @@ public class TitleManager : MonoBehaviour
         positions[0] = new Vector2(-705, 250);
         positions[1] = new Vector2(-380, -150);
         positions[2] = new Vector2(380, -150);
-        positions[3] = new Vector2(705, 250);
+        positions[3] = new Vector2(775, 250);
         cursor.localPosition = positions[choice];
         if (choice == 1 || choice == 2) { cursor.eulerAngles = new Vector3(0,0,180); }
         else { cursor.eulerAngles = new Vector3(0,0,0); }
