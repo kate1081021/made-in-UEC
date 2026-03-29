@@ -9,7 +9,7 @@ using UnityEngine.AI;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
 
-public class TitleManager : MonoBehaviour
+public class TitleManager : MiniGameBase
 {
     public static bool isNormalMode = false;
     private int choice = 0;
@@ -17,15 +17,13 @@ public class TitleManager : MonoBehaviour
     private bool isSetting = false;
     [SerializeField] List<Slider> nowSetting;
     private int OPchoice = 1;
-    private MIU_InputSystem InputSystems;
-    private InputAction Move;
-    private InputAction Action;
     [SerializeField] GameObject Credit;
     [SerializeField] GameObject Option;
     [SerializeField] Transform cursor;
     [SerializeField] Transform OPcursor;
+    [SerializeField] Slider slider;
 
-    void Start()
+    public override void OnGameStart()
     {
         InputSystems = new MIU_InputSystem();
         InputSystems.Enable();
@@ -37,25 +35,7 @@ public class TitleManager : MonoBehaviour
         Option.SetActive(false);
         cursorUpdate();
     }
-    private Vector2 convert_stick_to_dir(Vector2 val)
-    {
-        float mag = val.magnitude;
-        Vector2 ans = new Vector2(0,0);
-        if (mag < 0.5) { return ans; }
-        float theta = Mathf.Atan2(val.y,val.x) * Mathf.Rad2Deg;
-        if (-45 < theta && theta <= 45)
-        {
-            ans = new Vector2(1,0);
-        } else if (45 < theta && theta <= 135)
-        {
-            ans = new Vector2(0,1);
-        } else if (-135 < theta && theta <= -45)
-        {
-            ans = new Vector2(0,-1);
-        } else
-        { ans = new Vector2(-1,0); } //左に-180と180の境目があってめんどくさい
-        return ans;
-    }
+    
     void moving(InputAction.CallbackContext ctx)
     {
         Vector2 direction = ctx.ReadValue<Vector2>();
@@ -172,6 +152,13 @@ public class TitleManager : MonoBehaviour
         positions[0] = new Vector2(-340, 0);
         positions[1] = new Vector2(-340, -360);
         OPcursor.localPosition = positions[OPchoice];
+    }
+
+    // 音量が変更されたとき
+    public void OnVolumeUpdate()
+    {
+        MGManager.sound_volume = slider.value;  // 音量変更
+        ApplyVolume(slider.value);  // 変更を適応
     }
 
     // Update is called once per frame
