@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  topY: 1
+  topY: -3
   bottomY: -6
 --- !u!58 &-552853421838001188
 CircleCollider2D:
