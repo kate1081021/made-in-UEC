@@ -40,6 +40,9 @@ namespace BOSS{
 
             //rootobjectsに格納したgoalManager,panel以外のすべてのオブジェクトをオフに
             foreach (GameObject obj in rootobjects){
+
+                if (obj == null) continue;
+
                 if (obj != gameObject && !obj.CompareTag("MainCamera") && !obj.CompareTag("panel")){
                     obj.SetActive(false);
                 }
@@ -58,6 +61,9 @@ namespace BOSS{
                 mov.clear_camera();
             }
 
+            yield return new WaitForSeconds(4f);
+
+            MGManager.ClearGame();
         }
     }
 }
