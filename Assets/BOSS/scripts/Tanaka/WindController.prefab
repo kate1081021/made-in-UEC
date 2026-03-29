@@ -4879,7 +4879,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f5a65a885aa776419fa7bb36c5522aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windStrength: 2
+  windStrength: 2.5
+  spawnOffset: 3
+  insideOffset: 1
+  fanMoveSpeed: 5
   fanObject: {fileID: 4919036038119829754}
   windParticle: {fileID: 3431652561725941956}
 --- !u!1 &4919036038119829754

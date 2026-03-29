@@ -135,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   darknessObject: {fileID: 4871480729120064820}
   startVisionScale: 20
-  minVisionScale: 4.5
+  minVisionScale: 5
   shrinkSpeed: 5
   expandSpeed: 10
   ghostLifeTime: 5

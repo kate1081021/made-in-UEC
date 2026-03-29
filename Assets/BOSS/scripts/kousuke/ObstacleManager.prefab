@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallingObstaclePrefab: {fileID: 2428551691009027440, guid: 841c95d9f053ad242890f884a20ee2c9, type: 3}
-  spawnInterval: 1
+  spawnInterval: 1.25
