@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1ac6b6d3bfbaf2b40a88d405ad7d18e8
+guid: 64c2427f45a236d43884e00e5ce20034
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4820564789761526163
-    second: MIU_Icon_0
+      213: -6982742514523672771
+    second: gaaan 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,30 +109,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MIU_Icon_0
+      name: gaaan 1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 771
-        height: 536
+        y: 109
+        width: 1920
+        height: 971
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d6632893dd9e91db0800000000000000
-      internalID: -4820564789761526163
+      spriteID: d3f6ccfdda0581f90800000000000000
+      internalID: -6982742514523672771
       vertices: []
       indices: 
       edges: []
@@ -160,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      MIU_Icon_0: -4820564789761526163
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

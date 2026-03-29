@@ -292,14 +292,22 @@ public class GameManager : MonoBehaviour
             TotalPlayTime += BGM_start_2.clip.length / PitchScale;
         }
 
+        
+        while (Success.isPlaying || Failure.isPlaying)
+        {
+            yield return null;
+        }
         if (speedup) // スピードアップのアニメーション用
         {
-            while (Success.isPlaying || Failure.isPlaying)
+            uiManager.SpeedUpAnimation();
+            while (Speedup.isPlaying)
             {
                 yield return null;
             }
-            uiManager.SpeedUpAnimation();
-            while (Speedup.isPlaying)
+        } else if (TitleManager.isNormalMode && minigameQueue.Count == 0)
+        {
+            uiManager.BossAnimation();
+            while (Speedup.isPlaying) // ボス用に変更
             {
                 yield return null;
             }

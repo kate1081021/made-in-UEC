@@ -54,11 +54,9 @@ namespace catchMochi
 
         // C#の古いバージョンでも動くようにListの初期化を修正
         private List<float[]> patterns = new List<float[]> {
-            new float[] { 5.0f, 2.0f, 1.0f },  // [何もない時間, 揺れている時間, 開いている時間]
-            new float[] { 3.0f, 2.5f, 1.5f },
-            new float[] { 4.0f, 1.5f, 1.0f },
-            new float[] { 1.0f, 1.0f, 1.0f },
-            new float[] { 2.0f, 3.0f, 1.0f }
+            new float[] { 1.125f, 0.625f, 0.5f },  // [何もない時間, 揺れている時間, 開いている時間]
+            new float[] { 1.0f, 0.5f, 0.75f },
+            new float[] { 1.25f, 0.5f, 0.5f },
         };
 
         // 開始時
@@ -116,7 +114,7 @@ namespace catchMochi
                 // この辺の処遇を検討中
                 float factor = 0.5f*(1 - (float)Mathf.Exp(-multiplier*speed));
 
-                float idleTime = times[0] * Random.Range(0.8f, 1.2f) * (1 - factor) * 1.5f;
+                float idleTime = times[0] * Random.Range(0.8f, 1.2f) * (1 - factor);
                 float shakeTime = times[1] * Random.Range(0.8f, 1.2f) * (1 - factor);
                 float openTime = times[2] * Random.Range(0.8f, 1.2f) * (1 - factor);
 
@@ -226,7 +224,7 @@ namespace catchMochi
         // Enter/Spaceがはなされたとき
         protected override void OnActionCanceled(float value)
         {
-            if (girlModel.eating && game_in_progress)
+            if (girlModel.eating && game_in_progress && girlModel.status != "eat")
             {
                 // 食べている状態を解除する
                 girlModel.CancelEating();
