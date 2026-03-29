@@ -44,7 +44,7 @@ namespace PTgame
                 if (isse)
                 {
                     isse = false;
-                    SEPlay("d", se);
+                    SEPlay("d");
                 }
             }
 

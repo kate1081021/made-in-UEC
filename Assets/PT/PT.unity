@@ -7901,12 +7901,14 @@ MonoBehaviour:
   - bike ring
   - ball fall
   - result
+  - wind
   SEFile:
   - {fileID: 8300000, guid: f65e1f02885a1f148a6c5146b05c8f12, type: 3}
   - {fileID: 8300000, guid: e04b8d1fbda7ab348bed50d668a92100, type: 3}
   - {fileID: 8300000, guid: b2c4eea59bf4189439796ffb3dab87d2, type: 3}
   - {fileID: 8300000, guid: 21365c572924a4440834853852a87390, type: 3}
   - {fileID: 8300000, guid: 23779917160eef54c8f6d4829f37f57c, type: 3}
+  - {fileID: 8300000, guid: 81f0d5de4cd675c45a68bdb6dab7c812, type: 3}
   se:
   - {fileID: 8300000, guid: f65e1f02885a1f148a6c5146b05c8f12, type: 3}
   - {fileID: 8300000, guid: e04b8d1fbda7ab348bed50d668a92100, type: 3}
@@ -8060,91 +8062,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &1323289130
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3191390350222655228, guid: e14a885d8012770488ff679e2d1e4eaf, type: 3}
-      propertyPath: m_Name
-      value: Wind
-      objectReference: {fileID: 0}
-    - target: {fileID: 3191390350222655228, guid: e14a885d8012770488ff679e2d1e4eaf, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5339373461558824893, guid: e14a885d8012770488ff679e2d1e4eaf, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5576309802249882316, guid: e14a885d8012770488ff679e2d1e4eaf, type: 3}
-      propertyPath: ShapeModule.type
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5576309802249882316, guid: e14a885d8012770488ff679e2d1e4eaf, type: 3}
-      propertyPath: ShapeModule.m_Scale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5576309802249882316, guid: e14a885d8012770488ff679e2d1e4eaf, type: 3}
-      propertyPath: ShapeModule.m_Scale.z
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5576309802249882316, guid: e14a885d8012770488ff679e2d1e4eaf, type: 3}
-      propertyPath: ShapeModule.radiusThickness
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7863188460439580595, guid: e14a885d8012770488ff679e2d1e4eaf, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7863188460439580595, guid: e14a885d8012770488ff679e2d1e4eaf, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7863188460439580595, guid: e14a885d8012770488ff679e2d1e4eaf, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7863188460439580595, guid: e14a885d8012770488ff679e2d1e4eaf, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7863188460439580595, guid: e14a885d8012770488ff679e2d1e4eaf, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7863188460439580595, guid: e14a885d8012770488ff679e2d1e4eaf, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7863188460439580595, guid: e14a885d8012770488ff679e2d1e4eaf, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7863188460439580595, guid: e14a885d8012770488ff679e2d1e4eaf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7863188460439580595, guid: e14a885d8012770488ff679e2d1e4eaf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7863188460439580595, guid: e14a885d8012770488ff679e2d1e4eaf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8693558874418180210, guid: e14a885d8012770488ff679e2d1e4eaf, type: 3}
-      propertyPath: m_MaxParticleSize
-      value: 0.005
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e14a885d8012770488ff679e2d1e4eaf, type: 3}
 --- !u!1 &1360824683
 GameObject:
   m_ObjectHideFlags: 0
@@ -14328,5 +14245,4 @@ SceneRoots:
   - {fileID: 494727674}
   - {fileID: 772312155}
   - {fileID: 4857357191509553512}
-  - {fileID: 1323289130}
   - {fileID: 1651798078}

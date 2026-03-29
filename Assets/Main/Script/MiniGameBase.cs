@@ -247,6 +247,11 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
         mainSource.Play();
     }
 
+    public void BGMStop()
+    {
+        mainSource.Stop();
+    }
+
     public void SEPlay(string id, bool applyToTimeScale = false)
     {
         if (applyToTimeScale)

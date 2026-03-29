@@ -60,7 +60,7 @@ public class EndRollController : MiniGameBase
         contentRect.anchoredPosition += Vector2.up * (scrollSpeed * currentSpeedMultiplier * Time.deltaTime);
 
         // 3. �I������F�R���e���c�́u�Ō���v����ʏ�[�����S�ɔ�������
-        if (contentRect.anchoredPosition.y > contentHeight + Screen.height)
+        if (contentRect.anchoredPosition.y > contentHeight + Screen.height / 2)
         {
             isScrolling = false;
             OnEndRollComplete();

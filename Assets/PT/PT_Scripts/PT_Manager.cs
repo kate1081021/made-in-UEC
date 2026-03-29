@@ -69,7 +69,7 @@ namespace PTgame
             if (isse)
             {
                 isse = false;
-                SEPlay("result", se[4]);
+                SEPlay("result");
             }
 
             if (rect != null)
