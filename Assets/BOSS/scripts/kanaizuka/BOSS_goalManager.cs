@@ -48,12 +48,7 @@ namespace BOSS{
                 }
             }
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
             clear.SetActive(true);
-=======
-=======
->>>>>>> 42a9ad9fad89e30fd98374bef5ccdfa9dd183021
             yield return new WaitForSeconds(1f); //暗転中
 
             clear.SetActive(true); //クリア演出を有効化
@@ -71,10 +66,6 @@ namespace BOSS{
             yield return new WaitForSeconds(4f);
 
             MGManager.ClearGame();
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> 42a9ad9fad89e30fd98374bef5ccdfa9dd183021
         }
     }
 }
