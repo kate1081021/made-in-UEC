@@ -103,7 +103,7 @@ namespace BK
                         if (Move.WasPressedThisFrame())
                         {
                             // 方向キーの値を確認
-                            Vector2 value = Move.ReadValue<Vector2>();
+                            Vector2 value = convert_stick_to_dir(Move.ReadValue<Vector2>());
 
                             // 押されたボタンの向きとプレイヤーがよけた向きが逆になっていることを確認する
                             if ((enemyData.direction == -1.0f && value.x > 0.5f) || (enemyData.direction == 1.0f && value.x < -0.5f))
