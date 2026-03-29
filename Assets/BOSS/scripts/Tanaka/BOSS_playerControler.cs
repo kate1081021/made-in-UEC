@@ -162,7 +162,12 @@ namespace BOSS
             {
                 Destroy(obj); // 画面から消去
             }
-
+            // 3-2. 画面上の「life」タグが付いたプレハブを全部消す
+            GameObject[] lifeobstacles = GameObject.FindGameObjectsWithTag("life");
+            foreach (GameObject obj in lifeobstacles)
+            {
+                Destroy(obj); // 画面から消去
+            }
             // 4. ゲームオーバーアニメーション ＆ 物理オフ
             BOSS_playerAnim.SetBool("Gameover", true);
             BOSS_playerRb.simulated = false;
