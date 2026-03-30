@@ -284,7 +284,6 @@ GameObject:
   - component: {fileID: 101834540}
   - component: {fileID: 101834543}
   - component: {fileID: 101834542}
-  - component: {fileID: 101834541}
   m_Layer: 5
   m_Name: timer_sprite_boom
   m_TagString: Untagged
@@ -311,28 +310,6 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: 137}
   m_SizeDelta: {x: 600, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &101834541
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 101834539}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3291c9e0772ecce4a9ee555e81eeb94a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &101834542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1329,7 +1306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4261,8 +4238,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 0
+  m_fontColor: {r: 0, g: 0, b: 0, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5442,6 +5419,7 @@ MonoBehaviour:
   target: {fileID: 1805018522}
   counter: {fileID: 1106284507}
   timer: {fileID: 753477589}
+  counterBack: {fileID: 469003401}
   zoomGroup: {fileID: 1292214106}
   Cont_Stick: {fileID: 352095714}
   Cont_PikoPiko: {fileID: 234700308}
@@ -5456,8 +5434,8 @@ MonoBehaviour:
   isZoomed: 0
   first_duration: 0.5
   second_duration: 0.5
-  cont_fadein_duration: 0.3
-  cont_show_duration: 0.5
+  cont_fadein_duration: 0.2
+  cont_show_duration: 0.7
 --- !u!4 &1393399580
 Transform:
   m_ObjectHideFlags: 0

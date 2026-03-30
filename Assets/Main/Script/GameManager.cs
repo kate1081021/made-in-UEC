@@ -336,7 +336,7 @@ public class GameManager : MonoBehaviour
             if (currentTime >= StartTime + FirstPlayTime && !isStageUpdated)
             {
                 // stage数更新
-                uiManager.updateStage();
+                StartCoroutine(uiManager.updateStage());
                 StartCoroutine(uiManager.RhythmAnimation(120)); // 仮置きしている現状のBPM
                 //独自で分けます
                 if (MGManager.stage != 1)
@@ -393,7 +393,7 @@ public class GameManager : MonoBehaviour
         // ミニゲームがロードされてからtimelimit秒だけ待つ
         float elapsed = 0f;
         float timelimit = minigames[loaded_minigame].timelimit;
-        int last = (int)timelimit;
+        float last = timelimit;
 
         // 仮の爆弾が出てくる時間
         float bombtime = 3f;
@@ -404,7 +404,17 @@ public class GameManager : MonoBehaviour
 
         while (elapsed < timelimit) {
             // カウントダウン
-            if (last > (timelimit - elapsed)) { uiManager.UITimer(last); last--; }
+            if (last > (timelimit - elapsed)) 
+            {
+                uiManager.UITimer(last);
+                if (!last.ToString().Contains("."))
+                {
+                    last -= 0.5f;
+                } else
+                {
+                    last--;
+                }
+            }
 
             // 早めにゲームをクリアしたとき or 強制終了時
             if ((!stopEarlyFinish && MGManager.IsClear && (timelimit - elapsed) > (bombtime + waitUntilClearTime)) || MGManager.isFinishedForcibly)
