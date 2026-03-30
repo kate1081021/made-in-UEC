@@ -1,24 +1,20 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System;
-using System.Runtime.InteropServices;
 using UnityEngine.SceneManagement;
-using UnityEngine.AI;
-using System.Runtime.CompilerServices;
-using System.ComponentModel;
 
-public class GameOverManager : MonoBehaviour
+public class GameOverManager : MiniGameBase
 {
     private int choice = 0;
-    private MIU_InputSystem InputSystems;
-    private InputAction Move;
-    private InputAction Action;
+    private bool isPlayingGameOver1 = false;
     [SerializeField] Transform cursor;
 
-    void Start()
+    public override void OnGameStart()
     {
+        isPlayingGameOver1 = false;
         InputSystems = new MIU_InputSystem();
         InputSystems.Enable();
         Move = InputSystems.FindAction("Move");  // WASD
@@ -26,28 +22,18 @@ public class GameOverManager : MonoBehaviour
         Move.performed += moving;
         Action.started += choiced;
         cursorUpdate();
+        StartCoroutine(StartMusic());
     }
-    private Vector2 convert_stick_to_dir(Vector2 val)
+    IEnumerator StartMusic()
     {
-        float mag = val.magnitude;
-        Vector2 ans = new Vector2(0,0);
-        if (mag < 0.5) { return ans; }
-        float theta = Mathf.Atan2(val.y,val.x) * Mathf.Rad2Deg;
-        if (-45 < theta && theta <= 45)
-        {
-            ans = new Vector2(1,0);
-        } else if (45 < theta && theta <= 135)
-        {
-            ans = new Vector2(0,1);
-        } else if (-135 < theta && theta <= -45)
-        {
-            ans = new Vector2(0,-1);
-        } else
-        { ans = new Vector2(-1,0); } //左に-180と180の境目があってめんどくさい
-        return ans;
+        SEPlay("GameOver1");
+        yield return new WaitForSeconds(3.0f);
+        BGMPlay();
+        isPlayingGameOver1 = true;
     }
     void moving(InputAction.CallbackContext ctx)
     {
+        if (!isPlayingGameOver1) { return; }
         Vector2 direction = ctx.ReadValue<Vector2>();
         convert_stick_to_dir(direction);
         if (direction == Vector2.zero) { return; }
@@ -64,6 +50,7 @@ public class GameOverManager : MonoBehaviour
 
     void choiced(InputAction.CallbackContext ctx)
     {
+        if (!isPlayingGameOver1) { return; }
             switch (choice)
             {
                 case 0:

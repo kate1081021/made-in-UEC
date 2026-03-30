@@ -747,6 +747,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c464c93153cdc498d5fe37d909b6db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameBGM: {fileID: 8300000, guid: 2ca405cb0fdd5224890b4c99008df257, type: 3}
+  isLoopBGM: 1
+  SEName:
+  - GameOver1
+  SEFile:
+  - {fileID: 8300000, guid: 6671d1aab2641cf44afe0fe7bba7980c, type: 3}
   cursor: {fileID: 1295057575}
 --- !u!1 &1956427122
 GameObject:
