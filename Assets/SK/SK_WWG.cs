@@ -52,6 +52,7 @@ namespace SK
                 targetVideo.Play();
                 // もし動画の速さもステージに合わせるなら以下を追加
                 targetVideo.playbackSpeed = 1.0f * Time.timeScale; 
+                BGMPlay();
             }
 
             MGManager.Load();
@@ -195,6 +196,7 @@ namespace SK
                 {
                     // 成功
                     if (bgmSource != null) bgmSource.Stop();
+                    BGMStop();
                     //ジャンプ時の効果音がなかったので、一度まとめてコメントアウトしています
                     //SEPlay("");
                     //if (sfxJump != null) PlaySound(sfxJump);
