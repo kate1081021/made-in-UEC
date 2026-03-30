@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     private int loaded_minigame = 0;  // ロードされているゲームの番号
     private int debug_scene = -1;  // デバッグでロード中のシーンの番号
     private List<int> minigameQueue = new List<int>();
+    private bool isPlayedBossGame = false;
 
 
     public static GameManager Instance;
@@ -159,7 +160,10 @@ public class GameManager : MonoBehaviour
         // BGMの総プレイ時間
         double TotalPlayTime = 0.0f;
         double FirstPlayTime = 0.0f;
+
+        // 操作タイプ
         string controllType = "";
+        // ボスステージやった？かどうかのフラグ
 
         if (TitleManager.isNormalMode && minigameQueue.Count == 0)
         {
@@ -236,14 +240,28 @@ public class GameManager : MonoBehaviour
                 uiManager.LoseAnimation();
                 FirstPlayTime += Failure.clip.length / PitchScale;
                 TotalPlayTime += Failure.clip.length / PitchScale;
-                Transform target = lives.GetChild(lifeRemain-1);
-                target.gameObject.SetActive(false);
-                lifeRemain--;
-                yield return new WaitForEndOfFrame(); // 無効化まで待つ
-                if (lifeRemain == 0)
+                if (isPlayedBossGame)
                 {
-                    Debug.Log("gameover");
+                    for (int i = 0; i < lifeRemain; i++)
+                    {
+                        Transform target = lives.GetChild(i);
+                        target.gameObject.SetActive(false);
+                        yield return new WaitForEndOfFrame(); // 無効化まで待つ
+                    }
+                    lifeRemain = 0;
                 }
+                else
+                {
+                    Transform target = lives.GetChild(lifeRemain-1);
+                    target.gameObject.SetActive(false);
+                    lifeRemain--;
+                    yield return new WaitForEndOfFrame(); // 無効化まで待つ
+                    if (lifeRemain == 0)
+                    {
+                        Debug.Log("gameover");
+                    }
+                }
+                
             }
         }
 
@@ -271,6 +289,7 @@ public class GameManager : MonoBehaviour
         if (TitleManager.isNormalMode && minigameQueue.Count == 0)
         {
             PlayNext(Speedup, 1.0f);
+            isPlayedBossGame = true;
             FirstPlayTime += Speedup.clip.length;
             TotalPlayTime += Speedup.clip.length;
             PitchScale = 1.0f;
