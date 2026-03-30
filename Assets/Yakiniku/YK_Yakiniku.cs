@@ -91,11 +91,12 @@ namespace YakinikuGameProject
             
             // ★追加：ゲーム開始時にゲージの設定を強制的に直す！★
             ForceFixUI();
-
+            /*
             audioSource = GetComponent<AudioSource>();
             if (grillingAudioSource == null) grillingAudioSource = gameObject.AddComponent<AudioSource>();
             grillingAudioSource.clip = grillingSE; grillingAudioSource.loop = true;
-            grillingAudioSource.volume = grillingVolume;
+            */
+            // grillingAudioSource.volume = grillingVolume;
             ResetGame();
         }
 

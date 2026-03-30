@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI targetText;  // 動詞を表示するテキスト
     public TextMeshProUGUI counter;  // ステージ数をカウントするもの
     public TextMeshProUGUI timer;  // ミニゲーム中のタイマー表示
+    public Image counterBack; // ステージ数を表示する場所の背景
     public RectTransform zoomGroup;  // それ以外のUIをまとめた親オブジェクト(ヒエラルキーのObjects下に入っているすべてのオブジェクトが対象)
     public GameObject Cont_Stick;
     public GameObject Cont_PikoPiko;
@@ -102,6 +103,7 @@ public class UIManager : MonoBehaviour
         timer.alpha = 0;
         timerSources[0].color = new Color(255,255,255,0);
         timerSources[1].color = new Color(255,255,255,0);
+        timerSources[2].color = new Color(255,255,255,0);
         targetText.transform.localScale = Vector3.one * 1.2f; // 最初から1.2倍
 
         // 演出開始
@@ -122,6 +124,7 @@ public class UIManager : MonoBehaviour
         timer.alpha = 0;
         timerSources[0].color = new Color(255,255,255,0);
         timerSources[1].color = new Color(255,255,255,0);
+        timerSources[2].color = new Color(255,255,255,0);
     }
     public void UIReset()
     {
@@ -134,19 +137,63 @@ public class UIManager : MonoBehaviour
         timer.alpha = 0;
         timerSources[0].color = new Color(255,255,255,0);
         timerSources[1].color = new Color(255,255,255,0);
+        timerSources[2].color = new Color(255,255,255,0);
         // オブジェクトの表示
     }
 
     // ステージ数を更新
-    public void updateStage()
+    public IEnumerator updateStage()
     {
+        float elapsed = 0f;
+        if (MGManager.stage != 1) // 最初のステージではフェードアウトをしない
+        {
+            while (elapsed < 0.3)
+            {
+                elapsed += Time.unscaledDeltaTime * MGManager.pitchScale;
+                float t = elapsed / 0.3f;
+                
+                // イージング（滑らかにする設定）
+                float curve = Mathf.SmoothStep(1, 0, t);
+                counter.alpha = curve;
+                yield return null;
+            }
+        }
+        else
+        {
+            while (elapsed < 0.3)
+            {
+                elapsed += Time.unscaledDeltaTime * MGManager.pitchScale;
+                float t = elapsed / 0.3f;
+                
+                // イージング（滑らかにする設定）
+                float curve = Mathf.SmoothStep(0, 1, t);
+                counterBack.color = new Color(255,255,255,curve);
+                yield return null;
+            }
+        }
         // ステージ数を更新
         counter.text = $"{MGManager.stage}";
+        elapsed = 0f;
+        while (elapsed < 0.3)
+        {
+            elapsed += Time.unscaledDeltaTime * MGManager.pitchScale;
+            float t = elapsed / 0.3f;
+            
+            // イージング（滑らかにする設定）
+            float curve = Mathf.SmoothStep(0, 1, t);
+            counter.alpha = curve;
+            yield return null;
+        }
     }
     public void WinAnimation()
     {
         UIanimator.speed = MGManager.pitchScale;
         UIanimator.SetTrigger("Win"); 
+    }
+    public void GameClearAnimation()
+    {
+        UIanimator.speed = MGManager.pitchScale;
+        UIanimator.SetTrigger("GameClear"); 
     }
     public void LoseAnimation()
     {
@@ -237,19 +284,31 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void UITimer(int sec)
+    public void UITimer(float sec)
     {
         timer.alpha = 1;
-        timer.text = $"{sec}";
-        if (sec < 4)
+        timer.text = $"{(int)sec}";
+        if (sec < 3)
         {
+            if(sec < 1)
+            {
+                timerSources[0].color = new Color(255,255,255,0);
+                timerSources[1].color = new Color(255,255,255,0);
+                timerSources[2].color = new Color(255,255,255,255);
+                timer.alpha = 0;
+            }
+            else
+            {
             timerSources[0].color = new Color(255,255,255,0);
             timerSources[1].color = new Color(255,255,255,255);
+            timerSources[2].color = new Color(255,255,255,0);
+            }
         }
         else
         {
             timerSources[0].color = new Color(255,255,255,255);
             timerSources[1].color = new Color(255,255,255,0);
+            timerSources[2].color = new Color(255,255,255,0);
         }
     }
 

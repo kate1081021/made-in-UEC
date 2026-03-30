@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public AudioSource Success;  // ミニゲーム成功時のBGM
     public AudioSource Failure; // ミニゲーム失敗時のBGM
     public AudioSource Speedup;  // スピードアップ時のBGM
+    public AudioSource ClearGame; // ノーマルクリア時の効果音
+    public AudioSource StartBoss; // ボスステージ入るときの効果音
     private double nextPlayTime;  // BGMを次に再生するまでの時間
     private float PitchScale = 1.0f;  // BGMのピッチを管理する
     
@@ -25,6 +27,7 @@ public class GameManager : MonoBehaviour
     private int loaded_minigame = 0;  // ロードされているゲームの番号
     private int debug_scene = -1;  // デバッグでロード中のシーンの番号
     private List<int> minigameQueue = new List<int>();
+    private bool isPlayedBossGame = false; // ボスステージやったかどうか？のフラグ
 
 
     public static GameManager Instance;
@@ -159,6 +162,8 @@ public class GameManager : MonoBehaviour
         // BGMの総プレイ時間
         double TotalPlayTime = 0.0f;
         double FirstPlayTime = 0.0f;
+
+        // 操作タイプ
         string controllType = "";
 
         if (TitleManager.isNormalMode && minigameQueue.Count == 0)
@@ -223,12 +228,22 @@ public class GameManager : MonoBehaviour
         if (MGManager.stage > 1 && MGManager.isMainCalled) {
             if (MGManager.IsClear)
             {
-                Debug.Log("ミニゲームクリア!!");
-                PlayImmidiate(Success, PitchScale);
-                uiManager.WinAnimation();
-                FirstPlayTime += Success.clip.length / PitchScale;
-                TotalPlayTime += Success.clip.length / PitchScale;
-            } 
+                if(loaded_minigame == -1)
+                {
+                    PlayImmidiate(ClearGame, PitchScale);
+                    uiManager.GameClearAnimation();
+                    FirstPlayTime += ClearGame.clip.length / PitchScale;
+                    TotalPlayTime += ClearGame.clip.length / PitchScale;
+                }
+                else
+                {
+                    Debug.Log("ミニゲームクリア!!");
+                    PlayImmidiate(Success, PitchScale);
+                    uiManager.WinAnimation();
+                    FirstPlayTime += Success.clip.length / PitchScale;
+                    TotalPlayTime += Success.clip.length / PitchScale;
+                }
+            }
             else
             {
                 Debug.Log("ミニゲーム失敗");
@@ -236,13 +251,26 @@ public class GameManager : MonoBehaviour
                 uiManager.LoseAnimation();
                 FirstPlayTime += Failure.clip.length / PitchScale;
                 TotalPlayTime += Failure.clip.length / PitchScale;
-                Transform target = lives.GetChild(lifeRemain-1);
-                target.gameObject.SetActive(false);
-                lifeRemain--;
-                yield return new WaitForEndOfFrame(); // 無効化まで待つ
-                if (lifeRemain == 0)
+                if (isPlayedBossGame)
                 {
-                    Debug.Log("gameover");
+                    for (int i = 0; i < lifeRemain; i++)
+                    {
+                        Transform target = lives.GetChild(i);
+                        target.gameObject.SetActive(false);
+                        yield return new WaitForEndOfFrame(); // 無効化まで待つ
+                    }
+                    lifeRemain = 0;
+                }
+                else
+                {
+                    Transform target = lives.GetChild(lifeRemain-1);
+                    target.gameObject.SetActive(false);
+                    lifeRemain--;
+                    yield return new WaitForEndOfFrame(); // 無効化まで待つ
+                    if (lifeRemain == 0)
+                    {
+                        Debug.Log("gameover");
+                    }
                 }
             }
         }
@@ -260,7 +288,7 @@ public class GameManager : MonoBehaviour
         }
         if (loaded_minigame == -1)
         {
-            while (Success.isPlaying || Failure.isPlaying)
+            while (Success.isPlaying || Failure.isPlaying || ClearGame.isPlaying)
             {
                 yield return null;
             }
@@ -270,9 +298,10 @@ public class GameManager : MonoBehaviour
         // スピードアップ と、ボス判定
         if (TitleManager.isNormalMode && minigameQueue.Count == 0)
         {
-            PlayNext(Speedup, 1.0f);
-            FirstPlayTime += Speedup.clip.length;
-            TotalPlayTime += Speedup.clip.length;
+            PlayNext(StartBoss, 1.0f);
+            isPlayedBossGame = true;
+            FirstPlayTime += StartBoss.clip.length;
+            TotalPlayTime += StartBoss.clip.length;
             PitchScale = 1.0f;
             MGManager.pitchScale = PitchScale;
 
@@ -322,7 +351,7 @@ public class GameManager : MonoBehaviour
         } else if (TitleManager.isNormalMode && minigameQueue.Count == 0)
         {
             uiManager.BossAnimation();
-            while (Speedup.isPlaying) // ボス用に変更
+            while (StartBoss.isPlaying) // ボス用に変更
             {
                 yield return null;
             }
@@ -336,7 +365,7 @@ public class GameManager : MonoBehaviour
             if (currentTime >= StartTime + FirstPlayTime && !isStageUpdated)
             {
                 // stage数更新
-                uiManager.updateStage();
+                StartCoroutine(uiManager.updateStage());
                 StartCoroutine(uiManager.RhythmAnimation(120)); // 仮置きしている現状のBPM
                 //独自で分けます
                 if (MGManager.stage != 1)
@@ -393,7 +422,7 @@ public class GameManager : MonoBehaviour
         // ミニゲームがロードされてからtimelimit秒だけ待つ
         float elapsed = 0f;
         float timelimit = minigames[loaded_minigame].timelimit;
-        int last = (int)timelimit;
+        float last = timelimit;
 
         // 仮の爆弾が出てくる時間
         float bombtime = 3f;
@@ -404,7 +433,17 @@ public class GameManager : MonoBehaviour
 
         while (elapsed < timelimit) {
             // カウントダウン
-            if (last > (timelimit - elapsed)) { uiManager.UITimer(last); last--; }
+            if (last > (timelimit - elapsed)) 
+            {
+                uiManager.UITimer(last);
+                if (!last.ToString().Contains("."))
+                {
+                    last -= 0.5f;
+                } else
+                {
+                    last--;
+                }
+            }
 
             // 早めにゲームをクリアしたとき or 強制終了時
             if ((!stopEarlyFinish && MGManager.IsClear && (timelimit - elapsed) > (bombtime + waitUntilClearTime)) || MGManager.isFinishedForcibly)
@@ -446,6 +485,7 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         Debug.Log($"<color=green> ゲームオーバー…(GameOver()より呼ばれています) </color>");
+        MGManager.pitchScale = 1.0f;
         SceneManager.MoveGameObjectToScene(this.gameObject, SceneManager.GetActiveScene());
         SceneManager.MoveGameObjectToScene(uiManager.gameObject, SceneManager.GetActiveScene());
         SceneManager.LoadScene("GameOver");

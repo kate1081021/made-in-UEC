@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class EndRollController : MiniGameBase
 {
     [Header("Scroll Settings")]
-    [SerializeField] private float scrollSpeed = 100f;
+    [SerializeField] private float scrollSpeed = 180f;
     [SerializeField] private RectTransform contentRect;
     [SerializeField] private float accelerationSmoothness = 10f; // ���炩��
 
