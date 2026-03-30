@@ -8456,11 +8456,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182d01f78d8fe7442ad6196725d34b9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameBGM: {fileID: 0}
+  gameBGM: {fileID: 8300000, guid: 312da31b74dde7c42b39a7025e137e7c, type: 3}
   isLoopBGM: 0
   SEName: []
   SEFile: []
-  scrollSpeed: 100
+  scrollSpeed: 175
   contentRect: {fileID: 0}
   accelerationSmoothness: 10
   upSpeed: 7

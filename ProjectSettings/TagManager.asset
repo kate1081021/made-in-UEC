@@ -9,14 +9,17 @@ TagManager:
   - closeButton
   - Ground
   - Obstacle
+  - Map
+  - panel
+  - life
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
+  - BackGround
   - 
   - 
   - 

@@ -1,74 +1,61 @@
 using UnityEngine;
+using System.Collections;
 
 namespace BOSS
 {
     public class BOSS_ObstacleManager : MonoBehaviour
     {
-        [Header("障害物の設定")]
-        public GameObject obstaclePrefab; // 降らせる障害物（BOSS_Obstacle）のプレハブ
-        public Sprite[] obstacleSprites;  // ランダムに選ばれる画像のリスト
+        [Header("降ってくる障害物の設定")]
+        public GameObject fallingObstaclePrefab;
+        public float spawnInterval = 1.5f;
 
-        [Header("出現ルールの設定")]
-        public float spawnInterval = 1.0f; // 何秒ごとに落とすか
-        public float minX = -8f;           // 出現するX座標の左端
-        public float maxX = 8f;            // 出現するX座標の右端
-        public float spawnY = 6f;          // 出現するY座標（画面の一番上）
+        private Coroutine spawnCoroutine;
 
-        private float timer = 0f;
-        private bool isSpawning = false;
-
-        // ★全体マネージャーの OnGameStart() から呼んでもらう関数
+        // Directorから呼ばれる「生成スタート」の合図
         public void StartSpawning()
         {
-            isSpawning = true;
-            timer = 0f;
+            if (spawnCoroutine == null)
+            {
+                spawnCoroutine = StartCoroutine(SpawnRoutine());
+            }
         }
 
-        void Update()
+        // Directorから呼ばれる「生成ストップ」の合図
+        public void StopSpawning()
         {
-            if (!isSpawning) return;
+            if (spawnCoroutine != null)
+            {
+                StopCoroutine(spawnCoroutine);
+                spawnCoroutine = null;
+            }
+        }
 
-            // Time.deltaTime は自動的に timeScale の影響を受けます
-            timer += Time.deltaTime;
-            if (timer >= spawnInterval)
+        private IEnumerator SpawnRoutine()
+        {
+            while (true)
             {
                 SpawnObstacle();
-                timer = 0f; 
+                yield return new WaitForSeconds(spawnInterval);
             }
         }
 
         private void SpawnObstacle()
         {
-            if (obstaclePrefab == null) return;
-
-            float randomX = Random.Range(minX, maxX);
-            Vector3 spawnPos = new Vector3(randomX, spawnY, 0f);
-
-            GameObject obj = Instantiate(obstaclePrefab, spawnPos, Quaternion.identity);
-
-            // 障害物のスクリプトを取得して、速度の初期化（timeScale対応）を行う
-            BOSS_Obstacle obstacleScript = obj.GetComponent<BOSS_Obstacle>();
-            if (obstacleScript != null)
+            if (fallingObstaclePrefab != null)
             {
-                obstacleScript.Init();
-            }
-
-            // 画像をランダムに変更
-            if (obstacleSprites.Length > 0)
-            {
-                SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
-                if (sr != null)
+                // 画面の上のほうからランダムな位置で降らせる
+                float randomX = Random.Range(-7f, 7f);
+                float topY = Camera.main.ViewportToWorldPoint(new Vector2(0, 1)).y + 2f;
+                
+                GameObject obj = Instantiate(fallingObstaclePrefab, new Vector3(randomX, topY, 0), Quaternion.identity);
+                
+                // もし障害物にBOSS_ObstacleがついていたらInitを呼ぶ
+                BOSS_Obstacle obstacleScript = obj.GetComponent<BOSS_Obstacle>();
+                if (obstacleScript != null)
                 {
-                    int randomIndex = Random.Range(0, obstacleSprites.Length);
-                    sr.sprite = obstacleSprites[randomIndex];
+                    obstacleScript.Init();
                 }
             }
-        }
-
-        // ★全体マネージャーからクリア時などに呼んでもらう関数
-        public void StopSpawning()
-        {
-            isSpawning = false; 
         }
     }
 }

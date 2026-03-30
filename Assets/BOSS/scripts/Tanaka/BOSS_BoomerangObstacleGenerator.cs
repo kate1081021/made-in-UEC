@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace BOSS
 {
-    public class BOSS_BoomerangObstacleGenerator : MonoBehaviour
+    public class BOSS_BoomerangObstacleGenerator : MiniGameBase
     {
         [Header("ジェネレータの設定")]
         [SerializeField] public GameObject BOSS_obstaclePrefab; // 召喚するプレハブ
@@ -13,7 +13,7 @@ namespace BOSS
         private float BOSS_maxX;       // 画面の右端
         private float BOSS_spawnY;     // 召喚する高さ（画面の少し上）
 
-        void Start()
+        public override void OnGameStart()
         {
             // カメラの表示範囲から、召喚するX座標の範囲を計算
             Vector2 BOSS_screenMin = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
