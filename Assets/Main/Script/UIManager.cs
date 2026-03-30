@@ -175,11 +175,8 @@ public class UIManager : MonoBehaviour
     public IEnumerator RhythmAnimation(float BPM)
     {
         UIanimator.speed = Time.timeScale;
-        for (int i = 0; i < 2; i++) {
-            UIanimator.SetTrigger("Beat");
-            yield return new WaitForSecondsRealtime((60f*2f)/((BPM <= 0 ? BPM : 120)*MGManager.pitchScale));
-            // yield return new WaitForSeconds((60f*2f)/(BPM <= 0 ? BPM : 120));
-        }
+        UIanimator.SetTrigger("Beat");
+        yield return new WaitForSecondsRealtime((60f*4f)/((BPM <= 0 ? BPM : 120)*MGManager.pitchScale));
         UIanimator.SetTrigger("Finish");
     }
 
