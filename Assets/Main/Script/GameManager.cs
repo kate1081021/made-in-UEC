@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public AudioSource Success;  // ミニゲーム成功時のBGM
     public AudioSource Failure; // ミニゲーム失敗時のBGM
     public AudioSource Speedup;  // スピードアップ時のBGM
+    public AudioSource ClearGame; // ノーマルクリア時の効果音
+    public AudioSource StartBoss; // ボスステージ入るときの効果音
     private double nextPlayTime;  // BGMを次に再生するまでの時間
     private float PitchScale = 1.0f;  // BGMのピッチを管理する
     
@@ -25,7 +27,7 @@ public class GameManager : MonoBehaviour
     private int loaded_minigame = 0;  // ロードされているゲームの番号
     private int debug_scene = -1;  // デバッグでロード中のシーンの番号
     private List<int> minigameQueue = new List<int>();
-    private bool isPlayedBossGame = false;
+    private bool isPlayedBossGame = false; // ボスステージやったかどうか？のフラグ
 
 
     public static GameManager Instance;
@@ -163,7 +165,6 @@ public class GameManager : MonoBehaviour
 
         // 操作タイプ
         string controllType = "";
-        // ボスステージやった？かどうかのフラグ
 
         if (TitleManager.isNormalMode && minigameQueue.Count == 0)
         {
@@ -227,12 +228,22 @@ public class GameManager : MonoBehaviour
         if (MGManager.stage > 1 && MGManager.isMainCalled) {
             if (MGManager.IsClear)
             {
-                Debug.Log("ミニゲームクリア!!");
-                PlayImmidiate(Success, PitchScale);
-                uiManager.WinAnimation();
-                FirstPlayTime += Success.clip.length / PitchScale;
-                TotalPlayTime += Success.clip.length / PitchScale;
-            } 
+                if(loaded_minigame == -1)
+                {
+                    PlayImmidiate(ClearGame, PitchScale);
+                    uiManager.WinAnimation();
+                    FirstPlayTime += ClearGame.clip.length / PitchScale;
+                    TotalPlayTime += ClearGame.clip.length / PitchScale;
+                }
+                else
+                {
+                    Debug.Log("ミニゲームクリア!!");
+                    PlayImmidiate(Success, PitchScale);
+                    uiManager.WinAnimation();
+                    FirstPlayTime += Success.clip.length / PitchScale;
+                    TotalPlayTime += Success.clip.length / PitchScale;
+                }
+            }
             else
             {
                 Debug.Log("ミニゲーム失敗");
@@ -261,7 +272,6 @@ public class GameManager : MonoBehaviour
                         Debug.Log("gameover");
                     }
                 }
-                
             }
         }
 
@@ -278,7 +288,7 @@ public class GameManager : MonoBehaviour
         }
         if (loaded_minigame == -1)
         {
-            while (Success.isPlaying || Failure.isPlaying)
+            while (Success.isPlaying || Failure.isPlaying || ClearGame.isPlaying)
             {
                 yield return null;
             }
@@ -288,7 +298,7 @@ public class GameManager : MonoBehaviour
         // スピードアップ と、ボス判定
         if (TitleManager.isNormalMode && minigameQueue.Count == 0)
         {
-            PlayNext(Speedup, 1.0f);
+            PlayNext(StartBoss, 1.0f);
             isPlayedBossGame = true;
             FirstPlayTime += Speedup.clip.length;
             TotalPlayTime += Speedup.clip.length;

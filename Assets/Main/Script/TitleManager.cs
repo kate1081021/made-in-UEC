@@ -67,7 +67,7 @@ public class TitleManager : MiniGameBase
                 }
                 else
                 {
-                    float addValue = direction.x / 5;
+                    float addValue = direction.x / 10;
                     Setting(nowSetting[OPchoice],addValue);
                 }
             OPcursorUpdate();
