@@ -20,11 +20,7 @@ namespace BOSS
         public float orbitRadius = 2.5f;       
         public float orbitSpeed = 2.0f;        
 
-        private float currentShrinkSpeed;
-        private float currentExpandSpeed;      
-        private float currentFadeInSpeed;      
-        private float currentFadeOutSpeed;     
-        private float currentOrbitSpeed;       
+        // 不要になった currentSpeed 系の変数を削除しました
         private float currentAngle = 0f;       
         private float currentAlpha = 0f;       
 
@@ -37,12 +33,6 @@ namespace BOSS
 
         public void Init(Transform target = null)
         {
-            currentShrinkSpeed = shrinkSpeed * Time.timeScale;
-            currentExpandSpeed = expandSpeed * Time.timeScale; 
-            currentFadeInSpeed = fadeInSpeed * Time.timeScale;
-            currentFadeOutSpeed = fadeOutSpeed * Time.timeScale;
-            currentOrbitSpeed = orbitSpeed * Time.timeScale;
-
             followTarget = target; 
             
             // 出現した時はランダムな角度（位置）からスタートする
@@ -71,7 +61,8 @@ namespace BOSS
             // ターゲットの周りをグルグル回る処理
             if (followTarget != null)
             {
-                currentAngle += currentOrbitSpeed * Time.unscaledDeltaTime;
+                // ★修正：Time.deltaTime を使うことで、ゲームの加速に自動でついていきます
+                currentAngle += orbitSpeed * Time.deltaTime;
 
                 float x = followTarget.position.x + Mathf.Cos(currentAngle) * orbitRadius;
                 float y = followTarget.position.y + Mathf.Sin(currentAngle) * orbitRadius;
@@ -91,14 +82,16 @@ namespace BOSS
             {
                 if (currentAlpha < 1f)
                 {
-                    currentAlpha += currentFadeInSpeed * Time.unscaledDeltaTime;
+                    // ★修正：Time.deltaTime に統一
+                    currentAlpha += fadeInSpeed * Time.deltaTime;
                     if (currentAlpha > 1f) currentAlpha = 1f; 
                     SetGhostAlpha(currentAlpha);
                 }
 
                 if (darknessObject != null && darknessObject.transform.localScale.x > minVisionScale)
                 {
-                    darknessObject.transform.localScale -= Vector3.one * currentShrinkSpeed * Time.unscaledDeltaTime;
+                    // ★修正：Time.deltaTime に統一
+                    darknessObject.transform.localScale -= Vector3.one * shrinkSpeed * Time.deltaTime;
 
                     if (darknessObject.transform.localScale.x < minVisionScale)
                     {
@@ -117,14 +110,16 @@ namespace BOSS
             {
                 if (currentAlpha > 0f)
                 {
-                    currentAlpha -= currentFadeOutSpeed * Time.unscaledDeltaTime;
+                    // ★修正：Time.deltaTime に統一
+                    currentAlpha -= fadeOutSpeed * Time.deltaTime;
                     if (currentAlpha < 0f) currentAlpha = 0f; 
                     SetGhostAlpha(currentAlpha);
                 }
 
                 if (darknessObject != null)
                 {
-                    darknessObject.transform.localScale += Vector3.one * currentExpandSpeed * Time.unscaledDeltaTime;
+                    // ★修正：Time.deltaTime に統一
+                    darknessObject.transform.localScale += Vector3.one * expandSpeed * Time.deltaTime;
 
                     if (darknessObject.transform.localScale.x >= startVisionScale)
                     {

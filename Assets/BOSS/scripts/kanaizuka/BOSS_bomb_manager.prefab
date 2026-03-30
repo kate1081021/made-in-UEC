@@ -44,19 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9f0a94d0e63a4498b6dc619b8caf01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generate_duration: 7
+  generate_duration: 10
   generate_x_pos: 7
-  generate_y_pos: -4
-  throwing_duration: 0.5
+  generate_y_pos: -7
+  throwing_duration: 1
+  rbble_throwing_duration: 2
+  left_ratio: 2
+  right_ratio: 1
   max_target_x: 5
   min_target_x: -5
-  max_target_y: 5
+  max_target_y: 4
   min_target_y: 2
   bomb_prefab: {fileID: 8298798877524502542, guid: 2167c0352664113479dcd2dd4f86c3ae, type: 3}
   taeget_prefab: {fileID: 6232303829187568863, guid: bc60ec6c824543f499632b05b099b8ac, type: 3}
-  rubble_1_prefab: {fileID: 5187367657913055002, guid: 972fc5a70e81da642897e58ab7871eff, type: 3}
-  rubble_2_prefab: {fileID: 2587933992151743701, guid: d0841ea8a3df01d4e93acaa8fb22056c, type: 3}
-  rubble_3_prefab: {fileID: 3516017680578585458, guid: 54a673fd7b8794049ad69324ee84ba4c, type: 3}
-  rubble_4_prefab: {fileID: 6526761802973281739, guid: f4f5bc3030375c54baf80087a3e3e0c3, type: 3}
-  rubble_5_prefab: {fileID: 6526761802973281739, guid: 26af7476ba0b01c46be786bd597c93ac, type: 3}
-  rubble_6_prefab: {fileID: 6526761802973281739, guid: ca08a0605c4f3304f87a385c006721f4, type: 3}
+  rubble_prefab: {fileID: 5187367657913055002, guid: 972fc5a70e81da642897e58ab7871eff, type: 3}

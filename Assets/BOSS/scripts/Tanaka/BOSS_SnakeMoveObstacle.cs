@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace BOSS
 {
-    public class BOSS_SnakeMoveObstacle : MonoBehaviour 
+    public class BOSS_SnakeMoveObstacle : MiniGameBase
     {
         [Header("蛇行障害物の設定")]
         [SerializeField] public float BOSS_fallSpeed = 3.0f;     // 落ちる速さ
@@ -13,7 +13,7 @@ namespace BOSS
         private float BOSS_birthTime;    // 生まれた時間
         private float BOSS_screenBottom; // 画面の一番下の座標
 
-        void Start()
+        public override void OnGameStart()
         {
             // 生まれた時のX座標。ここを中心に蛇行する
             BOSS_spawnX = transform.position.x;

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2515739641297685756
+--- !u!1 &7564011099653861096
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2992344436184009599}
-  - component: {fileID: 8342201841914530760}
+  - component: {fileID: 2460148636500578892}
+  - component: {fileID: 3112407373462132772}
   m_Layer: 0
   m_Name: ObstacleDirector
   m_TagString: Untagged
@@ -17,46 +17,76 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2992344436184009599
+--- !u!4 &2460148636500578892
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2515739641297685756}
+  m_GameObject: {fileID: 7564011099653861096}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10.15521}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8342201841914530760
+--- !u!114 &3112407373462132772
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2515739641297685756}
+  m_GameObject: {fileID: 7564011099653861096}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4562c40ad6d81d5439bc11384c0ef06d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   stageEvents:
   - triggerTime: 0
     obstacleType: 0
     isActivate: 1
     hasTriggered: 0
   - triggerTime: 5
+    obstacleType: 0
+    isActivate: 0
+    hasTriggered: 0
+  - triggerTime: 5
+    obstacleType: 2
+    isActivate: 1
+    hasTriggered: 0
+  - triggerTime: 5
+    obstacleType: 4
+    isActivate: 1
+    hasTriggered: 0
+  - triggerTime: 5
+    obstacleType: 3
+    isActivate: 1
+    hasTriggered: 0
+  - triggerTime: 10
     obstacleType: 1
     isActivate: 1
     hasTriggered: 0
   - triggerTime: 15
-    obstacleType: 0
+    obstacleType: 5
+    isActivate: 1
+    hasTriggered: 0
+  - triggerTime: 20
+    obstacleType: 5
     isActivate: 0
     hasTriggered: 0
   playerTarget: {fileID: 0}
-  fallingObstacleManagerPrefab: {fileID: 8057876159063580181, guid: cc509c4dd0297724c928d326ca53054f, type: 3}
-  ghostPrefab: {fileID: 6973304386628713025, guid: 11f57186e69541e489ebd026e30709d5, type: 3}
+  fallingObstacleManagerPrefab: {fileID: 6560053587542479601, guid: e2968e6288718ce4c8d95427d7ede5ed, type: 3}
+  windControllerPrefab: {fileID: 3206320292153243614, guid: a7ceb609759d8d84d850a0057697d99e, type: 3}
+  ghostPrefab: {fileID: 8843140015650764768, guid: 2e5b6cd8da55a8546b70b737b8cbc132, type: 3}
+  baloonPrefab: {fileID: 412334233225753963, guid: f5b197cc0bfbda0438ee079c0f53df26, type: 3}
+  boomerangPrefab: {fileID: 1499228484478294357, guid: e2e974865984624409ea97afd3bfc549, type: 3}
+  boomerangSpawnInterval: 1
+  snakePrefab: {fileID: 1499228484478294357, guid: 48204a94384f6b5409109b76c6cab049, type: 3}
+  snakeSpawnInterval: 1
