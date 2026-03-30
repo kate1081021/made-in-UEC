@@ -151,6 +151,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   correctStamp: {fileID: 62967237685949395, guid: c152eaacf3ee57a40883b0fee063b721, type: 3}
   incorrectStamp: {fileID: 7893165686348636914, guid: 5d2c96aac73099c46abdab5d0a51b836, type: 3}
 --- !u!212 &122963528
@@ -369,6 +372,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   scrollSpeed: 30
   maxPosY: 4
   minPosY: -4
@@ -671,7 +677,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1e9720e07ef894bb7822bd0481eb9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameBGM: {fileID: 8300000, guid: 4fd578706de7a484b8f7721efda9d313, type: 3}
+  gameBGM: {fileID: 8300000, guid: 92778b7c0e6e0e24b89b9cf46a2b05b8, type: 3}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
   reportController: {fileID: 181247221}
   reportRenderer: {fileID: 181247218}
   submitUI: {fileID: 315490474}

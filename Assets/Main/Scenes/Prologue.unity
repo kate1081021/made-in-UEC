@@ -1055,6 +1055,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965d65ca1b03bcc498e23e6632249954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameBGM: {fileID: 8300000, guid: 4e04fad860b9c4340bb51998bb0702a9, type: 3}
+  isLoopBGM: 1
+  SEName: []
+  SEFile: []
   model: {fileID: 11400000, guid: 3fd1fb65c6846f14fb10ba96be78127f, type: 2}
   view: {fileID: 1042113478}
 --- !u!114 &1042113478

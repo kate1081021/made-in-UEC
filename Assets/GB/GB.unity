@@ -342,7 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2329ebdfdf6ae4993ff5c1984307a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameBGM: {fileID: 8300000, guid: 4293fa0acd85df3419976b8d7a056fbf, type: 3}
+  gameBGM: {fileID: 8300000, guid: 7c0b7082c29d8cb44bb00e1407a7b6ac, type: 3}
   isLoopBGM: 1
   SEName:
   - twinkle

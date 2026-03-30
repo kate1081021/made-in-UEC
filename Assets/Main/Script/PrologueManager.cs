@@ -2,16 +2,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class PrologueManager : MonoBehaviour
+public class PrologueManager : MiniGameBase
 {
-    private MIU_InputSystem InputSystems;
-    private InputAction Trigger_left;
-    private InputAction Action;
     private int index = 0;
     [SerializeField] Prologue_Model model;
     [SerializeField] Prologue_View view;
-    void Start()
+    public override void OnGameStart()
     {
+        BGMPlay();
         InputSystems = new MIU_InputSystem();
         InputSystems.Enable();
         Trigger_left = InputSystems.FindAction("Trigger_left");  // L

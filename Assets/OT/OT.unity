@@ -5345,7 +5345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb9468abdc3f7e0449fca1ec870aab53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameBGM: {fileID: 8300000, guid: 8b03776ecef817c4faecb1650c25b6e0, type: 3}
+  gameBGM: {fileID: 8300000, guid: 90d0d07f3eb085844b7931182c417c36, type: 3}
   isLoopBGM: 1
   SEName:
   - OT_Kati
