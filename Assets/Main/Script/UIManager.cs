@@ -190,6 +190,11 @@ public class UIManager : MonoBehaviour
         UIanimator.speed = MGManager.pitchScale;
         UIanimator.SetTrigger("Win"); 
     }
+    public void GameClearAnimation()
+    {
+        UIanimator.speed = MGManager.pitchScale;
+        UIanimator.SetTrigger("GameClear"); 
+    }
     public void LoseAnimation()
     {
         UIanimator.speed = MGManager.pitchScale;

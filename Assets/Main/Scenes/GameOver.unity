@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 499174363}
   - component: {fileID: 499174365}
   - component: {fileID: 499174364}
+  - component: {fileID: 499174366}
   m_Layer: 0
   m_Name: GameOver
   m_TagString: Untagged
@@ -269,6 +270,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 499174362}
   m_CullTransparentMesh: 1
+--- !u!95 &499174366
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499174362}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3371f561eea216a49859a2f533c57394, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1012415162
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,6 +777,7 @@ MonoBehaviour:
   SEFile:
   - {fileID: 8300000, guid: 6671d1aab2641cf44afe0fe7bba7980c, type: 3}
   cursor: {fileID: 1295057575}
+  anim: {fileID: 499174366}
 --- !u!1 &1956427122
 GameObject:
   m_ObjectHideFlags: 0
