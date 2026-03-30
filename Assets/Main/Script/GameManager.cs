@@ -165,6 +165,7 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 1.0f; // ボスステージでは速度をリセット
             MGManager.timeScale = 1.0f; // 関数を挟まず代入
+            Time.timeScale = MGManager.timeScale;
         }
         else
         {
@@ -205,7 +206,11 @@ public class GameManager : MonoBehaviour
         asyncLoad.allowSceneActivation = false; // 読み込み完了しても勝手に切り替わらないようにする
 
         // 最初のステージの時は少し待つ
-        if (MGManager.stage == 1) { yield return new WaitForSeconds(2.0f); }
+        if (MGManager.stage == 1)
+        {
+            uiManager.GameStartAnimation();
+            yield return new WaitForSeconds(2.0f);
+        }
 
         // BGMがスタートしたタイミングを記録
         double StartTime = AudioSettings.dspTime;
@@ -269,6 +274,8 @@ public class GameManager : MonoBehaviour
             FirstPlayTime += Speedup.clip.length;
             TotalPlayTime += Speedup.clip.length;
             PitchScale = 1.0f;
+            MGManager.pitchScale = PitchScale;
+
             BGM_start_2.pitch = PitchScale;
         }
         else if (speedup)
@@ -293,7 +300,8 @@ public class GameManager : MonoBehaviour
         if (MGManager.stage == 1) {
             PlayImmidiate(BGM_start_1, PitchScale);
             TotalPlayTime += BGM_start_1.clip.length;
-            uiManager.GameStartAnimation();
+            PlayNext(BGM_start_2, PitchScale);
+            TotalPlayTime += BGM_start_2.clip.length / PitchScale;
         } else {
             PlayNext(BGM_start_2, PitchScale);
             TotalPlayTime += BGM_start_2.clip.length / PitchScale;
