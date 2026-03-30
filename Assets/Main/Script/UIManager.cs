@@ -102,6 +102,7 @@ public class UIManager : MonoBehaviour
         timer.alpha = 0;
         timerSources[0].color = new Color(255,255,255,0);
         timerSources[1].color = new Color(255,255,255,0);
+        timerSources[2].color = new Color(255,255,255,0);
         targetText.transform.localScale = Vector3.one * 1.2f; // 最初から1.2倍
 
         // 演出開始
@@ -122,6 +123,7 @@ public class UIManager : MonoBehaviour
         timer.alpha = 0;
         timerSources[0].color = new Color(255,255,255,0);
         timerSources[1].color = new Color(255,255,255,0);
+        timerSources[2].color = new Color(255,255,255,0);
     }
     public void UIReset()
     {
@@ -134,6 +136,7 @@ public class UIManager : MonoBehaviour
         timer.alpha = 0;
         timerSources[0].color = new Color(255,255,255,0);
         timerSources[1].color = new Color(255,255,255,0);
+        timerSources[2].color = new Color(255,255,255,0);
         // オブジェクトの表示
     }
 
@@ -240,16 +243,28 @@ public class UIManager : MonoBehaviour
     public void UITimer(int sec)
     {
         timer.alpha = 1;
-        timer.text = $"{sec}";
+        timer.text = $"{sec-1}";
         if (sec < 4)
         {
+            if(sec < 2)
+            {
+                timerSources[0].color = new Color(255,255,255,0);
+                timerSources[1].color = new Color(255,255,255,0);
+                timerSources[2].color = new Color(255,255,255,255);
+                timer.alpha = 0;
+            }
+            else
+            {
             timerSources[0].color = new Color(255,255,255,0);
             timerSources[1].color = new Color(255,255,255,255);
+            timerSources[2].color = new Color(255,255,255,0);
+            }
         }
         else
         {
             timerSources[0].color = new Color(255,255,255,255);
             timerSources[1].color = new Color(255,255,255,0);
+            timerSources[2].color = new Color(255,255,255,0);
         }
     }
 

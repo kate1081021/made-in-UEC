@@ -446,6 +446,7 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         Debug.Log($"<color=green> ゲームオーバー…(GameOver()より呼ばれています) </color>");
+        MGManager.pitchScale = 1.0f;
         SceneManager.MoveGameObjectToScene(this.gameObject, SceneManager.GetActiveScene());
         SceneManager.MoveGameObjectToScene(uiManager.gameObject, SceneManager.GetActiveScene());
         SceneManager.LoadScene("GameOver");
