@@ -1481,8 +1481,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05575436a917cb24787595ddb51efd5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameBGM: {fileID: 0}
-  isLoopBGM: 0
+  gameBGM: {fileID: 8300000, guid: 764bc8b1929bdcc4cade66b96b500d29, type: 3}
+  isLoopBGM: 1
   SEName:
   - TestSound
   SEFile:

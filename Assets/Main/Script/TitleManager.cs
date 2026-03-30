@@ -25,6 +25,7 @@ public class TitleManager : MiniGameBase
 
     public override void OnGameStart()
     {
+        BGMPlay();
         InputSystems = new MIU_InputSystem();
         InputSystems.Enable();
         Move = InputSystems.FindAction("Move");  // WASD

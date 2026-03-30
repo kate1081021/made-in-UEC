@@ -1570,7 +1570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eaa63903641a4e4aaf64deeadfc765c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameBGM: {fileID: 8300000, guid: 5b7914bcf45c6034c8d9ab966be42db2, type: 3}
+  gameBGM: {fileID: 8300000, guid: 9c6af8903795c9740894af5c5e43c7b8, type: 3}
   isLoopBGM: 0
   SEName: []
   SEFile: []

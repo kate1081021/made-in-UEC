@@ -370,7 +370,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7d1478912a4f8d142b415290f7897b1f, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 7d1478912a4f8d142b415290f7897b1f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.3
@@ -2705,7 +2705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a17ce26dd4ed514395a66685cea8f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameBGM: {fileID: 8300000, guid: 7d1478912a4f8d142b415290f7897b1f, type: 3}
+  gameBGM: {fileID: 8300000, guid: 83699d5ac0aad01429f3969268b4c34d, type: 3}
   isLoopBGM: 0
   SEName:
   - NT_DropWater

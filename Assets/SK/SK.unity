@@ -2483,7 +2483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d3e7e37588e4747a880821d99026ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameBGM: {fileID: 8300000, guid: 2970671497209974eaef93cc8e1ffb16, type: 3}
+  gameBGM: {fileID: 8300000, guid: 3e2d46eb68c194c45ba53947f28d5e46, type: 3}
   isLoopBGM: 0
   SEName:
   - SK_Voice

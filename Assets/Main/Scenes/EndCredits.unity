@@ -13187,7 +13187,7 @@ MonoBehaviour:
   isLoopBGM: 0
   SEName: []
   SEFile: []
-  scrollSpeed: 175
+  scrollSpeed: 190
   contentRect: {fileID: 0}
   accelerationSmoothness: 10
   upSpeed: 7
