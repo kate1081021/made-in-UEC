@@ -1,8 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Rendering.Universal.ShaderGUI;
-using Unity.VisualScripting;
 
 namespace garbage
 {
