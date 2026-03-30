@@ -1,28 +1,31 @@
+using System.Collections;
 using UnityEngine;
 
 public class BOSS_rubble_moving : MonoBehaviour
 {
-    [Header("諸数値")]
-    [SerializeField] private float number;
-    [SerializeField] private float dx = 2.0f;
-    [SerializeField] private float dy = 5.0f;
+    public void Initialize(Vector3 start,Vector3 end,float duration){
+        StartCoroutine(Rubble_moving(start,end,duration));
+    }
 
-    //スタート使ってよいのかちょっと不安だったのとめちゃ眠いからいったんオブジェクトの削除を時間で管理するカス
-    private float time;
-    private float pos_x;
-    private float pos_y;
-    Vector3 pos;
+    IEnumerator Rubble_moving(Vector3 start,Vector3 end,float duration){
+        float elapsed = 0f;
 
-    void Update()
-    {
-        pos_x = gameObject.transform.position.x - dx * Time.deltaTime;
-        pos_y = gameObject.transform.position.y - dy * Time.deltaTime;
-        time += Time.deltaTime;
-        pos = new Vector3(pos_x,pos_y,0.0f);
-        transform.position = pos;
+        float controll_pos_x = (start.x + end.x) / 2f;
+        float controll_pos_y = start.y + 4.0f;
 
-        if(time > 2.0f){
-            Destroy(gameObject);
+        Vector3 controll = new Vector3 (controll_pos_x,controll_pos_y,0f);
+
+        while(elapsed < duration){
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            
+            Vector3 m1 = Vector3.Lerp(start,controll,t);
+            Vector3 m2 = Vector3.Lerp(controll,end,t);
+            
+            gameObject.transform.position = Vector3.Lerp(m1,m2,t);
+
+            yield return null;
         }
+        Destroy(gameObject);
     }
 }
