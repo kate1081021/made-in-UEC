@@ -11,6 +11,7 @@ public class GameOverManager : MiniGameBase
     private int choice = 0;
     private bool isPlayingGameOver1 = false;
     [SerializeField] Transform cursor;
+    [SerializeField] Animator anim;
 
     public override void OnGameStart()
     {
@@ -27,6 +28,7 @@ public class GameOverManager : MiniGameBase
     IEnumerator StartMusic()
     {
         SEPlay("GameOver1");
+        anim.SetTrigger("GameOver");
         yield return new WaitForSeconds(3.0f);
         BGMPlay();
         isPlayingGameOver1 = true;

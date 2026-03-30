@@ -231,7 +231,7 @@ public class GameManager : MonoBehaviour
                 if(loaded_minigame == -1)
                 {
                     PlayImmidiate(ClearGame, PitchScale);
-                    uiManager.WinAnimation();
+                    uiManager.GameClearAnimation();
                     FirstPlayTime += ClearGame.clip.length / PitchScale;
                     TotalPlayTime += ClearGame.clip.length / PitchScale;
                 }
@@ -300,8 +300,8 @@ public class GameManager : MonoBehaviour
         {
             PlayNext(StartBoss, 1.0f);
             isPlayedBossGame = true;
-            FirstPlayTime += Speedup.clip.length;
-            TotalPlayTime += Speedup.clip.length;
+            FirstPlayTime += StartBoss.clip.length;
+            TotalPlayTime += StartBoss.clip.length;
             PitchScale = 1.0f;
             MGManager.pitchScale = PitchScale;
 
@@ -351,7 +351,7 @@ public class GameManager : MonoBehaviour
         } else if (TitleManager.isNormalMode && minigameQueue.Count == 0)
         {
             uiManager.BossAnimation();
-            while (Speedup.isPlaying) // ボス用に変更
+            while (StartBoss.isPlaying) // ボス用に変更
             {
                 yield return null;
             }
