@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BOSS
   m_EditorClassIdentifier: 
   scene_name: BOSS
-  verb: "\u30C6\u30B9\u30C8"
-  timelimit: 7
-  stopEarlyFinish: 0
+  verb: "\u767B\u308C\uFF01"
+  timelimit: 60
+  stopEarlyFinish: 1
+  type: "\u30D4\u30B3\u30D4\u30B3"
