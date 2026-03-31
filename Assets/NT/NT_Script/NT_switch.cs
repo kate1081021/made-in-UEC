@@ -30,7 +30,7 @@ public class NT_switch : MiniGameBase
     {
         if (Action.IsPressed() && !isCleared)
         {
-            count=count+Time.timeScale;
+            count=count+Time.timeScale*3;
             if (countText != null){
             countText.text = "" + count;
             }
