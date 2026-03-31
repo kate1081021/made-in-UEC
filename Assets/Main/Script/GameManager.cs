@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
         {
             number.Add(i);
         }
-        for (int i = 0; i < 1; i++ )//minigames.Count-1; i++)
+        for (int i = 0; i < minigames.Count-1; i++)
         {
             int rand = Random.Range(0,number.Count);
             minigameQueue.Add(number[rand]);
