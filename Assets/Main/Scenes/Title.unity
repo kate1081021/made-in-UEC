@@ -1656,6 +1656,7 @@ MonoBehaviour:
   OPcursor: {fileID: 766572122}
   slider: {fileID: 2056705433}
   now_loading: {fileID: 1193033308}
+  now_loading_animator: {fileID: 1193033307}
 --- !u!1 &1328003495
 GameObject:
   m_ObjectHideFlags: 0

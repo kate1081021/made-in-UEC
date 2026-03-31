@@ -421,15 +421,17 @@ public class GameManager : MonoBehaviour
         // ミニゲームがロードされるまで待機
         while (!MGManager.isMinigameLoaded) { yield return null; }
 
-        // SE Start
-        clock_normal.Play();
-
         // 0. 裏でMainシーンの読み込みを開始する（まだ切り替えない）
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Main");
         asyncLoad.allowSceneActivation = false; // 読み込み完了しても勝手に切り替わらないようにする
 
         // ミニゲーム用のUIに切り替える
         uiManager.MinigameUI();
+
+        // SE Start
+        clock_normal.pitch = PitchScale;
+        clock_explode.pitch = PitchScale;
+        clock_normal.Play();
 
         // ミニゲームがロードされてからtimelimit秒だけ待つ
         float elapsed = 0f;
@@ -456,7 +458,7 @@ public class GameManager : MonoBehaviour
                     last--;
                 }
 
-                if (last <= 3.0f && !clock_explode.isPlaying)
+                if (last <= 2.0f && !clock_explode.isPlaying)
                 {
                     clock_normal.Stop();
                     clock_explode.Play();
