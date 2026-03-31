@@ -63,8 +63,8 @@ namespace YakinikuGameProject
 
         [Header("【バランス】")]
         [SerializeField] private float timeLimitPerSide = 3.0f; 
-        [SerializeField] private float safeZoneFirst = 0.45f;   
-        [SerializeField] private float safeZoneSecond = 0.25f;
+        [SerializeField] private float safeZoneFirst = 0.5f;   
+        [SerializeField] private float safeZoneSecond = 0.4f;
         [Tooltip("ゲージが出現する最小位置（秒）")]
         [SerializeField] private float randomStartMin = 0.5f; 
         [Tooltip("ゲージが出現する最大位置（秒）")]
