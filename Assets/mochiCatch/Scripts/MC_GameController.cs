@@ -54,9 +54,9 @@ namespace catchMochi
 
         // C#の古いバージョンでも動くようにListの初期化を修正
         private List<float[]> patterns = new List<float[]> {
-            new float[] { 1.125f, 0.625f, 0.5f },  // [何もない時間, 揺れている時間, 開いている時間]
-            new float[] { 1.0f, 0.75f, 0.75f },
-            new float[] { 1.25f, 0.75f, 0.5f },
+            new float[] { 3f, 0.625f, 0.5f },  // [何もない時間, 揺れている時間, 開いている時間]
+            new float[] { 2.5f, 0.75f, 0.75f },
+            new float[] { 2.75f, 0.75f, 0.5f },
         };
 
         // 開始時

@@ -53,6 +53,9 @@ public class GameManager : MonoBehaviour
         Success.volume = MGManager.sound_volume;
         Failure.volume = MGManager.sound_volume;
         Speedup.volume = MGManager.sound_volume;
+        StartBoss.volume = MGManager.sound_volume;
+        ClearGame.volume = MGManager.sound_volume;
+
 
         // デバッグ用の中間コルーチン isDebugModeを折れば、通常通りのゲームが始まる
         StartCoroutine(TestPlayCoroutine());
@@ -73,6 +76,10 @@ public class GameManager : MonoBehaviour
         }
 
         // 加速設定
+        MGManager.initialize();
+        PitchScale = 1.0f;
+        Time.timeScale = 1.0f;
+
         ScaleChangeTestPlay();
         lifeRemain = 4;
         LifeReset lr = lives.gameObject.GetComponent<LifeReset>();
@@ -82,9 +89,7 @@ public class GameManager : MonoBehaviour
         {
             SettingNormal();
         }
-        MGManager.initialize();
-        PitchScale = 1.0f;
-        Time.timeScale = 1.0f;
+
 
         // ゲーム進行コルーチン呼び出し
         StartCoroutine(MainCoroutine());
