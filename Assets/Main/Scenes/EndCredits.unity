@@ -13233,7 +13233,7 @@ MonoBehaviour:
   SEName: []
   SEFile: []
   SE_multiplier: 1
-  scrollSpeed: 215
+  scrollSpeed: 225
   contentRect: {fileID: 0}
   accelerationSmoothness: 10
   upSpeed: 7
