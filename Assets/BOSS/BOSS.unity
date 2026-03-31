@@ -2795,9 +2795,14 @@ MonoBehaviour:
   SEName: []
   SEFile: []
   hearts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1655207173}
+  - {fileID: 313958281}
+  - {fileID: 896115567}
+  - {fileID: 1405806311}
+  - {fileID: 324822620}
+  - {fileID: 1671993881}
+  - {fileID: 1892864763}
+  - {fileID: 1937138708}
 --- !u!114 &1944948623
 MonoBehaviour:
   m_ObjectHideFlags: 0
