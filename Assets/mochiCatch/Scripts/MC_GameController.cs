@@ -58,6 +58,8 @@ namespace catchMochi
             new float[] { 2.5f, 0.75f, 0.75f },
             new float[] { 2.75f, 0.75f, 0.5f },
         };
+        // コルーチン保存リスト
+        private IEnumerator coroutine;
 
         // 開始時
         public override void OnGameStart()
@@ -182,7 +184,8 @@ namespace catchMochi
             {
                 girlView.Win();
                 MGManager.ClearGame();
-                StopCoroutine(startEating());
+                StopCoroutine(coroutine);
+                coroutine = null;
             }
             
             // GameOver
@@ -196,7 +199,8 @@ namespace catchMochi
                 SEPlay("MC_Found");
                 motherView.GetAngry();
                 girlView.Surprised();
-                StopCoroutine(startEating());
+                StopCoroutine(coroutine);
+                coroutine = null;
                 // StartCoroutine(end());
 
             }
@@ -217,7 +221,8 @@ namespace catchMochi
             {
                 girlModel.StartEating();
                 Debug.Log("食事開始");
-                StartCoroutine(startEating());
+                coroutine = startEating();
+                StartCoroutine(coroutine);
             }
         }
 
