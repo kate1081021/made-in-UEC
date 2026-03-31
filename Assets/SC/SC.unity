@@ -629,6 +629,7 @@ MonoBehaviour:
   isLoopBGM: 0
   SEName: []
   SEFile: []
+  SE_multiplier: 1
   cloudPrefab: {fileID: 2481386659350764145, guid: 32d6b55c870ecd249b0127ff0fca6a4e, type: 3}
   cloudAmount: 30
   minSpeed: 0.3
@@ -845,6 +846,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7d6bf1fd827275c49bb5867ded78cdf2, type: 3}
   - {fileID: 8300000, guid: 13c20bc260ed5064bad7db93d57c57e6, type: 3}
   - {fileID: 8300000, guid: 5bf9056a92411b34d94d00f3900193da, type: 3}
+  SE_multiplier: 0.8
   stickTrans: {fileID: 1502291488}
   grabRange: 50
   isOneShot: 1
@@ -1055,6 +1057,7 @@ MonoBehaviour:
   isLoopBGM: 0
   SEName: []
   SEFile: []
+  SE_multiplier: 1
   handController: {fileID: 1290475473}
   stickDatas:
   - sprite: {fileID: 4726147562184808205, guid: 19a5a44b0c40f674c9c7220c6efda639, type: 3}

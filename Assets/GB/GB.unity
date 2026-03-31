@@ -223,6 +223,7 @@ MonoBehaviour:
   isLoopBGM: 0
   SEName: []
   SEFile: []
+  SE_multiplier: 1
   sr: {fileID: 0}
   notEcoFriendly: {fileID: -10944003, guid: c5ca63d610e230546beafb334f21933f, type: 3}
   manager: {fileID: 865065078}
@@ -354,6 +355,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 55caceca63b1d714f98e1459c0aeea53, type: 3}
   - {fileID: 8300000, guid: a0e7b87f0ff819b49830a1d425c46301, type: 3}
   - {fileID: 8300000, guid: fd5e3a99aedc70c48a376c3ab12fe478, type: 3}
+  SE_multiplier: 0.75
   glassbottleBin: {fileID: 1099513584}
   canBin: {fileID: 806287338}
   plasticbottleBin: {fileID: 1178212930}
@@ -799,6 +801,7 @@ MonoBehaviour:
   - move
   SEFile:
   - {fileID: 8300000, guid: a0e7b87f0ff819b49830a1d425c46301, type: 3}
+  SE_multiplier: 1
   mypos: 0
   input: {x: 0, y: 0}
 --- !u!1 &1690316067
@@ -905,6 +908,7 @@ MonoBehaviour:
   isLoopBGM: 0
   SEName: []
   SEFile: []
+  SE_multiplier: 1
   sr: {fileID: 0}
   cloudy: {fileID: 1263356168770618234, guid: 27740cc61b033e84689fafc26fb1e5d5, type: 3}
 --- !u!1 &1774552631
@@ -1042,6 +1046,7 @@ MonoBehaviour:
   isLoopBGM: 0
   SEName: []
   SEFile: []
+  SE_multiplier: 1
   burnable: {fileID: 6215484964074390609, guid: 9e14b926f1d27e04f82356be53e3ca39, type: 3}
   can: {fileID: 2386324805459854069, guid: 7d2e31d590df9764c8e15d8488f308e8, type: 3}
   glassbottle: {fileID: 236430505419235857, guid: 4ef9bd98d6e09cf46bca746592cded95, type: 3}

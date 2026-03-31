@@ -1280,6 +1280,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 290698ffd4827c64ba8cf263ada53582, type: 3}
   - {fileID: 8300000, guid: 3c4a9324fce5d7e4ea84e8a6e84a4730, type: 3}
   - {fileID: 8300000, guid: fca92dbecd5870948b690a891a42dee4, type: 3}
+  SE_multiplier: 0.85
   plugObject: {fileID: 700261013}
   bubbleShapeImage: {fileID: 949634670}
   plugSprites:

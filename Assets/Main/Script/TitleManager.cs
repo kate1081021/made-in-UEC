@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
+using TMPro;
+using System.Collections;
 
 public class TitleManager : MiniGameBase
 {
@@ -22,6 +24,7 @@ public class TitleManager : MiniGameBase
     [SerializeField] Transform cursor;
     [SerializeField] Transform OPcursor;
     [SerializeField] Slider slider;
+    [SerializeField] TextMeshProUGUI now_loading;
 
     public override void OnGameStart()
     {
@@ -114,17 +117,18 @@ public class TitleManager : MiniGameBase
             switch (choice)
             {
                 case 0:
-                SceneManager.LoadScene("EndCredits");
+                StartCoroutine(LoadNextScene("EndCredits"));
+                // SceneManager.LoadScene("EndCredits");
                 /// Credit.SetActive(true);
                 break;
 
                 case 1:
-                SceneManager.LoadScene("Prologue");
+                StartCoroutine(LoadNextScene("Prologue"));
                 isNormalMode = true;
                 break;
 
                 case 2:
-                SceneManager.LoadScene("Main");
+                StartCoroutine(LoadNextScene("Main"));
                 isNormalMode = false;
                 break;
 
@@ -134,6 +138,15 @@ public class TitleManager : MiniGameBase
                 break;
             }
         }
+    }
+
+    // シーンをロードするコルーチン
+    private IEnumerator LoadNextScene(string name)
+    {
+        now_loading.alpha = 1.0f;
+        yield return null;
+        var asyncLoad = SceneManager.LoadSceneAsync(name);
+        asyncLoad.allowSceneActivation = true;
     }
 
     void cursorUpdate()
