@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     private int debug_scene = -1;  // デバッグでロード中のシーンの番号
     private List<int> minigameQueue = new List<int>();
     private bool isPlayedBossGame = false; // ボスステージやったかどうか？のフラグ
+    public AudioSource clock_normal;
+    public AudioSource clock_explode; 
 
 
     public static GameManager Instance;
@@ -55,6 +57,8 @@ public class GameManager : MonoBehaviour
         Speedup.volume = MGManager.sound_volume;
         StartBoss.volume = MGManager.sound_volume;
         ClearGame.volume = MGManager.sound_volume;
+        clock_explode.volume = MGManager.sound_volume;
+        clock_normal.volume = MGManager.sound_volume;
 
 
         // デバッグ用の中間コルーチン isDebugModeを折れば、通常通りのゲームが始まる
@@ -417,6 +421,9 @@ public class GameManager : MonoBehaviour
         // ミニゲームがロードされるまで待機
         while (!MGManager.isMinigameLoaded) { yield return null; }
 
+        // SE Start
+        clock_normal.Play();
+
         // 0. 裏でMainシーンの読み込みを開始する（まだ切り替えない）
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Main");
         asyncLoad.allowSceneActivation = false; // 読み込み完了しても勝手に切り替わらないようにする
@@ -447,6 +454,12 @@ public class GameManager : MonoBehaviour
                 } else
                 {
                     last--;
+                }
+
+                if (last <= 3.0f && !clock_explode.isPlaying)
+                {
+                    clock_normal.Stop();
+                    clock_explode.Play();
                 }
             }
 
