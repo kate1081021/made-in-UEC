@@ -19,7 +19,7 @@ namespace BOSS
         private bool BOSS_isJumpCooldown = false;
 
         [Header("プレイヤー設定")]
-        [SerializeField] public int BOSS_playerLife = 3;
+        [SerializeField] public int BOSS_playerLife = 4;
         public int BOSS_playerSpeed = 5;
 
         [Header("無敵設定")]
@@ -30,9 +30,14 @@ namespace BOSS
         private Vector2 BOSS_screenLimit;
         private Vector2 BOSS_playerHalfSize;
 
+        public GameManager gameManager;
+
         public override void OnGameStart()
         {
             MGManager.Load();
+            gameManager = Object.FindFirstObjectByType<GameManager>();
+            BOSS_playerLife = gameManager.lifeRemain;
+            BOSS_playerLife *= 2;
             BOSS_playerRb = GetComponent<Rigidbody2D>();
             BOSS_playerSprite = GetComponent<SpriteRenderer>();
             BOSS_playerAnim = GetComponent<Animator>();
