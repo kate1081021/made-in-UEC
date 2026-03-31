@@ -168,6 +168,7 @@ MonoBehaviour:
   isLoopBGM: 0
   SEName: []
   SEFile: []
+  SE_multiplier: 1
   moveDistance: -1
 --- !u!212 &34595422
 SpriteRenderer:
@@ -512,6 +513,7 @@ MonoBehaviour:
   isLoopBGM: 0
   SEName: []
   SEFile: []
+  SE_multiplier: 1
   moveDistance: 1
 --- !u!212 &418929945
 SpriteRenderer:
@@ -714,6 +716,7 @@ MonoBehaviour:
   isLoopBGM: 0
   SEName: []
   SEFile: []
+  SE_multiplier: 1
   maxScale: 3
   minScale: 1
 --- !u!212 &1348797910
@@ -834,6 +837,7 @@ MonoBehaviour:
   isLoopBGM: 0
   SEName: []
   SEFile: []
+  SE_multiplier: 0.8
   balloonDamage: 0
   balloonDamageMax: 20
   balloonReducingSpeed: 0.1
@@ -877,6 +881,7 @@ MonoBehaviour:
   isLoopBGM: 0
   SEName: []
   SEFile: []
+  SE_multiplier: 1
   sleepDogImage: {fileID: 1811890232}
   wakeDogImage: {fileID: -4843068751495726118, guid: 2367ddd8193e4034fbdcfb34b71fb42e, type: 3}
   backGround_Space: {fileID: 1887055201}
@@ -1148,6 +1153,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 455c56acc79f4a849b0d9bc440385645, type: 3}
   - {fileID: 8300000, guid: feb465f36b88e754698dd8e2e4b0aa50, type: 3}
   - {fileID: 8300000, guid: 880bb0138bb28ee43a12c0019c22a859, type: 3}
+  SE_multiplier: 1
   SL_audioSource: {fileID: 2103181553}
   SL_BGM: {fileID: 8300000, guid: 862316b74e3b8b54da54a4aa1fbef855, type: 3}
   SL_AttackAudioClip: {fileID: 8300000, guid: a4929518a25f2f047b5cee067a5a1509, type: 3}

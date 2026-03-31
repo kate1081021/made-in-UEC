@@ -5325,6 +5325,7 @@ MonoBehaviour:
   SEFile:
   - {fileID: 8300000, guid: 85e4b98bed06ac04fac0aaf46103996f, type: 3}
   - {fileID: 8300000, guid: 087f8c3eacfe82345920f62733d8a431, type: 3}
+  SE_multiplier: 1
   Key_picture:
   - {fileID: 642149964343582001, guid: 23bd3ae1244b8d54fb64aeb0055c747b, type: 3}
   - {fileID: 338687170307662098, guid: d35b30035321e9f49a73909fc56dc443, type: 3}
@@ -5353,6 +5354,7 @@ MonoBehaviour:
   SEFile:
   - {fileID: 8300000, guid: af4119fcfd3def642be87f11beec15ae, type: 3}
   - {fileID: 8300000, guid: 57474054f052aba419b5c1ac35931e07, type: 3}
+  SE_multiplier: 0.85
   spinGoal: 3
   keyAnim: {fileID: 1395853327}
   Arrow: {fileID: 2072904325}
