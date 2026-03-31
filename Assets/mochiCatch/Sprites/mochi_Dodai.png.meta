@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      mochi_Dodai_0: 1241062712933689207
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
