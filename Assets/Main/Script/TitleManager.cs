@@ -25,6 +25,7 @@ public class TitleManager : MiniGameBase
     [SerializeField] Transform OPcursor;
     [SerializeField] Slider slider;
     [SerializeField] TextMeshProUGUI now_loading;
+    [SerializeField] Animator now_loading_animator;
 
     public override void OnGameStart()
     {
@@ -144,6 +145,7 @@ public class TitleManager : MiniGameBase
     private IEnumerator LoadNextScene(string name)
     {
         now_loading.alpha = 1.0f;
+        now_loading_animator.SetBool("animation", true);
         yield return null;
         var asyncLoad = SceneManager.LoadSceneAsync(name);
         asyncLoad.allowSceneActivation = true;
