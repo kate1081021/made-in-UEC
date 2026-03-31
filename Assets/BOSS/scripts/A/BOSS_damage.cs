@@ -4,48 +4,36 @@ namespace MyMiniGame
 {
     public class BOSS_damage : MiniGameBase
     {
+        // インスペクターからセットするハートの配列。
+        // これの要素数（Length）が、このミニゲームの「最大HP」となる。
         [SerializeField] private GameObject[] hearts;
-        private int life;
 
-        // 監視対象のプレイヤーを保持する
-        private BOSS.BOSS_playerControler player;
+        // 監視用の Update は削除。player の保持も不要。
 
         public override void OnGameStart()
         {
-            // MGManager.Load(); // 必要なら残す
-
-            // シーン内からプレイヤーのスクリプトを探して捕まえる
-            player = Object.FindAnyObjectByType<BOSS.BOSS_playerControler>();
-
-            life = hearts.Length;
-
-            for (int i = 0; i < hearts.Length; i++)
-            {
-                if (hearts[i] != null) hearts[i].SetActive(true);
-            }
-        }
-
-        void Update()
-        {
-            // プレイヤーが見つかっていない、またはゲーム中じゃないなら何もしない
-            if (player == null) return;
-
-
-            // 今のUIの「life」より小さくなっていたら、ダメージを受けたと判断する
-            if (player.BOSS_playerLife < life)
-            {
-                BOSS_ApplyDamage();
-            }
+            // ここでは何もしない。プレイヤー側から初期化命令を飛ばさせる。
         }
 
         public override void OnGameEnd() { }
 
-        public void BOSS_ApplyDamage()
+        // ★追加：HPのUIを更新する専用メソッド
+        // プレイヤー側から「今のHP」を渡して呼び出してもらう
+        public void UpdateHeartUI(int currentLife)
         {
-            if (life > 0)
+            if (hearts == null) return;
+
+            // 防御的プログラミング：HPがマイナスや最大値オーバーにならないよう制限
+            currentLife = Mathf.Clamp(currentLife, 0, hearts.Length);
+
+            // 全てのハートをチェックし、現在のHP未満のインデックスなら表示、それ以上なら非表示
+            for (int i = 0; i < hearts.Length; i++)
             {
-                life--;
-                hearts[life].SetActive(false);
+                if (hearts[i] != null)
+                {
+                    // 例: currentLife が 3 なら、i が 0,1,2 の時は true(表示)、3以降は false(非表示)になる
+                    hearts[i].SetActive(i < currentLife);
+                }
             }
         }
     }

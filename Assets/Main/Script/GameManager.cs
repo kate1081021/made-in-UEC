@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private List<CreateScene> minigames;  // ミニゲーム一覧を持つ
     [SerializeField] private Transform lives; // ライフたちの親の参照
-    private int lifeRemain = 4;
+    public int lifeRemain = 4;
     private int loaded_minigame = 0;  // ロードされているゲームの番号
     private int debug_scene = -1;  // デバッグでロード中のシーンの番号
     private List<int> minigameQueue = new List<int>();
