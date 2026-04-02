@@ -472,6 +472,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("早めに切り上げ");
                 yield return new WaitForSeconds(waitUntilClearTime);
                 Debug.Log("早めに切り上げた");
+                if (clock_normal.isPlaying) clock_normal.Stop();  // SEを止める
                 break;
             }
             elapsed += Time.deltaTime;
