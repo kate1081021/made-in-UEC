@@ -42,6 +42,7 @@ namespace OpenTreasure{
 
             if (delta < 0f) { return; } // 時計回りじゃなかったら終了
             if (delta > 90f) { return; } // 90度以上の角度変更は対応しない(ちゃんとまわしてもらう)
+            if (MGManager.IsClear) { return; }  // クリアしている場合は終了
 
             rotationSum += delta; partialSum += delta;
             while (partialSum >= 90f)
