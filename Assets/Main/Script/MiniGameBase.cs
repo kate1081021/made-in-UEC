@@ -20,6 +20,7 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     [SerializeField] private bool isLoopBGM = false;
     [SerializeField] private List<string> SEName;
     [SerializeField] private List<AudioClip> SEFile;
+    [SerializeField] private float SE_multiplier = 1.0f;
     private Dictionary<string, AudioClip> soundEffects = new Dictionary<string, AudioClip>();
     private AudioSource mainSource;
 
@@ -234,6 +235,7 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
     public void BGMPlay(bool applyToTimeScale = false)
     {
         mainSource.clip = gameBGM;
+        ApplyVolume(MGManager.sound_volume);
 
         if (applyToTimeScale)
         {
@@ -254,6 +256,7 @@ public abstract class MiniGameBase : BaseScript, IMiniGame
 
     public void SEPlay(string id, bool applyToTimeScale = false)
     {
+        ApplyVolume(MGManager.sound_volume * SE_multiplier);
         if (applyToTimeScale)
         {
             mainSource.pitch = MGManager.timeScale;

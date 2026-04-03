@@ -9,30 +9,46 @@ namespace BOSS
         SpriteRenderer BOSS_playerSprite;
         Animator BOSS_playerAnim;
         public bool BOSS_isGameOver = false; // ゲームオーバー演出中かどうかのフラグ
-        
+
         // ★追加：演出が終わるまで動けないようにするフラグ（最初は false）
-        public bool BOSS_canMove = false; 
+        public bool BOSS_canMove = false;
 
         [Header("ジャンプ無敵設定")]
-        [SerializeField] public float BOSS_jumpInvincibleTime = 1.0f; 
-        [SerializeField] public float BOSS_jumpCoolTime = 2.0f;       
+        [SerializeField] public float BOSS_jumpInvincibleTime = 1.0f;
+        [SerializeField] public float BOSS_jumpCoolTime = 2.0f;
         private bool BOSS_isJumpCooldown = false;
 
         [Header("プレイヤー設定")]
-        [SerializeField] public int BOSS_playerLife = 3;
+        [SerializeField] public int BOSS_playerLife = 4;
         public int BOSS_playerSpeed = 5;
 
         [Header("無敵設定")]
-        [SerializeField] public float BOSS_invincibleTime = 2.0f; 
-        [SerializeField] public float BOSS_blinkInterval = 0.1f;  
-        [SerializeField] public float BOSS_jumpBlinkInterval = 0.1f;  
-        private bool BOSS_isInvincible = false;                  
+        [SerializeField] public float BOSS_invincibleTime = 2.0f;
+        [SerializeField] public float BOSS_blinkInterval = 0.1f;
+        [SerializeField] public float BOSS_jumpBlinkInterval = 0.1f;
+        private bool BOSS_isInvincible = false;
         private Vector2 BOSS_screenLimit;
         private Vector2 BOSS_playerHalfSize;
+
+        public GameManager gameManager;
+
+        // ★追加：UIを管理するスクリプトを保持する変数
+        private MyMiniGame.BOSS_damage uiManager;
 
         public override void OnGameStart()
         {
             MGManager.Load();
+            gameManager = Object.FindFirstObjectByType<GameManager>();
+
+            if (gameManager == null)
+            {
+                Debug.LogError("GameManagerが見つからない！ DontDestroyOnLoadで本当に引き継がれているか確認しろ。");
+                return;
+            }
+
+            BOSS_playerLife = gameManager.lifeRemain;
+            BOSS_playerLife *= 2;
+
             BOSS_playerRb = GetComponent<Rigidbody2D>();
             BOSS_playerSprite = GetComponent<SpriteRenderer>();
             BOSS_playerAnim = GetComponent<Animator>();
@@ -43,11 +59,18 @@ namespace BOSS
             {
                 BOSS_playerHalfSize = BOSS_playerSprite.bounds.extents;
             }
+
+            // ★追加：UIマネージャーを探して、初期HPに合わせてUIを更新させる
+            uiManager = Object.FindFirstObjectByType<MyMiniGame.BOSS_damage>();
+            if (uiManager != null)
+            {
+                uiManager.UpdateHeartUI(BOSS_playerLife);
+            }
         }
 
         void Update()
         {
-            // ★追加：演出が終わる（BOSS_canMoveがtrueになる）までは、ここで処理を止める！
+            // 演出が終わる（BOSS_canMoveがtrueになる）までは、ここで処理を止める！
             if (!BOSS_canMove) return;
 
             // 移動処理
@@ -71,20 +94,20 @@ namespace BOSS
             BOSS_isInvincible = true;
             Vector3 originalScale = transform.localScale; // 元の大きさを保存
             float BOSS_elapsedTime = 0;
-            
+
             SEPlay("BOSS_JumpSE", false);
             BOSS_playerAnim.SetBool("isJumping", true); // アニメーションON
 
             // 拡大率の調整（1.5なら最大1.5倍まで大きくなるよ！）
-            float maxScaleBonus = 0.5f; 
+            float maxScaleBonus = 0.5f;
 
             while (BOSS_elapsedTime < BOSS_jumpInvincibleTime)
             {
                 BOSS_elapsedTime += Time.deltaTime; // 1フレームごとに進める
-                
+
                 // 進行度を 0.0 ～ 1.0 で計算
                 float progress = BOSS_elapsedTime / BOSS_jumpInvincibleTime;
-                
+
                 // サイン波を使って 0 → 1 → 0 のカーブを作る
                 // Mathf.Sin(0)は0、Mathf.Sin(π)は0、真ん中のMathf.Sin(π/2)が1になるよ
                 float curve = Mathf.Sin(progress * Mathf.PI);
@@ -125,6 +148,12 @@ namespace BOSS
         {
             BOSS_playerLife--;
             Debug.Log("残りライフ: " + BOSS_playerLife);
+
+            // ★追加：ダメージを受けてHPが減ったのでUIを更新させる
+            if (uiManager != null)
+            {
+                uiManager.UpdateHeartUI(BOSS_playerLife);
+            }
 
             if (BOSS_playerLife <= 0)
             {

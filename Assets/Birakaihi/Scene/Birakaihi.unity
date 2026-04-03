@@ -227,6 +227,7 @@ MonoBehaviour:
   isLoopBGM: 0
   SEName: []
   SEFile: []
+  SE_multiplier: 1
   EnemyLeft: {fileID: 1435223123}
   EnemyRight: {fileID: 1738557689}
   canvasTransform: {fileID: 1238382687}
@@ -525,6 +526,7 @@ MonoBehaviour:
   isLoopBGM: 0
   SEName: []
   SEFile: []
+  SE_multiplier: 1
   animator: {fileID: 889079127}
   escape: 0
 --- !u!1 &954943740
@@ -774,8 +776,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u30BF\u30A4\u30DF\u30F3\u30B0\u3088\u304F\u5DE6\u53F3\u3092\u62BC\u3057\u3066\u3088\u3051\u308B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 33ad2538dd24bbc409a26d1b7fdbd13f, type: 2}
-  m_sharedMaterial: {fileID: -8275376154291706823, guid: 33ad2538dd24bbc409a26d1b7fdbd13f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 40c12f5aff270164681eeb050081af31, type: 2}
+  m_sharedMaterial: {fileID: 4143793255894695636, guid: 40c12f5aff270164681eeb050081af31, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1127,6 +1129,7 @@ MonoBehaviour:
   isLoopBGM: 0
   SEName: []
   SEFile: []
+  SE_multiplier: 1
   enemy: {fileID: 1435223123}
   player: {fileID: 889079125}
   gameManager: {fileID: 493606527}
@@ -1151,6 +1154,7 @@ MonoBehaviour:
   isLoopBGM: 0
   SEName: []
   SEFile: []
+  SE_multiplier: 1
   enemy: {fileID: 1738557689}
   player: {fileID: 889079125}
   gameManager: {fileID: 493606527}

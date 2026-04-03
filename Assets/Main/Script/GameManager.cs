@@ -23,11 +23,13 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private List<CreateScene> minigames;  // ミニゲーム一覧を持つ
     [SerializeField] private Transform lives; // ライフたちの親の参照
-    private int lifeRemain = 4;
+    public int lifeRemain = 4;
     private int loaded_minigame = 0;  // ロードされているゲームの番号
     private int debug_scene = -1;  // デバッグでロード中のシーンの番号
     private List<int> minigameQueue = new List<int>();
     private bool isPlayedBossGame = false; // ボスステージやったかどうか？のフラグ
+    public AudioSource clock_normal;
+    public AudioSource clock_explode; 
 
 
     public static GameManager Instance;
@@ -53,6 +55,11 @@ public class GameManager : MonoBehaviour
         Success.volume = MGManager.sound_volume;
         Failure.volume = MGManager.sound_volume;
         Speedup.volume = MGManager.sound_volume;
+        StartBoss.volume = MGManager.sound_volume;
+        ClearGame.volume = MGManager.sound_volume;
+        clock_explode.volume = MGManager.sound_volume;
+        clock_normal.volume = MGManager.sound_volume;
+
 
         // デバッグ用の中間コルーチン isDebugModeを折れば、通常通りのゲームが始まる
         StartCoroutine(TestPlayCoroutine());
@@ -73,6 +80,10 @@ public class GameManager : MonoBehaviour
         }
 
         // 加速設定
+        MGManager.initialize();
+        PitchScale = 1.0f;
+        Time.timeScale = 1.0f;
+
         ScaleChangeTestPlay();
         lifeRemain = 4;
         LifeReset lr = lives.gameObject.GetComponent<LifeReset>();
@@ -82,9 +93,7 @@ public class GameManager : MonoBehaviour
         {
             SettingNormal();
         }
-        MGManager.initialize();
-        PitchScale = 1.0f;
-        Time.timeScale = 1.0f;
+
 
         // ゲーム進行コルーチン呼び出し
         StartCoroutine(MainCoroutine());
@@ -419,6 +428,11 @@ public class GameManager : MonoBehaviour
         // ミニゲーム用のUIに切り替える
         uiManager.MinigameUI();
 
+        // SE Start
+        clock_normal.pitch = PitchScale;
+        clock_explode.pitch = PitchScale;
+        clock_normal.Play();
+
         // ミニゲームがロードされてからtimelimit秒だけ待つ
         float elapsed = 0f;
         float timelimit = minigames[loaded_minigame].timelimit;
@@ -443,6 +457,12 @@ public class GameManager : MonoBehaviour
                 {
                     last--;
                 }
+
+                if (last <= 2.0f && !clock_explode.isPlaying)
+                {
+                    clock_normal.Stop();
+                    clock_explode.Play();
+                }
             }
 
             // 早めにゲームをクリアしたとき or 強制終了時
@@ -452,6 +472,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("早めに切り上げ");
                 yield return new WaitForSeconds(waitUntilClearTime);
                 Debug.Log("早めに切り上げた");
+                if (clock_normal.isPlaying) clock_normal.Stop();  // SEを止める
                 break;
             }
             elapsed += Time.deltaTime;
