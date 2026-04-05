@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameOverManager : MiniGameBase
 {
@@ -12,6 +13,8 @@ public class GameOverManager : MiniGameBase
     private bool isPlayingGameOver1 = false;
     [SerializeField] Transform cursor;
     [SerializeField] Animator anim;
+    [SerializeField] Animator scoreAnim;
+    [SerializeField] TextMeshProUGUI scoreText;
 
     public override void OnGameStart()
     {
@@ -29,6 +32,9 @@ public class GameOverManager : MiniGameBase
     {
         SEPlay("GameOver1");
         anim.SetTrigger("GameOver");
+            scoreText.gameObject.SetActive(true);
+            scoreAnim.SetTrigger("Score");
+            scoreText.text = "到達ステージ：" + (MGManager.stage - 1).ToString();
         yield return new WaitForSeconds(3.0f);
         BGMPlay();
         isPlayingGameOver1 = true;
