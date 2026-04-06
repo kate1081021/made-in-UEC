@@ -67,6 +67,20 @@ namespace EA
         private bool waitForNextTry = false;  // 一回間違えた場合、次に操作できるようになるまでラグが生じるようにする。
         private Vector2 previous_val;  // 最後に受け取ったカーソル入力
 
+        /// DemoScreen
+        public GameObject demoScreen;
+
+        /// <summary>
+        /// CrossButton関連
+        /// </summary>
+        public EA_CrossButtonView cbView;
+
+        /// <summary>
+        /// AButton関連
+        /// </summary>
+        public EA_AButtonView aView;
+
+
         /// <summary>
         /// UI関連
         /// </summary>
@@ -77,13 +91,17 @@ namespace EA
         /// </summary>
         public EA_RisajuView rView;
 
+        /// <summary>
+        /// 特殊変数
+        /// </summary>
+        public static bool isFirstGame = true;
+
 
         // ゲーム開始時に呼ばれる
         public override void OnGameStart()
         {
             // BGM再生
             BGMPlay();
-            Debug.Log(MGManager.pitchScale);
 
             // 盤面のモデルを作成する
             boardModel = new EA_BoardModel();
@@ -105,18 +123,48 @@ namespace EA
                 cells.targetCells[y, x].GetComponent<EA_CellView>().Flip(side);
             };
 
+            // 正解のセルの内容が変更されたとき
+            if (isFirstGame){
+                boardModel.OnDemoCellChanged = (x, y, side) =>
+                {
+                    // データの変更を見た目に反映する
+                    cells.demoCells[y, x].GetComponent<EA_CellView>().Flip(side);
+                };
+            }
+
             // セルを生成する
             int size = boardModel.boardLength;
-            cells = boardView.CreateBoard(size, cellPrefab);
+            cells = boardView.CreateBoard(size, cellPrefab, isFirstGame);
 
             // 盤面を作成する
             boardModel.SetBoard(data);
 
-            // カーソルを移動する
-            carsolView.CarsorMove(0, 0, size);
+            // デモを再生
+            if (isFirstGame)
+            {
+                // カーソルを移動する
+                carsolView.CarsorMove(5, 2, 8);
+
+                // セッティング
+                waitForNextTry = true;
+                StartCoroutine(DemoPlay());
+
+            }
+            else
+            {
+                // デモスクリーンを閉じる
+                demoScreen.SetActive(false);
+
+                // カーソルを移動する
+                carsolView.CarsorMove(0, 0, size);
+            }
 
             // ミニゲームを開始する
             MGManager.Load();
+
+
+            // ここからは二回目になる
+            isFirstGame = false;
 
         }
 
@@ -152,7 +200,37 @@ namespace EA
         // デモプレイ(1回だけ呼ばれる)
         private IEnumerator DemoPlay()
         {
-            yield return null;
+            // 少し待機
+            yield return new WaitForSeconds(0.5f);
+
+            // 右キーを押す
+            carsolView.CarsorMove(6, 2, 8);
+            cbView.Pressed(1);
+            yield return new WaitForSeconds(0.3f);
+            cbView.Pressed(0);
+            yield return new WaitForSeconds(0.2f);
+
+            // 下キーを押す
+            carsolView.CarsorMove(6, 3, 8);
+            cbView.Pressed(2);
+            yield return new WaitForSeconds(0.3f);
+            cbView.Pressed(0);
+            yield return new WaitForSeconds(0.2f);
+
+            // Aボタンを押す
+            boardModel.DemoFlip(1, 1);
+            aView.Pressed(true);
+            yield return new WaitForSeconds(0.3f);
+            aView.Pressed(false);
+            yield return new WaitForSeconds(0.5f);
+
+            // 硬直解除&画面リセット
+            waitForNextTry = false;
+            demoScreen.SetActive(false);
+            boardView.DeleteDemoBoard(cells.demoCells);
+            carsolView.CarsorMove(0, 0, boardModel.boardLength);
+
+
         }
 
         // Enter/Spaceキーが押された

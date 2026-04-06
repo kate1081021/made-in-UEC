@@ -14,6 +14,9 @@ namespace EA
         // 正解となる盤面のデータを保持する([y, x])
         private bool[,] targetBoard;
 
+        // デモ版面のデータを保持
+        private bool[,] demoBoard;
+
         // 盤面の一辺の長さ
         public int boardLength;
 
@@ -23,6 +26,9 @@ namespace EA
         // 正解となるセルが生成されたとき
         public Action <int, int, bool> OnTargetCellCreated;
 
+        // demoセルがセルが生成されたとき
+        public Action <int, int, bool> OnDemoCellChanged;
+
         /// メソッド ///
         
         // 盤面を準備する
@@ -31,6 +37,7 @@ namespace EA
             // 盤面の配列を生成
             currentBoard = new bool[boardLength, boardLength];
             targetBoard  = new bool[boardLength, boardLength];
+            demoBoard = new bool[4, 4];
 
             for (int i = 0; i < boardLength; i++)
             {
@@ -42,6 +49,12 @@ namespace EA
 
                     targetBoard[i, j] = data[i * boardLength + j];
                     OnTargetCellCreated?.Invoke(j, i, data[i * boardLength + j]);
+
+                    if (i < 4 && j < 4)
+                    {
+                        demoBoard[i, j] = true;
+                        OnDemoCellChanged?.Invoke(j, i, true);
+                    }
 
                 }
             }
@@ -85,6 +98,28 @@ namespace EA
                 }
             }
         }
+
+        // FlipをDemoに対して行う
+        public void DemoFlip(int x, int y)
+        {
+            for (int i = y - 1; i <= y + 1; i++)
+            {
+                // iがyの範囲からそれている場合
+                if (i < 0 || i >= 4) { continue; }
+
+                for (int j = x - 1; j <= x + 1; j++)
+                {
+                    // jがxの範囲からそれている場合
+                    if (j < 0 || j >= 4) { continue; }
+
+                    // ひっくり返す
+                    demoBoard[i, j] = !demoBoard[i, j];
+                    OnDemoCellChanged?.Invoke(j, i, demoBoard[i, j]);
+
+                }
+            }
+        }
+
 
         // 正解判定を行う
         public bool CheckBoard()

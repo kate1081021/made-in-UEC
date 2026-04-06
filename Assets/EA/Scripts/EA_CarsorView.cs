@@ -16,7 +16,7 @@ namespace EA
         // カーソルを指定された座標まで移動する。(lはboardLength)
         public void CarsorMove(int x, int y, int l)
         {
-            tf.position = new Vector3(-6.5f + ((8 - l) / 2 + x), 3.5f - ((8 - l) / 2 + y), -2);
+            tf.position = new Vector3(-6.5f + ((8 - l) / 2 + x), 3.5f - ((8 - l) / 2 + y), -10);
         }
     }
 }
