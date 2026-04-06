@@ -399,6 +399,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
+  SE_multiplier: 1
 --- !u!95 &239350408
 Animator:
   serializedVersion: 7
@@ -5846,8 +5850,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "{targetVolt:F2} V\u306E\u6B20\u3051\u305F\u7B49\u96FB\u4F4D\u7DDA\u3092\u5B8C\u6210\u3055\u305B\u308D\uFF01"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 33ad2538dd24bbc409a26d1b7fdbd13f, type: 2}
-  m_sharedMaterial: {fileID: -8275376154291706823, guid: 33ad2538dd24bbc409a26d1b7fdbd13f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75474d3dd8be42a43bb9b874f15958bb, type: 2}
+  m_sharedMaterial: {fileID: -2514291448201701270, guid: 75474d3dd8be42a43bb9b874f15958bb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6059,6 +6063,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
+  SE_multiplier: 1
   force: 100
   margin: 0.5
   originforce: 100
@@ -6158,6 +6166,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
+  SE_multiplier: 1
   electroA: {fileID: 1482164179}
   electroB: {fileID: 214205123}
   V_0: 6
@@ -6330,6 +6342,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
+  SE_multiplier: 1
   voltCalculator: {fileID: 1614256420}
   lineDrawer: {fileID: 1662861911}
   playerLineRenderer: {fileID: 2131784250}
@@ -6370,6 +6386,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
+  SE_multiplier: 1
   voltCalculator: {fileID: 1614256420}
   circleSegmentsFactor: 100
   lineThickness: 0.05
@@ -6560,6 +6580,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBGM: {fileID: 0}
+  isLoopBGM: 0
+  SEName: []
+  SEFile: []
+  SE_multiplier: 1
   Probe: {fileID: 1614256418}
   gameManager: {fileID: 1662861909}
 --- !u!120 &2131784250

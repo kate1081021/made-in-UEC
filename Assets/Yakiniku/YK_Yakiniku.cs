@@ -63,8 +63,8 @@ namespace YakinikuGameProject
 
         [Header("【バランス】")]
         [SerializeField] private float timeLimitPerSide = 3.0f; 
-        [SerializeField] private float safeZoneFirst = 0.45f;   
-        [SerializeField] private float safeZoneSecond = 0.25f;
+        [SerializeField] private float safeZoneFirst = 0.5f;   
+        [SerializeField] private float safeZoneSecond = 0.4f;
         [Tooltip("ゲージが出現する最小位置（秒）")]
         [SerializeField] private float randomStartMin = 0.5f; 
         [Tooltip("ゲージが出現する最大位置（秒）")]
@@ -103,7 +103,6 @@ namespace YakinikuGameProject
         public override void OnGameEnd() { StopGrillingSound(); StopAllCoroutines(); }
 
         // ★追加：インスペクターのズレを自動修正するメソッド★
-// ★追加：インスペクターのズレを自動修正するメソッド★
         private void ForceFixUI() {
             // 安全地帯の回転軸（Pivot）を中心にし、位置を(0,0)に強制リセット
             if (safeZoneRect != null) {
@@ -167,6 +166,11 @@ namespace YakinikuGameProject
         }
 
         private IEnumerator ClearSequence(string[] messages) {
+            // ==========================================
+            // ★修正：演出より「前」にクリアフラグを送信するように移動しました！
+            // ==========================================
+            MGManager.ClearGame(); 
+
             SEPlay("YK_Win");
             //if (audioSource && winSE) audioSource.PlayOneShot(winSE, resultVolume);
             SetGaugeAlpha(1f); 
@@ -183,7 +187,7 @@ namespace YakinikuGameProject
             SetGaugeAlpha(0f); 
 
             yield return new WaitForSeconds(0.5f); 
-            MGManager.ClearGame(); 
+            // （元の場所から削除しました）
         }
 
         private IEnumerator FailSequence(string[] messages) {

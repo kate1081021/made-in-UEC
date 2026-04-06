@@ -428,8 +428,8 @@ MonoBehaviour:
   safeZoneImage: {fileID: 1846403765}
   safeZoneRect: {fileID: 1846403764}
   timeLimitPerSide: 3
-  safeZoneFirst: 0.3
-  safeZoneSecond: 0.3
+  safeZoneFirst: 0.5
+  safeZoneSecond: 0.4
   randomStartMin: 1.8
   randomStartMax: 2.3
   fadeStartTime: 0.5
