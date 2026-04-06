@@ -14,7 +14,7 @@ using System.Collections;
 public class TitleManager : MiniGameBase
 {
     public static bool isNormalMode = false;
-    private int choice = 0;
+    private int choice = 1;
     private string mode = "Title";
     private bool isSetting = false;
     [SerializeField] List<Slider> nowSetting;
